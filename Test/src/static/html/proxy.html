@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<script>
+(function (win, undefined) {
+    var command;
+    try {
+        command = win.parent.parent._command;
+    } catch (e){
+        return ;
+    }   
+    
+    if (typeof command !== 'function') {
+        return;
+    }
+
+    var decode = decodeURIComponent,
+        s = win.location.search,
+        params,
+        json = '{}';
+
+    params = (s.length > 0 && s.substr(1) || '').split('&');
+
+    for (var i = 0, l = params.length, kv; i < l; i++) {
+        kv = params[i].split('=');
+        if (kv[0] === 'json') {
+            json = decode(kv[1]);
+            break;
+        }
+    }
+
+    command(json);
+}(window));
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+
+
+.music-body{ background: none;}
+/*公共模块*/
+.module{ margin-bottom:10px; padding-bottom:10px; }
+.mod-head .more{ display:inline; margin-right:10px; float:right; margin-top:10px; font-size:12px; }
+.mod-head .mod-title{height:44px;padding:0 10px;line-height:44px; font-weight:700; }   /*配置模块标题字号，颜色*/
+.mod-body{ overflow: hidden;zoom:1; padding:15px;  margin:0 10px;} /*配置背景*/
+.mod-body h3{padding:10px 0; font-size:14px; font-weight:700; color:#000; }
+.mod-info{ margin-bottom:10px; overflow:hidden;}
+.mod-info img{ float:left; margin:0 10px 10px 0;}
+.mod-no-title{padding-top:10px;}
+.topic-right .module{ padding:1px;}
+.topic-right .mod-body{ margin:0;}
+
+
+/*公共图集分页模块*/
+.page-list-wrap{ position:relative; overflow:hidden; width:100%;}
+.page-list{position:relative;left:0;top:0; width:30000px;}
+.page-list .item{ float:left; width:620px;}
+.page-list .item ul{ width:100%;}
+
+/*公共图片模块*/
+.mod-list .pic-list li{ display:inline; float:left; text-align:center; margin:0 18px; padding-bottom:15px;}
+.mod-list .pic-img img{ width:170px; height:120px;}
+
+
+/*纵向列表模块*/
+.longitudinal-list{ position:relative; overflow:hidden;zoom:1;}
+.longitudinal-list .item{ margin-bottom: 10px; position:relative; top:-1px; padding:10px 0 3px; border-top:1px dashed #CCC;}
+.longitudinal-list dl dt{float:left; margin-right:10px;}
+.longitudinal-list dl dd{ overflow:hidden;zoom:1;}
+
+
+/*公共分页模块*/
+.mod-page { position:relative; text-align:center; padding-top:3px;zoom:1;}
+.mod-page a{ position:relative; display:inline-block;height:10px;width:10px; margin-right:10px; cursor:pointer;}
+.mod-page a.page-prev{ width:13px; height:13px;background:url(/static/images/bg/page_dot_pre_newalbum.png) no-repeat; merge:bg;}
+.mod-page a.page-next{ width:13px; height:13px;background:url(/static/images/bg/page_dot_next_newalbum.png) no-repeat; merge:bg;}
+.mod-page a.page-next:hover{zoom:1;}
+
+.mod-page a.page-prev,
+.mod-page a.page-next{ _top:-3px; margin-top:-3px;}
+
+.page-index{background: url(/static/images/bg/page_dot.png) no-repeat;_background:none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/images/bg/page_dot.png" ,sizingMethod="crop"); merge:rich;}
+.page-active{background: url(/static/images/bg/page_active_dot.png) no-repeat;_background:none;
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/images/bg/page_active_dot.png" ,sizingMethod="crop"); merge:rich;}
+
+
+/*透明背景层*/
+.bg{ z-index:-1; position:absolute; left:0; top:0; width:90em; height:90em; }
+
+/*banner模块*/
+.topic-banner{ position:relative; width:980px; margin:0 auto;}
+.topic-banner .btn-recommend{ position:relative; top:1px; float:left; margin-right:5px;}
+/**/
+
+/* 分享模块 */
+.share {
+	display: none;
+	position: fixed;
+	_position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 9999;
+}
+
+.share .share-up {
+	display: block;	
+	width: 35px;
+	height: 37px;
+	background: url(/static/images/music/share_up.png) no-repeat;
+}
+
+
+.share .share-weixin {
+	display: block;	
+	margin-top: 10px;
+	width: 35px;
+	height: 37px;
+	background: url(/static/images/music/share_qr.png) no-repeat;
+}
+
+.share #bdshare {
+	float: none;
+	display: block;
+	margin-top: 10px;
+	padding: 0;
+	width: 35px;
+	height: 70px;
+	background: url(/static/images/music/share_baidu.png) no-repeat !important;
+}
+
+.share #bdshare .bds_more{
+	float: none;
+	display: block;	
+	padding: 0;
+	width: 35px;
+	height: 70px;
+	background: none !important;
+}
+
+.share .share-weibo {
+	display: block;	
+	margin-top: 10px;
+	width: 35px;
+	height: 147px;
+	background: url(/static/images/music/share_weibo.png) no-repeat;
+}
+
+.share .share-up:hover {
+	background: url(/static/images/music/share_up_on.png) no-repeat;
+}
+
+
+.share .share-weixin:hover {
+	background: url(/static/images/music/share_qr_on.png) no-repeat;
+	merge: blue;
+}
+
+.share #bdshare:hover {
+	background: url(/static/images/music/share_baidu_on.png) no-repeat;
+}
+
+.share .share-weibo:hover {
+	background: url(/static/images/music/share_weibo_on.png) no-repeat;
+}
+
+.share .share-weixin-detail { 
+	display: none; 
+	position: absolute; 
+	right: 40px; 
+	top: 47px; 
+	padding: 10px; 
+	width: 150px;
+	border: 1px solid #ccc; 
+	line-height: 18px; 
+	color: #666; 
+	background: #fff; 
+}
+
+.share .share-weixin-qr { 
+	margin-bottom: 10px; 
+	width: 150px; 
+	height: 150px; 
+	background: url(/static/images/music/weixin_qr.png) no-repeat; 
+	merge: bg; 
+}
+/**/
+
+
+.topic-tab .tab-nav{zoom:1;}
+.topic-tab .tab-body{ background-color: #FFF;color:#000; }
+.topic-tab .tab-item{display:none;padding:20px 25px;}
+.topic-tab .tab-body .on{display: block;}	
+
+/*pop*/
+
+.popup-mask-topic{ position:absolute; top:0; left:0; width:100%; z-index:99; background:#000;opacity:0.8;filter:Alpha(Opacity=50);}
+.popup-wrapper-topic{ position:absolute; z-index:100; left:50%; width:800px; background:#000; padding:5px; height:600px; margin-left:-405px;}
+.popup-wrapper-topic .pop-close{position:absolute; top:-22px; left:100%; width:22px; height:22px; cursor:pointer;  
+    background:url(/static/images/btn/topic_pop_close_btn.png) no-repeat;
+    _background:none;
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/images/btn/topic_pop_close_btn.png" ,sizingMethod="crop");merge:rich;}
+
+
+
+.btn-wrap{ padding-top:15px;}
+
+/*ting 友福利*/
+.ting-weal{ visibility:hidden;}
+
+
+.mobileapp-down{ display: block; height: 104px; margin-bottom: 10px; background: url(http://music.baidu.com/cms/topics/tpl_topic/images/topic_mobileapp_down.png) no-repeat; cursor: text;}
+.mobileapp-down a{ float: left; width:114px ; height:24px ; overflow: hidden; margin: 50px 0 0 120px; cursor: pointer;}
+.mobileapp-down a:hover i{ display: block;}
+.mobileapp-down a i{ display: none; width: 280px; height: 104px; float: left; position: relative; top: -50px; left: -120px; background: url(http://music.baidu.com/cms/topics/tpl_topic/images/topic_mobileapp_down_hover.png) no-repeat;}

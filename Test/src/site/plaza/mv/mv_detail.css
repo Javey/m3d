@@ -1,0 +1,112 @@
+@import "/site/plaza/mv/mv_common.css";
+/*siderbar*/
+.sidebar {
+    padding: 0;
+}
+.sidebar a:hover {
+    text-decoration: underline;
+}
+.sidebar .type-selected {
+    text-decoration: none;
+    background-color: #299de7;
+    color: #fff;
+}
+.new-album-title a {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.select h4 {
+    font-weight: bold;
+    margin: 20px 0 5px;
+}
+.select li {
+    float: left;
+    padding: 5px 22px 0 0;
+}
+.select a, .all-mv a {
+    display: inline-block;
+    line-height: 26px;
+    padding: 0 5px;
+    white-space: nowrap;
+    color: #666;
+}
+.all-mv a {
+    display: block;
+    margin: 10px 0;
+}
+.select-item {
+    margin-top: 5px;
+}
+.by-recommend li {
+    padding-right: 9px;
+}
+.by-feature li {
+    padding-right: 6px;
+}
+
+/*body*/
+.main-body {
+    float: left;
+    width: 790px;
+}
+.sort {
+    float: right;
+    color: #666;
+    line-height: 26px;
+}
+.sort a {
+    color: #666;
+}
+.sort .module-line {
+    float: left;
+    height: 9px;
+    margin: 9px 8px 0;
+    vertical-align: middle;
+    width: 1px;
+}
+.sort em {
+    float: left;
+    display: inline-block;
+    padding: 0 5px;
+}
+.order-selected {
+    background: #299de7;
+    color: #fff;
+}
+
+.ab-list-select {
+    float: left;
+}
+.ab-list-select .title {
+    margin-right: 5px;
+}
+.selected-item {
+    border: 1px solid #E4E4E4;
+    display: inline-block;
+    line-height: 25px;
+    margin: 0 5px;
+    padding: 0 10px;
+    vertical-align: 15%;
+}
+.selected-item a {
+    margin-left: 5px;
+    color: #666;
+    font-weight: bolder;
+}
+.selected-item a:hover {
+    color: #289EE6;
+    text-decoration: none;
+}
+
+.mv-list-body {
+    margin-right: -30px;
+}
+
+.page-navigator {
+    margin-top: 50px;
+}
+.page-navigator-hook .PNNW-D{
+    width: auto;
+}

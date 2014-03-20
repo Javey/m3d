@@ -1,0 +1,11 @@
+
+
+/*页面头部*/
+.mod-intro { position:relative; z-index:1; margin-bottom:10px; overflow:hidden;zoom:1; color:#FFF; }
+.mod-intro .bg{}  /*配置背景，透明度*/
+.mod-intro .mod-head{ position:relative; z-index:1; overflow:hidden;zoom:1;border-bottom:1px solid #3a3f52; background:none;}
+.mod-intro .mod-head .bg{ height:44px;}  /*配置背景，透明度*/
+.mod-intro .body{padding:15px;} 
+.mod-intro .body img{ float:left; margin-right:20px;}
+.mod-intro .info{ overflow:hidden;zoom:1;}
+

@@ -1,0 +1,77 @@
+#!/bin/bash
+export LANG="zh_CN.UTF8"
+
+echo "compile $1 in $(pwd)"
+
+
+
+case "$1" in
+	"app")
+		BUD_DIR="build/fe-app"
+		PID_FILE="compile.app.pid"
+		NEW_FLG="new.app.tag"
+		INPUT_DIR="src/fe-app"
+	;;
+	"webapp")
+		BUD_DIR="build/fe-webapp"
+		PID_FILE="compile.webapp.pid"
+		NEW_FLG="new.webapp.tag"
+		INPUT_DIR="src/fe-webapp"
+	;;
+
+        "ipadwebapp")
+                BUD_DIR="build/fe-ipadwebapp"
+                PID_FILE="compile.ipadwebapp.pid"
+                NEW_FLG="new.ipadwebapp.tag"
+                INPUT_DIR="src/fe-ipadwebapp"
+        ;;
+	*)
+		BUD_DIR="build/fe-main";
+		PID_FILE="compile.pid";
+		NEW_FLG="new.tag";
+		INPUT_DIR="src/fe-main/src"
+	;;
+esac;
+
+export PHP="/home/bae/local/php/bin/php"
+export SRC_PATH="$INPUT_DIR";
+export BUILD_PATH="$BUD_DIR";
+
+touch ${NEW_FLG};
+
+if ! [ -f "${PID_FILE}" ]; then
+	#建立PID文件
+	echo $$ > "${PID_FILE}";
+	
+	#检查是否有新的更新
+	while [ -f "${NEW_FLG}" ];do
+		rm -f "${NEW_FLG}";
+		
+		rm -rf "${BUD_DIR}";
+		mkdir -p "${BUD_DIR}/static";
+		
+case "$1" in
+	"app")
+		
+		$PHP "src/fe-main/tool/compile.php" app > "${BUD_DIR}/static/log.html";
+	;;
+	"webapp")
+		$PHP "src/fe-main/tool/compile.php" webapp > "${BUD_DIR}/static/log.html";
+	;;
+
+        "ipadwebapp")
+                $PHP "src/fe-main/tool/compile.php" ipadwebapp > "${BUD_DIR}/static/log.html";
+        ;;
+	*)
+		$PHP "src/fe-main/tool/compile.php" > "${BUD_DIR}/static/log.html";
+	;;
+esac;
+	done;
+	
+	#图片处理
+	echo "";
+ 
+	#删除PID文件
+	echo "删除PID文件";
+	rm -f "${PID_FILE}";
+fi;

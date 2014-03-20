@@ -1,0 +1,55 @@
+.a {
+    background: url(/static/images/testa.png);
+    merge: bg;
+}
+.b {
+    background: url(/static/images/testb.png) left no-repeat;
+    merge: blue;
+}
+.c {
+    background: url(/static/images/testc.png) 3px 5px;
+    merge: bg;
+}
+.d {
+    background: url(/static/images/testd.png) repeat-x;
+    merge: bg;
+}
+.e {
+    background: url(/static/images/teste.png) 3px repeat-x;
+    merge: bg;
+}
+.f {
+    background: url(/static/images/testf.png) 3px;
+}
+.a {
+    background: url(/static/images/testa.png) 3px repeat-x;
+    merge: bg;
+}
+/*.a {*/
+    /*background: url(/static/images/testa.png) repeat-y;*/
+    /*merge: bg;*/
+/*}*/
+/*.b {*/
+    /*background: url(/static/images/testb.png) right no-repeat;*/
+    /*merge: blue;*/
+/*}*/
+.g {
+    background-image: url(/static/images/testg.png);
+    merge: bg;
+}
+.h {
+    background-image: url(/static/images/testh.png);
+    background-repeat: repeat-x;
+    background-position: 3px 4px;
+    merge: bg;
+}
+.i {
+    background-image: url(/static/images/testi.png);
+    background-position: 4px;
+    merge: blue;
+}
+.j {
+    background-image: url(/static/images/testj.png);
+    background-position: 4px 3px;
+    merge: blue;
+}

@@ -1,0 +1,13 @@
+.target-artist { padding:15px 25px 25px 15px; position: relative;}
+.target-artist .avatar {float:left; margin-right: 20px;}
+.target-artist .artist-info { overflow: hidden;zoom:1; padding-top: 5px;}
+.target-artist .artist-info .name a{ font-weight:bold; font-size: 14px; color:#c33;}
+.target-artist .artist-info span {display:inline; }
+.target-artist .artist-info .has-split{ float: left;}
+.target-artist .artist-info span a {font-weight:bold;}
+#target_banner .splice-line{float: left; height: 8px;margin: 6px 8px 0;width: 1px;}
+
+.target-artist .artist-info .info{ margin-bottom: 5px; }
+
+.target-artist .artist-info .play-hotsong-hook{ line-height: 25px; }
+.target-artist .artist-info .play-hotsong-hook a{ font-weight: normal;}

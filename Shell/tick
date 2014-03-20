@@ -1,0 +1,46 @@
+#!/bin/bash
+#############################################
+# tick 定时执行的动作，实现如下功能
+# 1、SVN代码版本更新
+# 2、检查是否存在command.sh，如果存在则执行
+#############################################
+. ./env.sh
+#By Javey 12/09/14
+#cd $BASE_DIR;
+
+PID_FILE="$BASE_DIR/tick.pid"
+
+if ! [ -f "$PID_FILE" ]; then
+
+echo $$ > "$PID_FILE";
+
+#更新源码版本
+#./update 2>> update.log.err &
+#./update 2>update.log.err &
+#./update > update.log.err 2>&1
+
+#By Javey 12/09/14
+./update > "$BASE_DIR/update.log.err" 2>&1
+
+#By Javey 12/09/14
+cd $BASE_DIR;
+
+#检查有无待执行命令
+if [ -f command.sh ];then
+	#chmod +x command.sh;
+	date > command.log;
+	echo '命令:' >> command.log;
+	cat command.sh >> command.log;
+	echo '---------------------------' >> command.log;
+	echo '输出:' >> command.log;
+	bash command.sh >> command.log 2>&1;
+	#./command.sh >> command.log 2>&1;	
+	echo '---------------------------' >> command.log;
+	date >> command.log;
+	echo "执行完毕!" >> command.log;
+	rm -rf command.sh;
+fi
+
+rm -f "$PID_FILE";
+rm -f "xhprof_graph.err.log";
+fi

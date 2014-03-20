@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h3>添加环境</h3>
+    <div class="close ion-android-close" ng-click="cancel()"></div>
+</div>
+<div class="modal-body">
+    <form name="addSite" ng-value="$parent.mainForm = addSite">
+        <div class="item site-name">
+            <label>
+                <span class="title">环境名称</span>
+                <span class="right">
+                    <input class="long" ng-model="info.siteName" type="text" name="siteName" required />
+                    <span class="error-tip" ng-show="addSite.siteName.$dirty && addSite.siteName.$error.required">Required!</span>
+                </span>
+            </label>
+        </div>
+        <div class="item module">
+            <span class="title">模块配置</span>
+            <div class="right">
+                <ul class="right module-list" ng-form="moduleForm" ng-class="{'ng-invalid': !modulesValid}" ng-value="$parent.moduleForm = moduleForm">
+                    <li ng-repeat="module in info.modules" class="module-item" ng-init="module.branch = 'trunk'">
+                        <label>
+                            <input type="checkbox" ng-checked="module.checked" ng-model="module.checked">
+                            <span class="module-title">{{module.title}}</span>
+                        </label>
+                        <span class="branch" branch-list module="module"></span>
+                    </li>
+                </ul>
+                <span class="error-tip" ng-show="moduleForm.$dirty && !modulesValid">Select at least one module!</span>
+            </div>
+        </div>
+        <div class="item description">
+            <label>
+                <span class="title">描述</span>
+                <span class="right">
+                    <textarea class="long" ng-model="info.description" required name="description"></textarea>
+                    <span class="error-tip" ng-show="addSite.description.$dirty && addSite.description.$error.required">Required!</span>
+                </span>
+            </label>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="btn btn-a btn-ok" ng-click="ok()" ng-class="{disable: mainForm.$invalid}" button="{{isAjax}}">确定</div>
+    <div class="btn btn-a btn-cancel" ng-click="cancel()">取消</div>
+</div>

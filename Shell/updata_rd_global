@@ -1,0 +1,15 @@
+#!/bin/bash
+#更新沙盒global.conf.php文件
+#by luoqin 
+#2012-05
+export SVNFE="/home/bae/local/subversion/bin/svn --config-dir /home/bae/.svn-fe";
+OLD_GLOBAL="global.conf.php.default$(date -d "today" +"%Y%m%d%H%M%S")"
+#备份旧版global
+mv global.conf.php.default bak/"$OLD_GLOBAL"
+#删除默认global，使其更新到SVN最新版本
+rm /home/bae/branch/src/trunk/rd/main/conf/global.conf.php
+$SVNFE up /home/bae/branch/src/trunk/rd/main/conf/global.conf.php
+#复制最新版本到源
+cp -rf /home/bae/branch/src/trunk/rd/main/conf/global.conf.php global.conf.php.default
+#查看更改
+diff global.conf.php.default bak/"$OLD_GLOBAL"

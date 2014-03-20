@@ -1,0 +1,191 @@
+.main-panel {
+    width: 50px;
+    background: #262626;
+    position: relative;
+    z-index: 1;
+}
+.main-panel .item {
+    height: 50px;
+    color: #fff;
+    font-size: 35px;
+    text-align: center;
+    line-height: 50px;
+    cursor: default;
+}
+.main-panel .item:hover {
+    background: #e25940;
+}
+
+.modal label {
+    display: inline-block;
+}
+.modal .module label {
+    float: left;
+    margin-right: 4px;
+    width: 130px;
+}
+.modal .title {
+    display: inline-block;
+    width: 67px;
+    text-align: right;
+    line-height: 32px;
+    vertical-align: top;
+    margin-right: 10px;
+    /*border: 1px solid #ccc;*/
+    /*border-right: 0;*/
+}
+.modal .right {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+.modal input:focus,
+.modal textarea:focus {
+    border-color: #e25940;
+}
+.modal input.ng-dirty.ng-invalid,
+.modal textarea.ng-dirty.ng-invalid,
+.modal .module-list.ng-dirty.ng-invalid {
+    border-color: #e25940;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(226, 89, 64, 0.6);
+}
+.modal .item {
+    margin-bottom: 5px;
+}
+.modal .item:last-of-type {
+    margin: 0;
+}
+.modal .long {
+    width: 434px;
+}
+.checkout .type .right {
+    line-height: 32px;
+}
+.checkout .type label {
+    margin-right: 10px;
+}
+.checkout .module-list {
+    display: block;
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.checkout .module-list .module-item {
+    display: block;
+    line-height: 30px;
+    padding: 0 5px;
+}
+.checkout .module-list .module-item:hover {
+    background: #f0f0f0;
+}
+.add-site .list {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    left: 0;
+    width: 310px;
+}
+.add-site .module-item input[type=checkbox] {
+    margin-left: 5px;
+}
+.add-site .module-item {
+    cursor: default;
+}
+.add-site .branch input {
+    border: none;
+    background: none;
+}
+.add-site .branch input:focus {
+    background: #fff;
+}
+.add-site .module-title {
+    display: inline-block;
+    line-height: 30px;
+    width: 100px;
+    padding-left: 5px;
+}
+.add-site .module-item:hover {
+    background: #f0f0f0;
+}
+.add-site .module-list {
+    border: 1px solid #ccc;
+}
+/*.add-site .description textarea {*/
+    /*height: 50px;*/
+/*}*/
+
+.nav-tabs {
+    border-bottom: 1px solid #eee;
+}
+.nav-tabs li {
+    float: left;
+    margin-bottom: -1px;
+    line-height: 30px;
+}
+.nav-tabs a {
+    padding: 0 10px;
+    display: block;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    /*color: #999;*/
+}
+.nav-tabs .active a {
+    border: 1px solid #eee;
+    border-bottom: 0;
+    background: #fff;
+    /*color: #e25940;*/
+    font-weight: bold;
+}
+.nav-tabs a:hover {
+    text-decoration: none;
+}
+.nav-tabs:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+.tab-content {
+    padding-top: 10px;
+}
+.tab-content .tab-pane {
+    display: none;
+}
+.tab-content .active {
+    display: block;
+}
+.module-manager .module-list li {
+    line-height: 30px;
+    padding: 0 20px;
+    border-bottom: 1px dashed #f0f0f0;
+    position: relative;
+}
+.module-manager .module-list li:hover {
+    background: #f0f0f0;
+}
+.module-manager .module-list .delete {
+    position: absolute;
+    right: 20px;
+    line-height: 30px;
+    color: #666;
+    font-size: 18px;
+    cursor: pointer;
+}
+.module-manager .module-list .delete:hover {
+    color: #e25940;
+}
+.module-manager .module-list .name {
+    width: 100px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.module-manager .module-list .description {
+    font-size: 12px;
+    color: #666;
+    width: 360px;
+    display: inline-block;
+    vertical-align: middle;
+}

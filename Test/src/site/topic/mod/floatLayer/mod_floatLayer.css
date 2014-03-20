@@ -1,0 +1,26 @@
+
+
+/*页面头部*/
+.mod-floatLayer,.mod-messageLayer {display:none; position:absolute; width: 630px;border-left:1px solid #d2d2d2;background-color: #FFF;}
+.mod-floatLayer .mod-head,.mod-messageLayer .mod-head{height:40px;line-height: 40px;border-bottom: 1px solid #d2d2d2; /*background:url(/static/images/bg/floatlayer_head_bg.png) repeat-x; merge:bg;*/}
+.mod-floatLayer .mod-head .mod-title,.mod-messageLayer .mod-head .mod-title{color:#000;font-size: 18px; }
+.mod-floatLayer .mod-head .close,.mod-messageLayer .mod-head .close{position:absolute;display:inline-block; height:13px;width:13px;right:15px;top:15px;background:url(/static/images/bg/close_13.png) no-repeat; merge:bg;}
+.mod-floatLayer .body{padding:25px 60px 20px;}
+.mod-floatLayer h3{color:#000;font-weight:bold;margin-bottom:5px; }
+.mod-floatLayer  .input-text{width:255px;padding:5px;border-width:1px; border-style: solid; border-color:#C2C2C2 #E8E8E8 #E8E8E8 #C2C2C2; }
+.mod-floatLayer .input-text{height:16px;}
+.mod-floatLayer .upload-title-hook{margin-right:25px;}
+.mod-floatLayer .photo-argeement{padding:20px 0;}
+.mod-floatLayer .separated{margin:0 -25px; font-size: 0; height:0px; border-bottom: 1px dashed #d8d8d8;}
+.mod-floatLayer .argeement-content{display:none;margin:5px 0 -5px 0;}
+.mod-floatLayer .argeement-link{margin-right:20px;}
+#selectedPhoto {position:relative; top:-5px;  margin-left:10px; }
+.mod-floatLayer .select-file{height:42px;overflow:hidden; }
+.mod-messageLayer .body{padding:50px 25px;}
+.mod-messageLayer .info{margin-left:40px;padding-left:110px;}
+.mod-messageLayer .info h3{font-size:30px;line-height:60px; color:#d60000; font-weight:bold;}
+.mod-messageLayer .info .desc{font-size:22px;line-height:45px; color:#3a3a3a;font-weight:bold;}
+.mod-messageLayer .message-btns{padding-top:20px;border-top:1px solid #dddddd;text-align: center;}
+/*.mod-messageLayer .upload-sucess .info{background:url(/static/images/bg/xiaole_happy.png) no-repeat; merge:bg;}*/
+/*.mod-messageLayer .upload-fail .info{background:url(/static/images/bg/xiaole_sad.png) no-repeat; merge:bg;}*/
+

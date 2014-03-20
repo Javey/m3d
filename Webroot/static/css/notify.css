@@ -1,0 +1,43 @@
+.notify {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 9000;
+}
+.notify-window {
+    width: 250px;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+    border-radius: 4px;
+    margin: 10px 10px 0;
+    position: relative;
+    box-shadow: 0 0 7px 0 #999;
+    /*opacity: 0.9;*/
+}
+.notify-window.error {
+    background: #f1c8c8;
+    color: #b94a48;
+}
+.notify-window.warn {
+    background: #fcf8e3;
+    color: #c09853;
+}
+.notify-window .head {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.notify-window .close {
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    font-size: 24px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.notify-window .close:hover {
+    color: #e25940;
+}
+.notify-window .body {
+    word-wrap: break-word;
+}

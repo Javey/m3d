@@ -1,0 +1,8 @@
+
+
+.other-list-wrap{position:relative;overflow: hidden;zoom:1;}
+.other-list{position:relative;margin-bottom:-1px;}
+.other-list li{padding:0 10px;line-height:30px;overflow: hidden;zoom:1;background: url(/static/images/bg/bottom_border_dotted.png) repeat-x bottom; merge:bg;}
+.other-list .img-list{padding:10px 5px;}
+.other-list img{float:left;width:60px;height:35px;border:1px solid #E4E4E4;margin-right:10px;}
+

@@ -1,0 +1,53 @@
+@charset "utf-8";
+.page-top-holder{margin-bottom:0px;}
+.page-container-holder{width:100%;margin:0;}
+.topic-top,.topic-body,.topic-bottom{margin:0 auto;width:980px;}
+.topic-body .topic-left{float:left;width:670px;}
+.topic-body .topic-right{float:right;width:280px;}
+
+
+
+.head{font-weight:bold;color:#FFF;font-size:14px; }
+
+/* 分享 papa */
+#papa-follow{
+    position: relative;
+    top: -1px;
+    height: 22px;
+    line-height: 22px;
+    float: right;
+    margin-left: 10px;
+    padding-left: 28px;
+    width: 68px;
+    background: url(/static/images/btn/papa-follow.png);
+}
+#papa-follow:hover {
+    text-decoration: none;
+    color: #FFF;
+    background: url(/static/images/btn/papa-follow-on.png);
+}
+
+.follow-target {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    padding: 10px;
+    border: 1px solid #CCC;
+    line-height: 18px;
+    color: #666;
+    background: #FFF;
+}
+.follow-target .info {
+    display: block;
+    width: 150px;
+}
+.follow-target .two-code{
+    margin-bottom: 10px;
+    width: 150px;
+    height: 150px;
+}
+.two-code-papa{
+    background: url(/static/images/2code/papa.png);
+}
+/*papa 分享*/

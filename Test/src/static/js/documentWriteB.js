@@ -1,0 +1,1 @@
+document.write('<script type="text/javascript" src="/home/music/javey/m3d/Test/src/static/js/writeC.js"></script>');

@@ -1,0 +1,8 @@
+#lrc_list li{ padding-top: 20px; }
+#lrc_list em{ color:#c33; font-style: normal; }
+#lrc_list li .song-content{ position:relative; padding: 5px 10px; border: 1px solid #e6e6e6; }
+	.song-content span.song-title,span.artist-title,span.album-title{ margin-right: 20px; display: inline-block;}
+	.song-content .fun-icon{ position: absolute; right: 5px; top:6px; _top:7px; } 
+
+#lrc_list li .lrc-content{ margin:20px; }
+	.lrc-content .lyric-action{ float: right; }

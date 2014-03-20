@@ -1,0 +1,104 @@
+.terminal {
+    position: absolute;
+    height: 300px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 0 7px 0 #111;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 10;
+}
+.terminal .terminal-nav {
+    background: #262626;
+    /*overflow: hidden;*/
+    height: 30px;
+    /*line-height: 30px;*/
+    border-bottom: 1px solid #222;
+}
+.terminal .nav {
+    float: left;
+    padding: 0 25px;
+    height: 25px;
+    line-height: 25px;
+    margin: 7px 0 0 5px;
+    color: #ccc;
+    position: relative;
+    cursor: default;
+}
+.terminal .nav.active {
+    background: #333;
+    border-radius: 3px 3px 0 0;
+    /*border: 1px solid #444;*/
+    /*border-bottom: 0;*/
+    /*cursor: default;*/
+}
+.terminal .terminal-content {
+    background: #333;
+    -webkit-box-flex: 1;
+    display: -webkit-box;
+    /*-webkit-box-orient: vertical;*/
+    flex: 1;
+    display: flex;
+}
+.terminal .content {
+    display: none;
+    border-top: 1px solid #444;
+    padding: 10px;
+    -webkit-box-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+.terminal .content.active {
+    display: block;
+}
+.terminal .nav .close {
+    position: absolute;
+    top: -5px;
+    right: -3px;
+    cursor: pointer;
+    color: #eee;
+    display: none;
+}
+.terminal .nav.active .close {
+    display: block;
+}
+.terminal .nav .close:hover {
+    color: #e25940;
+}
+.terminal .content .emphasize {
+    color: #008000;
+    font-weight: bold;
+}
+.terminal .content .normal {
+    color: #999;
+}
+.terminal .content .warn {
+    color: #ffa500;
+}
+.terminal .content .error {
+    color: #ff0000;
+}
+.drag-line {
+    position: relative;
+    height: 4px;
+    margin-bottom: -4px;
+    cursor: s-resize;
+    z-index: 10;
+}
+.terminal-ctrl {
+    position: absolute;
+    line-height: 30px;
+    right: 0;
+    color: #999;
+}
+.terminal-ctrl span {
+    margin: 0 3px;
+    cursor: pointer;
+}
+.terminal-ctrl span:hover {
+    color: #e25940;
+}

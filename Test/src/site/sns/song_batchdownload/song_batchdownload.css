@@ -1,0 +1,195 @@
+html {background:#fff; overflow:hidden;}
+.logo-grey {position: relative;margin-top: -15px; float:right; }
+.logo-grey a{ display: block; text-indent: -999px; overflow: hidden; width:100px; height:32px; background:url(/static/images/music/baidu-music_100x32.png) no-repeat;}
+
+.download-info {padding:25px 30px 20px;}
+.download-info .song .fwb {
+    font-size: 22px;
+    vertical-align: middle;
+}
+.download-info .author_list {
+    vertical-align: middle;
+}
+.download-info .song, .download-info .rate {font-size:14px;}
+.download-info .main-links, .download-info .other-links {font-size: 13px; margin-bottom: 10px;}
+.download-info .song .label{ padding-top: 0;}
+.download-info .label{width:50px;float:left; padding-top: 6px;}
+.download-info .main-links .label, .download-info .other-links .label {width: 70px;}
+.download-info .main-links ul, .download-info .other-links ul {float: left;}
+.download-info .main-links li,
+.download-info .other-links li{ padding-top: 6px;}
+
+.download-info .song{
+    /*border-bottom:1px solid #eee;*/
+    padding:10px 0 15px;
+    /*margin-bottom: 5px;*/
+}
+
+.download-info .rate{
+    position: relative;
+    margin: 15px 0 10px 0;
+    overflow: hidden;
+    width: 100%;
+}
+.download-info .rate .ul{
+    overflow: hidden;
+    zoom:1;
+    margin-right: 30px;
+    color: #333;
+    /*border: 1px solid #d7e9f5;*/
+}
+.download-info .rate .li{
+    padding: 10px 0;
+    clear: both;
+    /*overflow: hidden;*/
+}
+.download-info .rate label {
+    margin-right: 15px;
+    cursor: pointer;
+    float: left;
+}
+.download-info .low-rate, .download-info .high-rate {
+    position: relative;
+}
+.download-info .description {
+    /*float: right;*/
+    width: 200px;
+    font-size: 12px;
+    color: #666;
+    position: absolute;
+    right: 10px;
+}
+.download-info .is-three .description {
+    top: 50%;
+    margin-top: -10px;
+}
+.download-info .description a {
+    display: inline-block;
+    margin-left: 10px;
+}
+.download-info .description .power-icon-min {
+    margin-right: 5px;
+}
+.download-info .rate .label {
+    clear: both;
+}
+.download-info .rate .fwb {
+    margin: 0 10px;
+    display: inline-block;
+}
+/*.download-info .rate li input{margin:0 15px 0 0;}*/
+/*.download-info .rate li .cont{color: #333; } */
+/*.download-info .rate li .excellent-icon{display:inline-block;width:16px;height:16px;margin:0 2px 0 -5px;background:url(/static/images/bg/down-excellent-icon.png); vertical-align: middle;}*/
+/*.download-info .rate li .need-login{color:#999;}*/
+/*.download-info .rate .data-link .label{ float: left;}*/
+/*.download-info .rate .data-link .link{ word-wrap:break-word; overflow: hidden; zoom:1;}*/
+
+.download-info .is-three .high-rate{
+    background: #f0f8fd;
+    border-top: 1px solid #e9f5fd;
+}
+/*.download-info .high-rate i.high-tip{ color:#c00;}*/
+/*.download-info .high-rate input{  background: #F7FCFF; }*/
+/*.download-info .high-rate .new-icon{ color: #cc0000; font-size: 12px; }*/
+/*.download-info .rate li.high-tips{padding-top: 15px; color: #cc0000;font-size: 12px;}*/
+/*.download-info .high-tips a{ margin-left: 10px; }*/
+
+.operation{
+    /*padding: 20px 0 0 50px;
+    */
+    clear: both;
+}
+.download-info .btn-download .inner{
+    padding: 0 30px 0 22px;
+}
+.download-info .btn-download .icon {
+    margin-right: 5px;
+}
+.download-info .down-ad-notcopy {
+    padding: 0;
+    margin-top: -31px;
+    *margin-top: -26px;
+    _margin-top: -6px;
+}
+.operation-notcopy {
+    padding-left: 0;
+}
+
+.active{ position: absolute; width: 186px; height: 67px; right: 20px; top: 71px; cursor: pointer; }
+
+.operation {
+    /*float: left;  */
+    font-family: "Microsoft YaHei";
+}
+.operation .btn {
+    margin-right: 6px;
+    display: none;
+}
+.operation .actived {
+    display: inline-block;
+}
+
+.addtion-tips {
+    margin: 0 0 20px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.album-info {
+    color: #333;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.album-info li {
+    border: none;
+}
+
+.album-count {
+    float: left;
+    padding-top: 40px;
+}
+
+.cover-list li {
+    float: left;
+    width: 60px;
+    height: 60px;
+    margin: 0 18px 0 0;
+}
+
+.cover-list img {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #CCC;
+}
+
+.btn-f, .btn-c {
+    font-size: 18px;
+    color: #fff;
+}
+
+.btn-g .icon {
+    display: none;
+}
+
+.module-dotted {
+    margin-bottom: 20px;
+}
+
+.batchdown-dialog .body {
+    width: 180px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.batchdown-dialog .is-success {
+    margin: 10px 0;
+}
+
+.batchdown-dialog .btn {
+    margin: 0 12px 0 0;
+}
+
+.batchdown-dialog .vip-fail-btn {
+    margin-right: 0;
+}

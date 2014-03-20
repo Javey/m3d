@@ -1,0 +1,81 @@
+
+.mod-pic .mod-list .pic-img{ width:118px; overflow:hidden;}
+.mod-pic .mod-list .pic-img img{ display:block; width:116px; height:auto;  }
+
+.pic-list .mod-list .pic-img a{ display:block; width:116px; border:1px solid #ccc;height:auto!important;height:130px; max-height:130px;   overflow:hidden;}
+
+/*图集扩展 模块*/
+.pic-album .page-list-wrap{ width:530px; margin:0 auto;}
+.pic-album .page-list{ position:relative; height:350px;  overflow:hidden;}
+.pic-album .page-list li{position:static; float:none; display:table-cell;   width:530px; height:350px; overflow:hidden; vertical-align:middle; text-align:center; }
+.pic-album .page-list li .blank{ *height: 100%; *display: inline-block; *vertical-align: middle;}
+.pic-album .page-list li .pic-img { width:100%; *display: inline-block; *vertical-align: middle;}
+
+.pic-album .mod-list .pic-img img{ position:relative; display:inline; width:auto; height:auto;vertical-align:middle;zoom:1;}
+.pic-album .pic-title{ position:absolute;z-index:1; bottom:0; left:0; width:100%; height:40px; line-height:40px; font-size:16px; text-indent:60px; color:#fff;}
+.pic-album .pic-title i{ width:100%; height:40px; background:#000;opacity:0.5;filter:Alpha(Opacity=50);}
+.pic-album .pic-album-left-btn,
+.pic-album .pic-album-right-btn{position:absolute; z-index:2; top:150px; width:46px; height:46px; cursor:pointer;background:url(/static/images/bg/pic_album_left_btn.png) no-repeat;opacity:0.7;filter:Alpha(Opacity=70); merge:red; }
+.pic-album .pic-album-left-btn{ left:10px;}
+.pic-album .pic-album-right-btn{ right:10px;background:url(/static/images/bg/pic_album_right_btn.png) no-repeat; merge:red; }
+
+.pic-album .page-num{ position:absolute; left:10px; bottom:10px; z-index:10; font-weight:700; font-size:16px; color:#fff;}
+
+
+.page-list-pic-album{ position:relative; z-index:3; width:530px; margin:0 auto;}
+.page-list-pic-album .page-prev,
+.page-list-pic-album .page-next{ float:left; width:16px; height:86px;background:url(/static/images/bg/pic_album_left_scoll.png) no-repeat; merge:red;}
+.page-list-pic-album .page-next{background:url(/static/images/bg/pic_album_right_scoll.png) no-repeat; merge:red;}
+.page-list-pic-album .page-inner{ position:relative; float:left; overflow:hidden; width:498px; padding:12px 0; background:#f5f5f5;}
+.page-list-pic-album .page-inner ul{position:relative; width:2000px;}
+.page-list-pic-album .page-inner li{ float:left; margin:0 10px 0 0;}
+.page-list-pic-album .page-inner li.on img,
+.page-list-pic-album .page-inner li a:hover img{ border-color:red;opacity:100;filter:Alpha(Opacity=100);}
+.page-list-pic-album .page-inner img{display:block; width:95px; height:60px;  border:1px solid #f5f5f5;opacity:0.7;filter:Alpha(Opacity=70);}
+.pic-album-nopage .page-list-pic-album{ display:none;}
+.topic-up,.topic-down{display:inline-block;height:26px;padding-left:25px; width:35px;line-height:26px;text-align:center;font-weight: bold;}
+.topic-up{width:60px;background:url(/static/images/bg/topic_up_large.png) no-repeat;color:#FFF;merge:red;}
+.topic-up-mini{width:35px;background:url(/static/images/bg/topic_up.png) no-repeat;color:#FFF;merge:red;}
+.topic-down{background:url(/static/images/bg/topic_down.png) no-repeat;color:#FFF;merge:blue;}
+.topic-up:hover,.topic-down:hover{text-decoration: none;color: #FFF;}
+/*右侧单图 模块*/
+.mod-pic-onepic .page-list-wrap{ width:215px; margin:0 auto;}
+.mod-pic-onepic .page-list .item{ width:215px;}
+.mod-pic-onepic .page-list .item img{ width:215px;}
+.mod-pic-onepic .page{ position:relative;}
+.mod-pic-onepic .page .page-prev,
+.mod-pic-onepic .page .page-next{ top:-65px; left:0; position:absolute; width:9px; height:17px;background:url(/static/images/bg/page_left_pic.png) no-repeat; merge:red;}
+.mod-pic-onepic .page .page-next{ left:100%; margin-left:-10px;background:url(/static/images/bg/page_right_pic.png) no-repeat; merge:red;}
+.mod-pic-onepic .mod-page{ position:static;}
+.mod-pic-onepic .mod-page .page-index{ display:none;}
+.upload-photo-btn{position:absolute;right:10px;top:35px;}
+
+.mod-piclist{position:relative;}
+div.mod-piclist .mod-body{background-color:transparent; padding:0px; }
+.mod-piclist .topic-tab .tab-body{padding:35px 52px 20px;}
+.mod-piclist .topic-tab .tab-body .tab-item .pic-content{width:946px;margin-right:-100px;}
+.mod-piclist .topic-tab .tab-item{ padding:0; position:relative;zoom:1; }
+.mod-piclist dl{float:left;position:relative; width:150px; text-align: center;margin:10px 27px 25px 0; }
+.mod-piclist dt{ position:relative; overflow:hidden;}
+.mod-piclist dt i{-webkit-transition: all 0.2s ease-out;-moz-transition: all 0.2s ease-out;transition: all 0.2s ease-out;}
+.mod-piclist dt img{display:block;}
+.mod-piclist dt a{display: block; cursor:pointer;}
+.mod-piclist dt .bg{ top:-150px;width:150px;height:150px;z-index:5;opacity:0.7;filter:Alpha(Opacity=70);background-color:#FFF; }
+.mod-piclist dt .bg{ _visibility:hidden; _top:0;}/*针对ie6做处理*/
+.mod-piclist dt a:hover{_zoom:1;}
+.mod-piclist dt a:hover .bg{ top:0;}
+.mod-piclist dt a:hover .bg{ _visibility:visible;}
+.mod-piclist dt .zoom{  position:absolute; z-index:6; top:-50px; left:-50px; width:50px; height:49px; background:url(/static/images/bg/zoom_bg.png) no-repeat;_background:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/images/bg/zoom_bg.png',sizingMethod='crop');}
+.mod-piclist dt a:hover .zoom{ top:50px; left:50px;}
+.mod-piclist dt .zoom ,
+.mod-piclist dt a:hover .zoom{ _visibility:hidden; _top:50px; _left:50px;}
+.mod-piclist dt a:hover .zoom{ _visibility:visible;}
+.mod-piclist dd.hot-like{position:absolute;top:-12px;left:-10px; width:165px;height:58px;z-index:10; background:url(/static/images/bg/ljj_like.png) no-repeat;}
+.mod-piclist .title{width:150px;overflow:hidden;}
+.mod-piclist .page-navigator{display:none; margin-left:-50px;}
+/*
+.pic-content{ position:relative;zoom:1; _background:blue; }
+.tab-body{ _background:green;}
+.mod-piclist dl{ _width:100px; _height:100px; _background:red;}
+.mod-piclist dl *{ _display:none;}
+*/

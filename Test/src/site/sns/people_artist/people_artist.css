@@ -1,0 +1,251 @@
+/*音乐人基本信息*/
+.base-info{position: relative;zoom:1;margin-bottom:20px;}
+.base-info .play-num{ position:absolute; right:0; top:0;}
+.base-info .play-num .num{ margin-right:10px;  line-height:26px; font-size: 16px;font-weight: bold;}
+.base-info .cover-img{float: left;position: relative; margin-right: 20px;}
+.base-info .cover-img .top-index{
+    display: inline-block;
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    height: 18px;
+    width: 30px;
+    padding-top: 13px;
+    color: #FFF;
+    font-size: 10px;
+    z-index: 10;
+    line-height: 12px;
+    text-align: center;
+    background:url(/static/images/music/top_index_icon.png) no-repeat; merge:red;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/top_index_icon.png');    
+
+}
+.base-info .cover-img .top-default{
+    background:url(/static/images/music/top_hot_icon.png) no-repeat; merge:red;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/top_hot_icon.png');    
+
+}
+.base-info .cover-img img{width: 130px;height: 130px;}
+.base-info .base-info-cont{overflow: hidden;zoom:1;}
+.base-info .base-info-cont ul li{margin-bottom: 5px;}
+.base-info .base-info-cont ul .opera{padding-top: 5px;}
+.base-info .base-info-cont .singer-share{float: right;}
+.base-info .base-info-cont .singer-share .share-label{float: left; margin-top:3px;}
+.people-artist .singer-name{float: left; margin-bottom: 10px; font:bold 22px "Microsoft YaHei","微软雅黑";}
+.people-artist .musician-link{font-size: 14px;float: left;padding-left: 8px;text-decoration: none;}
+.people-artist .text-align {cursor:pointer;zoom:1}
+.people-artist .musician-link sup {vertical-align: super;}
+.mod-info-body ul li span.share-labe{float:left;line-height:27px;color:#999999;}
+
+.artist-more-info a,
+.artist-more-info .module-line{ float: left;}
+.artist-more-info .module-line{  margin:  5px 10px 0;}
+
+/*音乐人作品*/
+.singer-works { width: 710px; overflow: hidden; }
+.singer-works .music-ui-tab-body{padding-bottom: 15px;}
+.singer-works .songs-list,
+.singer-works .albums-list,
+.singer-works .mvs-list,
+.singer-works .photos-list{padding-bottom: 35px; position: relative;zoom:1;}
+.singer-works .albums-list,
+.singer-works .mvs-list {padding-top: 30px;}
+.singer-works .song-list-btnTop{ position: relative; margin-top: -30px; clear: none;}
+/*.singer-works .song-list-btnTop .top-btn{ background-color: #fff;}*/
+
+/*.singer-works .sort-wrap{ float: right; height: 30px; position: relative;zoom:1;z-index: 1; white-space: nowrap;}*/
+.singer-works .sort-wrap{ float: right;width: 150px; height: 30px; position: relative;zoom:1;z-index: 1;}
+.singer-works .sort{position: absolute;right: 0;top: 0; z-index: 2; line-height: 22px;}
+.singer-works .sort a,
+.singer-works .sort .label{float: left;}
+.singer-works .sort .on{font-weight: bold; color: #666; cursor: text;}
+.singer-works .sort .on:hover{text-decoration: none;}
+.singer-works .sort .module-line{float: left;width: 1px;height: 8px; margin: 7px 10px;}
+.album-list .song-list .module-dotted{ margin-top: 0;}
+.singer-works .page-navigator{padding:50px 0 0; }
+#albumList,
+#photoList{overflow: hidden;}
+
+/*相关音乐人　歌手榜*/
+.sns .sidebar .related-singer,.sns .sidebar  .mod-artisttop{ margin-bottom: 0;}
+.mod-artisttop .body,.related-singer .body{ overflow: hidden;}
+.mod-artisttop ul,.related-singer ul{ margin:0 -100px 15px 0;}
+.mod-artisttop li,.related-singer li  {position: relative; float:left; margin:0 23px 10px 0; text-align: center; }
+.mod-artisttop li .cover-img,.related-singer li .cover-img  { width: 60px; height: 60px; margin-bottom: 4px; }
+.mod-artisttop li{padding-top: 1px;}
+.mod-artisttop .top-index{
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    height: 20px;
+    width: 18px;
+    padding-right: 2px;
+    color: #FFF;
+    font-size: 10px;
+    z-index: 10;
+    line-height: 16px;
+    text-align: right;
+    background:url(/static/images/music/mini-top-index.png) no-repeat; merge:rich;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/mini-top-index.png');    
+}
+.mod-artisttop .top-first{
+     background:url(/static/images/music/mini-top-first.png) no-repeat; merge:yellow;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/mini-top-first.png');    
+   
+}
+/*音乐人相册*/
+.photos-list .photo-item{float:left; margin:0 8px 20px 0;width:170px;height:170px;text-align:center; }
+.photos-list  .mod-left-body{overflow:hidden;width:608px;}
+.photos-list  .list{padding:5px 0 0 6px;line-height:0;margin:0 -100px -20px 0;}
+.photos-list .on{display:block;}
+
+.phpto-view{padding-bottom: 50px; display: none;}
+.phpto-view .head{position: relative; margin-bottom: 10px; zoom:1; text-align: center;}
+.phpto-view .back{position: absolute;left: 0;top: 0;}
+.phpto-view .page-num{position: absolute;right: 0;top: 0;}
+
+
+.photo-view-hook {
+    border: 1px solid #E6E6E6;
+    display: block;
+    margin: auto;
+    overflow: hidden;
+    padding: 4px;
+    text-align: center;
+}
+.photo-view-hook { margin:  0 auto;}
+
+.photo-view-hook img {
+    margin: 0 auto; 
+}
+
+.cur-left {
+    cursor: url("/static/images/mouseleft.cur"), pointer;
+}
+.cur-right {
+    cursor: url("/static/images/mouseright.cur"), pointer;
+}
+
+.cur-left-d {
+    cursor: url("/static/images/mouseleft-d.cur"), pointer;
+}
+.cur-right-d {
+    cursor: url("/static/images/mouseright-d.cur"), pointer;
+}
+
+.view-button .disable {
+    text-decoration: none;
+    color: #999;
+    cursor: default;
+}
+
+
+.update-artist{ font-size: 12px;}
+
+.guide-to-mobile-wrapper,.mod-newsong-wrapper { margin-top: 0px; margin-bottom: 20px;position: relative; z-index: 5}
+
+
+.mod-topic{padding-top: 10px;}
+.mod-topic li{padding-bottom: 4px;}
+.mod-topic li i{ float: left; width: 2px; height: 2px; overflow: hidden; background: #999; margin:9px 10px 0 0;}
+
+/*新歌模块*/
+.mod-newsong .mod-new-icon{
+    display:block; float:left; width: 14px; height: 5px; margin:7px 10px 0 0;
+    background:url(/static/images/music/mod-new-icon.png) no-repeat; merge:rich;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/mod-new-icon.png');
+}
+.mod-newsong i,.mod-newsong a{float:left; margin-right: 10px;}
+.mod-newsong .new-song .mr5{ margin-right: 5px; }
+.mod-newsong .module-line{margin: 5px 10px 5px 0; }
+
+.mv-list { position: relative; margin-top: 20px; zoom: 1;}
+.mvs-list .page-navigator { position: relative; padding-top: 15px; zoom: 1;}
+.mvs-list { position: relative; width: 100%; overflow: hidden; zoom: 1;}
+.mv-list-wrap { position: relative; zoom: 1; }
+
+#similar-content .info-content{
+    margin-left: 150px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #666;
+}
+.info-content .artist-name{
+    font:bold 18px "Microsoft YaHei","微软雅黑";
+    line-height: 30px;
+}
+.fans-num{
+    color: #999999;
+}
+.info-content .play-all-hook{
+    float: right;
+}
+#similar-content .item-list{
+    overflow: hidden;
+}
+#similar-content h2{
+    padding-bottom: 8px;
+    font:bold 18px "Microsoft YaHei","微软雅黑";
+    border-bottom: 1px solid #e4e4e4;
+    color: #333;
+}
+#similar-content  .item-content{
+    padding:   15px 0;
+    overflow: hidden;
+    zoom:1;
+}
+#similar-content .vline{
+    display: inline-block;
+    color: #cccccc;
+    margin: 0 8px;
+}
+#similar-content  .hot-song-label{
+    float: left;
+}
+#similar-content .info-content .hot-songs{
+    margin-left: 52px;
+    _margin-top: -20px !important;
+    overflow: hidden;
+    zoom:1;
+}
+#similar-content .info-content .info-hot-song{
+    overflow: hidden;
+    line-height: 25px;
+}
+#similar-content .info-content .song-list ul{
+    overflow: hidden;
+    margin-right: -60px;
+    width: 565px;
+}
+#similar-content .info-content .song-list li{
+    float: left;
+    width: 40%;
+    /*width: 275px;*/
+    padding: 0px 50px 0 0;
+}
+.base-info-cont{
+    position: relative;
+}
+
+/*推荐的百度音乐人样式*/
+.recommend-bd-musician {
+    /*避免右侧元素的margin撑开容器*/
+    margin-right: -100px;
+}
+.recommend-bd-musician .cover-img{
+    width: 60px;
+    height: 60px;
+    margin-bottom: 4px;
+}
+.recommend-bd-musician li{
+    position: relative;
+    float: left;
+    margin: 0 23px 10px 0;
+    text-align: center;
+}

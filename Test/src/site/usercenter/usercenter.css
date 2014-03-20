@@ -1,0 +1,51 @@
+.user-center .music-body,
+.receive .music-body{ background: none;}
+
+
+.user-center-info{ padding-top: 15px; margin-bottom: 25px;}
+.user-center-info .head{ padding-bottom: 20px; margin-bottom:20px; border-bottom: 1px solid #e4e4e4;}
+.user-center-info .head .title{ font-size: 22px; line-height: 24px; font-family: Microsoft YaHei;}
+
+.user-avatar{ display: inline; float:left; margin:0 15px 0 30px;}
+.user-avatar img{ display: block; width: 55px; height: 55px; padding: 4px; border: 1px solid #e4e4e4;}
+.user-info{ overflow: hidden;zoom:1;}
+.user-info .user-name{ padding: 10px 0 5px; font-size: 14px; font-weight: 700;}
+
+.user-privilege .head{ padding-left: 15px; border: 1px solid #e4e4e4; background: #f3f3f3; height: 30px; line-height: 30px;}
+
+.privilege-list .item{ padding: 30px 0; overflow:hidden;zoom:1;}
+.privilege-list .item .power-time{ margin-right: 20px;}
+.privilege-list .item .maturity-tips{ margin:0 10px 0 0; color: #cc6666; font-weight: bold;}
+.privilege-list .item .item-info{ padding-left: 15px; overflow:hidden;zoom:1;}
+.privilege-list .label{ float: left; width: 160px; text-align: right; font-weight: bold;}
+.space-size{ padding-top: 20px;}
+.space-size .progress-bar{ position: relative; float: left;margin: 0 15px; background: #f3f3f3; height: 19px; border-top: 1px solid #c2c2c2; width: 460px;}
+.space-size .progress{ position: absolute; left: 0; top: -1px; width: 100px; height: 20px; background: #299de7; text-align: center; color: #fff; line-height: 21px;}
+.space-size .progress-text{ position: absolute; z-index: 2; left: 0; width: 100%; height: 20px; text-align: center;}
+.space-size .progress-text em{ font-weight: bold;}
+.space-size .start-time,
+.space-size .end-time{float: left;}
+
+
+.down-history{ border: 1px solid #e4e4e4; width: 620px;}
+.down-history .title{ border-bottom: 1px solid #e4e4e4; font-weight: bold;}
+.down-history li{ overflow: hidden; line-height: 36px;}
+.down-history li.even{ background: #f7f7f7; }
+
+.down-history li .index{ float: left; width: 80px; text-align: center;}
+.down-history li .song-name{  float: left; width: 270px;}
+.down-history li .down-time{ float: left; width: 120px; }
+.down-history li .remark{ float: left;}
+
+
+
+.down-list{ height: 396px; overflow-y: auto; }
+.down-list .index{ font-weight: bold; color: #999;}
+.down-list .down-time{font-size: 11px;-webkit-text-size-adjust:none;}
+
+.power-info{padding-left: 50px;}
+.no-power-desc{ padding: 30px 0 30px 50px; color: #999; margin-bottom: 20px;}
+.no-power-desc a{ margin-left: 15px;}
+.open-power-title{ margin-bottom: 10px; font-weight: bold;font-size: 14px;}
+.down-power-desc{  line-height: 30px; color: #999;}
+.down-power-desc li span { display: inline; float: left; margin:  13px 5px 0 5px;  overflow: hidden; width: 2px; height: 2px; background: #999;}

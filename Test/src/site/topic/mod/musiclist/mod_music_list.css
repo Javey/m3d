@@ -1,0 +1,70 @@
+
+
+
+/*单首*/
+.mod-single .play-holder .music-icon-hook,
+.mod-single .play-holder .song-love{display:inline-block;height:24px;margin-right:7px;border-right:1px solid #E6E6E6;}
+.mod-single .play-holder .music-icon-hook{ border:none;}
+.mod-single .play-holder {padding: 10px 17px 8px 10px;}
+.mod-single .music-icon-hook .icon-add{width:25px;padding-left:17px;vertical-align:baseline;background: url(/static/images/bg/song_page_add_song.png) no-repeat 0 6px;merge:bg;}
+.mod-single .song-love .song-love-btn{ display:inline-block; width:31px;padding-left:17px;vertical-align:baseline;/*background: url(/static/images/bg/song_page_love_song.png) no-repeat 0 6px;merge:bg;*/}
+.mod-single .play-btn-holder {float:left;}
+.mod-single .play-btn {display: block;width: 60px;height: 60px;background: url(/static/images/bg/song_page_btn_play.png) no-repeat;merge:blue;}
+.play-btn:hover {background: url(/static/images/bg/song_page_btn_play_hover.png) no-repeat;merge:blue;}
+.mod-single .song-title {float: left;color: #999;padding: 15px 0 0 8px;}
+.mod-single .song-title a {	font-size: 22px;font-weight: bold;color: #0ba2f3;}
+.mod-single .song-title .music-icon-hook {font-size: 1px;}
+.mod-single .down-song-btn {display:inline-block;height:19px;margin-right:3px;padding-left:14px;vertical-align:top;/*background: url(/static/images/bg/song_page_down_song.png) no-repeat 0 7px;merge:bg;*/}
+
+.music-list{zoom:1;position: relative;}
+.music-list li:before,
+.music-list li:after{content:"";display:table;}
+.music-list li:after{clear:both;}
+.music-list .item{ float:left; width:100%;zoom:1; padding:5px 0;}
+
+.music-list .song-list{ clear:none; overflow:hidden;}
+.music-list .song-list .prominent{ font-weight:700;}
+.music-list .song-list .prominent .index-num{color:#C80003;}
+.music-list .song-list .prominent .description{ font-weight:normal;}
+.music-list .song-list .description{position:relative; margin:5px 5px 10px; padding:10px; background:#E7E7E7; color:#323232; border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;zoom:1;}
+.music-list .song-list .description i{ position:absolute; left:80px; top:-10px;  width:0; height:0; overflow:hidden;border-style:none dashed solid dashed   ; border-width:0 10px 10px 10px ;   border-color:transparent   transparent #E7E7E7   transparent;}
+
+.music-list li .select,
+.music-list li .rank,
+.music-list li .music-name,
+.music-list li .singer-name{ float:left;}
+.music-list li .select,
+.music-list li .rank{ width:30px; text-align:center;}
+.music-list li .opera{ float:right;}
+.music-list li .music-name{ width:310px;}
+.music-list li.rank1,
+.music-list li.rank2{ font-weight:700;}
+.music-list li.rank1 .rank,
+.music-list li.rank2 .rank{ color:#C80003;}
+
+/*通栏歌单 模块*/
+.music-list-banner .music-list li .music-name{ width:310px;}
+.music-list-banner .mod-info{ float:left; width:290px;}
+.music-list-banner .mod-info img{ display:block; float:none; margin-right:0;}
+
+/*不浮动歌单 模块*/
+.music-list-float .mod-info{ float:left; width:150px; margin-right:20px;}
+.music-list-float .mod-info img{ display:block; float:none; margin-right:0;}
+.music-list-float .music-list li .music-name{ width:210px;}
+/*右侧歌曲列表样式*/
+.mod-music-list-right .song-column-list{display:block;width:100%;}
+
+.mod-music-list .mod-info-bottom{margin:10px -15px -15px;padding:15px;text-indent:2em; color:#000; border-top: 1px solid #dddddd;background-color:#F6F6F6; }
+.mod-single-inline .play-box{position:absolute;left:0px; bottom:0;width:648px;}
+.mod-single-inline .mbox{ position:relative;width:100%;height:280px;}
+.mod-single-inline .mbox .mb-bd{top:0px;margin-bottom:10px;left:320px;width:280px;height:268px;}
+.mod-single-inline .mbox .mb-hd .time{float:left;padding:3px 0px 3px 10px;margin-top:-2px;}
+.mod-single-inline .mbox .mb-hd .mb-tit{ width:240px;}
+.mod-single-inline .mbox .mb-controller{position:relative;background-color:#FFF; width:308px;top:-87px;left:3px;}
+.mod-single-inline .mbox .mb-hd .progress{width:208px;}
+.mod-single-inline .mbox .slider-music, .slider-music-loaderProgressbar, .slider-music-followProgressbar{width:210px;}
+.mod-single-inline .mb-bd .mb-lrcwraper{height:250px;margin-top:10px;_width:200px;_font-size:12px;}
+.mod-single-inline .mb-bd .mb-album{display:none;}
+
+
+.mod-music-list-right .hot-links{padding-top: 5px;}

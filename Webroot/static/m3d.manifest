@@ -1,0 +1,11 @@
+CACHE MANIFEST
+#version 1.8.1.1.11111
+
+CACHE:
+/static/js/lib/angular-min.js
+/static/js/lib/jquery.js
+/static/js/lib/lodash.js
+/static/js/lib/require.js
+
+NETWORK:
+*

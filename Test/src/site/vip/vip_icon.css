@@ -1,0 +1,268 @@
+.vip-icon {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.vip-enable-vip {
+	margin-bottom: 20px;
+}
+
+.power-icon-vipidentity-active {
+	
+}
+
+.vip-icon-vip-comm {
+	background: url(/static/images/vip/home/icon-vip-comm.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-vip-comm.png');
+}
+
+.vip-icon-vip-gold {
+	background: url(/static/images/vip/home/icon-vip-gold.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-vip-gold.png');
+}
+
+.vip-icon-vip-non {
+	background: url(/static/images/vip/home/icon-vip-non.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-vip-non.png');
+}
+
+.vip-icon-tick {
+	background: url(/static/images/vip/home/icon-tick.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-tick.png');
+}
+
+.vip-icon-cross {
+	background: url(/static/images/vip/home/icon-cross.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-cross.png');
+}
+
+.vip-icon-cloud {
+	background: url(/static/images/vip/home/icon-cloud.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-cloud.png');
+}
+
+.vip-icon-download {
+	background: url(/static/images/vip/home/icon-download.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-download.png');
+}
+
+.vip-icon-artistapp {
+	background: url(/static/images/vip/home/icon-artistapp.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-artistapp.png');
+}
+
+.vip-icon-sync {
+	background: url(/static/images/vip/home/icon-sync.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-sync.png');
+}
+
+.vip-icon-superstorage {
+	background: url(/static/images/vip/home/icon-superstorage.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-superstorage.png');
+}
+
+.vip-icon-superplay {
+	background: url(/static/images/vip/home/icon-superplay.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-superplay.png');
+}
+
+.vip-icon-invite {
+	background: url(/static/images/vip/home/icon-invite.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-invite.png');
+}
+
+.vip-icon-batchdown {
+	background: url(/static/images/vip/home/icon-batchdown.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-batchdown.png');
+}
+
+.vip-icon-superspace {
+	background: url(/static/images/vip/home/icon-superspace.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-superspace.png');
+}
+
+.vip-icon-listen {
+	background: url(/static/images/vip/home/icon-listen.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-listen.png');
+}
+
+.vip-icon-playbackenhance {
+	background: url(/static/images/vip/home/icon-playbackenhance.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-playbackenhance.png');
+}
+
+.vip-icon-highqualitystorage {
+	background: url(/static/images/vip/home/icon-highqualitystorage.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-highqualitystorage.png');
+}
+
+.vip-icon-identity {
+	background: url(/static/images/vip/home/icon-identity.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-identity.png');
+}
+
+.vip-icon-losslessdown {
+	background: url(/static/images/vip/home/icon-lossless.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-lossless.png');
+}
+
+.vip-icon-vipidentity {
+	background: url(/static/images/vip/home/icon-vipidentity.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-vipidentity.png');
+}
+
+.vip-icon-noad {
+	background: url(/static/images/vip/home/icon-noad.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-noad.png');
+}
+
+.vip-icon-compression {
+	background: url(/static/images/vip/home/icon-compression.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-compression.png');
+}
+
+.vip-icon-download-grey {
+	background: url(/static/images/vip/home/icon-download-grey.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-download-grey.png');
+}
+
+.vip-icon-listen-grey {
+	background: url(/static/images/vip/home/icon-listen-grey.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-listen-grey.png');
+}
+
+.vip-icon-cloud-grey {
+	background: url(/static/images/vip/home/icon-cloud-grey.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-cloud-grey.png');
+}
+
+.vip-icon-identity-grey {
+	background: url(/static/images/vip/home/icon-identity-grey.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-identity-grey.png');
+}
+
+.vip-icon-batchdown-color {
+	background: url(/static/images/vip/home/icon-batchdown-color.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-batchdown-color.png');
+}
+
+.vip-icon-invite-color {
+	background: url(/static/images/vip/home/icon-invite-color.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-invite-color.png');
+}
+
+.vip-icon-losslessdown-color {
+	background: url(/static/images/vip/home/icon-lossless-color.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-lossless-color.png');
+}
+
+.vip-icon-noad-color {
+	background: url(/static/images/vip/home/icon-noad-color.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-noad-color.png');
+}
+
+.vip-icon-playbackenhance-color {
+	background: url(/static/images/vip/home/icon-playbackenhance-color.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-playbackenhance-color.png');
+}
+
+.vip-icon-superplay-color {
+	background: url(/static/images/vip/home/icon-superplay-color.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-superplay-color.png');
+}
+
+.vip-icon-superstorage-color {
+	background: url(/static/images/vip/home/icon-superstorage-color.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-superstorage-color.png');
+}
+
+.vip-icon-vipidentity-color {
+	background: url(/static/images/vip/home/icon-vipidentity-color.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-vipidentity-color.png');
+}
+
+/* */
+
+.vip-icon-batchdown-g {
+	background: url(/static/images/vip/home/icon-batchdown-g.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-batchdown.png');
+}
+
+.vip-icon-invite-g {
+	background: url(/static/images/vip/home/icon-invite-g.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-invite.png');
+}
+
+.vip-icon-losslessdown-g {
+	background: url(/static/images/vip/home/icon-lossless-g.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-lossless.png');
+}
+
+.vip-icon-noad-g {
+	background: url(/static/images/vip/home/icon-noad-g.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-noad.png');
+}
+
+.vip-icon-playbackenhance-g {
+	background: url(/static/images/vip/home/icon-playbackenhance-g.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-playbackenhance.png');
+}
+
+.vip-icon-superplay-g {
+	background: url(/static/images/vip/home/icon-superplay-g.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-superplay.png');
+}
+
+.vip-icon-superstorage-g {
+	background: url(/static/images/vip/home/icon-superstorage-g.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-superstorage.png');
+}
+
+.vip-icon-vipidentity-g {
+	background: url(/static/images/vip/home/icon-vipidentity-g.png) no-repeat; merge: vipicons;
+	_background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/vip/home/icon-vipidentity.png');
+}

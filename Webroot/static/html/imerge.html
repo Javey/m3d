@@ -1,0 +1,85 @@
+<div class="imerge">
+    <div class="head">
+        <a class="ion-ios7-arrow-thin-left back icon" title="Back to home" href="#/"></a>
+        <nav class="types">
+            <a href="#/imerge/{{params.siteId}}/{{params.moduleId}}/{{type}}" class="item" ng-repeat="type in types" ng-class="{actived: type === curType}">{{type}}</a>
+        </nav>
+        <div class="info">
+            Total: {{images.length}}
+        </div>
+        <a class="ion-ios7-refresh-empty refresh icon" title="一键自动合图" ng-click="autoMerge()"></a>
+    </div>
+    <div class="body">
+        <aside class="images">
+            <div class="search">
+                <input type="text" ng-model="search" ng-blur="showHint = false" ng-focus="showHint = true" placeholder="检索/添加"/>
+                <span class="icon ion-ios7-search"></span>
+                <ul class="hint" ng-hide="!showHint">
+                    <li class="ellipsis" ng-repeat="item in hint" ng-mousedown="add(item)">{{item}}</li>
+                </ul>
+            </div>
+            <nav class="images-list">
+                <div class="item" ng-repeat="image in images | filter:search" title="{{image}}" ng-class="{actived: curImage.name === image}">
+                    <div class="img" ng-click="select(image)">
+                        <img src="/imerge/showImage?site={{params.siteId}}&module={{params.moduleId}}&uri={{image}}"/>
+                    </div>
+                    <a class="name ellipsis" href="/imerge/showImage?site={{params.siteId}}&module={{params.moduleId}}&uri={{image}}" target="_blank">{{image | basename}}</a>
+                    <a class="ion-ios7-close-empty remove" ng-click="remove(image)" title="从大图中移除"></a>
+                </div>
+            </nav>
+        </aside>
+        <article class="sprite">
+            <a href="/imerge/showSprite?site={{params.siteId}}&module={{params.moduleId}}&type={{curType}}&r={{random}}" target="_blank">
+                <img src="/imerge/showSprite?site={{params.siteId}}&module={{params.moduleId}}&type={{curType}}&r={{random}}" />
+            </a>
+        </article>
+        <aside class="dashboard" ng-class="{disable: !curImage.attr}">
+            <h2 class="ellipsis" ng-click="test()">小图属性:{{curImage.name | basename}}</h2>
+            <div class="attribute">
+                <div class="padding item">
+                    <h3>Padding(px)</h3>
+                    <div class="data">
+                        <input type="text" class="top" ng-model="curImage.attr['padding-top']" />
+                        <input type="text" class="left" ng-model="curImage.attr['padding-left']" />
+                        <input type="text" class="right" ng-model="curImage.attr['padding-right']" />
+                        <input type="text" class="bottom" ng-model="curImage.attr['padding-bottom']" />
+                    </div>
+                </div>
+                <div class="float item">
+                    <h3>Float</h3>
+                    <div class="data">
+                        <input type="radio" name="float" class="top" value="top" ng-model="curImage.attr.float"/>
+                        <input type="radio" name="float" class="left" value="left" ng-model="curImage.attr.float" />
+                        <input type="radio" name="float" class="center" value="none" ng-model="curImage.attr.float" />
+                        <input type="radio" name="float" class="right" value="right" ng-model="curImage.attr.float" />
+                        <input type="radio" name="float" class="bottom" value="bottom" ng-model="curImage.attr.float"/>
+                    </div>
+                </div>
+                <div class="repeat item">
+                    <h3>Repeat(x|0|y)</h3>
+                    <div class="data">
+                        <input type="radio" name="repeat" class="left" value="x" ng-model="curImage.attr.repeat"/>
+                        <input type="radio" name="repeat" class="center" value="none" ng-model="curImage.attr.repeat"/>
+                        <input type="radio" name="repeat" class="right" value="y" ng-model="curImage.attr.repeat"/>
+                    </div>
+                </div>
+                <div class="border item">
+                    <h3>Border(px)</h3>
+                    <div class="data">
+                        <input type="text" class="top" ng-model="curImage.attr['border-top']" />
+                        <input type="text" class="left" ng-model="curImage.attr['border-left']" />
+                        <input type="text" class="right" ng-model="curImage.attr['border-right']" />
+                        <input type="text" class="bottom" ng-model="curImage.attr['border-bottom']" />
+                    </div>
+                </div>
+                <div class="limit item">
+                    <h3>Limit(w|h(px))</h3>
+                    <div class="data">
+                        <input type="text" name="min-width" class="left" ng-model="curImage.attr['min-width']"/>
+                        <input type="text" name="min-height" class="right" ng-model="curImage.attr['min-height']"/>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>

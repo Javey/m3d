@@ -1,0 +1,364 @@
+.music-main{
+    margin-top: 20px;
+}
+.main-body .main-body-cont{
+    padding-right: 19px;
+    border-right:1px solid #e4e4e4;
+}
+.base-info {
+    color: #666;
+    margin-bottom: 30px;
+}
+.film-img {
+    float: left;
+    margin-right: 20px;
+    width: 113px;
+    height: 150px;
+    padding: 3px;
+    border:1px solid #e4e4e4;    
+}
+.base-info-cont {
+    overflow: hidden;
+    zoom:1;  
+}
+.name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    line-height: 30px;
+}
+.no-film-pic .name {
+    margin-right: 20px;
+    margin-bottom: 12px;
+}
+.aliastitle{
+    line-height: 20px;
+    font-size: 12px;
+}
+.no-film-pic .song-count {
+    line-height: 30px;
+}
+.share {
+    float: right;
+}
+.share-label {
+    float: left;
+    line-height: 26px;
+}
+
+.sns .module .head {
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+}
+.main-body-cont .mod-song-list{
+    margin-bottom: 45px;
+}
+/*
+.mod-song-list .title {
+    float: left;
+    margin-right: 5px;
+}
+.song-item .hor-line {
+    vertical-align: middle;
+    margin: 0 5px;
+}
+.song-item .hot-info {
+    left: 463px;
+}
+.song-item .index-num {
+    font-size: 16px;
+}
+.song-list .pre-appendix {
+    color: #999;
+    font-size: 12px;
+    margin: 0 5px 0 7px;
+}
+.song-list .top-btn {
+    padding-bottom: 10px;
+}
+.song-list .btm-btn {
+    padding-top: 10px;
+}
+.song-list ul li {
+    padding: 12px 0;
+}
+.song-item .song-title a {
+    font-weight: bold;
+}
+*/
+.page-index{float:left; position: relative;  top: 50%;margin: -4px 5px 0 0; overflow: hidden;zoom:1; text-indent: -99px; width: 7px;height: 7px; background:  url(/static/images/music/focus-page-index-bg.png) no-repeat; merge:rich;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/focus-page-index-bg.png');
+    cursor: pointer;}
+.page-active{ margin-top: -6px; width: 10px;height: 10px; background:  url(/static/images/music/focus-page-current-bg.png) no-repeat;
+    merge:rich;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/focus-page-current-bg.png');
+}
+.page-index-last{ margin-right: 0;}
+.recommend-mv .head .title{ float: left; margin-right: 15px;}
+.mv-focus .left-btn,
+.mv-focus .right-btn{ width:17px ; height:18px ; float: left;}
+.mv-focus .left-btn{ background: url(/static/images/music/newalbum_left_btn.png) no-repeat;merge:bg;}
+.mv-focus .left-btn:hover{  background: url(/static/images/music/newalbum_left_btn_hover.png) no-repeat;merge:bg;}
+.mv-focus .right-btn{ background: url(/static/images/music/newalbum_right_btn.png) no-repeat;merge:bg;}
+.mv-focus .right-btn:hover{ background: url(/static/images/music/newalbum_right_btn_hover.png) no-repeat;merge:bg;}
+.mv-focus .mv-focus-page{ float: left; height: 18px; margin: 0 10px;}
+.mv-focus .mv-focus-page a{ float: left;}
+
+.main-body .recommend-mv {
+    margin: 0;
+}
+.song-item .hor-line {
+    vertical-align: middle;
+    margin: 0 5px;
+}
+.recommend-mv .body {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+.recommend-mv-cover {
+    position: relative;
+    width: 5000em;
+}
+.recommend-mv-cover ul {
+    /*margin-right: -10px;*/
+    float: left;
+}
+.recommend-mv-cover li {
+    float: left;
+    width: 170px;
+    height: 126px;
+    margin: 0 10px 12px 0;
+    overflow: hidden;
+    position: relative;
+}
+.recommend-mv-cover .song-item {
+    padding-left: 7px;
+}
+
+.song-list .link-wrapper {
+    width: 315px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.mod-topic li i {
+    float: left;
+    width: 2px;
+    height: 2px;
+    overflow: hidden;
+    background: #999;
+    margin: 9px 10px 0 0;
+}
+
+
+
+.col-btns{
+    margin-left: 7px;
+    width: 651px;
+    border:1px solid #e3e3e3;
+    border-radius: 4px;
+    background-color: #fafafa;
+    text-align: center;
+    height: 43px; 
+    line-height: 43px;
+    -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.05);
+    -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.05);
+    box-shadow: 1px 2px 3px rgba(0,0,0,.05);    
+}
+.col-btns li{
+    float: left;
+    height: 43px;
+    line-height: 43px;
+    border-left: 1px solid #e3e3e3;
+}
+.col-btns .col-play{
+    width: 145px;
+    border-left: none;
+}
+.col-btns .col-play .btn-icon{
+    background:  url(/static/images/bg/col-play-icon.png) no-repeat;
+        merge:rich;
+        _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/bg/col-play-icon.png');      
+}
+.col-btns .col-add .btn-icon{
+    background:  url(/static/images/bg/col-add-btn.png) no-repeat;
+        merge:rich;
+        _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/bg/col-add-btn.png');        
+}
+.col-btns .col-collect .btn-icon{
+    background:  url(/static/images/bg/col-collect-btn.png) no-repeat;
+        merge:rich;
+        _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/bg/col-collect-btn.png');        
+}
+.col-btns .col-down .btn-icon{
+    background:  url(/static/images/bg/col-down-btn.png) no-repeat;
+        merge:rich;
+        _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/bg/col-down-btn.png');       
+}
+.col-btns  .col-down .col-vip-icon {
+    margin-left: 5px;
+    top:8px;
+    *top:5px;
+    _top:-1px;
+    background:  url(/static/images/bg/col-vip-btn.png) no-repeat;
+        merge:rich;
+        _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/bg/col-vip-btn.png');        
+}
+.col-btns .col-add{
+    width: 188px;
+}
+.col-btns .col-collect{
+    width: 148px;
+}
+.col-btns .col-down{
+    width: 165px;
+}
+.col-btns li a{
+    display:block;
+    color: #666666;
+    height: 23px;
+    padding: 8px 0 12px 0;
+    *padding: 10px 0 10px 0;
+    line-height: 23px;
+
+}
+.col-btns li a:hover{
+    text-decoration: none;
+}
+.col-btns li a span{
+    /*margin-top: 12px;*/
+    /*height: 20px;*/
+    /*line-height: 20px;*/
+}
+.col-btns li a .btn-icon{
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    *top:3px;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.col-song-list{
+    overflow: hidden;
+    margin-top: 30px;
+    zoom:1;
+}
+.col-song-list .song-list ul li{
+    padding: 7px 0 6px 0;
+}
+.col-song-list .song-list ul li a{
+    color: #333333;
+}
+.group-list .col-song-list{
+    position: relative;
+    top:-7px;
+    overflow: hidden;
+    margin-top: 0px;
+}
+.icon-play {background:url(/static/images/music/music-icon-play-songlist.png) no-repeat;merge:bg;}
+.icon-add {background:url(/static/images/music/music-icon-add-songlist.png) no-repeat;merge:bg;}
+.icon-collect {background:url(/static/images/music/music-icon-collect-songlist.png) no-repeat;merge:bg;}
+.icon-download {background:url(/static/images/music/music-icon-down-songlist.png) no-repeat;merge:bg;}
+.group-name{
+    margin-bottom: 12px;
+}
+.group-name .song-count{
+    float: right;
+    font-size: 12px
+}
+.group-list{
+    margin-top: 23px;
+    overflow: hidden;
+}
+.group-list .list-item{
+    margin-bottom: 35px;
+}
+.film-cover {
+    float: left;
+     position: relative;
+    margin-right: 15px;
+    width: 98px;
+    height:153px;
+   text-align: center;
+   overflow: hidden;
+}
+.film-cover .cover-link{
+    position: relative;
+    display: block;
+    margin-bottom: 5px;
+    width: 90px;
+    height: 120px;
+    padding: 3px;
+    border:1px solid #e4e4e4; 
+}
+.film-cover .cover-link a{
+    display: block;
+}
+.film-cover .cover-name{
+    color: #333;
+}
+
+.film-cover .play{
+    position: absolute;display: block; z-index:2; 
+    right:8px;top: 88px; width:32px;height:31px; cursor: pointer;
+    line-height: 31px;
+    background:url(/static/images/music/album-cover-play.png) no-repeat; merge:bg;
+    text-decoration: none;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/album-cover-play.png');
+}
+.film-cover .play:hover{
+    top:87px;right:7px;width:34px;height:33px;
+    line-height:33px;
+    background:url(/static/images/music/album-cover-play-hover.png) no-repeat;merge:blue;
+    text-decoration: none;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/album-cover-play-hover.png');
+}
+.film-cover .play:active{top:87px;right:7px;width:34px;height:33px;
+    background:url(/static/images/music/album-cover-play-active.png) no-repeat;merge:blue;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/album-cover-play-hover.png');
+}
+.desc .description-all{
+    display: none;
+}
+
+.film-page .song-item span.song-title{
+    font-size: 12px;
+}
+.film-page .pre-appendix{
+    color: #999;
+    margin: 0 3px;
+}
+.film-page .song-item .mv-icon{
+    margin-bottom: -3px;
+}
+/*
+
+.film-cover .album-play{
+    position: absolute;display: block; z-index:2; right:8px;top: 88px; width:32px;height:31px; cursor: pointer;
+    background:url(/static/images/music/album-cover-play.png) no-repeat; merge:rich;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/album-cover-play.png');
+}
+.film-cover .album-play:hover{position: absolute;top:87px;right:7px;width:34px;height:33px;
+    background:url(/static/images/music/album-cover-play-hover.png) no-repeat;merge:rich;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/album-cover-play-hover.png');
+}
+.film-cover .album-play:active{top:87px;right:7px;width:34px;height:33px;
+    background:url(/static/images/music/album-cover-play-active.png) no-repeat;merge:rich;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/album-cover-play-hover.png');
+}
+*/

@@ -1,0 +1,177 @@
+.tag-main{padding-bottom: 40px;}
+.tag-detail .tag-main,.explore-detail .tag-main{padding-bottom: 0;}
+.tag-main .module-dotted{    margin-bottom: 15px; }
+.tag-mod{ margin-right: -20px;}
+.tag-mod  .tag-items{   padding: 8px 0px 8px;}
+.tag-mod  .tag-items span{	width: 121px; float: left; padding: 5px 0; font-size: 14px;}
+
+
+/*去掉分类页显示不同颜色 By Javey
+.tag-mod .tag-items .orange{ color:#ff7e0b; }
+.tag-mod .tag-items .green{ color:#268b37; }
+.tag-mod .tag-items .purple{ color:#ce2bf7; }
+.tag-mod .tag-items .gray{ color:#959595; }
+.tag-mod .tag-items .blue{ color:#6e0cf4; }
+.tag-mod .tag-items .red{ color:#df0a0a; }
+.tag-mod .tag-items .rod{ color:#dca633; }
+.tag-mod .tag-items .cyan{ color:#30a7bd; }
+*/
+.tag-mod .tag-items .bold{ font-weight: 600; }
+.tag-mod .tag-items .hot{}
+
+.tag-mod dt{		
+	color: #333;		
+	font-family: Microsoft YaHei;
+	font-weight: bold;
+	font-size: 16px;
+	position: relative ;
+}
+
+.tag-mod .has-icon{
+	float: left;
+}
+.tag-mod .icon-hot{
+	display: block;
+	float: left;
+	margin-left: 5px;
+	margin-top: 2px;
+}
+/*
+.tag-mod .icon-hot{
+	height: 14px !important;
+	vertical-align: middle;
+	margin-left: 10px;
+	display: inline-block;
+}*/
+
+.tag-left {width: 730px;float: left;}
+
+.target-tag { padding:1px 0px 0px 0px;margin-bottom:15px;}
+  
+.target-tag .total { padding:0 10px;
+					color: #999;
+					display: inline-block;
+					height: 16px;
+					line-height: 16px;}
+.target-tag .title{	font-weight: 500;
+					_font-weight: bold;
+						font-size: 22px;
+						font-family: Microsoft YaHei;
+						color:#333;
+						height: 26px;
+						_vertical-align: middle;
+                        /*margin-top:-4px;*/
+                        zoom:1; 
+                        line-height: 22px; 
+                        *line-height:27px;
+                    }
+
+.target-tag .line{ display: block;
+	 				border-bottom: 1px solid #e4e4e4;
+				    height: 1px;
+				    margin: 10px 0 10px;
+				    vertical-align: middle;
+				    width: 710px; 
+				    _margin-top:0px;
+				}
+.path_navigator {  /*margin-bottom:5px;*/	}
+.song-list{ padding-bottom:50px;padding-right:20px; }
+.mod-topic{padding-top: 10px;}
+.mod-topic li{padding-bottom: 4px;}
+.mod-topic li i{ float: left; width: 2px; height: 2px; overflow: hidden; background: #999; margin:9px 10px 0 0;}
+     
+/*流派详情页*/
+.style-detail .target-tag .title{ margin-right: 15px; }
+.style-detail .mod-artist .head{ margin-bottom: 10px; }
+.style-detail .mod-artist .head .title{ float: left; margin-right: 15px; font-size:14px; }
+.style-detail h2{ margin: 0 15px 20px 0; font-size:14px; font-weight: bold; }
+/*流派说明信息*/
+.style-detail .style-desc{ margin-bottom: 20px; text-indent: 2em; }
+.style-detail .style-desc .description-all{ display: none; }
+.style-detail .style-desc .des-more-hook{ text-decoration: none; }
+.style-detail .style-desc .des-more-hook:hover{ text-decoration: underline;}
+.style-detail .style-desc .icon{ 
+	display: inline-block;
+    height: 8px;
+    margin-left: 5px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 7px;
+	background: url(/static/images/bg/fold_open.png) no-repeat; merge:bg; }
+.style-detail .style-desc i.expand{  background: url(/static/images/bg/fold_close.png) no-repeat; merge:bg;}
+
+/*轮播代表歌手*/
+.style-detail .mod-artist h2{ float:left; }
+.style-detail .mod-artist .artist-list{ position: relative; width: 100%; overflow: hidden; }
+.style-detail .mod-artist .artist-list .wrap{width:5000px; position: relative;}
+.style-detail .mod-artist .artist-list ul{ float: left; width: 730px; }
+.style-detail .mod-artist .cover-item{
+	float: left;
+	width: 120px;
+	margin: 0 27px 10px 0;
+	text-align: center;
+}
+.style-detail .mod-artist .last{ margin-right:0; }
+
+.style-detail .page-index{float:left; position: relative;  top: 50%;margin: -4px 5px 0 0; overflow: hidden;zoom:1; text-indent: -99px; width: 7px;height: 7px; background:  url(/static/images/music/focus-page-index-bg.png) no-repeat; merge:rich;
+	_background: none;
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/focus-page-index-bg.png');
+ cursor: pointer;}
+.style-detail .page-active{ margin-top: -6px; width: 10px;height: 10px; background:  url(/static/images/music/focus-page-current-bg.png) no-repeat;
+		merge:rich;
+		_background: none;
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/focus-page-current-bg.png');
+	}
+.style-detail .page-index-last{ margin-right: 0;}
+
+.style-detail .artist-focus .left-btn,
+.style-detail .artist-focus .right-btn{ width:17px ; height:18px ; float: left;}
+.style-detail .artist-focus .left-btn{ background: url(/static/images/music/newalbum_left_btn.png) no-repeat;merge:bg;}
+.style-detail .artist-focus .left-btn:hover{  background: url(/static/images/music/newalbum_left_btn_hover.png) no-repeat;merge:bg;}
+.style-detail .artist-focus .right-btn{ background: url(/static/images/music/newalbum_right_btn.png) no-repeat;merge:bg;}
+.style-detail .artist-focus .right-btn:hover{ background: url(/static/images/music/newalbum_right_btn_hover.png) no-repeat;merge:bg;}
+.style-detail .artist-focus .artist-focus-page{ float: left; height: 18px; margin: 0 10px;}
+.style-detail .artist-focus .artist-focus-page a{ float: left;}
+
+/*代表作品*/
+.mod-works .albums-list .page-navigator{ padding: 50px 0 0; }
+
+/*分类首页*/
+.tag-main h2.tag-cat{
+	padding-bottom: 10px; 
+	margin-bottom: 20px;
+	border-bottom: 2px solid #3d99ec;
+	position: relative;
+	font-size: 24px;
+	font-family: Microsoft YaHei;
+	font-weight: bold;
+	color: #333;		
+}
+
+
+.mod-style{ margin-bottom: 30px; position: relative; }
+.mod-style .icon-new{ position: absolute; left: 50px; top: 3px; }
+.mod-style .tag-items{ margin-right: -20px; zoom:1; }
+.mod-style  .tag-items span{ display: inline-block; width: 121px; float: left; padding: 5px 0; font-size: 14px;}
+
+/*tag详情页顶部批量操作按钮悬浮*/
+.song-list .float-bar {
+	width: 676px;
+}
+
+
+.rec-tag{
+	padding: 10px 10px 0px 7px;
+}
+.item-tag{
+	display: inline-block;
+	border: 1px solid #d7d7d7;
+	border-radius: 5px;
+	margin-right: 8px;
+	padding: 0 8px;
+	line-height: 26px;
+}
+.first-tag a{
+	color: #333;
+	text-decoration: none;
+}

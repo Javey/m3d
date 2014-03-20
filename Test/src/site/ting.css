@@ -1,0 +1,1074 @@
+﻿.pull-right {float: right;}
+
+﻿/*head部分*/
+
+.music-head,
+.music-body,
+.music-foot,
+.banner-ad{width:980px;margin:0 auto;}
+.music-head{width:980px;margin:0 auto;padding: 20px 0px 0;font:12px arial;position: relative;z-index:1000;zoom:1;}
+.music-head .lg{ padding:0 12px 0 0px;float:left; display: inline; padding-top:6px;}
+/*.music-head a{color:#00c}*/
+#bm-logo {display: block;height: 44px;width: 133px;background: url(/static/images/music/music-logo.png);merge: rich;}
+.music-head a{color:#2d64b3}
+.music-head form{margin:0;clear:both;position:relative;z-index:100;}
+.music-head .search-wrap{float:left;padding-bottom: 18px;}
+.music-head .lk{padding-bottom:7px;font-size:14px;}
+.music-head .lk a{text-decoration: underline; font-size: 14px;}
+.music-head .lk a,.music-head .lk span{margin-right:14px;}
+.music-head .lk span{font-weight:bold}
+.music-head .search{ position:relative; z-index:10;}
+.music-head .search span{ font-size:12px;}
+.music-head .search td{ padding:2px;}
+.music-head .kw{width:358px; margin:0 3px 0 0; padding:3px 1px;vertical-align:middle;font-family:Arial;font-size:16px;}
+.music-head .su{ width:78px;height:28px;margin:0 7px 0 0; line-height:24px; vertical-align:middle; font-size:14px;}
+.music-head .cate{ font-size:12px;}
+
+.music-head .s_btn_wr input,.music-head .s_ipt_wr input{padding:0;border:0;}
+.music-head label{ margin-right:15px; *margin-right:9px; }
+.music-head label input{ margin-left:0px;margin-top:4px;margin-top:1px\9; }
+.music-head .s_nav{height:45px}
+.music-head .s_nav .s_logo{margin-right:20px;float:left}
+.music-head .s_nav .s_logo img{border:0;display:block}
+.music-head .s_nav .s_tab{line-height:18px;padding:20px 0 0;float:left}
+.music-head .s_nav a{font-size:14px}
+.music-head .s_nav b{font-size:14px}
+.music-head .s_ipt_wr{width:425px;height:30px;display:inline-block;margin-right:5px;background:url(/static/images/music/search_input.png) no-repeat;border:1px solid #b6b6b6;border-color:#7b7b7b #b6b6b6 #b6b6b6 #7b7b7b;vertical-align:top; merge:bg;}
+.music-head .s_ipt{width:395px;height:22px;font:16px/22px arial;margin:5px 0 0 7px;background: #fff;outline:none}
+.music-head .s_ipt_def{ font-size:14px; color:#999; }
+.music-head .s_btn{width:95px;height:32px;padding-top:2px\9;font-size:14px;background:#ddd url(/static/images/music/search_button.png);cursor:pointer; merge:bg;}
+.music-head .s_btn_h{background:#ddd url(/static/images/music/search_button_click.png); merge:bg;}
+.music-head .s_btn_wr{width:97px;height:34px;display:inline-block;background:url(/static/images/music/search_button_shadow.png) no-repeat;*position:relative;z-index:0;vertical-align:top; merge:bg;}
+.music-head .s_tools{display:inline-block;display:none;color:#999;padding:8px 0 0 14px;}
+.music-head .s_tools a{margin:0 8px;zoom:1}
+.head-ad{  position: absolute; right: 0;   top: 21px;}
+.adm-sep {height: 15px;}
+/*.tangram-suggestion-main{z-index:2;}
+.tangram-suggestion{
+  cursor : default;
+  width:408px;
+  position:absolute;background:#fff;border:1px solid #817f82;overflow:hidden;
+}
+.tangram-suggestion table{
+    cursor : default;
+    width : 100%;
+    font-size : 14px;
+}
+.tangram-suggestion td{font:14px arial;height:25px;line-height:25px;padding:0 8px;font-weight:700;}
+.tangram-suggestion td b{color:#333;font-weight:400;}
+.tangram-suggestion-current{ background:#ebebeb}
+.tangram-suggestion-prepend{  padding:0px;color:#c0c0c0;font:12px verdana;}
+.tangram-suggestion-append{
+  height:23px;line-height:23px;
+  text-align:right;border-top:1px solid #ebebeb; padding:0 8px;
+  color:#c0c0c0;
+  font:12px verdana;
+  text-align:right;
+}
+.tangram-suggestion-append a{ font-size:12px;text-decoration:underline;color:#888;line-height:22px; }*/
+
+
+.nav{ position:relative; height:34px;line-height:34px; margin-bottom:15px;background:#256DB2 url(/static/images/music/nav-bg.png) repeat-x; merge:blue; }
+.nav a{ color:#fff;}
+.nav .tl,
+.nav .tr,
+.nav .bl,
+.nav .br{z-index:1;position: absolute;width:1px;height:1px;overflow: hidden;background: #f1f1f0;}
+.nav .tl{left:0;top: 0;}
+.nav .tr{right:0;top: 0;}
+.nav .bl{left:0;bottom: 0;}
+.nav .br{bottom:0;right:0;  }
+.nav .nav-shadow{position: absolute;left:-4px;top:-3px;z-index: -1; width: 988px; }
+.nav .nav-shadow i{display:block;  width: 988px;height: 42px;
+  background:url(/static/images/music/nav-shadow.png) no-repeat;_background: none; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/nav-shadow.png'); merge:rich;}
+.main-nav{ position:relative;float: left;}
+.main-nav .nav-home { overflow: hidden;}
+.main-nav li{float:left;  list-style-type:none; font-size:14px;border-right:1px solid #1d5ca5; position: relative;}
+.main-nav li a{float:left;padding-left:20px; color:#fff;font-weight:700; text-decoration:none;}
+.main-nav li a span{display:block;padding-right:20px;}
+.main-nav li a:hover,
+.main-nav .nav-current a{position: relative; margin-left:-1px;margin-right:-1px;padding-left:21px;position: relative; text-decoration: none;}
+.main-nav li a:hover{ margin-left:-2px;padding-left:22px;color:#fff;}
+.main-nav li a:hover span{background-position:100% -110px;}
+
+
+.main-nav .nav-current a{ background: url(/static/images/music/nav-current.png) no-repeat; merge:blue; }
+.main-nav .nav-current a span{ background: url(/static/images/music/nav-current.png) right 0 no-repeat; merge:blue; }
+
+.main-nav li a:hover{background: url(/static/images/music/nav-hover.png) no-repeat;merge:blue;}
+
+.main-nav li a:hover span{background: url(/static/images/music/nav-hover.png) right 0 no-repeat;merge:blue;}
+
+.main-nav li a:hover span,
+.main-nav .nav-current a span{ padding-right: 21px;}
+.nav .icon-new{ position: absolute; z-index: 10; right: 5px; top: -4px;}
+
+.sub-nav{position: relative;  float: right;font-size:12px;display: inline;}
+.sub-nav li{display: inline;float: left; position: relative;}
+.sub-nav .icon-new {right: -10px;}
+.sub-nav li.line{ width: 1px;height: 8px;overflow: hidden;margin:12px 10px 0;background: #68a0d3;}
+.sub-nav li a:hover{text-decoration: underline;color:#fff;}
+.sub-nav .nav-musicmbox{display:block;width:73px;height:30px;margin:2px 5px 0 20px;padding-left:37px;line-height:30px;background: url(/static/images/music/nav-mbox.png) no-repeat;merge:blue;}
+.sub-nav .nav-musicmbox:hover{background: url(/static/images/music/nav-mbox-hover.png) no-repeat;text-decoration: none;merge:blue;}
+/*首页好声音样式，请及时删除*/
+#the-voice-logo{float: left;width: 29px;height: 24px;margin: 4px 2px 0 0;background: url(/static/images/the-voice-logo.png);merge: rich;
+  _background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/the-voice-logo.png');}
+#the-voice{color:#FFD800;font-weight: bold;}
+
+.mbox-guide{ display: none; position: absolute; z-index: 3; top: 0; right: 0; border: 1px solid #b1c6dc; border-radius: 4px; background: #deecfa;padding: 4px; box-shadow: 0px 2px 4px #999;}
+.mbox-guide .triangle{ position: absolute; top: -11px; right: 40px; width: 19px; height: 16px; background: url(/static/images/music/mbox-guide-triangle.png) no-repeat;
+  _background: none;
+  _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/mbox-guide-triangle.png');}
+.mbox-guide .close{ position: absolute; right: 10px; top: 10px; width: 9px; height: 9px; background: url(/static/images/music/mbox-guide-close.png) no-repeat; cursor: pointer;}
+.mbox-guide .body{ background: #f7fbff url(/static/images/music/mbox_guide.png) center 20px no-repeat; width: 400px; height: 60px; padding-top: 220px;}
+.mbox-guide .btn-mbox-guide{ display: block; width: 110px; height: 36px; margin: 0 auto; overflow: hidden; text-indent: -999px; cursor: pointer; background: url(/static/images/music/btn_know.png) no-repeat;}
+
+
+
+
+/* ui ty userbar */
+.userbar{ position:absolute; right:10px; top:6px; z-index:2000; zoom:1; text-align:right; font:12px Arial; color:#000; line-height:18px;}
+.userbar img{ border:none; }
+/*.userbar a{ color:#00c; margin-left:6px; text-decoration: underline; }*/
+.userbar a{ color:#2d64b3; margin-left:6px; text-decoration: underline; }
+.userbar ul{ list-style-type:none;}
+.userbar li{ float:left;}
+.userbar .uname{ font-weight:700; }
+.userbar .line{ display:inline; width:1px; height:12px; overflow:hidden; background:#999; margin:3px 0 0 6px;  color:#999;}
+
+.userbar .msgs{ color:#00c;}
+.userbar .msgs span{ color:#f00; }
+.userbar .mn-lk-w{ position:relative;}
+.userbar .mn-lk{ display:inline-block; height: 14px;width:11px; background:url(/static/images/music/mn.png) right 6px no-repeat; merge:index} /*菜单链接*/
+
+/*下拉菜单*/
+.mn-tip{ position:absolute; z-index:12; left:0 ; top:20px;  background:#fff; border:1px solid #999; font-weight:normal; box-shadow:1px 1px 2px #ccc;-moz-box-shadow:1px 1px 2px #ccc;-webkit-box-shadow:1px 1px 2px #ccc; text-align:left; color:#888; }
+
+
+
+.userbar .mn-tip a{ margin-left:0;}
+.mn-tip .mn li{ float:left; width:100%; white-space:nowrap;}
+.mn-tip .mn a{ display:block;zoom:1; background:#fff;  padding:3px 6px 3px; *padding:4px 6px 2px; _padding-bottom:1px;text-decoration:none;  }
+.mn-tip .mn a:hover{ background:#ebebeb;text-decoration:none; }
+.mn-tip .mn .my-info{ border-top:1px solid #ebebeb;}
+.mn-tip .mn .logout{ border-top:1px solid #ebebeb;}
+.mn-tip .split{ height:1px; overflow:hidden; background:#EBEBEB; }
+.mn-tip .help{ padding:6px; line-height:18px; }
+
+.limit-active{ float: left; width: 51px; height: 16px; margin-right: 3px; background: url(/static/images/music/limit_active_icon.png) no-repeat;merge:red; cursor: pointer;merge:index;}
+/*head部分结束*/
+
+/*页脚部分*/
+.music-foot{position: relative; margin-top:20px; padding: 20px 0;color: #999;border-top: 1px solid #e4e4e4; overflow: visible;}
+.music-foot a{color: #333; height: 21px;line-height: 21px;}
+.music-foot .foot-logo{ margin-right:  20px;}
+.music-foot .foot-logo img{vertical-align : text-bottom; }
+.music-foot .module-line{display:inline-block; height: 8px; width: 1px;margin: 0 7px; background: #999; vertical-align: middle;}
+.music-foot .copy{margin: 0 8px 0 8px;}
+.music-foot .ttplayer,
+.music-foot .foot-mobile{display: inline-block; *zoom: 1;_margin-top: -2px;}
+.music-foot .ttplayer{margin: 0;padding: 0 0 0 20px;background: url(/static/images/bg/pc_icon.png) no-repeat 0 3px; merge:bg;}
+.music-foot .foot-mobile{padding: 0 0 0 16px;background: url(/static/images/bg/mobile.png) no-repeat 0 3px; merge:bg;}
+.music-foot .reader{margin-right:10px;}
+.music-foot .weibo-follow,
+.music-foot .weixin-follow { position: relative; top: -1px; float: right; display: inline-block; margin-left: 10px; height: 22px; line-height: 22px; color: #333; }
+.music-foot .weibo-follow  { padding-left: 27px; width: 42px; background: url(/static/images/music/weibo_follow.png) no-repeat; text-decoration: none; merge: bg; }
+.music-foot .weibo-follow:hover  { text-decoration: none; color: #fff; background: url(/static/images/music/weibo_follow_on.png) no-repeat; merge: blue; }
+.music-foot .weixin-follow { padding-left: 28px; width: 68px; background: url(/static/images/music/weixin_follow.png) no-repeat; text-decoration: none; merge: bg; }
+.music-foot .weixin-follow:hover { text-decoration: none; color: #fff; background: url(/static/images/music/weixin_follow_on.png) no-repeat; merge: blue; }
+.music-foot .weixin-detail { position: absolute; right: 0; bottom: 50px; display: none; padding: 10px; border: 1px solid #ccc; line-height: 18px; color: #666; background: #fff; }
+.music-foot .weixin-qr { margin-bottom: 10px; width: 150px; height: 150px; background: url(/static/images/music/weixin_qr.png) no-repeat; merge: bg; }
+.music-foot .license {_top: -2px; _position: relative;}
+
+/*页脚部分结束*/
+
+
+/*全站框架layout*/
+.music-body{ background: url(/static/images/music/layout-line.png) 730px 0 repeat-y;}
+.main-body{width:730px;float: left;padding-top: 15px;}
+.main-body .main-body-cont{padding-right: 20px;}
+.sidebar{ width:230px;float: right;padding-top: 15px;}
+
+.channel .music-body{ background-position:170px; }
+.channel .sidebar{ width: 170px; float: left;}
+.channel .main-body{ width: 790px; float: right;}
+.channel .head{ margin-bottom: 10px;}
+.channel .head .title{  font-family: Microsoft YaHei,"幼圆"; font-weight: 500;    font-size: 22px;     line-height: 24px;}
+
+/*.tag-body .main-body,
+.tag-body .sidebar,*/
+.tag-detail .main-body,
+.tag-detail .sidebar,
+.style-detail .main-body,
+.style-detail .sidebar,
+.sns .main-body,
+.sns .sidebar,
+.top-channel .main-body,
+.top-channel .sidebar,
+.artist-channel .main-body,
+.artist-channel .sidebar,
+.topic-cate-page .main-body,
+.topic-cate-page .sidebar,
+.search-page .main-body,
+.search-page .sidebar{padding-top: 0;}
+
+
+.music-home .music-foot,
+.search-page .music-foot{ margin-top: 0;}
+/*.channel .music-foot,
+.tag-body .music-foot,
+.sns .music-foot,
+.search-page .music-foot{ margin-top: 0;}
+*/
+.topic-index .main-body,
+.topic-index .sidebar{ padding-top: 15px;}
+
+
+
+.ios-tip,
+.android-tip {
+  position: absolute;
+  display: none;
+  width: 840px;
+  height: 410px;
+}
+
+.ios-tip {
+  background: url(/static/images/ios/bg.png) 0 40px no-repeat;
+}
+
+.android-tip {
+  background: url(/static/images/android/bg.png) 0 40px no-repeat;
+}
+
+
+.ios-tip .tip-close,
+.android-tip .tip-close {
+  right: 0;
+  top: 0;
+  width: 119px;
+  height: 122px;
+  background: url(/static/images/ios/close.png) no-repeat;
+}
+
+.ios-tip .tip-confirm ,
+.android-tip .tip-confirm {
+  left: 145px;
+  top: 255px;
+  width: 539px;
+  height: 121px;
+  background: url(/static/images/ios/confirm.png) no-repeat;
+}
+
+/** 榜单左下方“搜索风云榜”样式 **/
+.channel .sidebar .fengyunbang { font-size: 14px; padding-left: 10px; display: block; margin-top: 10px; }
+
+
+
+
+
+
+
+
+
+.music-guide-bg{ display: none; z-index: 100; position: absolute; top: 0;left: 0; height: 100%; width: 100%; background: #fff; opacity: 0.9; filter: Alpha(Opacity=90);}
+.music-guide{display: none; position: fixed; _position: absolute; top: 0; z-index: 101; left: 50%; margin-left: -490px; width: 980px; height: 585px;
+
+}
+.music-guide .body{width: 980px; height: 423px;background: url(/static/images/music/music-guide.png) no-repeat;
+  _background: none;
+  _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/music/music-guide.png');}
+.music-guide .btn-music-guide{ float: left; margin: 266px 0 0 130px; width: 180px; height: 52px; background: url(/static/images/music/btn_try_now.png) no-repeat; overflow: hidden; text-indent: -999px; cursor: pointer;}
+
+
+.uplogo-guide{ display: none;}
+
+.mobile-guide{ padding-top: 10px;}
+.mobile-guide .mobile-icon{ margin-right: 15px; width: 21px; height: 35px; float: left; background: url(/static/images/music/mobile_guide.png) no-repeat;}
+.mobile-guide p{ overflow: hidden;zoom:1;}
+
+
+/* app下载浮层 */
+.app-down-layer { display: none; width: 640px; height: 440px; background: white; border: 1px solid #999; }
+.app-down-layer .app-layer-h1 { font-size: 28px; font-weight: bold; color: #40aceb; }
+.app-down-layer .app-layer-h2 { font-size: 14px; font-weight: bold; color: #333;  }
+.app-down-layer .app-layer-h3 { font-size: 14px; font-weight: bold; color: #333;  }
+.app-down-layer .step-text { font-size: 12px; color: #999; }
+.app-down-layer .step-title { text-align: center; }
+.app-down-layer .block-1 { padding: 23px 25px 15px 20px; }
+.app-down-layer .block-2 { padding: 15px 25px 15px 20px; }
+.app-down-layer .block-3 { padding: 15px 25px 15px 20px; }
+.app-down-layer .block-2 { background-color: #fafafa; border: 1px solid #e4e4e4; border-width: 1px 0; }
+.app-down-layer .step { float: left; width: 190px; }
+.app-down-layer .down-desc { margin-top: 10px; font-size: 14px; }
+.app-down-layer .down-how-title { margin-bottom: 10px; }
+.app-down-layer .down-how-title a { float: right; }
+.app-down-layer .other-btn { height: 66px; text-align: center; }
+.app-down-layer .other-blue-btn { margin-top: 27px; }
+.app-down-layer .close-btn { position: absolute; right: 15px; top: 20px; width: 11px; height: 11px; background: url(/static/images/music/app-down-close.png) no-repeat; merge:bg; }
+
+.install-steps .step { text-align: center; }
+.install-steps .step1 { width: 170px; }
+.install-steps .step2 { margin-left: 33px; width: 180px; }
+.install-steps .step3 { margin-left: 38px; width: 170px; }
+
+.other-steps .step { text-align: center; }
+.other-steps .step1 { width: 190px; }
+.other-steps .step2 { margin-left: 10px; }
+.other-steps .step3 { margin-left: 15px; }
+.other-steps .tdc { padding: 1px; width: 60px; height: 60px; border: 1px solid #e4e4e4; }
+
+/* 发送短信 */
+#sendmessage{
+  position: absolute; top:638px; left: 312px; width: 296px; height: 216px;
+  border: 5px solid #ddd; background: white; z-index: 20000; display:none;
+}
+
+#sendmessage .app-layer-h5{
+  font-size:12px; font-weight: bold; color: #666;
+  padding: 2px 10px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+#sendmessage .app-layer-h5 span{
+  background: url(http://music.baidu.com/cms/mobile/static/images/sms_close.png) no-repeat;
+  display: block; width: 11px; height:10px;
+  position: absolute; right: 10px; top: 7px; *top:3px;
+  text-indent: -9999px; cursor:pointer;
+}
+
+#sendmessage form{
+  padding:20px;
+}
+
+#sendmessage form span{ display: block; margin-bottom: 8px; }
+
+#sendmessage form input{
+  border: 1px solid #ddd;
+  height: 20px;
+  line-height: 20px;
+}
+
+#sendmessage form input#sms_phone{
+  width:150px;
+}
+
+#sendmessage form input#sms_vercode{
+  width: 70px;
+}
+
+#sendmessage form img{
+  height: 25px; vertical-align: middle;
+  cursor: pointer;
+}
+
+#sendmessage form button{
+  background: url(http://music.baidu.com/cms/mobile/static/images/sms_button.png) no-repeat;
+  width:70px; height: 25px;
+  text-indent: -9999px;
+  border: none; margin:-4px 0 5px 50px;
+  cursor: pointer; display: block;
+}
+
+#sendmessage form span#verify_tips{
+  color: #D9211F; margin-left:50px;
+}
+
+#sendmessage form span.sms-remark{ width:260px; color: #999; line-height: 16px; position: absolute; bottom: 10px; }
+
+/* 百度一键安装 */
+.guid{
+  position: fixed; _position:absolute; top: 50%; left: 50%;
+  z-index: 12001;
+  margin-left: -188px; margin-top: -138px;
+  width: 376px; height: 274px;
+  border: 1px solid #adbacc;
+  border-radius: 5px;
+  box-shadow: 0 0 40px;
+  background: #fafcff;
+}
+
+.guid h3{
+  padding: 5px 15px;
+  height: 26px;
+  border-radius: 5px 5px 0 0;
+  background: url(http://music.baidu.com/cms/mobile/static/new/guidetl.png) 0 -1px repeat-x;
+}
+
+.guid h3 .title{
+  display: block; float: left;
+  margin-top: 5px;
+  width: 170px; height: 15px; overflow: hidden;
+  background: url(http://music.baidu.com/cms/mobile/static/new/guidebg.png) no-repeat;
+  text-indent: -9999px;
+}
+
+.guid h3 a.close-guide{
+  float: right;
+  display: block;
+  margin-top: 6px;
+  width: 11px; height: 11px;
+  background: url(http://music.baidu.com/cms/mobile/static/new/guidebg.png) -120px -15px no-repeat;
+  text-indent: -9999px;
+}
+
+.guid .content{ position: relative; }
+
+.guid .content p{
+  margin: 20px;
+  width: 180px;
+  color: #5b6778;
+  line-height: 25px;
+}
+
+.guid .content b{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: block;
+  width: 150px; height: 50px;
+  background: url(http://music.baidu.com/cms/mobile/static/new/guidebg.png) -10px -60px no-repeat;
+}
+
+.guid .content a{
+  display: block;
+  width: 165px; height: 44px;
+  margin: 25px 100px;
+  background:url(http://music.baidu.com/cms/mobile/static/new/guidebg.png) 0 -114px no-repeat;
+  text-indent: -9999px;
+}
+
+.guid .already{
+  border-top: 1px solid #dbe2eb;
+}
+
+.guid .already p{
+  float: left;
+  margin:23px 0 0 20px;
+  color: #5b6778;
+}
+
+.guid .already a{
+  display: block; float: right;
+  width: 78px; height: 38px;
+  margin: 15px 18px 0 0;
+  background:url(http://music.baidu.com/cms/mobile/static/new/guidebg.png) 0 -15px no-repeat;
+  text-indent: -9999px;
+}
+
+#setupGuide {
+  margin-top:-120px; margin-left:-240px;
+  width:480px; height:240px;
+  _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-120));
+}
+
+#setupGuide .content{ height: 240px;}
+
+#setupGuide h2{
+  padding-left: 30px;
+  height: 34px;
+  margin: 25px 0 0 25px;
+  background: url(http://music.baidu.com/cms/mobile/static/new/load.gif) no-repeat;
+  color: #536d87;
+  font: bold 18px/26px "arial", "宋体", "微软雅黑";
+}
+
+#setupGuide p{ width: 380px; margin:0 0 20px 50px;}
+
+#setupGuide b.b1,#setupGuide b.b2{
+  position: relative; top: 0; left: 10px;
+  float: left;
+  background:url(http://music.baidu.com/cms/mobile/static/new/ietips.jpg) no-repeat;
+  width: 256px; height: 96px;
+}
+
+#setupGuide b.b2{
+  width: 190px; margin-left: 15px;
+  background-position: -256px 0;
+}
+
+.vip-tips {
+  position: absolute;
+  display: none;
+  z-index: 11;
+  top: 25px;
+  right: 20px;
+  padding-left: 10px;
+  height: 65px;
+  background-image: url(/static/images/vip/vip_tips_bg.png);
+  background-position: left 0;
+  merge: yellow;
+}
+
+.vip-tips:hover {
+  text-decoration: none;
+}
+
+body .not-vip {
+  width: 260px;
+}
+
+body .is-vip {
+  width: 200px;
+}
+
+.vip-tips-content {
+  padding-top: 15px;
+  height: 50px;
+  text-align: center;
+  background-image: url(/static/images/vip/vip_tips_bg.png);
+  background-position: right 0;
+  merge: yellow;
+}
+
+.vip-tips-left {
+  float: left;
+  margin-top: 7px;
+  width: 41px;
+  height: 33px;
+  background: url(/static/images/vip/payment_vip_title.png) no-repeat;
+  cursor: pointer;
+}
+
+.vip-tips-right {
+  float: left;
+  width: 198px;
+  cursor: pointer;
+}
+
+.not-vip .vip-tips-right {
+  width: 198px;
+}
+
+.is-vip .vip-tips-right {
+  width: 140px;
+}
+
+.vip-tips-text {
+  font-size: 14px;
+  color: #6a6a6a;
+}
+
+.vip-tips-text em {
+  color: #eb6100;
+}
+
+.vip-tips-btn {
+  margin: 2px auto 0 auto;
+  display: block;
+  width: 79px;
+  height: 21px;
+  line-height: 21px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  background: url(/static/images/vip/btn_get_vip.png) no-repeat;
+}
+
+.vip-tips-btn:hover {
+  text-decoration: none;
+}
+
+.vip-tips-close {
+  position: absolute;
+  top: 12px;
+  right: 5px;
+  display: block;
+  width: 11px;
+  height: 11px;
+  background: url(/static/images/music/app-down-close.png) no-repeat;
+  merge: bg;
+}
+
+.batch-down-tip-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 11px;
+  height: 11px;
+  background: url(/static/images/music/app-down-close.png) no-repeat;
+  merge: bg;
+}
+
+#vip_tips_text_vip {
+  display: none;
+}
+
+/*right-download-panel*/
+.app-down-panel{
+  display: none;
+  position: fixed;
+  _position: absolute;
+  width: 35px;
+  right: 3px;
+  top: 255px;
+  z-index: 1000;
+}
+.app-down-panel li{
+  width: 35px;
+  height: 37px;
+}
+.go-to-top{
+  cursor: pointer;
+  position: relative;
+  top: -45px;
+  display: none;
+  margin-bottom: -37px;
+  background: url(/static/images/music/go-to-top.png) no-repeat;
+  merge: bg;
+}
+.down-mobile {
+  _overflow:hidden;
+  margin-bottom: 8px;
+  _margin-bottom: 5px;
+  background: url(/static/images/music/download-mobile.png);
+  merge: bg;
+}
+.down-mobile-ac{
+  _margin-bottom: 8px;
+  background: url(/static/images/music/download-mobile-ac.png);
+  merge: blue;
+}
+.down-pc {
+  _overflow:hidden;
+  margin-bottom: 8px;
+  background: url(/static/images/music/download-pc.png) no-repeat;
+  merge: blue;
+}
+.down-pc-ac{
+  background: url(/static/images/music/download-pc-ac.png) no-repeat;
+  merge: blue;
+}
+.go-to-top-ac{
+  background: url(/static/images/music/go-to-top-ac.png);
+  merge: blue;
+}
+.down-pc-icon {
+  width: 35px;
+  height: 37px;
+  margin-bottom: -37px;
+}
+.down-preview-wrapper {
+  display: none;
+  position: relative;
+  left: -160px;
+  top: -80px;
+  width: 161px;
+  height: 187px;
+  top:-80px;
+}
+.down-preview {
+  width: 148px;
+  border: 1px solid #e4e4e5;
+  background: #fff;
+}
+.down-mobile-preview a {
+  display: block;
+  width: 128px;
+  height: 128px;
+  margin-left: 11px;
+}
+.down-mobile-preview span{
+  text-align: center;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+}
+.down-pc-preview a{
+  display: block;
+  margin-left: 26px;
+  width: 96px;
+  height: 96px;
+}
+.down-pc-preview span{
+  text-align: center;
+  display: block;
+  height: 45px;
+  line-height: 45px;
+}
+.down-mobile-ac .down-mobile-preview{
+  display: block;
+}
+
+.down-pc-ac .down-pc-preview{
+  display: block;
+}
+
+/* 右上角VIP个人中心 */
+.vip-intro {
+  position: relative;
+  margin-top: -1px;
+}
+.z1 {zoom:1}
+#vip-hover-show {
+  display: none;
+  width: 90px;
+}
+#vip-hover-show li{
+  border-bottom: 1px solid #ebebeb;
+}
+#vip-hover-show .css-em {
+  color: #c33;
+}
+#vip-hover-show .css-new{
+  display: inline-block;
+  width: 14px;
+  height: 5px;
+  margin: 0 0 5px 2px;
+  background: url(/static/images/music/mod-new-icon.png) no-repeat;
+  merge: red;
+}
+.css-hot{
+  display: inline-block;
+  width: 19px;
+  height: 13px;
+  margin-left: 2px;
+  background: url(/static/images/bg/hot.png) no-repeat;
+  merge: red;
+}
+/* vip 过期提示 */
+.vip-expire {
+  z-index: 1000;
+  width: 157px;
+  height: 94px;
+  background-color: #fffded;
+  border: solid 1px #fef1d9;
+}
+.vip-expire .arrow-up{
+  position: absolute;
+  right: 30px;
+  top: -6px;
+  width: 12px;
+  height: 6px;
+  background: url(/static/images/bg/yellow-arrow-up.png) no-repeat;
+}
+.vip-expire .content{
+  margin: 0 10px;
+}
+.vip-expire h4{
+  font-weight: bold;
+  line-height: 30px;
+}
+.vip-expire em{
+  font-weight: bold;
+}
+.vip-expire .css-close{
+  position: absolute;
+  text-decoration: none;
+  right: 6px;
+  top: 2px;
+  color: #C0C0C0;
+}
+.vip-expire .action{
+  text-align: right;
+  font-weight: bold;
+}
+.vip-expire .action a {
+  color: #c33;
+}
+/*.css-close{*/
+  /*position: absolute;*/
+  /*right: 14px;*/
+  /*top: 12px;*/
+  /*width: 11px;*/
+  /*height: 11px;*/
+  /*text-decoration: none;*/
+  /*background: url(/static/images/btn/icon_del_small.png) no-repeat;*/
+  /*merge: rich;*/
+  /*_background: none;*/
+  /*_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='corp',src='/static/images/btn/icon_del_small.png');*/
+/*}*/
+
+/*hao123Header*/
+.hao123-header {
+    position: relative;
+    z-index:1000;
+}
+.hao123-sites {
+    background: #fff;
+    border-bottom: 2px solid #eaeae2;
+    position: relative;
+    z-index: 2;
+}
+.hao123-sites-inner {
+    width: 980px;
+    margin: 0 auto;
+}
+.hao123-sites-main {
+    float: left;
+}
+.hao123-sites-main .hao123-first {
+    font-weight: bold;
+}
+.hao123-sites-main li,
+.hao123-query-links li {
+    float: left;
+    line-height: 30px;
+}
+.hao123-sites-main a:hover {
+    position: relative;
+    text-decoration: none;
+    border-bottom: 2px solid #1ba968;
+    color: #1ba968;
+    margin-bottom: -2px;
+}
+.hao123-sites-main a,
+.hao123-query-links a {
+    display: block;
+    padding: 0 7px;
+    color: #666;
+}
+.hao123-sites-sub {
+    float: left;
+    position: relative;
+}
+.hao123-sites-sub {
+    position: relative;
+}
+.hao123-label {
+    padding: 0 7px;
+    color: #666;
+    position: absolute;
+    line-height: 30px;
+    width: 35px;
+    background: #fff;
+    z-index: 21;
+    height: 30px;
+}
+.hao123-sites-sub.hover .hao123-sites-sub-bd {
+    display: block;
+}
+.hao123-sites-sub.hover .hao123-label {
+    padding: 0 5px;
+    line-height: 26px;
+    border: 2px solid #e8e8e8;
+    border-bottom: none;
+}
+.hao123-sites-sub.hover .hao123-label i{
+    top: 10px;
+    right: 4px;
+}
+.hao123-label i {
+    position: absolute;
+    top: 12px;
+    right: 6px;
+    height: 0;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #666 #fff #fff;
+}
+.hao123-sites-sub-bd {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 310px;
+    border: 2px solid #e8e8e8;
+    background: #fff;
+    z-index: 20;
+}
+.hao123-sites-area {
+    padding: 8px 5px;
+    position: relative;
+    clear: both;
+}
+.hao123-sites-area ul {
+    overflow: hidden;
+}
+.hao123-sites-area-1 {
+    background: #f6f5fa;
+}
+.hao123-sites-sub-bd h3 {
+    margin-left: 6px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.hao123-sites-sub-bd li {
+    float: left;
+    margin: 0 6px;
+    line-height: 24px;
+    white-space: nowrap;
+    _display: inline;
+}
+.hao123-sites-sub-bd a {
+    color: #333;
+}
+.hao123-high a {
+    color: #ee3636;
+}
+.hao123-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+}
+.hao123-query-links {
+    float: right;
+    margin-top: 8px;
+}
+.hao123-query-links li {
+    line-height: normal;
+    border-right: 1px solid #e1e1e1;
+}
+.hao123-set-home {
+    padding-left: 12px;
+    background: url(/static/images/hao123/home-icon.png) no-repeat; merge: green;
+}
+li.hao123-to-browser {
+    border: none;
+}
+.hao123-to-browser a {
+    color: #ee3636;
+}
+
+.hao123-header .header-body {
+    background: url(/static/images/hao123/header-bg.png) repeat-x; merge: bg;
+}
+.hao123-header .middle {
+    width: 980px;
+    margin: 0 auto;
+    height: 84px;
+    position: relative;
+    z-index: 1;
+}
+.hao123-header .logo {
+    display: block;
+    width: 186px;
+    height: 49px;
+    background: url(/static/images/hao123/logo.png) no-repeat; merge: green;
+    margin: 18px 0 0 10px;
+    float: left;
+}
+.hao123-header form {
+    float: right;
+    margin-top: 36px;
+    position: relative;
+}
+.hao123-header .s_ipt_wr {
+    float: left;
+    height: 30px;
+    border: 1px solid #bdbdbd;
+    border-right: none;
+    background: #fff;
+    _display: inline;
+}
+.hao123-header .kw {
+    width: 310px;
+    height: 22px;
+    line-height: 22px;
+    border: none;
+    outline: none;
+    margin: 4px 7px 0;
+}
+.hao123-header .s_btn_wr {
+    float: left;
+    border: 1px solid #07935a;
+    _display: inline;
+}
+.hao123-header .s_btn {
+    width: 78px;
+    height: 30px;
+    border: none;
+    background: #05b06a;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+.hao123-header #loading-pic {
+    left: 305px;
+}
+.hao123-header .sug-result {
+    z-index: 20;
+    border-color: #bdbdbd;
+}
+.hao123-header .sug-result dl {
+    width: 363px;
+}
+
+.hao123-header .nav {
+    width: 980px;
+    margin: 0 auto 15px;
+    height: 40px;
+    line-height: 40px;
+    background: url(/static/images/hao123/head-bg.png) repeat-x; merge: green;
+}
+.hao123-header .main-nav li {
+    border: none;
+}
+.hao123-header .main-nav a {
+    background: url(/static/images/hao123/head-line.png) right 13px no-repeat; merge: green;
+}
+.hao123-header .nav-mv a {
+    background: none;
+}
+.hao123-header .main-nav li a span,
+.hao123-header .main-nav li a:hover span {
+    background: none;
+}
+.hao123-header .main-nav .nav-current a,
+.hao123-header .main-nav li a:hover{
+    background: url(/static/images/hao123/head-hover-bg.png) repeat-x; merge: green;
+    margin-left: -2px;
+    padding-left: 22px;
+}
+.hao123-header .sub-nav li {
+    margin: 0 7px;
+}
+.hao123-header #the-voice-logo {
+    margin-top: 6px;
+}
+.hao123-header #the-voice {
+    color: #ddfc30;
+}
+.hao123-header .nav-musicmbox,
+.hao123-header .nav-musicmbox:hover {
+    height: 27px;
+    line-height: 26px;
+    margin: 7px 5px 0 5px;
+    padding-left: 31px;
+    background: url(/static/images/hao123/mbox.png) no-repeat; merge: green;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='crop',src='/static/images/hao123/mbox.png');
+}
+
+/*hao123Footer*/
+.hao123-footer .ft_link {
+    float: left;
+}
+.hao123-footer .ft_link a:hover,
+.hao123-footer .browser {
+    color: #ee3636;
+}
+.hao123-footer .mobile {
+    padding-left: 16px;
+    background: url(/static/images/hao123/mobile-icon.png) no-repeat; merge: green;
+}
+.hao123-footer .browser i {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    background: url(/static/images/hao123/hao123-browser.png) no-repeat; merge: green;
+    display: inline-block;
+    vertical-align: -10%;
+    _vertical-align: -5%;
+}
+.hao123-footer .ft_link b {
+    margin: 0 7px 0 6px;
+    font-weight: normal;
+}
+.hao123-footer .copyright {
+    float: right;
+}
+.hao123-footer .intro {
+    color: #333;
+}
+.hao123-footer .beian {
+    color: #737373;
+    margin-left: 16px;
+    padding-right: 16px;
+    background: url(/static/images/hao123/beian-icon.png) right 0 no-repeat; merge: green;
+}

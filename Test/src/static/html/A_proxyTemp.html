@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>BridgePage</title>
+<script type="text/javascript" src="/player/static/js/naga/singleton.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var proxyList = new  Mbox.singleton({
+	objName : "A_proxyTemp",//角色名
+    onGetMsg:"onGetMsg",//当B_porxy.html向A发送消息时，触发。
+    listInst:"ting.listPage"//A页面中的单实例对象名
+});
+</script>
+</form>
+</body>
+</html>

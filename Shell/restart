@@ -1,0 +1,3 @@
+#!/bin/bash
+#/home/bae/bae/php/sbin/php-fpm restart;
+/home/bae/lighttpd/bin/lighttpd -t -f /home/bae/lighttpd/conf/lighttpd.conf && /home/bae/branch/restart-lighttpd;

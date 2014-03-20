@@ -1,0 +1,28 @@
+.branch {
+    position: relative;
+}
+.branch .list {
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #eee;
+    z-index: 1;
+    box-shadow: 0 0 2px 0 #eee;
+    left: -1px;
+    max-height: 300px;
+    overflow: auto;
+}
+.branch li {
+    line-height: 30px;
+    padding: 0 5px;
+    /*border-bottom: 1px dashed #f0f0f0;*/
+    cursor: default;
+}
+.branch li:last-of-type {
+    border: none;
+}
+
+.branch li:hover {
+    background: #e25940;
+    color: #fff;
+}

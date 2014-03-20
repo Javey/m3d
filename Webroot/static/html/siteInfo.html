@@ -1,0 +1,32 @@
+<div class="head">
+    <div class="title">
+        <h1 class="name">{{info.name}}</h1>
+        <span class="line">-</span>
+        <a href="http://{{info.name}}.music.baidu.com" title="访问测试环境" target="_blank">测试环境</a>
+        <a href="http://build.{{info.name}}.music.baidu.com" title="访问编译环境" target="_blank">编译环境</a>
+    </div>
+    <div class="info">{{info.author}} - {{info.createTime}}</div>
+    <div class="description">{{info.description}}</div>
+    <ul class="panel">
+        <li class="refresh ion-ios7-refresh-outline" title="更新环境：用于设置改变后，重建环境" ng-click="refresh()"></li>
+        <li class="edit ion-ios7-compose-outline" title="切换为编辑状态" ng-click="edit()"></li>
+        <li class="save ion-ios7-checkmark-outline" title="保存" ng-click="save()"></li>
+    </ul>
+</div>
+<div class="body">
+    <ul class="modules">
+        <li class="item clearfix" ng-repeat="module in info.modules" ng-class="{other: module.isOther}">
+            <span class="delete ion-ios7-close-outline" title="删除" ng-click="delete(module.id)"></span>
+            <span class="add ion-ios7-plus-outline" title="添加" ng-click="add(module.id)"></span>
+            <span class="title" ng-click="test()">{{module.title}}</span>
+            <span class="branch" branch-list module="module"></span>
+            <span class="ctrl">
+                <span class="btn compile" ng-click="compile(module.title)">编译</span>
+                <span class="btn merge" ng-click="mergeImage(module.title)">
+                    <a href="/imerge?site={{info.name}}&module={{module.title}}" target="_blank">合图</a>
+                </span>
+                <span class="btn test" ng-class="toTest(module.title)">提测</span>
+            </span>
+        </li>
+    </ul>
+</div>

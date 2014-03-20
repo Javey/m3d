@@ -1,0 +1,217 @@
+<?php
+
+defined('PREPROCESS_PATH') or define('PREPROCESS_PATH', dirname(__FILE__).'/');
+// 加载编译配置
+C(include PREPROCESS_PATH . 'Common/config.php');
+// 加载处理器
+require_once('Compressor/Compressor.class.php');
+require_once('Compressor/JsCompressor.class.php');
+require_once('Compressor/CssCompressor.class.php');
+require_once('Compressor/MediaCompressor.class.php');
+require_once('Common/PPFactory.class.php');
+require_once('Common/Preprocess.class.php');
+require_once('Media/MediaPreprocess.class.php');
+require_once('Css/CssPreprocess.class.php');
+require_once('Js/JsPreprocess.class.php');
+require_once('Html/HtmlPreprocess.class.php');
+require_once('Other/OtherPreprocess.class.php');
+
+class PreprocessTool extends Tool {
+    // 编译前后文件对应路径map
+    private $map = array();
+
+    public function __construct($options) {
+        parent::__construct($options);
+        // 加载黑名单文件
+        if (!empty($this->options['black_list'])) {
+            C('BLACK_LIST', $this->options['black_list']);
+        }
+        if (!empty($this->options['cdn_list'])) {
+            C('CDN_LIST', $this->options['cdn_list']);
+        }
+    }
+
+    /**
+     * 编译入口
+     */
+    public function run() {
+        // 派发预处理开始事件
+        trigger('process_start', $this);
+//        exit();
+
+        foreach ($this->options['process'] as $item) {
+            trigger('one_process_start', $this, $item);
+
+            if (empty($item['name'])) {
+                // 如果不存在name，则用预处理器类型名，作为name
+                // name的作用用于生成map的key，及文件名，使统一处理器，可以处理多种类型文件分别生成不同的map
+                $item['name'] = $item['processor'];
+            }
+            // 初始化map
+            if (!isset($this->map[$item['name']])) {
+                $this->map[$item['name']] = array();
+            }
+
+            // 初始化预处理器
+            $processor = PPFactory::getInstance($item['processor'], $this->map);
+            // 如果处理图片，则需要先处理合图
+            if ($processor instanceof MediaPreprocess && strpos($item['type'], 'png') !== false) {
+                $this->processSprite($processor, $item);
+            }
+            // 根据扫描目录和类型，扫描到所有待编译文件
+            $fileList = $this->getFileList($item['from'], $item['type'], C('SRC_SRC_PATH'));
+//            print_r($fileList);
+//            continue;
+
+            foreach ($fileList as $file) {
+                mark('处理文件：' . $file);
+
+                $processor->setFile($file);
+                $processor->process();
+                $processor->compress();
+
+                $path = $processor->getRelativePath();
+                $buildPath = $this->writeBuildFile($processor, $item, $path);
+
+                // 更新map
+                $this->updateMap($item['name'], $path, $buildPath);
+//                trigger('one_file_end', $this, $item, $file);
+            }
+
+            trigger('one_process_end', $this, $item);
+            $processor->end();
+
+            // 一种类型的文件处理完后，导出map到相应文件中
+            $this->exportMapByType($item['name']);
+        }
+
+        // 派发预处理结束事件
+        trigger('process_end', $this);
+    }
+
+    /**
+     * 获取map
+     * @param null $key
+     * @return array|null
+     */
+    public function getMap($key=null) {
+        return is_null($key) ?
+            $this->map : (isset($this->map[$key]) ?
+                $this->map[$key] : null);
+    }
+
+    /**
+     * 更新map
+     * @param $type 预处理器类型
+     * @param $from 原始路径 如果为Array则覆盖整个map[$type]
+     * @param $to 编译后路径
+     */
+    public function updateMap($type, $from, $to=null) {
+        if (is_array($from)) {
+            $this->map[$type] = $from;
+        } else {
+            $this->map[$type][$from] = $to;
+        }
+    }
+
+    /**
+     * 写编译后文件
+     * @param Preprocess $processor
+     * @param $item
+     * @param $path
+     */
+    public function writeBuildFile(Preprocess $processor, $item, $path) {
+        // 如果设置了to参数，则改变编译后文件路径
+        if (!$this->isWhitefile($path) && !empty($item['to'])) {
+            // 是否md5化
+            if (C('IS_MD5')) {
+                $path = $item['to'] .'/'. $processor->fileUid() . '.' . $processor->getType();
+            } else {
+                $path = $item['to'].'/'.$processor->getFilename();
+            }
+        }
+
+        $buildPath = C('SRC_BUILD_PATH') . $path;
+
+        // 写入文件到编译后路径中
+        $processor->write($buildPath);
+
+        return $path;
+    }
+
+    /**
+     * 导出map到文件
+     * @param $type 预处理器类型
+     */
+    private function exportMapByType($type) {
+        $string = '<?php '.PHP_EOL.'return ';
+        $string .= var_export($this->map[$type], true);
+        $string .= ';';
+
+        contents_to_file(C('M3D_MAP_PATH').'/'.$type.C('M3D_MAP_SUFFIX').'.php', $string);
+        // 派发map写入完成事件
+        trigger('export_map_end', $this, $type);
+    }
+
+    /**
+     * 扫描所有文件
+     * @param $paths 扫描目录
+     * @param $types 扫描文件类型
+     * @return array 文件列表数组
+     */
+    private function getFileList($paths, $types, $base='') {
+        // 使用object，进行引用传参
+        $ret = new stdClass();
+        $ret->list = null;
+        trigger('processor_fetch_files', $paths, $types, $ret);
+        return is_null($ret->list) ? get_files_by_type($paths, $types, $base) : $ret->list;
+    }
+
+    /**
+     * 合图文件处理
+     * @param $processor
+     * @param $item
+     */
+    private function processSprite(Preprocess $processor, $item) {
+        // 确保大图最新
+        $imergeTool = new InstantmergeTool($this->options, false);
+        $imergeTool->updateSprite();
+
+        // 如果处理图片类，则需要扫描合图目录
+        $spriteList = $this->getFileList(C('M3D_IMERGE_PATH'), $item['type']);
+
+        foreach ($spriteList as $file) {
+            mark('处理文件：' . $file);
+            $processor->setFile($file);
+            $processor->process();
+            $processor->compress();
+            $path = str_replace(C('SRC_ROOT'), '', $file);
+            $buildPath = $this->writeBuildFile($processor, $item, $path);
+            // 更新map, 合图文件仅使用文件名作为key
+            $filename = $processor->getFilename();
+            $this->map[$item['name']][$filename] = $buildPath;
+        }
+    }
+
+    /**
+     * 是否是黑名单文件
+     * @param $file
+     * @return bool
+     */
+    private function isBlackFile($file) {
+        return isset($this->options['black_list']) ?
+            (in_array($file, $this->options['black_list']) ?
+                true : false) : false;
+    }
+
+    /**
+     * 是否是白名单文件
+     * @param $file
+     * @return bool
+     */
+    private function isWhiteFile($file) {
+        return !empty($this->options['white_list']) ?
+            (in_array($file, $this->options['white_list']) ?
+                true : false) : false;
+    }
+}

@@ -1,0 +1,224 @@
+.imerge {
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-oritent: vertical;
+}
+.imerge a:hover {
+    text-decoration: none;
+}
+.imerge .head {
+    display: -webkit-flex;
+    display: flex;
+    border-bottom: 1px solid #f0f0f0;
+    line-height: 40px;
+}
+.imerge .head .back {
+    border-right: 1px solid #f0f0f0;
+}
+.imerge .head .refresh {
+    border-left: 1px solid #f0f0f0;
+}
+.imerge .head .icon {
+    font-size: 40px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.imerge .head .info {
+    padding: 0 10px;
+}
+.imerge .types {
+    line-height: 30px;
+    /*background: #e25940;*/
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+.imerge .types .item {
+    float: left;
+    display: block;
+    padding: 0 10px;
+    margin: 5px;
+}
+.imerge .types .item.actived {
+    background: #e25940;
+    color: #fff;
+}
+.imerge .body {
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: -webkit-flex;
+    display: flex;
+}
+.imerge .images {
+    width: 255px;
+    border-right: 1px solid #f0f0f0;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-oritent: vertical;
+    flex-direction: column;
+}
+.imerge .search {
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+}
+.imerge .search input {
+    width: auto;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+.imerge .search .icon {
+    font-size: 24px;
+    line-height: 30px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    color: #999;
+}
+.imerge .search .hint {
+    position: absolute;
+    background: #fff;
+    box-shadow: 0 0 4px 0 #ccc;
+    line-height: 30px;
+}
+.imerge .search .hint li {
+    padding: 0 10px;
+    cursor: default;
+}
+.imerge .search .hint li:hover {
+    background: #f0f0f0;
+}
+.imerge .images-list {
+    -webkit-box-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+.imerge .images-list .item {
+    float: left;
+    width: 100px;
+    height: 100px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-oritent: vertical;
+    flex-direction: column;
+    text-align: center;
+    margin: 10px;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    position: relative;
+}
+.imerge .images-list .item.actived {
+    border: 1px solid #f0f0f0;
+    background: #f0f0f0;
+}
+.imerge .images-list .item:hover {
+    border: 1px solid #f0f0f0;
+}
+.imerge .images-list .img {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+.imerge .images-list img {
+    max-height: 73px;
+    max-width: 100%;
+}
+.imerge .images-list .name {
+    display: block;
+    height: 25px;
+    line-height: 25px;
+}
+.imerge .images-list .remove {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+.imerge .images-list .item:hover .remove {
+    display: block;
+}
+
+.imerge .sprite {
+    -webkit-box-flex: 1;
+    flex: 1;
+    overflow: auto;
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    padding: 10px;
+}
+.imerge .sprite a {
+    display: block;
+    background: url('/static/images/sprite_bg.png');
+}
+.imerge .sprite img {
+    max-width: 100%;
+}
+.imerge .dashboard {
+    width: 240px;
+    border-left: 1px solid #f0f0f0;
+    overflow: auto;
+}
+.imerge .dashboard.disable {
+    pointer-events: none;
+}
+.imerge h2 {
+    line-height: 30px;
+    padding: 0 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.imerge .dashboard .attribute {
+    padding: 20px;
+}
+.imerge .dashboard .item {
+    display: -webkit-box;
+    -webkit-box-align: center;
+}
+.imerge .dashboard h3 {
+    width: 80px;
+    text-align: center;
+    margin-right: 10px;
+}
+.imerge .dashboard .data {
+    height: 100px;
+    position: relative;
+    margin-top: 10px;
+}
+.imerge .dashboard input[type="text"] {
+    width: 18px;
+    height: 26px;
+}
+.imerge .dashboard input[type="radio"] {
+    margin: 8px;
+}
+.imerge .dashboard input {
+    position: absolute;
+}
+.imerge .dashboard .data .top {
+    top: 0;
+    left: 30px;
+}
+.imerge .dashboard .data .left {
+    top: 30px;
+    left: 0;
+}
+.imerge .dashboard .data .center {
+    top: 30px;
+    left: 30px;
+}
+.imerge .dashboard .data .right {
+    left: 60px;
+    top: 30px;
+}
+.imerge .dashboard .data .bottom {
+    top: 60px;
+    left: 30px;
+}

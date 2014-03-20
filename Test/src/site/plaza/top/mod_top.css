@@ -1,0 +1,20 @@
+
+.top-index{ padding-bottom:50px;  background: url("/static/images/music/layout-line.png") repeat-y 390px 0;}
+.top-index .module-line-bottom{margin: 20px 0;}
+.top-index .song-list .song-item,
+.top-index .song-list .funbtn-wrap{padding-left: 0;}
+.top-index .module{ width: 365px;}
+.top-index .module .play-more{padding-top: 10px;}
+
+.top-index-left{ float: left;width: 390px;}
+.top-index-right{ float: right;width: 400px;}
+.top-index-right .module{padding-left: 30px;}
+
+.artist-top .index-num, .artist-top .status{width: 20px;}
+.artist-top .left-column{width: 180px; float: left;}
+.artist-top .right-column{width: 180px; float: right; clear: none;}
+.top-index .artist-top .song-item{padding: 4px 0;}
+.artist-top .play-more{clear: both;}
+.top-index span.song-title{ margin-right: 10px; }
+.song-item span.singer{ margin-right: 0; white-space: nowrap;}
+.oricon-top .song-title {white-space:nowrap;overflow: hidden;}

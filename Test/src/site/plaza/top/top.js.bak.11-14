@@ -1,0 +1,87 @@
+$(function(){
+    $(".ecom-ad").ecomad();
+    $('.play-all-hook').click(function(){
+            var type = $(this).data("type");
+            ting.media.playTop( type );
+
+            $(this).tip().tip("tipup", {
+                        msg: "已开始播放",
+                        iconClass: "tip-success"
+                    });
+
+            //bdbrowser effect
+            if(ting.browser.isSpecial()){
+                ting.browser.add2box('play');
+            }
+
+        return false;
+    })
+
+    var $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body'); // opera fix  
+    var wrapper = $("#songListWrapper");
+    var topList = $(".top-list");
+    var topScrollTo = topList.offset().top;
+    var songListArray = [];
+    var songListTextAreaArray = [];
+    var offset = -1;
+    var initSongList = function () {
+        var tas, firstPage;
+        /* 先获取dom中的songList */
+        firstPage = wrapper.find(".song-list");
+        firstPage = $(firstPage[0]);
+        firstPage.songList();
+        songListArray.push(firstPage); 
+
+        /* 获取其他的songList */
+        tas = $("#restPage textarea");
+        for (var i = 0, len = tas.length; i < len; i += 1) {
+            songListTextAreaArray.push($(tas[i]));
+        }
+    };
+
+    var selectSongList = function (x) {
+        var fn = arguments.callee;
+        var songList;
+
+        if (x > songListTextAreaArray.length || x == offset) {
+            return false;
+        }
+
+        offset = x; 
+        songList = songListArray[x];
+        
+        if (!songList) {
+            songListTextArea = songListTextAreaArray[x - 1];
+            songList = $(songListTextArea.val() || "");
+            songListArray[x] = songList;
+            wrapper.append(songList);
+            songList.songList();
+            songList.find(".music-icon-hook").musicIcon();
+        }
+
+        wrapper.find(".song-list").hide();
+        songList.show();
+
+        
+    };
+
+    var pageNavigator = $('.top-list .page-navigator-hook').pageNavigator();
+    pageNavigator.bind('pagenavigator.pagechange',function(e, data){
+        selectSongList(data.page - 1);
+        //window.scrollTo(0, topScrollTo);
+        $body.stop().animate({ scrollTop: topScrollTo}, 200);
+        /*
+        $current = $(".top-list .song-list li"+".linenum-"+(data.start+20) );
+        $(".song-list li").hide();
+        $(".song-list li .checkbox-item-hook").attr("checked",false);
+        $(".checkbox-item-hook",$current).attr("checked",true);
+        $(".song-list .funbtn-wrap .select-all-hook").attr("checked",true);
+        $(".song-list .funbtn-wrap a").removeClass("btn-disabled").
+                                        addClass("btn-b");
+        $current.show();
+        */
+        return false;
+    });
+
+    initSongList();
+});

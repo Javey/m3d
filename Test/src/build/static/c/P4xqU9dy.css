@@ -1,0 +1,4 @@
+a {background: url("test.png");}
+.a {width: 10px;background: url("test.png") 0 4px no-repeat;}
+.b {background: url("test.png") 0 no-repeat;}
+div {background-image: url("test.png");background-position: 2px 3px;}

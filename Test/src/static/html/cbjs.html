@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+</head>
+<body style="margin:0">
+<script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
+<!-- <script type="text/javascript" src="/static/js/m.js"></script> -->
+<script type="text/javascript">
+(function() {
+	var lh = escape(location.href),
+        mc = unescape(lh).match(/(\?|&)id=([^&]+)(&|$)/),
+        sid = 0,
+        options = {
+            // 歌曲详情页
+            songid : unescape(lh).match(/(\?|&)songid=([^&]+)(&|$)/),
+            songname : unescape(lh).match(/(\?|&)songname=([^&]+)(&|$)/),
+            songartistname : unescape(lh).match(/(\?|&)songartistname=([^&]+)(&|$)/),
+            songartistid : unescape(lh).match(/(\?|&)songartistid=([^&]+)(&|$)/),
+            songalbumname : unescape(lh).match(/(\?|&)songalbumname=([^&]+)(&|$)/),
+            songtagname : unescape(lh).match(/(\?|&)songtagname=([^&]+)(&|$)/),
+            // 歌手详情页
+            artistid : unescape(lh).match(/(\?|&)artistid=([^&]+)(&|$)/),
+            artistname : unescape(lh).match(/(\?|&)artistname=([^&]+)(&|$)/),
+            // 搜索结果页
+            musicquery : unescape(lh).match(/(\?|&)musicquery=([^&]+)(&|$)/),
+            // 下载页
+            downloadsongname : unescape(lh).match(/(\?|&)downloadsongname=([^&]+)(&|$)/),
+            downloadsongid : unescape(lh).match(/(\?|&)downloadsongid=([^&]+)(&|$)/),
+            downloadartistname : unescape(lh).match(/(\?|&)downloadartistname=([^&]+)(&|$)/),
+            downloadartistid : unescape(lh).match(/(\?|&)downloadartistid=([^&]+)(&|$)/),
+            // 专辑详情页
+            albumartistname : unescape(lh).match(/(\?|&)albumartistname=([^&]+)(&|$)/),
+            albumartistid : unescape(lh).match(/(\?|&)albumartistid=([^&]+)(&|$)/),
+            albumname : unescape(lh).match(/(\?|&)albumname=([^&]+)(&|$)/),
+            albumid : unescape(lh).match(/(\?|&)albumid=([^&]+)(&|$)/),
+            albumsongname : unescape(lh).match(/(\?|&)albumsongname=([^&]+)(&|$)/),
+            albumsongid : unescape(lh).match(/(\?|&)albumsongid=([^&]+)(&|$)/)
+        };
+
+    try {
+        for(var key in options){
+            if( options[key] ){
+                if(key =='musicquery'){
+                    // BAIDU_CLB_addOrientation( key, options[key][2] );
+                    // by rochappy 2013-08-16 由于广告那边接收的是解码后的字符串
+                    BAIDU_CLB_addOrientation( key, key == 'musicquery' ?  decodeURIComponent( options[key][2] ) : options[key][2] );
+                }else{
+                    BAIDU_CLB_addOrientation( key, options[key][2] );
+                }
+            }
+        }
+    }
+    catch (ex) {
+    }
+ 	if (mc) {sid = parseInt(mc[2], 10);if (sid) {BAIDU_CLB_fillSlot(sid);}}
+})();
+</script>
+</body>
+</html>

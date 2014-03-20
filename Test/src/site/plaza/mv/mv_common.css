@@ -1,0 +1,70 @@
+.mv-item {
+    float: left;
+    margin: 15px 20px 15px 0;
+    width: 180px;
+    height: 149px;
+}
+.mv-cover {
+    width: auto;
+}
+.mv-cover img {
+    width: 100%;
+    height: 100px;
+    padding: 0;
+    border: none;
+}
+.mv-cover .play {
+    display: none;
+}
+.mv-cover a:hover .play {
+    display: block;
+}
+.song-item {
+    margin-top: 8px;
+}
+.song-item span.song-title {
+    font-size: 12px;
+}
+.song-item a {
+    color: #333;
+}
+.mv-has-focus ul{
+    overflow: hidden;
+}
+.mv-category-focus {
+    float: left;
+    width: 380px;
+    height: 325px;
+    margin: 15px 20px 0 0;
+    _margin-right: 17px;
+}
+
+.thumbnail img{
+    width: 380px;
+    height: 213px;
+}
+.thumbnail .mv-number{
+    height: 30px;
+    line-height: 30px;
+}
+.thumbnail .mv-number .arrow{
+    margin-top: 10px;
+}
+.mv-category-focus .song-info {
+    line-height: 22px;
+    color: #666;
+}
+.mv-category-focus .focus-play{
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    cursor: pointer;
+    z-index: 2;
+    width: 41px;
+    height: 41px;
+    display: block;
+    background:  url(/static/images/bg/mv-play-icon.png) no-repeat;
+    merge:blue;
+    _background: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='crop',src='/static/images/bg/mv-play-icon.png');
+}

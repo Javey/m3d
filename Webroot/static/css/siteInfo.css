@@ -1,0 +1,149 @@
+.site-info {
+    -webkit-box-flex: 1;
+    /*-moz-box-flex: 1;*/
+    flex: 1;
+    display: -webkit-box;
+    display: flex;
+    /*display: -moz-box;*/
+    -webkit-box-orient: vertical;
+    /*-moz-box-orient: vertical;*/
+    flex-direction: column;
+    padding: 0 20px;
+}
+.site-info .head {
+    padding: 10px 30px;
+    /*box-shadow: 0 0 2px 0 #eee;*/
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+.site-info .head .name {
+    font-size: 38px;
+    font-weight: normal;
+    display: inline-block;
+}
+.site-info .head .line {
+    margin: 0 10px;
+}
+.site-info .head .title a {
+
+}
+.site-info .head .info {
+    color: #666;
+    margin: 5px 0;
+}
+.site-info .head .panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px 0;
+    font-size: 24px;
+}
+.site-info .head .panel li {
+    cursor: pointer;
+    margin-left: 10px;
+    float: left;
+    width: 20px;
+}
+.site-info .head .panel li:hover {
+    color: #e25940;
+}
+.site-info .head .panel .save {
+    display: none;
+}
+.site-info.editable .head .panel .save {
+    display: block;
+}
+.site-info.editable .head .panel .edit {
+    display: none;
+}
+.site-info .body {
+    -webkit-box-flex: 1;
+    /*-moz-box-flex: 1;*/
+    flex: 1;
+    padding: 20px 30px;
+    overflow: auto;
+}
+.modules .item {
+    /*overflow: hidden;*/
+    line-height: 40px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+}
+.modules .item:hover {
+    /*background: #e25940;*/
+    /*color: #fff;*/
+    background: #f0f0f0;
+}
+.modules .item > span {
+    float: left;
+    margin-left: 10px;
+}
+.modules span.delete,
+.modules span.add {
+    position: absolute;
+    /*top: -7px;*/
+    /*left: -7px;*/
+    /*margin-left: 0;*/
+    line-height: normal;
+    cursor: pointer;
+    color: #666;
+    font-size: 24px;
+    display: none;
+    right: 10px;
+    line-height: 40px;
+}
+.modules .delete:hover,
+.modules .add:hover {
+    color: #e25940;
+}
+.editable .modules span.delete {
+    display: block;
+}
+.editable .modules .other .delete {
+    display: none;
+}
+.editable .modules .other .add {
+    display: block;
+}
+/*.modules .item:hover .delete {*/
+    /*display: block;*/
+/*}*/
+.modules .title {
+    width: 130px;
+    /*padding-left: 10px;*/
+}
+.modules .branch input {
+    /*padding-left: 5px;*/
+    /*width: 300px;*/
+    /*height: 30px;*/
+    border: none;
+    background: transparent;
+}
+.modules .branch input:focus {
+    background: #fff;
+    /*border: 1px solid #ccc;*/
+}
+.modules span.ctrl {
+    float: right;
+    /*display: none;*/
+}
+.modules .ctrl .btn a {
+    display: block;
+}
+.modules .ctrl .btn a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.site-info.editable .modules .ctrl {
+    display: none;
+}
+.modules .item:hover .ctrl {
+    /*display: block;*/
+}
+.modules .other {
+    color: #999;
+    border-bottom-style: dashed;
+}
+.modules .other input {
+    color: #999;
+}

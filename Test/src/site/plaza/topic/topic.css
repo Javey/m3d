@@ -1,0 +1,126 @@
+.topic-index .music-body{ background: none;}
+
+
+
+.focus{ position: relative; margin-bottom: 30px;}
+.foucs-img span{ display: none; position: absolute; z-index: 1; width: 100%; height: 300px; }
+.foucs-img img{ display: block;}
+.focus-desc{ position: absolute; z-index: 2; top: 10px; right: 10px; width: 240px; padding: 10px 10px 10px; overflow: hidden; border-top: 10px solid #26a8e8; }
+.focus-desc .bg{ position: absolute; top: 0;left: 0; z-index: -1; width: 300px; height: 300px; background: #fff; opacity: 0.8; filter: Alpha(Opacity=80);}
+.focus-info-inner{ width: 980px; overflow: hidden; position: relative; zoom:1;}
+.focus-info-wrap{ width: 29000px; position: relative;}
+.focus-info{ position: relative; float: left; width: 980px;}
+.focus-info .foucs-img img{ width: 980px; height: 300px;}
+.focus-scroll{position: relative; height: 80px; background: #363636 url(/static/images/music/topic_focus_scroll_bg.png) repeat-x; border-top: 1px solid #222;border-bottom: 1px solid #222; padding: 0 0 0 18px;}
+.focus-scroll .focus-left-btn{ float: left; width: 23px; height: 38px; background: url(/static/images/music/topic-focus-left.png) no-repeat; cursor: pointer; margin-top: 20px;}
+.focus-scroll .focus-left-btn:active{ margin-top: 21px;}
+.focus-scroll .focus-right-btn{ float: left; width: 23px; height: 38px; background: url(/static/images/music/topic-focus-right.png) no-repeat;margin-top: 20px;cursor: pointer;}
+.focus-scroll .focus-right-btn:active{ margin-top: 21px;}
+.focus-tab{  float: left; display: inline; z-index: 2; margin-left: 5px; padding-left: 5px; width: 886px; height: 80px; position: relative; overflow: hidden;  }
+.focus-tab ul{ width: 9000px; position: relative; padding-top: 9px;}
+.focus-tab li{  float: left; margin-right: 20px; width: 108px;  }
+.focus-tab li a{ position: relative; zoom:1; display: block; cursor: pointer; }
+.focus-tab li a span{ position: absolute; left: 0; top: 4px; left: 4px; z-index: 2; width: 100px; height: 55px; opacity:0.5; background: #000;-webkit-transition: all 0.2s ease-out; filter: Alpha(Opacity=50);}
+.focus-tab li img{ width: 100px; height: 55px; border: 4px solid #363636;-webkit-transition: all 0.2s ease-out;}
+.focus-tab li a.active img,
+.focus-tab li a:hover img{ border-color:#00abff;  }
+.focus-tab li a.active span,
+.focus-tab li a:hover span{ opacity: 0;filter: Alpha(Opacity=0);}
+
+.topic-cate{ padding-bottom: 10px;}
+.topic-cate .head{padding: 15px 0; border-top: 2px solid #26a8e8; }
+.topic-cate .head h2{ font-size: 18px; font-weight: 700; font-family: Microsoft YaHei,"幼圆";}
+
+.cate-list ul{ margin-right: -50px;}
+.cate-list li{ float: left; width: 200px; height: 155px; overflow: hidden; margin:0 30px 20px 0; padding: 10px; border: 1px solid #e4e4e4;}
+.cate-list li.hover,
+.cate-list li:hover{  border-color:#999;
+	-moz-box-shadow: 1px 1px 2px #ccc;
+-webkit-box-shadow: 1px 1px 2px #CCC;}
+.cate-list li a{ color: #999;}
+.cate-list li img{ display:block; width: 200px; height: 110px; margin-bottom: 5px;}
+
+.cate-info .head{  border-top: none; padding-top: 0;line-height: 24px;  }
+.cate-info .head h2{ float: left; margin-right: 20px; font-size: 22px;  font-weight: 500; _font-weight: 700px;}
+.cate-info li{ margin-right: 22px;}
+
+.cate-menu{ position: fixed; _position: absolute; top: 100px;  width: 78px; border: 1px solid #E4E4E4; left: 50%;margin-left: 505px;   -moz-box-shadow:  1px 1px 1px #EEE;box-shadow:  1px 1px 1px #EEE;
+-webkit-box-shadow: 1px 1px 1px #eee;  font-size: 13px; }
+.cate-menu a{ position: relative;   display: block; line-height: 38px;  height: 38px; text-align: center; -webkit-transition: all 0.2s ease-out;}
+.cate-menu a.hover,
+.cate-menu a:hover{ background: #26a8e8; color: #fff;text-decoration: none;}
+.cate-menu span{ display:none;  position: absolute; bottom: -24px; left: 0px;}
+
+
+.topic-cate-page .topic-cate{ padding-bottom: 30px;}
+.topic-cate-page .cate-list ul{ *padding-bottom: 20px;}
+
+.hot-topic-list li{padding:5px 0;}
+.hot-topic-list li .index{ font-weight: 700; color: #666; margin-right: 10px; }
+.hot-topic-list li .first{ color: #c33;}
+
+#papa-follow{
+    position: relative;
+    top: -1px;
+    height: 22px;
+    line-height: 22px;
+    float: right;
+    margin-left: 10px;
+    padding-left: 28px;
+    width: 68px;
+    background: url(/static/images/btn/papa-follow.png);
+}
+#papa-follow:hover {
+    text-decoration: none;
+    color: #FFF;
+    background: url(/static/images/btn/papa-follow-on.png);
+}
+
+.follow-target {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    padding: 10px;
+    border: 1px solid #CCC;
+    line-height: 18px;
+    color: #666;
+    background: #FFF;
+}
+.follow-target .info {
+    display: block;
+    width: 150px;
+}
+.follow-target .two-code{
+    margin-bottom: 10px;
+    width: 150px;
+    height: 150px;
+}
+.two-code-papa{
+    background: url(/static/images/2code/papa.png);
+ }
+/*.topic-focus{ border-bottom: 1px solid #f2f2f2; height: 196px; overflow: hidden;}
+.topic-focus img{ display: block; width: 490px;height: 196px;}
+.topic-focus .music-ui-tab{float: right; width: 218px; height: auto; border: 1px solid #e4e4e4; border-bottom: none;}
+.topic-focus .music-ui-tab li{width:100%;border-left:  none;}
+.topic-focus .music-ui-tab .list{ position: relative;padding-left:18px; padding-right: 0; margin-top: -1px; display: block; height: 48px; line-height: 48px; border-bottom: 1px solid #e4e4e4; background: #fbfbfb; font-size: 14px; color: #333; text-align: left;}
+
+.topic-focus .music-ui-tab-body{width: 490px; float: left;}
+.topic-focus .music-ui-tab .ui-tab-active{position: relative; z-index: 1; margin: -1px 0 0 -25px; border:none; background: none;}
+.topic-focus .music-ui-tab .ui-tab-active a:hover{text-decoration: none;}
+.topic-focus .music-ui-tab .ui-tab-active .list{ top: 0;  width: 200px;padding-left: 43px; height: 50px; color: #fff; background: url(/static/images/music/topic-focus-cur-bg.png) no-repeat; border-bottom: none;merge:blue; }
+
+.mod-topic-list{padding-top: 30px;}
+.mod-topic-list .topic-list{ margin:0 -100px 30px 0;padding-top: 20px;}
+.mod-topic-list .topic-list li{ float: left; width: 210px; margin:0  40px 0 0; padding-bottom: 20px;}
+.mod-topic-list .topic-list li a{outline: none;}
+
+.mod-topic-list .topic-list li .name{display: block; font-size: 14px; width: 210px; overflow: hidden;}
+.mod-topic-list .topic-list li .time{ float:left; }
+.mod-topic-list .topic-list li img{ display: block; width: 200px;height: 110px; margin-bottom: 5px; border: 1px solid #e4e4e4; padding: 4px;}
+.mod-topic-list .topic-status-start,
+.mod-topic-list .topic-status-process,
+.mod-topic-list .topic-status-end{ display: inline-block;width: 53px; height: 15px; margin-left: 5px; overflow: hidden;text-indent: -999px; vertical-align: middle; background: url(/static/images/music/topic_status_start.png) no-repeat; merge:blue; }
+.mod-topic-list .topic-status-process{  background: url(/static/images/music/topic_status_process.png) no-repeat;merge:red; }
+.mod-topic-list .topic-status-end{  background: url(/static/images/music/topic_status_end.png) no-repeat;merge:bg; }
+*/

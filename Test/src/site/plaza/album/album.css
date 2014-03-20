@@ -1,0 +1,30 @@
+/*mv_plaza.css moved here.  wrote by shaofeng ,move by lq 20120401*/
+.main-body{float:left;width:790px; }
+.sidebar{float:right;width:290px;font-size: 14px;}
+
+
+.sort{float:right;color: #999; line-height: 20px;}
+.sort .module-line{float: left; height: 9px;margin: 5px 8px 0;vertical-align: middle;width: 1px;}
+.sort em{ float: left;}
+.order-selected{font-weight: bold; color: #666;}
+
+.ab-list-select{float: left;}
+.ab-list-select .title{ margin-right: 5px;}
+.selected-item{border: 1px solid #E4E4E4;display: inline-block;line-height: 25px;margin: 0 5px;padding: 0 10px;vertical-align: 15%;}
+.selected-item a{margin-left: 5px; color: #666;font-weight: bolder;}
+.selected-item a:hover{color: #289EE6; text-decoration: none;}
+
+.album-list {margin-top: -5px; padding-bottom: 50px;}
+.album-list .bb-none{border: none;}
+
+.no-data{border-top: 1px solid #e4e4e4;color: #666;margin-top: 10px;text-align: left;}
+.no-data h4{font-size: 14px;font-weight: bold;margin-bottom: 20px;}
+
+/*siderbar*/
+.sidebar a:hover{ text-decoration: underline;}
+.sidebar .type-selected{ text-decoration: none; background-color: #299de7; color: #fff;}
+.new-album-title a{display: block;height: 30px;line-height: 30px;padding-left:10px;}
+.select h4{font-weight: bold;margin: 20px 0 5px; padding-left: 10px;}
+.select li{float: left;padding: 5px 8px;/*min-width: 46px;_width:expression(this.scrollWidth < 56 ? "56px" : "");*/}
+.select a{display: inline-block;line-height: 26px;padding: 0 5px;white-space: nowrap;}
+.select-item{margin-top: 5px;}

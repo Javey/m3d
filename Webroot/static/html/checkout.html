@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h3>CheckOut</h3>
+    <div class="close ion-android-close" ng-click="cancel()"></div>
+</div>
+<div class="modal-body">
+    <form name="checkout" ng-value="$parent.form = checkout">
+        <div class="item url">
+            <label>
+                <span class="title">SVN URL</span>
+                <span class="right">
+                    <input class="long" ng-model="info.url" type="url" name="url" required />
+                    <span class="error-tip" ng-show="checkout.url.$dirty && (checkout.url.$error.required || checkout.url.$error.url)">Require a URL!</span>
+                </span>
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <span class="title">所属模块</span>
+                <span class="right" ng-init="showList = false">
+                    <input class="long" ng-focus="showList = true" ng-blur="showList = false" ng-model="info.name" type="text" name="name" ng-required="!info.name && !$parent.namePlaceholder" placeholder="{{$parent.namePlaceholder ? '识别结果：' + $parent.namePlaceholder : ''}}"/>
+                    <span class="error-tip" ng-show="checkout.name.$dirty && checkout.name.$error.required">Require a Module Name!</span>
+                    <span class="module-list" ng-show="showList">
+                        <span class="module-item" ng-repeat="module in $parent.modules | filter:info.name" ng-mousedown="info.name = module.storename">{{module.storename}}</span>
+                    </span>
+                </span>
+            </label>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="btn btn-a btn-ok" ng-click="ok()" ng-class="{disable: form.$invalid}">确定</div>
+    <div class="btn btn-a btn-cancel" ng-click="cancel()">取消</div>
+</div>

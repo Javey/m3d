@@ -1,0 +1,18 @@
+.target-album {padding:15px 25px 25px 15px;}
+.target-album .album-cover {float:left;}
+.target-album .info { position:relative; zoom:1;margin-left:120px; padding-top:2px; line-height:22px; }
+.target-album .info .time,
+.target-album .info .company { float: left;}
+.target-album .info .line{ display:inline-block; width:1px; height:9px; overflow:hidden; vertical-align:middle; background:#ccc; font-size:0; margin:0 8px;}
+.target-album .info .title-info { margin-bottom: 11px; font-size: 14px; }
+.target-album .info .title-info a{ color: #c33; }
+.target-album .info .author_list a{color: #2D64B3;}
+.target-album .album-tags{ margin-top:5px; padding-top:5px;border-top:1px dashed #E5E5E5;}
+.target-album .info .title {font-weight:bold;}
+.target-album .info .album-info{ height: 22px; margin-bottom: 5px; }
+.target-album .info .album-info .desc{ width: 100%; float: left; display: block; color:#999; }
+.target-album .info .artist-split {color:#ccc; margin:0 2px;}
+.target-album .info .music-play-num{ position:absolute; right:0; top:0;}
+.target-album .info .music-play-num span{margin-right:10px; vertical-align:middle;font-size: 14px;font-weight: bold;font-family:Microsoft YaHei,\5b8b\4f53 ; color:#666;}
+
+.target-album .album-play-btn{width: 102px; height: 22px; margin-right: 5px; }

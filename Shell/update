@@ -1,0 +1,107 @@
+#!/bin/bash
+. ./env.sh;
+PID_FILE="$BASE_DIR/update.pid"
+SVN="/home/bae/local/subversion/bin/svn";
+if ! [ -f "$PID_FILE" ]; then
+
+echo $$ > "$PID_FILE";
+
+export LANG;
+
+#$SVNFE up "src/branches/fe.tmp" "src/trunk/fe.tmp";
+# "/home/bae/player-app.tmp" "/home/bae/player-app-branch.tmp";
+#$SVNRD up "src/branches/rd.tmp" "src/trunk/rd.tmp";
+# "/home/bae/api_ting_php.tmp";
+#按模块更新
+#for i in branches trunk; do
+    #for j in fe rd; do
+    #fe按模块更新
+    dir=`cd "src/branches/fe" && ls | grep \.tmp`;
+    for k in $dir; do
+        echo "Update ${k}..."
+        $SVNFE up "src/branches/fe/$k" "src/trunk/fe/$k"; 
+    done
+    #done
+    
+    #rd整体更新
+    echo "Update rd.tmp..."
+    $SVNRD up "src/branches/rd.tmp" "src/trunk/rd.tmp";
+#done
+
+function get_version {
+	$1 info "$2" | grep "最后修改的版本:" | awk '{print $2}';
+}
+
+for i in fe rd; do
+	for j in branches trunk;do
+		svn="$SVN --config-dir /home/bae/.svn-$i";
+        if [ "$i" = "fe" ]; then
+            #fe按模块比较，更新，找每个模块下的.tmp文件夹
+            dir=`cd "src/$j/$i" && ls | grep -v 'tmp$'`;
+        else
+            #rd整体来
+            dir="src/${j}/${i}";
+        fi
+        for k in $dir; do
+            if [ "$i" = "fe" ]; then
+                src_path="src/$j/$i/$k";
+            else
+                src_path="$k";
+            fi
+            tmp_path="${src_path}.tmp";
+            #$svn up ".tmp_path" > /dev/null 2>&1;
+            new_version=$(get_version "$svn" "$tmp_path");
+            old_version=$(get_version "$svn" "$src_path");
+            #echo "$src_path";
+            #echo "当前版本:$old_version";
+            #echo "最新版本:$new_version";
+            if [ $new_version -gt $old_version ];then
+            #	echo "更新!";
+                echo "$src_path: $old_version -> $new_version";
+
+            #	$svn diff --summarize -r "$new_version:$old_version" "$src_path" | while read line;do
+            #		dirname ${line#* };
+            #	done | sort | uniq | while read line;do	
+            #		echo "svn up -–depth files $line";
+            #		$svn up -–depth files "$line";
+            #	done;
+            #	$svn up -r "$new_version" --depth.tmp "$src_path";
+                up_info=`$svn up "$src_path"`;
+                echo $up_info;
+                #判断工作副本是否锁定，自动运行svn cleanup
+                echo $up_info | grep -q "svn cleanup";
+                if [ $? -eq 0 ]; then
+                    echo "工作副本锁定，运行svn cleanup";
+                    $svn cleanup "$src_path";
+                    $svn up "$src_path";
+                fi
+            fi;
+        done
+	done;
+done;
+#rd整体来
+
+
+#comment by lq 20120301
+#new_version=$(get_version "$SVNFE" "/home/bae/player-app.tmp");
+#old_version=$(get_version "$SVNFE" "/home/bae/player-app");
+#if [ $new_version -gt $old_version ];then
+#	$SVNFE up "/home/bae/player-app";
+#fi
+
+#new_version=$(get_version "$SVNFE" "/home/bae/player-app-branch.tmp");
+#old_version=$(get_version "$SVNFE" "/home/bae/player-app-branch");
+#if [ $new_version -gt $old_version ];then
+#	$SVNFE up "/home/bae/player-app-branch";
+#fi
+
+#$SVNRD up "/home/bae/api_ting_php.tmp" > /dev/null 2>&1;
+#new_version=$(get_version "$SVNRD" "/home/bae/api_ting_php.tmp");
+#old_version=$(get_version "$SVNRD" "/home/bae/api_ting_php");
+#if [ $new_version -gt $old_version ];then
+#	$SVNRD up "/home/bae/api_ting_php";
+#fi
+
+rm -f "$PID_FILE";
+
+fi

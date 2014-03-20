@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <h3>模块管理</h3>
+    <div class="close ion-android-close" ng-click="cancel()"></div>
+</div>
+<div class="modal-body" ng-init="$parent.addActive = true" >
+    <form name="addModule" ng-value="$parent.form = addModule">
+        <tabset>
+            <tab heading="新增模块" select="$parent.addActive = true" deselect="$parent.addActive = false">
+                <div class="item">
+                    <label>
+                        <span class="title">模块路径</span>
+                        <span class="right">
+                            <input class="long" ng-model="info.name" type="text" name="name" required />
+                            <span class="error-tip" ng-show="addModule.name.$dirty && addModule.name.$error.required">Require a module name!</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="item">
+                    <label>
+                        <span class="title">模块名</span>
+                        <span class="right">
+                            <input class="long" ng-model="info.title" type="text" name="title" placeholder="{{placeholder}}" />
+                        </span>
+                    </label>
+                </div>
+                <div class="item">
+                    <label>
+                        <span class="title">简介</span>
+                        <span class="right">
+                            <textarea class="long" ng-model="info.description" required name="description"></textarea>
+                            <span class="error-tip" ng-show="addModule.description.$dirty && addModule.description.$error.required">Required!</span>
+                        </span>
+                    </label>
+                </div>
+            </tab>
+            <tab heading="删除模块">
+                <ul class="module-list">
+                    <li ng-repeat="module in modules">
+                        <span class="name ellipsis">{{module.title}}</span>
+                        <span class="description ellipsis" title="{{module.description}}">{{module.description}}</span>
+                        <span class="delete ion-ios7-close-outline" title="删除" ng-click="delete(module.id)"></span>
+                    </li>
+                </ul>
+            </tab>
+        </tabset>
+    </form>
+</div>
+<div class="modal-footer" ng-hide="!addActive">
+    <div class="btn btn-a btn-ok" ng-click="ok()" ng-class="{disable: form.$invalid}">确定</div>
+    <div class="btn btn-a btn-cancel" ng-click="cancel()">取消</div>
+</div>

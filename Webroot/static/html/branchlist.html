@@ -1,0 +1,7 @@
+<input value="{{module.branch}}" ng-focus="focus($event)" ng-blur="blur()" ng-model="module.branch" ng-keyup="smartSelect($event)" type="text" />
+<!--<ul class="list" ng-show="show" ng-mouseenter="enter=true" ng-mouseleave="enter=false" ng-init="enter=false">-->
+    <!--<li ng-repeat="item in filterList" ng-mousedown="select(item)" ng-class="{actived: (enter && hover) || ((!enter || !hover) && $first)}" ng-mouseenter="hover=true" ng-mouseleave="hover=false">{{item}}</li>-->
+<!--</ul>-->
+<ul class="list" ng-show="show">
+    <li ng-repeat="item in filterList" ng-mousedown="select(item)">{{item}}</li>
+</ul>

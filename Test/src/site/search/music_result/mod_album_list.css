@@ -1,0 +1,11 @@
+#album_list{ margin-top: 0; }
+#album_list .item{ padding:0; *margin-bottom:-2px; }
+#album_list .item .info{ padding: 15px 0 15px 15px; height:93px; }
+#album_list .album-active{ margin-bottom: 6px; color: #666;}
+#album_list .album-active .desc{display: block; margin-bottom: 2px; color: #999; width: 490px;}
+#album_list .album-info{ margin-left: 9px; width: auto; _width:486px; height: 93px; position: relative;}
+#album_list .album-info .title{/* margin-left:-3px;*/ }
+#album_list em{ color: #c33; font-style: normal; }
+#album_list .unreleased{ color:#666; }
+#album_list .unreleased em{color:#666;}
+#album_list .album-last{border-bottom: none;}
