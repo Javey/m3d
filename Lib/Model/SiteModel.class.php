@@ -1,7 +1,6 @@
 <?php
 
 class SiteModel extends Model {
-
     /**
      * 获取所有环境名
      * @return array
@@ -181,10 +180,4 @@ class SiteModel extends Model {
         }
         return true;
     }
-
-//    private function getSvnPath($branch, $type, $storename) {
-//        return $type === 'fe' ?
-//            ($branch === 'trunk' ? C('FE_TRUNK_PATH').'/'.$storename : C('FE_BRANCH_PATH').'/'.$storename.'/'.$branch) :
-//            ($branch === 'trunk' ? C('RD_TRUNK_PATH').'/'.$storename : C('RD_BRANCH_PATH').'/'.$storename.'/'.$branch);
-//    }
 }

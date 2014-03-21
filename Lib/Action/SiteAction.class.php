@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
+ * Created by JetBrains PhpStorm. vhost环境操作接口
  * User: zoujiawei
  * Date: 13-12-9
  * Time: 下午1:14
@@ -32,12 +32,6 @@ class SiteAction extends Action {
                 break;
             case 'put':
                 $this->saveInfo();
-                break;
-            case 'delete':
-                $this->deleteModule();
-                break;
-            case 'post':
-                $this->addModule();
                 break;
         }
     }

@@ -111,8 +111,6 @@ class M3d {
             require_cache(LIB_PATH.'/Model/'.$file);
         } elseif (substr($class, -6) == 'Action') {
             require_cache(LIB_PATH.'/Action/'.$file);
-        } elseif ($class == 'Smarty') {
-            require_cache(LIB_PATH.'/Smarty/'.$file);
         }
     }
 
