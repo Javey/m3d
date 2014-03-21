@@ -29,8 +29,8 @@ class ProcessAction extends Action {
         ini_set('memory_limit', -1);
         set_time_limit(0);
         // Server Sent Event
-        header('Content-Type: text/event-stream');
-//        header('Content-Type: text/octet-stream');
+//        header('Content-Type: text/event-stream');
+        header('Content-Type: text/octet-stream');
         header('Cache-Control: no-cache');
 
         $t1 = microtime(true);

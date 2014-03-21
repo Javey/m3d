@@ -20,7 +20,7 @@ abstract class Tool {
         } elseif (is_array($options)) {
             $this->options = $options;
         } else {
-            halt('传入的参数'.$options.'不正确，或文件不存在');
+            show_error('配置文件"'.$options.'"不存在', true);
         }
         // 加载配置信息
         if ($initConfig) {

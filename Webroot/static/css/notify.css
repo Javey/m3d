@@ -39,5 +39,6 @@
     color: #e25940;
 }
 .notify-window .body {
-    word-wrap: break-word;
+    /*word-wrap: break-word;*/
+    word-break: break-all;
 }

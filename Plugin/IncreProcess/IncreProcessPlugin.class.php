@@ -7,55 +7,65 @@
  * To change this template use File | Settings | File Templates.
  */
 
-require_once('FileBelong.class.php');
+require_once('IncreMap.class.php');
 
 on('process_start', 'IncreProcess');
 on('one_process_start', 'IncreProcessPlugin::importMap');
 on('processor_fetch_files', 'IncreProcessPlugin::getFileList');
 
 class IncreProcessPlugin extends Plugin {
-    // 保存改变的文件
-    private static $files = array();
-
     // 改变的文件，分为三类
     const MODIFY = 'M';
     const ADD = 'A';
     const DELETE = 'D';
 
+    // 保存改变的文件
+    private static $files = array(
+        self::MODIFY => array(),
+        self::ADD => array(),
+        self::DELETE => array()
+    );
+
     protected $options = array(
         // 由于存在m3d_path变量，用C方法取值
         'incre.is_incre' => true,
         'incre.path' => '{M3D_PATH}/incre',
-        'incre.map_filename' => 'file_belong_map.php'
+        'incre.map_filename' => 'file_belong_map.php',
+        'incre.md5_filename' => 'imerge_md5.php',
+        'incre.ver_filename' => 'version'
     );
 
     public function run($params) {
-        mark('增量编译准备中...', 'emphasize');
-        $this->svnUp();
-        $newRevision = $this->getLatestRevision();
-        $oldRevision = 117093; //$this->prevRevision();
+        $oldRevision = 117093;
+//        $oldRevision = self::getPrevRevision();
+//        $oldRevision = null;
 
-        if (is_null($oldRevision)) {
+        if (!C('INCRE.IS_INCRE') || is_null($oldRevision)) {
             // 事件解绑
             off('one_process_start', 'IncreProcessPlugin::importMap');
             off('processor_fetch_files', 'IncreProcessPlugin::getFileList');
-            $this->prevRevision($newRevision);
         } else {
-            self::$files = $this->getChangeList($newRevision, $oldRevision);
-            FileBelong::load();
+            mark('增量编译准备中...', 'emphasize');
+            $newRevision = IncreMap::getRevision();
+            self::$files = self::getChangeList($newRevision, $oldRevision);
+            IncreMap::loadBelongMap();
             if (!empty(self::$files[self::DELETE])) {
-                FileBelong::rebuildMap(self::$files[self::DELETE]);
+                IncreMap::rebuildBelongMap(self::$files[self::DELETE]);
             }
             // 更新modify列表
             self::$files[self::MODIFY] = array_unique(
                 array_merge(
                     self::$files[self::MODIFY],
-                    FileBelong::getAffectList(self::$files[self::MODIFY])
+                    IncreMap::getAffectList(self::$files[self::MODIFY])
                 )
             );
         }
     }
 
+    /**
+     * 导入map
+     * @param $params
+     */
     public static function importMap($params) {
         $tool = $params[1];
         $item = $params[2];
@@ -72,26 +82,37 @@ class IncreProcessPlugin extends Plugin {
         $tool->updateMap($item['name'], $map);
     }
 
+    /**
+     * 得到待编译的文件
+     * @param $params
+     */
     public static function getFileList($params) {
         $paths = $params[1];
         $types = $params[2];
         $ret = $params[3];
         $ret->list = array();
 
-        $files = array_merge(self::$files[self::MODIFY], self::$files[self::ADD]);
-        if (!empty($files)) {
-            $paths = comma_str_to_array($paths);
-            $types = comma_str_to_array($types);
-            foreach ($paths as $path) {
-                $len = strlen($path);
-                foreach ($files as $file) {
-                    if (substr($file, 0, $len) === $path &&
-                        ($info = pathinfo($file)) &&
-                        isset($info['extension']) &&
-                        in_array($info['extension'], $types)
-                    ) {
-                        $file = C('SRC_SRC_PATH').$file;
-                        array_push($ret->list, $file);
+        // 若为sprite合图文件
+        $spritePath = C('M3D_IMERGE_PATH').'/'.C('IMERGE_SPRITE_DIR');
+        if ($paths === $spritePath) {
+            $files = self::getChangeMergeImage();
+            $files = array_merge($files[self::MODIFY], $files[self::ADD]);
+            foreach ($files as $file) {
+                $file = $spritePath.'/'.$file;
+                array_push($ret->list, $file);
+            }
+        } else {
+            $files = array_merge(self::$files[self::MODIFY], self::$files[self::ADD]);
+            if (!empty($files)) {
+                $paths = comma_str_to_array($paths);
+                $types = comma_str_to_array($types);
+                foreach ($paths as $path) {
+                    $len = strlen($path);
+                    foreach ($files as $file) {
+                        if (substr($file, 0, $len) === $path && in_array(pathinfo($file, PATHINFO_EXTENSION), $types)) {
+                            $file = C('SRC_SRC_PATH').$file;
+                            array_push($ret->list, $file);
+                        }
                     }
                 }
             }
@@ -99,73 +120,12 @@ class IncreProcessPlugin extends Plugin {
     }
 
     /**
-     * 确保代码最新
-     */
-    private function svnUp() {
-        $this->cleanLocalChange();
-        $cmd = C('SVN').' up '. C('SRC_ROOT');
-        shell_exec_ensure($cmd, false);
-    }
-
-    /**
-     * 清除所有本地文件修改
-     * 将以svn文件为准
-     */
-    private function cleanLocalChange() {
-        $cmd = 'cd '.C('SRC_SRC_PATH').' && '.C('SVN').' st';
-        $ret = shell_exec_ensure($cmd, false);
-        if (!$ret['status']) {
-            $list = $ret['output'];
-            $list = explode("\n", $list);
-            if (!empty($list)) {
-                foreach ($list as $item) {
-                    // 前8位字符，表示状态信息，去掉
-                    $item = trim(substr($item, 8));
-                    if (!$item || ($item && $item[0] === '.')) {
-                        continue;
-                    }
-
-                    mark('忽略本地文件修改：'.$item, 'emphasize');
-                    $item = C('SRC_SRC_PATH').'/'.$item;
-                    if (is_dir($item)) {
-                        rm_dir($item);
-                    } else {
-                        @unlink($item);
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * 获取最新版本号
-     * @return int|null
-     */
-    private function getLatestRevision() {
-        $cmd = 'cd '.C('SRC_SRC_PATH').' && '.C('SVN').' info --xml';
-        $info = shell_exec_ensure($cmd, false);
-        if (!$info['status']) {
-            $info = $info['output'];
-            $info = simplexml_load_string($info);
-            $revision = $info->entry->commit->attributes()->revision;
-            return (int)$revision;
-        }
-        return null;
-    }
-
-    /**
-     * 设置/获取上一个版本号
-     * @param null $revision
+     * 获取上一个版本号
      * @return null|string
      */
-    private function prevRevision($revision=null) {
+    private static function getPrevRevision() {
         $file = C('INCRE.PATH').'/version';
-        if (!is_null($revision)) {
-            contents_to_file($file, $revision);
-            return $revision;
-        } else {
-            return file_exists($file) ? file_get_contents($file) : null;
-        }
+        return file_exists($file) ? file_get_contents($file) : null;
     }
 
     /**
@@ -175,7 +135,7 @@ class IncreProcessPlugin extends Plugin {
      * @param $oVer
      * @return array
      */
-    private function getChangeList($nVer, $oVer) {
+    private static function getChangeList($nVer, $oVer) {
         $ret = array();
         $cmd = 'cd '.C('SRC_SRC_PATH').' && '.C('SVN').' diff -r '.$oVer.':'.$nVer.' --summarize';
         $list = shell_exec_ensure($cmd, false);
@@ -196,6 +156,54 @@ class IncreProcessPlugin extends Plugin {
                 }
                 array_push($ret[$action], $file);
             }
+        }
+
+        // merge合图改变列表
+        $ret = array_merge_recursive($ret, self::getChangeMergeImage());
+
+        return $ret;
+    }
+
+    /**
+     * 获取合图改变列表，并生成新的md5数据
+     * @return array
+     */
+    private static function getChangeMergeImage() {
+        static $ret = null;
+
+        if (!is_null($ret)) {
+            return $ret;
+        }
+
+        $ret = array(
+            self::MODIFY => array(),
+            self::ADD => array(),
+            self::DELETE => array()
+        );
+        $file = C('INCRE.PATH').'/'.C('INCRE.MD5_FILENAME');
+        $nData = IncreMap::getMd5Map();
+        if (file_exists($file)) {
+            $oData = include $file;
+        }
+        if (isset($oData)) {
+            foreach ($nData as $key => $value) {
+                $action = null;
+                if (isset($oData[$key])) {
+                    // 同一张图，md5不同，则表示已修改
+                    if ($oData[$key] !== $value) {
+                        $action = self::MODIFY;
+                    }
+                    // 从oData中删除，最后oData中剩下的值即为已删除的图片
+                    unset($oData[$key]);
+                } else {
+                    // 不存在，则表示是新增
+                    $action = self::ADD;
+                }
+                if (!is_null($action)) {
+                    array_push($ret[$action], $key);
+                }
+            }
+            $ret[self::DELETE] = array_map('basename', array_keys($oData));
         }
 
         return $ret;
@@ -235,8 +243,8 @@ class IncreProcessPlugin extends Plugin {
                 // 清除文件
                 $path = C('SRC_BUILD_PATH').$map[$file];
                 if (file_exists($path)) {
-                    shell_exec_ensure(C('SVN').' del '.$path.' --force', false, false);
                     unlink($path);
+                    shell_exec_ensure(C('SVN').' del '.$path.' --force', false, false);
                 }
                 // 清除map
                 unset($map[$file]);

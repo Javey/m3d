@@ -178,7 +178,7 @@ class PreprocessTool extends Tool {
         $imergeTool->updateSprite();
 
         // 如果处理图片类，则需要扫描合图目录
-        $spriteList = $this->getFileList(C('M3D_IMERGE_PATH'), $item['type']);
+        $spriteList = $this->getFileList(C('M3D_IMERGE_PATH').'/'.C('IMERGE_SPRITE_DIR'), $item['type']);
 
         foreach ($spriteList as $file) {
             mark('处理文件：' . $file);

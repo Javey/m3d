@@ -117,12 +117,19 @@ define(['angular'], function() {
                 site: $scope.info.name,
                 module: mod
             }, function(res) {
-                if (res.log) {
-                    ter.write(res.data);
+                if (res.errorCode === 200) {
+                    if (res.log) {
+                        ter.write(res.data);
+                    } else {
+                        notify.open({
+                            template: '编译完成<br />' + res.data
+                        });
+                    }
                 } else {
-//                    console.log(res);
                     notify.open({
-                        template: '编译完成<br />' + res.data
+                        template: '编译终止<br />' + res.data,
+                        type: 'error',
+                        sticky: true
                     });
                 }
             });
