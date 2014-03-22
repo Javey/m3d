@@ -59,7 +59,7 @@ class PreprocessTool extends Tool {
                 $this->processSprite($processor, $item);
             }
             // 根据扫描目录和类型，扫描到所有待编译文件
-            $fileList = $this->getFileList($item['from'], $item['type'], C('SRC_SRC_PATH'));
+            $fileList = $this->getFileList($item['from'], $item['type'], C('SRC.SRC_PATH'));
 //            print_r($fileList);
 //            continue;
 
@@ -131,7 +131,7 @@ class PreprocessTool extends Tool {
             }
         }
 
-        $buildPath = C('SRC_BUILD_PATH') . $path;
+        $buildPath = C('SRC.BUILD_PATH') . $path;
 
         // 写入文件到编译后路径中
         $processor->write($buildPath);
@@ -148,7 +148,7 @@ class PreprocessTool extends Tool {
         $string .= var_export($this->map[$type], true);
         $string .= ';';
 
-        contents_to_file(C('M3D_MAP_PATH').'/'.$type.C('M3D_MAP_SUFFIX').'.php', $string);
+        contents_to_file(C('SRC.M3D_MAP_PATH').'/'.$type.C('SRC.M3D_MAP_SUFFIX').'.php', $string);
         // 派发map写入完成事件
         trigger('export_map_end', $this, $type);
     }
@@ -178,14 +178,14 @@ class PreprocessTool extends Tool {
         $imergeTool->updateSprite();
 
         // 如果处理图片类，则需要扫描合图目录
-        $spriteList = $this->getFileList(C('M3D_IMERGE_PATH').'/'.C('IMERGE_SPRITE_DIR'), $item['type']);
+        $spriteList = $this->getFileList(C('IMERGE_PATH').'/'.C('IMERGE_SPRITE_DIR'), $item['type']);
 
         foreach ($spriteList as $file) {
             mark('处理文件：' . $file);
             $processor->setFile($file);
             $processor->process();
             $processor->compress();
-            $path = str_replace(C('SRC_ROOT'), '', $file);
+            $path = str_replace(C('SRC.ROOT'), '', $file);
             $buildPath = $this->writeBuildFile($processor, $item, $path);
             // 更新map, 合图文件仅使用文件名作为key
             $filename = $processor->getFilename();

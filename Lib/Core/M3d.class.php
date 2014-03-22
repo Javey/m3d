@@ -14,9 +14,10 @@ class M3d {
      * 应用程序初始化
      */
     static public function start() {
+        // 加载默认配置
         C(include CONF_PATH.'/convention.php');
-        C(include CONF_PATH.'/config.php');
-//        C('event', include CONF_PATH.'plugin.php');
+        // 加载project配置
+        C(include C('CONF_PATH').'/config.php');
 
         date_default_timezone_set(C('DEFAULT_TIMEZONE'));
         spl_autoload_register(array('M3d', 'autoload'));
@@ -44,13 +45,9 @@ class M3d {
     }
 
     static public function exec() {
-//        if (!preg_match('/^[A-Za-z](\w)*$/', MODULE_NAME)) {
-//            $module = false;
-//        } else {
-            $module = A(MODULE_NAME);
-//        }
-
+        $module = A(MODULE_NAME);
         $action = ACTION_NAME;
+
         try {
             if (!preg_match('/^[A-Za-z](\w)*$/',$action)) {
                 throw new ReflectionException();

@@ -21,7 +21,7 @@ class RequireJsPlugin extends Plugin {
         if ($this->options['requirejs.path'] && $item['processor'] === 'js') {
             mark('requireJs插件开始处理'.$this->options['requirejs.path'], 'emphasize');
 
-            $this->options['requirejs.path'] = C('SRC_SRC_PATH').$this->options['requirejs.path'];
+            $this->options['requirejs.path'] = C('SRC.SRC_PATH').$this->options['requirejs.path'];
             $tool = $params[1];
             $map = $this->getMap($tool);
             $script = $this->genScript($map);

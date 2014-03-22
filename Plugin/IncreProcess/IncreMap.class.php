@@ -145,7 +145,7 @@ class IncreMap {
      */
     private static function svnUp() {
         self::cleanLocalChange();
-        $cmd = C('SVN').' up '. C('SRC_ROOT');
+        $cmd = C('SVN').' up '. C('SRC.ROOT');
         shell_exec_ensure($cmd, false);
     }
 
@@ -154,7 +154,7 @@ class IncreMap {
      * 将以svn文件为准
      */
     private static function cleanLocalChange() {
-        $cmd = 'cd '.C('SRC_SRC_PATH').' && '.C('SVN').' st';
+        $cmd = 'cd '.C('SRC.SRC_PATH').' && '.C('SVN').' st';
         $ret = shell_exec_ensure($cmd, false);
         if (!$ret['status']) {
             $list = $ret['output'];
@@ -168,7 +168,7 @@ class IncreMap {
                     }
 
 //                    mark('忽略本地文件修改：'.$item, 'emphasize');
-                    $item = C('SRC_SRC_PATH').'/'.$item;
+                    $item = C('SRC.SRC_PATH').'/'.$item;
                     if (is_dir($item)) {
                         rm_dir($item);
                     } else {
@@ -183,7 +183,7 @@ class IncreMap {
      * 生成合图md5信息
      */
     private static function genMd5Map() {
-        $images = get_files_by_type(C('M3D_IMERGE_PATH').'/'.C('IMERGE_SPRITE_DIR'), 'png');
+        $images = get_files_by_type(C('IMERGE_PATH').'/'.C('IMERGE_SPRITE_DIR'), 'png');
         foreach ($images as $image) {
             self::$md5Map[basename($image)] = md5(file_get_contents($image));
         }
@@ -193,7 +193,7 @@ class IncreMap {
      * 生成最新版本号
      */
     private static function genLatestRevision() {
-        $cmd = 'cd '.C('SRC_SRC_PATH').' && '.C('SVN').' info --xml';
+        $cmd = 'cd '.C('SRC.SRC_PATH').' && '.C('SVN').' info --xml';
         $info = shell_exec_ensure($cmd, false);
         if (!$info['status']) {
             $info = $info['output'];

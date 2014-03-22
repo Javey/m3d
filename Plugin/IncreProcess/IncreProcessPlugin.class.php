@@ -72,7 +72,7 @@ class IncreProcessPlugin extends Plugin {
         if (empty($item['name'])) {
             $item['name'] = $item['processor'];
         }
-        $path = C('M3D_MAP_PATH').'/'.$item['name'].C('M3D_MAP_SUFFIX').'.php';
+        $path = C('SRC.M3D_MAP_PATH').'/'.$item['name'].C('SRC.M3D_MAP_SUFFIX').'.php';
         $map = include $path;
 
         $types = comma_str_to_array($item['type']);
@@ -93,7 +93,7 @@ class IncreProcessPlugin extends Plugin {
         $ret->list = array();
 
         // 若为sprite合图文件
-        $spritePath = C('M3D_IMERGE_PATH').'/'.C('IMERGE_SPRITE_DIR');
+        $spritePath = C('IMERGE_PATH').'/'.C('IMERGE_SPRITE_DIR');
         if ($paths === $spritePath) {
             $files = self::getChangeMergeImage();
             $files = array_merge($files[self::MODIFY], $files[self::ADD]);
@@ -110,7 +110,7 @@ class IncreProcessPlugin extends Plugin {
                     $len = strlen($path);
                     foreach ($files as $file) {
                         if (substr($file, 0, $len) === $path && in_array(pathinfo($file, PATHINFO_EXTENSION), $types)) {
-                            $file = C('SRC_SRC_PATH').$file;
+                            $file = C('SRC.SRC_PATH').$file;
                             array_push($ret->list, $file);
                         }
                     }
@@ -137,7 +137,7 @@ class IncreProcessPlugin extends Plugin {
      */
     private static function getChangeList($nVer, $oVer) {
         $ret = array();
-        $cmd = 'cd '.C('SRC_SRC_PATH').' && '.C('SVN').' diff -r '.$oVer.':'.$nVer.' --summarize';
+        $cmd = 'cd '.C('SRC.SRC_PATH').' && '.C('SVN').' diff -r '.$oVer.':'.$nVer.' --summarize';
         $list = shell_exec_ensure($cmd, false);
 
         if (!$list['status']) {
@@ -241,7 +241,7 @@ class IncreProcessPlugin extends Plugin {
             $file = Tool::getVirtualPath($file);
             if (isset($map[$file])) {
                 // 清除文件
-                $path = C('SRC_BUILD_PATH').$map[$file];
+                $path = C('SRC.BUILD_PATH').$map[$file];
                 if (file_exists($path)) {
                     unlink($path);
                     shell_exec_ensure(C('SVN').' del '.$path.' --force', false, false);

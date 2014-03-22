@@ -153,11 +153,8 @@
     display: -webkit-box;
     -webkit-box-pack: center;
     -webkit-box-align: center;
-    padding: 10px;
-}
-.imerge .sprite a {
-    display: block;
     background: url('/static/images/sprite_bg.png');
+    padding: 10px;
 }
 .imerge .sprite img {
     max-width: 100%;

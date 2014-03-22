@@ -31,7 +31,7 @@ class CssPreprocess extends Preprocess {
 
         // 如果需要合图，则导入合图配置
         if ($this->isMergeImage) {
-            $loader = new MergeConfigLoader(C('M3D_IMERGE_PATH'));
+            $loader = new MergeConfigLoader(C('IMERGE_PATH'));
             $this->spriteConfig = $loader->getSpriteConfig();
         }
     }
@@ -104,7 +104,7 @@ class CssPreprocess extends Preprocess {
                 $path = Tool::getActualPath($path);
 
                 $processor = new CssPreprocess($this->map);
-                $processor->setFile(C('SRC_SRC_PATH').$path);
+                $processor->setFile(C('SRC.SRC_PATH').$path);
                 $processor->process();
                 $this->contents .= $processor->getContents();
                 $value->setRemoveImport(true);

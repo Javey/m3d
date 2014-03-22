@@ -56,7 +56,7 @@ class ImergeAction extends Action {
     public function showImage() {
         $uri = $_GET['uri'];
         header('Content-type: image/png');
-        echo file_get_contents(C('SRC_SRC_PATH').$uri);
+        echo file_get_contents(C('SRC.SRC_PATH').$uri);
     }
 
 
@@ -75,7 +75,7 @@ class ImergeAction extends Action {
 
     public function showSprite() {
         $type = $_GET['type'];
-        $sprite = new Sprite(C('M3D_IMERGE_PATH'), C('SRC_SRC_PATH'));
+        $sprite = new Sprite(C('IMERGE_PATH'), C('SRC.SRC_PATH'));
         $sprite->output($type);
     }
 
@@ -102,7 +102,7 @@ class ImergeAction extends Action {
             }
         }
         if ($scanPath) {
-            $srcPath = C('SRC_SRC_PATH');
+            $srcPath = C('SRC.SRC_PATH');
             $len = strlen($srcPath);
             $fileList = get_files_by_type($scanPath, 'png', $srcPath);
             foreach ($fileList as $index => $file) {

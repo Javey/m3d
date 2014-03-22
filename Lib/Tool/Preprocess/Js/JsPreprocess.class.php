@@ -40,7 +40,7 @@ class JsPreprocess extends Preprocess {
     private function handle($matches) {
         $path = Tool::getActualPath($matches[4]);
         $processor = new JsPreprocess($this->map);
-        $processor->setFile(C('SRC_SRC_PATH').$path);
+        $processor->setFile(C('SRC.SRC_PATH').$path);
         $processor->process();
 
         trigger('js_import', $this, $processor);

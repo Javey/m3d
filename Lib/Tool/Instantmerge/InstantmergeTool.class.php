@@ -23,10 +23,10 @@ require_once('MergeImage/Sprite.class.php');
 class InstantmergeTool extends Tool {
     // 合图开始
     public function run() {
-        $files = get_files_by_type(C('SRC_SRC_PATH'), 'css');
+        $files = get_files_by_type(C('SRC.SRC_PATH'), 'css');
         $generator = new MergeConfigGenerator($files);
         $generator->generate();
-        $writer = new MergeConfigWriter(C('M3D_IMERGE_PATH'));
+        $writer = new MergeConfigWriter(C('IMERGE_PATH'));
         $writer->writeImageConfig($generator->getConfig());
 
         // 更新大图
@@ -43,16 +43,16 @@ class InstantmergeTool extends Tool {
 
     public function getLoader() {
         static $loader;
-        return $loader ? $loader : new MergeConfigLoader(C('M3D_IMERGE_PATH'));
+        return $loader ? $loader : new MergeConfigLoader(C('IMERGE_PATH'));
     }
 
     public function getWriter() {
         static $writer;
-        return $writer ? $writer : new MergeConfigWriter(C('M3D_IMERGE_PATH'));
+        return $writer ? $writer : new MergeConfigWriter(C('IMERGE_PATH'));
     }
 
     public function getDraw() {
         static $draw;
-        return $draw ? $draw : new Sprite(C('M3D_IMERGE_PATH'), C('SRC_SRC_PATH'));
+        return $draw ? $draw : new Sprite(C('IMERGE_PATH'), C('SRC.SRC_PATH'));
     }
 }

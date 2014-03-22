@@ -74,7 +74,7 @@ abstract class Preprocess {
             $this->filename = $info['basename'];
             $this->oContents = file_get_contents($file);
             $this->path = $file;
-            $this->relativePath = str_replace(C('SRC_SRC_PATH'), '', $file);
+            $this->relativePath = str_replace(C('SRC.SRC_PATH'), '', $file);
         } else {
             halt($file.'不存在');
         }
