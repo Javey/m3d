@@ -1,8 +1,0 @@
-/*留言板*/
-.user-voice-hook{padding:0;}
-.user-voice-hook .comment-prompt-hook{ bottom:-10px; right:60px;}
-.user-voice-hook .comment-form{padding-left:0px;height:70px; background:none;}
-.user-voice-hook .comment-input-icon{left:1px;}
-.user-voice-hook .comment-form-submit {width:535px;}
-.user-voice-hook .comment-form textarea {width:438px;}
-

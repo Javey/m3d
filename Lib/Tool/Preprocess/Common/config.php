@@ -17,7 +17,7 @@ return array(
     'IS_COMPRESS_IMAGE' => true, // 是否压缩图片，仅支持png压缩成png8
 
     // css预处理缓存，用于避免重复解析import的css
-    'CSS_CACHE_PATH' => M3D_CORE_PATH.'/.Cache', // css编译缓存文件
+    'CSS_CACHE_PATH' => M3D_PATH.'/.Cache', // css编译缓存文件
 
     // 几个依赖的可执行程序
     'PNG8_COMPRESSOR' => '', // pngquant png压缩工具
