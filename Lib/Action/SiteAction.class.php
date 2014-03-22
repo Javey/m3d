@@ -99,16 +99,4 @@ class SiteAction extends Action {
             show_error('保存出错！');
         }
     }
-
-    private function deleteModule() {
-        echo 'good';
-    }
-
-    private function addModule() {
-
-    }
-
-    private function setBranch($name, $moduleId) {
-
-    }
 }

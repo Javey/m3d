@@ -1,7 +1,7 @@
 <?php
 
- define('LAZER_SECURE', true); //Security constant
- define('LAZER_DATA_PATH', C('DATA_PATH').'/'); //Path to folder with tables
+define('LAZER_SECURE', true); //Security constant
+define('LAZER_DATA_PATH', C('PROJECT.DATA_PATH').'/'); //Path to folder with tables
 
 require_once('Classes/Helpers/Validate.php');
 require_once('Classes/Helpers/FileInterface.php');

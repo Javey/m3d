@@ -12,17 +12,25 @@ if (!isset($argv[1])) {
 }
 
 $projectName = $argv[1];
-$curPath = dirname(__FILE__);
+//$curPath = dirname(__FILE__);
+exec('pwd', $info);
+$curPath = $info[0];
+
 $curDir = basename($curPath);
 $parentPath = dirname($curPath);
 $projectPath = $parentPath.'/project/'.$projectName;
 
-if (file_exists($projectPath)) {
-    exit("该工程已存在\n");
+//if (file_exists($projectPath)) {
+//    exit("该工程已存在\n");
+//}
+
+// 如果是第一次安装，则需要初始化系统
+if (!file_exists("${parentPath}/conf/config.php")) {
+    shell_exec("cp -rf ${curPath}/Install/global/* ${parentPath}");
 }
 
 mkdir($projectPath, 0777, true);
-shell_exec("cp -r ${curPath}/Install/* ${projectPath}");
+shell_exec("cp -rf ${curPath}/Install/project/* ${projectPath}");
 
 // 修改index.php
 $indexPath = $projectPath.'/index.php';

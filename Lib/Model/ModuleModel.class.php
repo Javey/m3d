@@ -46,7 +46,7 @@ class ModuleModel extends Model {
         $modulePath = C('SRC_PATH').'/'.$name;
         mkdir($modulePath, 0777, true);
 
-        $siteSrcPath = C('SITE_PATH').'/'.C('SITE_TEMP_DIR').'/'.C('SITE_SRC_DIR');
+        $siteSrcPath = C('PROJECT.SITE_PATH').'/'.C('PROJECT.TEMP_DIR').'/'.C('PROJECT.SRC_DIR');
         $cmd = 'cd '.$siteSrcPath.' && ln -snf '.C('SRC_PATH').'/'.$name.'/trunk '.$title;
         shell_exec_ensure($cmd, false, false);
 
@@ -72,7 +72,7 @@ class ModuleModel extends Model {
         $modulePath = C('SRC_PATH').'/'.$info->storename;
         rm_dir($modulePath);
         // 删除模板环境中src软链
-        $siteSrcPath = C('SITE_PATH').'/'.C('SITE_TEMP_DIR').'/'.C('SITE_SRC_DIR');
+        $siteSrcPath = C('PROJECT.SITE_PATH').'/'.C('PROJECT.TEMP_DIR').'/'.C('PROJECT.SRC_DIR');
         unlink($siteSrcPath.'/'.$info->filename);
 
         // 从数据库删除

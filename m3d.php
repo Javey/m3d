@@ -10,7 +10,9 @@
  */
 
 defined('PROJECT_PATH') or define('PROJECT_PATH', dirname($_SERVER['SCRIPT_FILENAME']));
-defined('M3D_CORE_PATH') or define('M3D_CORE_PATH', dirname(__FILE__));
+//defined('M3D_CORE_PATH') or define('M3D_CORE_PATH', dirname(__FILE__));
+// symlink model for debug
+defined('M3D_CORE_PATH') or define('M3D_CORE_PATH', dirname(dirname(PROJECT_PATH)).'/m3d');
 defined('M3D_PATH') or define('M3D_PATH', dirname(M3D_CORE_PATH));
 
 require M3D_CORE_PATH . '/Common/common.php';

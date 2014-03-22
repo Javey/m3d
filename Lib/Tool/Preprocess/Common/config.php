@@ -20,7 +20,6 @@ return array(
     'CSS_CACHE_PATH' => M3D_CORE_PATH.'/.Cache', // css编译缓存文件
 
     // 几个依赖的可执行程序
-//    'JAVA' => '/home/bae/ci/CI/bin/jdk1.6.0_06/bin/java',
-    'PNG8_COMPRESSOR' => '/usr/bin/pngquant --speed 10 --ext -fs8.png --iebug 256 ', // pngquant png压缩工具
-    'JS_COMPRESSOR' => LIB_PATH.'/Tool/NodeModule/uglify-js/bin/uglifyjs -m --max-line-len=5000 ', // js压缩工具
+    'PNG8_COMPRESSOR' => '', // pngquant png压缩工具
+    'JS_COMPRESSOR' => '', // js压缩工具
 );

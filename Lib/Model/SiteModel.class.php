@@ -7,7 +7,7 @@ class SiteModel extends Model {
      */
     public function getSites() {
         $ret = array();
-        $sitePath = C('SITE_PATH');
+        $sitePath = C('PROJECT.SITE_PATH');
         if (empty($sitePath)) {
             halt('没有定义存放分支站点的目录：SITE_PATH');
         }
@@ -93,7 +93,7 @@ class SiteModel extends Model {
      */
     public function deleteSite($name) {
         $this->where('name', '=', $name)->delete();
-        $path = C('SITE_PATH').'/'.$name;
+        $path = C('PROJECT.SITE_PATH').'/'.$name;
         return shell_exec_ensure('rm -rf '.$path, false, false);
     }
 
@@ -127,7 +127,7 @@ class SiteModel extends Model {
         $info->modules = array();
 
         foreach ($modules as $module) {
-            $path = C('SITE_PATH').'/'.$info->name.'/src/'.$module->filename;
+            $path = C('PROJECT.SITE_PATH').'/'.$info->name.'/src/'.$module->filename;
 
             // realpath()会被缓存？
             $branch = basename(readlink($path));
@@ -144,12 +144,12 @@ class SiteModel extends Model {
      * @param $name
      */
     private function copyTemplateSite($name) {
-        $dest = C('SITE_PATH').'/'.$name;
+        $dest = C('PROJECT.SITE_PATH').'/'.$name;
         if (file_exists($dest)) {
             shell_exec_ensure('rm -rf '.$dest, false, false);
         }
-        $source = C('SITE_PATH').'/'.C('SITE_TEMP_DIR');
-        $confPath = $dest.'/'.C('SITE_CONFIG_FILE');
+        $source = C('PROJECT.SITE_PATH').'/'.C('PROJECT.TEMP_DIR');
+        $confPath = $dest.'/'.C('PROJECT.CONF_FILE');
 
         $ret = shell_exec_ensure('cp -rf '.$source.' '.$dest, false, false);
         if ($ret['status']) {
@@ -157,7 +157,7 @@ class SiteModel extends Model {
             return false;
         }
         $conf = file_get_contents($confPath);
-        $conf = str_replace(C('SITE_TEMP_DIR'), $name, $conf);
+        $conf = str_replace(C('PROJECT.TEMP_DIR'), $name, $conf);
         file_put_contents($confPath, $conf);
         return true;
     }
@@ -169,7 +169,7 @@ class SiteModel extends Model {
     private function updateBranch($data) {
         $siteName = $data['siteName'];
         foreach ($data['modules'] as $module) {
-            $path = C('SITE_PATH').'/'.$siteName.'/src/'.$module['filename'];
+            $path = C('PROJECT.SITE_PATH').'/'.$siteName.'/src/'.$module['filename'];
 //            $svnPath = $this->getSvnPath($module['branch'], $module['type'], $module['storename']);
             $svnPath = C('SRC_PATH').'/'.$module['storename'].'/'.$module['branch'];
             $ret = shell_exec_ensure('ln -snf '.$svnPath.' '.$path, false, false);

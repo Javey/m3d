@@ -13,8 +13,8 @@ class JsonMapPlugin extends Plugin {
     // 默认配置
     protected $options = array(
         'json_map.is_gen' => false, // 是否生成json map
-        'json_map.path' => '{m3d_map_path}',
-        'json_map.suffix' => '{m3d_map_suffix}'
+        'json_map.path' => '{src.m3d_map_path}',
+        'json_map.suffix' => '{src.m3d_map_suffix}'
     );
 
     public function run($args) {

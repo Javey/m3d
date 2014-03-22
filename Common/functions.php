@@ -68,7 +68,7 @@ function halt($error) {
  * @param mixed $value 配置值
  * @return mixed
  */
-function C($name=null, $value=null) {
+function C($name=null, $value=null, $isMerge=false) {
     static $_config = array();
     // 无参数时获取所有
     if (empty($name)) {
@@ -76,7 +76,7 @@ function C($name=null, $value=null) {
     }
     // 优先执行设置获取或赋值
     if (is_string($name)) {
-        $name = strtolower($name);
+        $name = strtoupper($name);
         if (!strpos($name, '.')) {
             if (is_null($value)) {
                 if (isset($_config[$name])) {
@@ -108,7 +108,7 @@ function C($name=null, $value=null) {
         }
     } elseif (is_array($name)){
         // 批量设置
-        $_config = array_merge($_config, array_change_key_case($name));
+        $_config = array_merge_recursive($_config, array_change_key_case($name, CASE_UPPER));
     }
     return null;
 }

@@ -20,15 +20,18 @@ return array(
     'DEFAULT_ACTION' => 'Index',
     'DEFAULT_TIMEZONE' => 'PRC',
 
-    // project路径配置
-    'DATA_PATH' => PROJECT_PATH.'/data',
-    'CONF_PATH' => PROJECT_PATH.'/conf',
-    'SITE_PATH' => PROJECT_PATH.'/site',
+    // 全局配置
+    'M3D_CONF_PATH' => M3D_PATH.'/conf', // 存放全局配置文件
+    'SRC_PATH' => M3D_PATH.'/src', // 存放svn源码的路径
+    'RESTART' => null, // server重启脚本
+    'SVN' => 'svn', // svn命令
 
-    // 开发测试环境配置
-    'ENV' => array(
-        'TEMP_DIR' => 'branch-template', // 模板环境目录名
-        'CONF_FILE' => 'branch.conf', // 环境lighttpd配置文件名
+    // project配置
+    'PROJECT' => array(
+        'DATA_PATH' => PROJECT_PATH.'/data',
+        'SITE_PATH' => PROJECT_PATH.'/site',
+        'TEMP_DIR' => 'template', // 模板环境目录名
+        'CONF_FILE' => 'lighttpd.conf', // 环境lighttpd配置文件名
         'SRC_DIR' => 'src', // 存放该环境所需的源码
         'BUILD_DIR' => 'build', // 编译后代码存放文件夹
         'TEST_ENV_DIR' => 'wwwdata.test', // 测试环境
