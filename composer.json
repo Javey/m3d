@@ -1,0 +1,15 @@
+{
+    "name": "javey/m3d",
+    "description": "Tool for develop debug deploy",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Javey",
+            "email": "zoujiawei@baidu.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    }
+}
