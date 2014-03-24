@@ -60,8 +60,6 @@ class PreprocessTool extends Tool {
             }
             // 根据扫描目录和类型，扫描到所有待编译文件
             $fileList = $this->getFileList($item['from'], $item['type'], C('SRC.SRC_PATH'));
-//            print_r($fileList);
-//            continue;
 
             foreach ($fileList as $file) {
                 mark('处理文件：' . $file);
@@ -75,7 +73,6 @@ class PreprocessTool extends Tool {
 
                 // 更新map
                 $this->updateMap($item['name'], $path, $buildPath);
-//                trigger('one_file_end', $this, $item, $file);
             }
 
             trigger('one_process_end', $this, $item);
