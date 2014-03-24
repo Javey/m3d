@@ -69,7 +69,8 @@ define(['lodash', 'angular'], function(_) {
                         } else {
                             notify.open({
                                 template: res.data,
-                                type: 'error'
+                                type: 'error',
+                                sticky: true
                             });
                         }
                     });
@@ -165,7 +166,8 @@ define(['lodash', 'angular'], function(_) {
                             } else {
                                 notify.open({
                                     template: res.data,
-                                    type: 'error'
+                                    type: 'error',
+                                    sticky: true
                                 });
                             }
                         }
@@ -266,7 +268,8 @@ define(['lodash', 'angular'], function(_) {
                         } else {
                             notify.open({
                                 template: res.data,
-                                type: 'error'
+                                type: 'error',
+                                sticky: true
                             });
                         }
                     });
@@ -283,7 +286,8 @@ define(['lodash', 'angular'], function(_) {
                     } else {
                         notify.open({
                             template: '删除失败<br />' + res.data,
-                            type: 'error'
+                            type: 'error',
+                            sticky: true
                         });
                     }
                 });

@@ -36,7 +36,8 @@ define(['angular'], function() {
                 } else {
                     notify.open({
                         template: $scope.info.name + '环境更新失败<br />错误信息：' + (res.data || 'Nothing'),
-                        type: 'error'
+                        type: 'error',
+                        sticky: true
                     });
                 }
             });
@@ -74,7 +75,8 @@ define(['angular'], function() {
                 } else {
                     notify.open({
                         template: $scope.info.name + '环境重建失败<br />错误信息：' + (res.data || 'Nothing'),
-                        type: 'error'
+                        type: 'error',
+                        sticky: true
                     });
                 }
             });

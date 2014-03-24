@@ -64,7 +64,8 @@ define(['angular', 'lodash'], function(angular, _) {
                     } else {
                         notify.open({
                             template: '添加失败<br />' + res.data,
-                            type: 'error'
+                            type: 'error',
+                            sticky: true
                         });
                     }
                 });
