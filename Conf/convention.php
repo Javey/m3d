@@ -30,26 +30,15 @@ return array(
     'PROJECT' => array(
         'DATA_PATH' => PROJECT_PATH.'/data',
         'SITE_PATH' => PROJECT_PATH.'/site',
-        'TEMP_DIR' => 'template', // 模板环境目录名
+        'TEMP_DIR' => 'site-template', // 模板环境目录名
         'CONF_FILE' => 'lighttpd.conf', // 环境lighttpd配置文件名
         'SRC_DIR' => 'src', // 存放该环境所需的源码
         'BUILD_DIR' => 'build', // 编译后代码存放文件夹
         'TEST_ENV_DIR' => 'wwwdata.test', // 测试环境
         'BUILD_ENV_DIR' => 'wwwdata.build' // 编译环境
     ),
-//    'SITE_TEMP_DIR' => 'branch-template', // 子站模板目录名
-//    'SITE_CONFIG_FILE' => 'branch.conf', //子站lighttpd配置文件名
-
-    /**
-     * 子站点目录名配置
-     */
-//    'SITE_SRC_DIR' => 'src', // svn代码库文件夹
-//    'SITE_BUILD_DIR' => 'build', // 编译后代码存放文件夹
-//    'SITE_TEST_ENV_DIR' => 'wwwdata.test', // 测试环境
-//    'SITE_BUILD_ENV_DIR' => 'wwwdata.build', // 编译环境
 
     'M3D_FILENAME' => 'm3d.php', // m3d配置文件名，放在源码根目录下，编译合图入口文件
-
     /**
      * 源码中m3d相关配置
      * 相对源码根目录
@@ -58,27 +47,10 @@ return array(
         'ROOT' => '', // 源码根目录
         'SRC_PATH' => '{SRC.ROOT}/src', // 源码路径
         'BUILD_PATH' => '{SRC.ROOT}/build', // 存放编译后文件的路径
-//        'M3D_FILENAME' => 'm3d.php', // m3d配置文件名，放在源码根目录下
         'M3D_PATH' => '{SRC.ROOT}/m3d', // m3d路径
-//    'M3D_IMERGE_IMAGE_DIR' => 'image', // 小图配置路径
-//    'M3D_IMERGE_SPRITE_DIR' => 'sprite', // 大图配置路径
-//        'M3D_CONF_PATH' => '{SRC.ROOT}/src/static/_m3d/cin', //'{M3D_PATH}/config', // 配置文件路径
-//        'M3D_BUILD_CACHE' => '{SRC.M3D_PATH}/buildcache', // 编译缓存文件路径
         'M3D_MAP_PATH' => '{SRC.M3D_PATH}/map', // map地址
         'M3D_MAP_SUFFIX' => '_map', // map文件后缀
     ),
-//    'M3D_FILENAME' => 'm3d.php', // m3d配置文件名，放在源码根目录下
-//    'SRC_ROOT' => '', // 源码根目录
-//    'SRC.SRC_PATH' => '{SRC_ROOT}/src', // 源码路径
-//    'SRC.BUILD_PATH' => '{SRC_ROOT}/build', // 存放编译后文件的路径
-//    'M3D_PATH' => '{SRC_ROOT}/m3d', // m3d路径
-//    'M3D_IMERGE_PATH' => '{M3D_PATH}/imerge', // 合图配置路径
-////    'M3D_IMERGE_IMAGE_DIR' => 'image', // 小图配置路径
-////    'M3D_IMERGE_SPRITE_DIR' => 'sprite', // 大图配置路径
-//    'M3D_CONF_PATH' => '{SRC_ROOT}/src/static/_m3d/cin', //'{M3D_PATH}/config', // 配置文件路径
-//    'M3D_BUILD_CACHE' => '{M3D_PATH}/buildcache', // 编译缓存文件路径
-//    'M3D_MAP_PATH' => '{M3D_PATH}/map', // map地址
-//    'M3D_MAP_SUFFIX' => '_map', // map文件后缀
 
     /**
      * 定义这两个参数，是为了在灵活的静态文件中，找到目标

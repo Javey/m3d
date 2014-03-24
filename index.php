@@ -9,7 +9,8 @@
  * each engineer has a duty to keep the code elegant
  */
 
-defined('PROJECT_PATH') or define('PROJECT_PATH', dirname($_SERVER['SCRIPT_FILENAME']));
+defined('PROJECT_PATH') or die('M3D Access deny.');
+
 //defined('M3D_CORE_PATH') or define('M3D_CORE_PATH', dirname(__FILE__));
 // symlink model for debug
 defined('M3D_CORE_PATH') or define('M3D_CORE_PATH', dirname(dirname(PROJECT_PATH)).'/m3d');

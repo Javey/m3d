@@ -7,4 +7,5 @@
  * To change this template use File | Settings | File Templates.
  */
 
-require('../../{M3D_CORE}/m3d.php');
+defined('PROJECT_PATH') or define('PROJECT_PATH', dirname(__FILE__));
+require('../../{M3D_CORE}/index.php');
