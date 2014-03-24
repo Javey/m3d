@@ -63,12 +63,47 @@ function halt($error) {
 }
 
 /**
+ * 类似php5.3的array_replace_recursive方法
+ * 参考自php文档
+ * 但是为了C方法需要，将key统一转换成大些
+ */
+function recurse($array, $array1) {
+    foreach ($array1 as $key => $value) {
+        // create new key in $array, if it is empty or not an array
+        if (!isset($array[$key]) || (isset($array[$key]) && !is_array($array[$key]))) {
+            $array[$key] = array();
+        }
+
+        // overwrite the value in the base array
+        if (is_array($value)) {
+            $value = recurse($array[$key], array_change_key_case($value, CASE_UPPER));
+        }
+        $array[$key] = $value;
+    }
+    return $array;
+}
+function array_replace_recursive_case_upper() {
+    // handle the arguments, merge one by one
+    $args = func_get_args();
+    $array = $args[0];
+    if (!is_array($array)) {
+        return $array;
+    }
+    for ($i = 1, $c = count($args); $i < $c; $i++) {
+        if (is_array($args[$i])) {
+            $array = recurse($array, array_change_key_case($args[$i], CASE_UPPER));
+        }
+    }
+    return $array;
+}
+
+/**
  * 获取和设置配置参数 支持批量定义
  * @param string|array $name 配置变量
  * @param mixed $value 配置值
  * @return mixed
  */
-function C($name=null, $value=null, $isMerge=false) {
+function C($name=null, $value=null) {
     static $_config = array();
     // 无参数时获取所有
     if (empty($name)) {
@@ -89,7 +124,13 @@ function C($name=null, $value=null, $isMerge=false) {
                 }
             }
 
-            $_config[$name] = $value;
+            if (is_array($_config[$name]) && is_array($value)) {
+                // 如果值为数组，则merge二维数组
+                $_config[$name] = array_merge($_config[$name], $value);
+            } else {
+                $_config[$name] = $value;
+            }
+
         } else {
             // 二维数组设置和获取
             $name = explode('.', $name);
@@ -108,7 +149,7 @@ function C($name=null, $value=null, $isMerge=false) {
         }
     } elseif (is_array($name)){
         // 批量设置
-        $_config = array_merge_recursive($_config, array_change_key_case($name, CASE_UPPER));
+        $_config = array_replace_recursive_case_upper($_config, $name);
     }
     return null;
 }

@@ -19,7 +19,7 @@ class M3d {
         // 加载全局配置
         C(include C('M3D_CONF_PATH').'/config.php');
         // 加载project配置
-        C(array('PROJECT' => include PROJECT_PATH.'/conf/config.php'));
+        C('PROJECT', include PROJECT_PATH.'/conf/config.php');
 
         date_default_timezone_set(C('DEFAULT_TIMEZONE'));
         spl_autoload_register(array('M3d', 'autoload'));
