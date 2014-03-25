@@ -63,14 +63,31 @@ abstract class Tool {
      * @return string
      */
     static public function addCdn($path) {
+        if (!C('IS_CDN')) {
+            return $path;
+        }
         $cdnList = C('CDN_LIST');
         if ($cdnList) {
             $index = (strlen($path) + ord(basename($path))) % count($cdnList);
             $cdn = $cdnList[$index];
-            $path = $cdn.$path;
+            // 仅仅将cdn加在queryString中，用于测试环境调试
+            $path = $path.'?'.C('CDN_IDENTIFIER').$cdn;
         }
 
         return $path;
+    }
+
+    /**
+     * 删除一个文件（夹），同时删除svn
+     * @param $path
+     */
+    static public function rmLocalAndSvn($path) {
+        if (is_dir($path)) {
+            rm_dir($path);
+        } else {
+            @unlink($path);
+        }
+        shell_exec_ensure(C('SVN').' del '.$path.' --force', false, false);
     }
 
     /**

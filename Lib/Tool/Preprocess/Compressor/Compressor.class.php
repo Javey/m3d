@@ -66,11 +66,11 @@ abstract class Compressor {
         $class = ucfirst(strtolower($class)).'Compressor';
         if (!isset(self::$_instance[$class])) {
             $instance = new stdClass();
-            $instance->ret = null;
-            trigger('on_get_composer', $instance, $options);
-            self::$_instance[$class] = is_null($instance->ret) ?
+            $instance->return = null;
+            trigger('get_compressor', $instance, $options);
+            self::$_instance[$class] = is_null($instance->return) ?
                 (empty($options) ? new $class() : new $class($options)) :
-                $instance->ret;
+                $instance->return;
         }
 
         return self::$_instance[$class];

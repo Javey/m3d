@@ -54,7 +54,7 @@ class PreprocessTool extends Tool {
             // 初始化预处理器
             $processor = new stdClass();
             $processor->return = null;
-            trigger('on_processor_init', $this, $item, $processor);
+            trigger('processor_init', $this, $item, $processor);
             $processor = is_null($processor->return) ? Preprocess::getInstance($item['processor'], $this->map) : $processor->return;
 
             // 如果处理图片，则需要先处理合图
@@ -132,11 +132,35 @@ class PreprocessTool extends Tool {
         }
 
         $buildPath = C('SRC.BUILD_PATH') . $path;
+        $cachePath = C('SRC.BUILD_CACHE_PATH') . $path;
 
+        $contents = $processor->getContents();
         // 写入文件到编译后路径中
-        $processor->write($buildPath);
+        contents_to_file($cachePath, $contents);
+        contents_to_file($buildPath, $this->onlineStrReplace($contents));
 
         return $path;
+    }
+
+    /**
+     * 发布版本，地址替换
+     * @param $contents
+     * @return mixed
+     */
+    private function onlineStrReplace($contents) {
+        // 地址替换配置列表替换
+        if (!empty($this->options['replace_list'])) {
+            foreach ($this->options['replace_list'] as $key => $value) {
+                $contents = str_replace($key, $value, $contents);
+            }
+        }
+
+        // cdn替换
+        if (C('IS_CDN') && !empty($this->options['cdn_list'])) {
+            $contents = preg_replace('/(?<=[\'\"])([^\'\"]*)(?:[\?&])'.C('CDN_IDENTIFIER').'([^\'\"]*)(?=[\'\"])/', '${2}${1}', $contents);
+        }
+
+        return $contents;
     }
 
     /**
@@ -162,9 +186,9 @@ class PreprocessTool extends Tool {
     private function getFileList($paths, $types, $base='') {
         // 使用object，进行引用传参
         $ret = new stdClass();
-        $ret->list = null;
+        $ret->return = null;
         trigger('processor_fetch_files', $paths, $types, $ret);
-        return is_null($ret->list) ? get_files_by_type($paths, $types, $base) : $ret->list;
+        return is_null($ret->return) ? get_files_by_type($paths, $types, $base) : $ret->return;
     }
 
     /**

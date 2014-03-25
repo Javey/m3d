@@ -30,6 +30,7 @@ class IncreProcessPlugin extends Plugin {
         // 由于存在m3d_path变量，用C方法取值
         'incre.is_incre' => true,
         'incre.path' => '{M3D_PATH}/incre',
+        'incre.cache_dir' => '{incre.path}/cache',
         'incre.map_filename' => 'file_belong_map.php',
         'incre.md5_filename' => 'imerge_md5.php',
         'incre.ver_filename' => 'version'
@@ -90,7 +91,7 @@ class IncreProcessPlugin extends Plugin {
         $paths = $params[1];
         $types = $params[2];
         $ret = $params[3];
-        $ret->list = array();
+        $ret->return = array();
 
         // 若为sprite合图文件
         $spritePath = C('IMERGE_PATH').'/'.C('IMERGE_SPRITE_DIR');
@@ -99,7 +100,7 @@ class IncreProcessPlugin extends Plugin {
             $files = array_merge($files[self::MODIFY], $files[self::ADD]);
             foreach ($files as $file) {
                 $file = $spritePath.'/'.$file;
-                array_push($ret->list, $file);
+                array_push($ret->return, $file);
             }
         } else {
             $files = array_merge(self::$files[self::MODIFY], self::$files[self::ADD]);
@@ -111,7 +112,7 @@ class IncreProcessPlugin extends Plugin {
                     foreach ($files as $file) {
                         if (substr($file, 0, $len) === $path && in_array(pathinfo($file, PATHINFO_EXTENSION), $types)) {
                             $file = C('SRC.SRC_PATH').$file;
-                            array_push($ret->list, $file);
+                            array_push($ret->return, $file);
                         }
                     }
                 }
@@ -244,7 +245,10 @@ class IncreProcessPlugin extends Plugin {
                 $path = C('SRC.BUILD_PATH').$map[$file];
                 if (file_exists($path)) {
                     unlink($path);
-                    shell_exec_ensure(C('SVN').' del '.$path.' --force', false, false);
+                }
+                $path = C('SRC.BUILD_CACHE_PATH').$map[$file];
+                if (file_exists($path)) {
+                    unlink($path);
                 }
                 // 清除map
                 unset($map[$file]);

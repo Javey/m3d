@@ -50,6 +50,7 @@ return array(
         'M3D_PATH' => '{SRC.ROOT}/m3d', // m3d路径
         'M3D_MAP_PATH' => '{SRC.M3D_PATH}/map', // map地址
         'M3D_MAP_SUFFIX' => '_map', // map文件后缀
+        'BUILD_CACHE_PATH' => '{SRC.M3D_PATH}/cache' // 编译缓存目录
     ),
 
     /**

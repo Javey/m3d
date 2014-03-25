@@ -103,7 +103,7 @@ class HtmlPreprocess extends Preprocess {
         }
         $value = Tool::getActualPath($value);
         if (isset($this->map[$type][$value])) {
-            $key->$prop = $this->map[$type][$value];
+            $key->$prop = Tool::addCdn($this->map[$type][$value]);
 
             trigger('html_href_change', $this, $value);
         }

@@ -65,18 +65,6 @@ abstract class Preprocess {
     }
 
     /**
-     * 写编译后文件
-     * @param $to 写入地址
-     */
-    public function write($to) {
-        $dirname = dirname($to);
-        if (!file_exists($dirname)) {
-            mkdir($dirname, 0777, true);
-        }
-        file_put_contents($to, $this->contents);
-    }
-
-    /**
      * 设置一个将要处理的文件路径
      * @param $file 文件路径
      */

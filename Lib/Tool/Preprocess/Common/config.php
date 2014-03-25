@@ -18,6 +18,7 @@ return array(
 
     // css预处理缓存，用于避免重复解析import的css
     'CSS_CACHE_PATH' => M3D_PATH.'/.Cache', // css编译缓存文件
+    'CDN_IDENTIFIER' => 'cdn_9527_', // cdn标示符，用于文本替换
 
     // 几个依赖的可执行程序
     'PNG8_COMPRESSOR' => '', // pngquant png压缩工具

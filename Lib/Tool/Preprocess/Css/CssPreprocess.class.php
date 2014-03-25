@@ -294,6 +294,7 @@ class CssPreprocess extends Preprocess {
             }
         }
 
+        $newUrl = Tool::addCdn($newUrl);
         $newUrl = new String($newUrl);
         call_user_func(array($url, $setMethod), $newUrl);
 

@@ -27,7 +27,7 @@ class IncreMap {
     private static $revision = null;
 
     public static function init() {
-        self::svnUp();
+        mark('init');
         self::genMd5Map();
         self::genLatestRevision();
     }
@@ -136,45 +136,6 @@ class IncreMap {
             if (isset(self::$belongMap[$file])) {
                 $ret = array_merge($ret, self::$belongMap[$file]);
                 self::_getAffectList(self::$belongMap[$file], $ret);
-            }
-        }
-    }
-
-    /**
-     * 确保代码最新
-     */
-    private static function svnUp() {
-        self::cleanLocalChange();
-        $cmd = C('SVN').' up '. C('SRC.ROOT');
-        shell_exec_ensure($cmd, false);
-    }
-
-    /**
-     * 清除所有本地文件修改
-     * 将以svn文件为准
-     */
-    private static function cleanLocalChange() {
-        $cmd = 'cd '.C('SRC.SRC_PATH').' && '.C('SVN').' st';
-        $ret = shell_exec_ensure($cmd, false);
-        if (!$ret['status']) {
-            $list = $ret['output'];
-            $list = explode("\n", $list);
-            if (!empty($list)) {
-                foreach ($list as $item) {
-                    // 前8位字符，表示状态信息，去掉
-                    $item = trim(substr($item, 8));
-                    if (!$item || ($item && $item[0] === '.')) {
-                        continue;
-                    }
-
-//                    mark('忽略本地文件修改：'.$item, 'emphasize');
-                    $item = C('SRC.SRC_PATH').'/'.$item;
-                    if (is_dir($item)) {
-                        rm_dir($item);
-                    } else {
-                        @unlink($item);
-                    }
-                }
             }
         }
     }

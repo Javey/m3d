@@ -24,7 +24,7 @@ class View {
      * @param string $contentType 输出类型
      * @return mixed
      */
-    public static function render($content, $charset='utf8', $contentType='text/html'){
+    public static function render($content, $contentType='text/html', $charset='utf8'){
         // 网页字符编码
         header('Content-Type:'.$contentType.'; charset='.$charset);
         header('X-Powered-By:M3D');

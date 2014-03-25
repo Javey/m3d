@@ -132,7 +132,7 @@ class MergeConfigWriter {
             $typePath = $imergePath.'/'.$entry;
             // 如果这个文件夹名，在$types中不存在，则表示这张大图已经废弃
             if ($entry[0] !== '.' && is_dir($typePath) && !in_array($entry, $types)) {
-                shell_exec_ensure('rm -rf '.$typePath, false, false);
+                rm_dir($typePath);
                 // 同时还要删除相应的大图，及大图配置
                 $cOutFiles = glob($this->root.'/'.C('IMERGE_SPRITE_DIR').'/'.$entry.'.*');
 //                var_dump($this->root.C('COUT_DIR').'/'.$entry.'_*');

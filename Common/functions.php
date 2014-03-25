@@ -124,7 +124,7 @@ function C($name=null, $value=null) {
                 }
             }
 
-            if (is_array($_config[$name]) && is_array($value)) {
+            if (isset($_config[$name]) && is_array($_config[$name]) && is_array($value)) {
                 // 如果值为数组，则merge二维数组
                 $_config[$name] = array_merge($_config[$name], $value);
             } else {
@@ -305,18 +305,66 @@ function show_error($msg = '', $die = false, $errorCode = 500) {
 }
 
 /**
+ * 二维数组根据某个值排序
+ * @param $arr
+ * @param $key
+ * @param string $order
+ */
+function array_sort($arr, $key, $order='asc') {
+    $ret = $keys = array();
+    foreach ($arr as $k => $v) {
+        $keys[$k] = $v[$key];
+    }
+
+    if ($order === 'asc') {
+        asort($keys);
+    } else {
+        arsort($keys);
+    }
+    reset($keys);
+
+    foreach ($keys as $k => $v) {
+        $ret[$k] = $arr[$k];
+    }
+
+    return $ret;
+}
+
+/**
+ * 按优先级，注入插件
+ * @param $array
+ * @param $plugin
+ */
+function _insert_plugin_asc(&$arr, $plugin) {
+    $index = 0;
+    foreach ($arr as $item) {
+        if ($item['priority'] > $plugin['priority']) {
+            break;
+        }
+        $index++;
+    }
+
+    array_splice($arr, $index, 0, array($plugin));
+}
+
+/**
  * 事件绑定
  * @param $event {String/Array} 事件名，支持多个event，绑定到同一个class
  * @param $class 类名
+ * @param $priority 事件优先级 越小越优先
  */
-function on($event, $class) {
+function on($event, $class, $priority=9999) {
     $event = (array)$event;
     foreach ($event as $item) {
         $plugins = C('event.'.$item);
         if (empty($plugins)) {
             $plugins = array();
         }
-        array_push($plugins, $class);
+        _insert_plugin_asc($plugins, array(
+            'class' => $class,
+            'priority' => $priority
+        ));
+//        $plugins = array_sort($plugins, 'priority');
         C('event.'.$item, $plugins);
     }
 }
@@ -331,11 +379,9 @@ function off($event, $class) {
     foreach ($event as $item) {
         $plugins = C('event.'.$item);
         if (!empty($plugins)) {
-            $index = array_search($class, $plugins);
-            if ($index !== false) {
-                unset($plugins[$index]);
-                C('event.'.$item, $plugins);
-            }
+//            unset($plugins[$class]);
+            $plugins = array_filter($plugins, create_function('$v', 'return $v["class"] !== "' . $class .'";'));
+            C('event.'.$item, $plugins);
         }
     }
 }
@@ -348,10 +394,10 @@ function off($event, $class) {
 function trigger() {
     $args = func_get_args();
     $event = $args[0];
-//    array_shift($args);
     $plugins = C('event.'.$event);
     if (!empty($plugins)) {
         foreach ($plugins as $plugin) {
+            $plugin = $plugin['class'];
             if (strpos($plugin, '::') !== false) {
                 call_user_func($plugin, $args);
             } else {

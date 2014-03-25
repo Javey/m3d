@@ -25,7 +25,7 @@ class RequireJsPlugin extends Plugin {
             $tool = $params[1];
             $map = $this->getMap($tool);
             $script = $this->genScript($map);
-            $processor = PPFactory::getInstance('js');
+            $processor = Preprocess::getInstance('js');
             $processor->setFile($this->options['requirejs.path']);
             $processor->setContents($script);
             $processor->process();

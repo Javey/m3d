@@ -21,7 +21,7 @@ class ProcessAction extends Action {
 //            $path = C('FE_BRANCH_PATH').'/hybrid-mac/music_1-0-92_BRANCH/config.php';
 //        } else {
 //            $path = '/home/music/javey/music_1-0-165-34_BRANCH/m3d.php';
-            $path = C('SITE_PATH').'/'.$_GET['site'].'/'.C('SITE_SRC_DIR').'/'.$_GET['module'].'/'.C('M3D_FILENAME');
+            $path = C('PROJECT.SITE_PATH').'/'.$_GET['site'].'/'.C('PROJECT.SRC_DIR').'/'.$_GET['module'].'/'.C('M3D_FILENAME');
 //        }
 
         $tool = new PreprocessTool($path);
