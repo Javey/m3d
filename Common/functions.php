@@ -567,3 +567,21 @@ function str_random($length=5) {
 
     return $ret;
 }
+
+/**
+ * 根据文件内容返回文件类型
+ * @param $content
+ * @return string
+ */
+function get_type_by_content($content) {
+    if (class_exists('finfo')) {
+        $info = new finfo(FILEINFO_MIME_TYPE);
+        return $info->buffer($content);
+    } else {
+        $tempFile = str_random(5);
+        file_put_contents($tempFile, $content);
+        $info = mime_content_type($tempFile);
+        unlink($tempFile);
+        return $info;
+    }
+}

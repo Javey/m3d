@@ -19,6 +19,19 @@ abstract class Preprocess {
     protected $filename;
     protected $relativePath;
 
+    private static $_instance = array();
+
+    final public static function getInstance($class, $options=null) {
+        if (empty($class)) {
+            return null;
+        }
+        $class = ucfirst(strtolower($class)).'Preprocess';
+        if (!isset(self::$_instance[$class])) {
+            self::$_instance[$class] = empty($options) ? new $class() : new $class($options);
+        }
+
+        return self::$_instance[$class];
+    }
 
     public function __construct($map = array()) {
         $this->map = $map;

@@ -8,7 +8,6 @@ require_once('Compressor/Compressor.class.php');
 require_once('Compressor/JsCompressor.class.php');
 require_once('Compressor/CssCompressor.class.php');
 require_once('Compressor/MediaCompressor.class.php');
-require_once('Common/PPFactory.class.php');
 require_once('Common/Preprocess.class.php');
 require_once('Media/MediaPreprocess.class.php');
 require_once('Css/CssPreprocess.class.php');
@@ -56,8 +55,8 @@ class PreprocessTool extends Tool {
             $processor = new stdClass();
             $processor->return = null;
             trigger('on_processor_init', $this, $item, $processor);
-            $processor = is_null($processor->return) ? PPFactory::getInstance($item['processor'], $this->map) : $processor->return;
-            
+            $processor = is_null($processor->return) ? Preprocess::getInstance($item['processor'], $this->map) : $processor->return;
+
             // 如果处理图片，则需要先处理合图
             if ($processor instanceof MediaPreprocess && strpos($item['type'], 'png') !== false) {
                 $this->processSprite($processor, $item);

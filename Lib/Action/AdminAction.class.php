@@ -11,6 +11,10 @@ class AdminAction extends Action {
         ));
     }
 
+    public function info() {
+        phpinfo();
+    }
+
     public function delSite() {
         Model::remove('site');
     }

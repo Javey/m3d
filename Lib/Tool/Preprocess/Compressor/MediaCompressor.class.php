@@ -13,10 +13,14 @@ class MediaCompressor extends Compressor {
      * @param null $option
      */
     public function compress($option=null) {
-        if ($option && $option['png8']) {
-            $this->compress2png8();
-        } else {
-            $this->optimize();
+        $type = get_type_by_content($this->contents);
+        // 支处理png
+        if ($type === 'image/png') {
+            if ($option && $option['png8']) {
+                $this->compress2png8();
+            } else {
+                $this->optimize();
+            }
         }
     }
 

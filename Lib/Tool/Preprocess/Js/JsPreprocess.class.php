@@ -21,7 +21,8 @@ class JsPreprocess extends Preprocess {
      * @return mixed|void
      */
     public function compress() {
-        $compressor = new JsCompressor($this->contents);
+        $compressor = Compressor::getInstance('js');
+        $compressor->setContents($this->contents);
         $compressor->compress();
         $this->contents = $compressor->contents;
     }

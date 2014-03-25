@@ -55,7 +55,8 @@ class CssPreprocess extends Preprocess {
      * @return mixed|void
      */
     public function compress() {
-        $compressor = new CssCompressor($this->contents);
+        $compressor = Compressor::getInstance('css');
+        $compressor->setContents($this->contents);
         $compressor->compress();
         $this->contents = $compressor->contents;
     }

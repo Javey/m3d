@@ -17,8 +17,9 @@ class MediaPreprocess extends Preprocess {
      * @return mixed|void
      */
     public function compress() {
-        if ($this->type === 'png' && C('IS_COMPRESS_IMAGE') && !$this->isBlackFile()) {
-            $compressor = new MediaCompressor($this->contents);
+        if (C('IS_COMPRESS_IMAGE') && !$this->isBlackFile()) {
+            $compressor = Compressor::getInstance('media');
+            $compressor->setContents($this->contents);
             $compressor->compress(array('png8' => true));
             $this->contents = $compressor->contents;
         }

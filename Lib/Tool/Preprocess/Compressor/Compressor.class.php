@@ -12,12 +12,20 @@ abstract class Compressor {
     protected $beforeSize;
     protected $afterSize;
 
-    public function __construct($contents) {
+    private static $_instance = array();
+
+    public function __construct($contents=null) {
+        if (!is_null($contents)) {
+            $this->setContents($contents);
+        }
+    }
+
+    public function setContents($contents) {
         $this->contents = $contents;
         $this->beforeSize = strlen($contents) / 1024;
     }
 
-    public function exec($exec){
+    public function exec($exec) {
         $descriptorspec = array(
             0 => array("pipe", "r"), // stdin
             1 => array("pipe", "w"), // stdout
@@ -49,5 +57,22 @@ abstract class Compressor {
 
     public function __get($name) {
         return isset($this->$name) ? $this->$name : null;
+    }
+
+    final public static function getInstance($class, $options=null) {
+        if (empty($class)) {
+            return null;
+        }
+        $class = ucfirst(strtolower($class)).'Compressor';
+        if (!isset(self::$_instance[$class])) {
+            $instance = new stdClass();
+            $instance->ret = null;
+            trigger('on_get_composer', $instance, $options);
+            self::$_instance[$class] = is_null($instance->ret) ?
+                (empty($options) ? new $class() : new $class($options)) :
+                $instance->ret;
+        }
+
+        return self::$_instance[$class];
     }
 }
