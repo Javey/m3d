@@ -53,7 +53,11 @@ class PreprocessTool extends Tool {
             }
 
             // 初始化预处理器
-            $processor = PPFactory::getInstance($item['processor'], $this->map);
+            $processor = new stdClass();
+            $processor->return = null;
+            trigger('on_processor_init', $this, $item, $processor);
+            $processor = is_null($processor->return) ? PPFactory::getInstance($item['processor'], $this->map) : $processor->return;
+            
             // 如果处理图片，则需要先处理合图
             if ($processor instanceof MediaPreprocess && strpos($item['type'], 'png') !== false) {
                 $this->processSprite($processor, $item);
