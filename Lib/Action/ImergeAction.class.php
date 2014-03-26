@@ -12,7 +12,7 @@ class ImergeAction extends Action {
 
     public function __construct() {
         parent::__construct();
-        $path = C('SITE_PATH').'/'.$_GET['site'].'/'.C('PROJECT.SRC_DIR').'/'.$_GET['module'].'/'.C('M3D_FILENAME');
+        $path = C('PROJECT.SITE_PATH').'/'.$_GET['site'].'/'.C('PROJECT.SRC_DIR').'/'.$_GET['module'].'/'.C('M3D_FILENAME');
 //        $path = '/home/music/javey/music_1-0-165-34_BRANCH/m3d.php';
         $this->tool = new InstantmergeTool($path);
     }
