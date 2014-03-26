@@ -85,6 +85,8 @@ class PreprocessTool extends Tool {
             $this->exportMapByType($item['name']);
         }
 
+        $this->copyToTestEnv();
+
         // 派发预处理结束事件
         trigger('process_end', $this);
     }
@@ -215,6 +217,19 @@ class PreprocessTool extends Tool {
             $filename = $processor->getFilename();
             $this->map[$item['name']][$filename] = $buildPath;
         }
+    }
+
+    /**
+     * 拷贝结果到测试环境
+     */
+    private function copyToTestEnv() {
+        $envBuildPath = PROJECT_SITE_PATH.'/'.C('PROJECT.BUILD_DIR').PROJECT_MODULE_NAME;
+        if (file_exists($envBuildPath)) {
+            shell_exec_ensure('rm -rf '.$envBuildPath.'/*');
+        } else {
+            mkdir($envBuildPath, 0777, true);
+        }
+        shell_exec_ensure('cp -rf '.C('SRC.BUILD_CACHE_PATH').'/* '.$envBuildPath);
     }
 
     /**

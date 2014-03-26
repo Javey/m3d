@@ -37,11 +37,11 @@ class IncreProcessPlugin extends Plugin {
     );
 
     public function run($params) {
-        $oldRevision = 117093;
-//        $oldRevision = self::getPrevRevision();
+//        $oldRevision = 117093;
+        $oldRevision = self::getPrevRevision();
 //        $oldRevision = null;
 
-        if (!C('INCRE.IS_INCRE') || is_null($oldRevision)) {
+        if (true || !C('INCRE.IS_INCRE') || is_null($oldRevision)) {
             // 事件解绑
             off('one_process_start', 'IncreProcessPlugin::importMap');
             off('processor_fetch_files', 'IncreProcessPlugin::getFileList');

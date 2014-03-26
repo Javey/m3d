@@ -77,7 +77,7 @@ abstract class Preprocess {
             $this->path = $file;
             $this->relativePath = str_replace(C('SRC.SRC_PATH'), '', $file);
         } else {
-            halt($file.'不存在');
+            mark($file.'不存在', 'error');
         }
     }
 

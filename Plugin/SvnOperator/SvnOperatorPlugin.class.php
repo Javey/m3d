@@ -33,6 +33,7 @@ class SvnOperatorPlugin extends Plugin {
     }
 
     public static function ci() {
+        mark('执行svn提交操作', 'emphasize');
         self::localDelToSvn();
         shell_exec_ensure(C('SVN').' add '.C('SRC.BUILD_PATH').' --force', false);
         shell_exec_ensure(C('SVN').' add '.C('SRC.M3D_PATH').' --force', false);

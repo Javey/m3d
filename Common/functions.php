@@ -276,6 +276,7 @@ function shell_exec_ensure($shell, $showInfo = true, $showError = true) {
         $ret['status'] = proc_close($process);
         // 如果展示错误
         if ($showError && $ret['status']) {
+            mark('执行命令：'.$shell.' 出现错误', 'error');
             mark($ret['output'], 'error');
         }
     }
@@ -619,14 +620,31 @@ function str_random($length=5) {
  * @param $content
  * @return string
  */
-function get_type_by_content($content) {
-    if (class_exists('finfo')) {
+if (class_exists('finfo')) {
+    function get_type_by_content($content) {
         $info = new finfo(FILEINFO_MIME_TYPE);
         return $info->buffer($content);
-    } else {
+    }
+} elseif (function_exists('mime_content_type')) {
+    function get_type_by_content($content) {
         $tempFile = str_random(5);
         file_put_contents($tempFile, $content);
         $info = mime_content_type($tempFile);
+        unlink($tempFile);
+        return $info;
+    }
+} else {
+    function get_type_by_content($content) {
+        $tempFile = str_random(5);
+        $info = null;
+        file_put_contents($tempFile, $content);
+        $cmd = 'file -nbi '.$tempFile;
+        $ret = shell_exec_ensure($cmd, false, false);
+        if (!$ret['status']) {
+            $info = $ret['output'];
+            $info = explode(';', $info);
+            $info = $info[0];
+        }
         unlink($tempFile);
         return $info;
     }
