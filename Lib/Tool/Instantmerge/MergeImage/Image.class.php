@@ -54,7 +54,7 @@ class Image {
 			$this->check_config();
 			$this->resize();
 		}else{
-			exit("file \"$filename\" not found!");
+			mark("file \"$filename\" not found! But in merge config!", 'error');
 		}
 	}
 
