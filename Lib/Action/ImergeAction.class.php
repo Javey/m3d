@@ -64,8 +64,8 @@ class ImergeAction extends Action {
      * 自动合图
      */
     public function auto() {
-        ini_set('memory_limit', -1);
-        set_time_limit(0);
+//        ini_set('memory_limit', -1);
+//        set_time_limit(0);
         header('Content-Type: text/event-stream');
         header('Cache-Control: no-cache');
         $this->tool->run();

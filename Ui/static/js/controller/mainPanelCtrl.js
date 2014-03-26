@@ -159,7 +159,7 @@ define(['lodash', 'angular'], function(_) {
                                 var data = res.data || {};
                                 $rootScope.$broadcast('add:branch', data.id);
                                 notify.open({
-                                    template: '分支CheckOut完成',
+                                    template: '代码CheckOut完成',
                                     sticky: false,
                                     type: 'normal'
                                 });
