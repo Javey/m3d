@@ -27,7 +27,6 @@ class IncreMap {
     private static $revision = null;
 
     public static function init() {
-        mark('init');
         self::genMd5Map();
         self::genLatestRevision();
     }
