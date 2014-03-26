@@ -37,7 +37,7 @@ class MergeConfigGenerator {
 
     public function generate() {
         foreach ($this->files as $file) {
-            mark('扫描文件：'.$file);
+            mark('解析CSS文件：'.$file);
             $content = file_get_contents($file);
             $cssParser = new Parser($content);
             $cssDoc = $cssParser->parse();
