@@ -15,7 +15,6 @@ abstract class Action {
     public function __construct() {
         ini_set('memory_limit', -1);
         set_time_limit(0);
-        
         $this->method = isset($_GET['method']) ? $_GET['method'] : REQUEST_METHOD;
     }
 
