@@ -64,7 +64,7 @@ return array(
      * 发布到线上时，需要替换的文本内容
      */
     'replace_list' => array(
-        // 'passport.rdtest' => 'passport'
+//        'passport.rdtest' => 'passport'
     ),
 
     /**
