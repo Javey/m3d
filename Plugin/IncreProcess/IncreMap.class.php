@@ -13,6 +13,7 @@ on(
         'css_import',
         'css_background_change',
         'js_import',
+        'js_replace',
         'html_href_change'
     ),
     'IncreMap::update'

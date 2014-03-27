@@ -7,8 +7,13 @@
  */
 
 class MediaPreprocess extends Preprocess {
+    // 保存media处理了多少种类型的数组
+    private static $types = array();
 
     public function process() {
+        if (!isset(self::$types[$this->type])) {
+            self::$types[$this->type] = true;
+        }
         $this->contents = $this->oContents;
     }
 
@@ -23,5 +28,9 @@ class MediaPreprocess extends Preprocess {
             $compressor->compress(array('png8' => true));
             $this->contents = $compressor->contents;
         }
+    }
+
+    public static function getTypes() {
+        return self::$types;
     }
 }

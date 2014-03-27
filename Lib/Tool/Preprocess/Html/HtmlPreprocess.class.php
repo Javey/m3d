@@ -74,6 +74,26 @@ class HtmlPreprocess extends Preprocess {
                 $this->replacePath('css', $value, 'href');
             }
         }
+
+        // 处理内联压缩
+        $cssStyles = $html->find('style');
+        $lDelimiter = C('SRC.SMARTY_LEFT_DELIMITER');
+        $rDelimiter = C('SRC.SMARTY_RIGHT_DELIMITER');
+        foreach ($cssStyles as $style) {
+            if (isset($style->_xcompress) && $style->_xcompress === 'true') {
+                $processor = Preprocess::getInstance('css');
+                $processor->setContents($style->innerText);
+                $processor->compress();
+
+                $text = $lDelimiter.'literal'.$rDelimiter;
+                $text .= $processor->getContents();
+                $text .= $lDelimiter.'/literal'.$rDelimiter;
+
+                $style->innerText = $text;
+
+                $style->_xcompress = null;
+            }
+        }
     }
 
     /**
@@ -81,9 +101,25 @@ class HtmlPreprocess extends Preprocess {
      * @param simple_html_dom $html
      */
     private function handleJs(simple_html_dom $html) {
+        $lDelimiter = C('SRC.SMARTY_LEFT_DELIMITER');
+        $rDelimiter = C('SRC.SMARTY_RIGHT_DELIMITER');
         foreach ($html->find('script') as $value) {
             if (!empty($value->src)) {
                 $this->replacePath('js', $value, 'src');
+            } else {
+                if (isset($value->_xcompress) && $value->_xcompress === 'true') {
+                    $processor = Preprocess::getInstance('js');
+                    $processor->setContents($value->innerText);
+                    $processor->compress();
+
+                    $text = $lDelimiter.'literal'.$rDelimiter;
+                    $text .= $processor->getContents();
+                    $text .= $lDelimiter.'/literal'.$rDelimiter;
+
+                    $value->innerText = $text;
+
+                    $value->_xcompress = null;
+                }
             }
         }
     }

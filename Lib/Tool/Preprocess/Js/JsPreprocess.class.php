@@ -13,7 +13,8 @@ class JsPreprocess extends Preprocess {
      * @return mixed|void
      */
     public function process() {
-        $this->contents = $this->handleDocumentWrite();
+        $this->handleDocumentWrite();
+        $this->handleMediaResource();
     }
 
     /**
@@ -31,9 +32,9 @@ class JsPreprocess extends Preprocess {
      * 将document.write进来的文件合并
      */
     private function handleDocumentWrite() {
-        return preg_replace_callback(
+        $this->contents = preg_replace_callback(
             '/(?<!\\/{2})document\.write\\((\\\'|\\")<script(?:(?:\s+?[^>]+?)*?\s+?type=(\\\\?(?:\\\'|\\"))text\\/javascript\\2)?(?:\s+?[^>]+?)*?\s+?src=(\\\\?(?:\\\'|\\"))([^>\\s\\3]+?)\\3(?:(?:\s+?[^>]+?)*?\s+?type=\\\\?(\\\'|\\")text\\/javascript\\5)?[^>]*?>\\s*<\\/script>\\1\\);?/i',
-            array(&$this, 'handle'),
+            array($this, 'handle'),
             $this->oContents
         );
     }
@@ -47,5 +48,26 @@ class JsPreprocess extends Preprocess {
         trigger('js_import', $this, $processor);
 
         return $processor->getContents();
+    }
+
+    /**
+     * 处理media资源，地址替换
+     */
+    private function handleMediaResource() {
+        $mediaTypes = MediaPreprocess::getTypes();
+        $mediaTypes = array_keys($mediaTypes);
+        $reg = '/(?<=[\'\"])(?:'.C('STATIC_VIRTUAL_PREFIX').'[^\'\"]*)\.(?:'.implode('|', $mediaTypes).')(?=[\'\"])/';
+
+        preg_replace_callback($reg, array($this, 'replaceMediaPath'), $this->contents);
+    }
+
+    private function replaceMediaPath($matches) {
+        $path = $matches[0];
+        $aPath = Tool::getActualPath($path);
+        if (isset($this->map['media'][$aPath])) {
+            trigger('js_replace', $this, $aPath);
+            return Tool::addCdn($this->map['media'][$aPath]);
+        }
+        return $path;
     }
 }

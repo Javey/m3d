@@ -25,6 +25,10 @@ return array(
             'processor' => 'media'
         ),
         // 如果存在静态模板，如需进行md5化，则可以当做media资源处理
+        // 存在这种情况，是当有requireJs，需要加载静态模板时，
+        // 可以只将静态模板map写入requireJs，如果和图片一起处理，则会将map信息混合到图片中，
+        // 这样造成不必要的map（图片map）写入requireJs
+        // 如果requireJs不存在加载静态模板的情况，则可以和图片一起处理
 //        array(
 //            'from' => '/static/html',
 //            'to' => '/static/h',
