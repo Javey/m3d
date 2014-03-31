@@ -18,28 +18,44 @@ class MergeConfigWriter {
      * 写入小图配置
      */
     public function writeImageConfig($mergeConfig) {
-        $imergePath = $this->root.'/'.C('IMERGE_IMAGE_DIR');
         foreach ($mergeConfig as $type => $value) {
-            $typePath = $imergePath.'/'.$type;
-            if (!file_exists($typePath)) {
-                mkdir($typePath, 0777, true);
-            } else {
-                $this->cleanupFile($typePath);
-            }
-            foreach ($value as $url => $config) {
-                $uid = file_uid($url);
+            $this->writeImageConfigByType($value, $type);
+        }
+        $this->cleanupDir(array_keys($mergeConfig));
+    }
 
+    /**
+     * 根据type，写入一类小图的所有配置
+     * @param $config
+     * @param $type
+     * @param bool $custom 是否写入自定义文件中
+     */
+    public function writeImageConfigByType($config, $type, $custom=false) {
+        $imergePath = $this->root.'/'.C('IMERGE_IMAGE_DIR');
+        $typePath = $imergePath.'/'.$type;
+        if (!file_exists($typePath)) {
+            mkdir($typePath, 0777, true);
+        } else {
+            $this->cleanupFile($typePath);
+        }
+        foreach ($config as $url => $value) {
+            $uid = file_uid($url);
+            if (!$custom) {
                 // 只有当自定义配置文件不存在时，才进行配置写入
                 // 自定义配置文件名以'_'开头
                 $customFile = $typePath.'/_'.$uid.'.php';
                 if (!file_exists($customFile)) {
                     $configFile = $typePath.'/'.$uid.'.php';
-                    $contents = self::configStringify($config, $url);
+                    $contents = self::configStringify($value, $url);
                     contents_to_file($configFile, $contents);
                 }
+            } else {
+                // 如果是自定义配置文件批量写入，则用'_'开头
+                $configFile = $typePath.'/_'.$uid.'.php';
+                $contents = self::configStringify($value, $url);
+                contents_to_file($configFile, $contents);
             }
         }
-        $this->cleanupDir(array_keys($mergeConfig));
     }
 
     /**

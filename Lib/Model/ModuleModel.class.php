@@ -44,7 +44,9 @@ class ModuleModel extends Model {
             show_error($name.'模块已存在', true);
         }
         $modulePath = C('SRC_PATH').'/'.$name;
-        mkdir($modulePath, 0777, true);
+        if (!file_exists($modulePath)) {
+            mkdir($modulePath, 0777, true);
+        }
 
         $siteSrcPath = C('PROJECT.SITE_PATH').'/'.C('PROJECT.TEMP_DIR').'/'.C('PROJECT.SRC_DIR');
         $cmd = 'cd '.$siteSrcPath.' && ln -snf '.C('SRC_PATH').'/'.$name.'/trunk '.$title;

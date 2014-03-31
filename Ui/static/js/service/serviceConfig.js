@@ -2,8 +2,8 @@ define(['lodash'], function(_) {
     return _.map([
         'siteService',
         'moduleService',
-        'confirmService',
-        'imergeService'
+        'imergeService',
+        'projectService'
     ], function(item) {
         return 'service/' + item;
     });

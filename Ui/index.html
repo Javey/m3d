@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <!--<html manifest="/static/m3d.manifest">-->
-<html>
+<html ng-controller="AppCtrl">
 <head>
     <meta charset="utf-8">
-    <title>M3D开发联调平台</title>
+    <title>M3D_{{projectInfo.name}}</title>
     <link rel="stylesheet" href="/static/css/all.css">
 </head>
-<body ng-controller="AppCtrl">
+<body>
 <nav class="main-panel" ng-controller="MainPanelCtrl" ng-include="'/static/html/mainPanel.html'"></nav>
 <div class="main-page" ng-view></div>
 

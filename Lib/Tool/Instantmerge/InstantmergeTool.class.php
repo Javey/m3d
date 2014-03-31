@@ -23,6 +23,9 @@ require_once('MergeImage/Sprite.class.php');
 class InstantmergeTool extends Tool {
     // 合图开始
     public function run() {
+        trigger('imerge_start', $this);
+
+        mark('开始自动合图扫描', 'emphasize');
         $files = get_files_by_type(C('SRC.SRC_PATH'), 'css');
         $generator = new MergeConfigGenerator($files);
         $generator->generate();

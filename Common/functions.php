@@ -455,8 +455,8 @@ function get_files_by_type($paths, $types, $root='') {
         while ($entries = glob($glob)) {
             foreach ($entries as $entry) {
                 if (is_file($entry)) {
-                    $pathinfo = pathinfo($entry);
-                    if (isset($pathinfo['extension']) && in_array($pathinfo['extension'], $types)) {
+                    $extension = pathinfo($entry, PATHINFO_EXTENSION);
+                    if (in_array($extension, $types)) {
                         $ret[] = $entry;
                     }
                 }

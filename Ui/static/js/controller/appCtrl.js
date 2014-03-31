@@ -7,7 +7,7 @@
  */
 
 define(['angular'], function() {
-    return ['$scope', function($scope) {
+    return ['$scope', 'project', function($scope, project) {
 //        $scope.$on('list:change:site', function() {
 //            // 向下传递，需要改变事件名
 //            var args = ['change:site'].concat([].slice.call(arguments, 1));
@@ -22,5 +22,8 @@ define(['angular'], function() {
 //        $scope.$on('branchList:change', function() {
 //            console.log(arguments);
 //        });
+        project.read(function(res) {
+            $scope.projectInfo = res.data;
+        });
     }];
 });

@@ -18,8 +18,8 @@
         <div class="title">
             <h1 class="name">{{info.name}}</h1>
             <span class="line">-</span>
-            <a href="http://{{info.name}}.music.baidu.com" title="访问测试环境" target="_blank">测试环境</a>
-            <a href="http://build.{{info.name}}.music.baidu.com" title="访问编译环境" target="_blank">编译环境</a>
+            <a href="http://{{info.name}}.{{projectInfo.host}}" title="访问测试环境" target="_blank">测试环境</a>
+            <a href="http://build.{{info.name}}.{{projectInfo.host}}" title="访问编译环境" target="_blank">编译环境</a>
         </div>
         <div class="info">{{info.author}} - {{info.createTime}}</div>
         <div class="description">{{info.description}}</div>
@@ -36,13 +36,13 @@
                 <span class="add ion-ios7-plus-outline" title="添加" ng-click="add(module.id)"></span>
                 <span class="title ellipsis" ng-click="test()">{{module.title}}<span class="description"> - {{module.description}}</span></span>
                 <span class="branch" branch-list module="module"></span>
-            <span class="ctrl">
-                <span class="btn compile" ng-click="compile(module.title)">编译</span>
-                <span class="btn merge" ng-click="mergeImage(module.title)">
-                    <a href="#/imerge/{{info.name}}/{{module.title}}">合图</a>
+                <span class="ctrl" ng-hide="!module.fe">
+                    <span class="btn compile" ng-click="compile(module.title)">编译</span>
+                    <span class="btn merge" ng-click="mergeImage(module.title)">
+                        <a href="#/imerge/{{info.name}}/{{module.title}}">合图</a>
+                    </span>
+                    <span class="btn test" ng-class="toTest(module.title)">提测</span>
                 </span>
-                <span class="btn test" ng-class="toTest(module.title)">提测</span>
-            </span>
             </li>
         </ul>
     </div>
