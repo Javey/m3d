@@ -4,5 +4,7 @@
  */
 
 return array(
+    'INFO' => array(
 
+    )
 );

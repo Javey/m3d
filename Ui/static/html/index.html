@@ -34,7 +34,7 @@
             <li class="item clearfix" ng-repeat="module in info.modules" ng-class="{other: module.isOther}">
                 <span class="delete ion-ios7-close-outline" title="删除" ng-click="delete(module.id)"></span>
                 <span class="add ion-ios7-plus-outline" title="添加" ng-click="add(module.id)"></span>
-                <span class="title" ng-click="test()">{{module.title}}</span>
+                <span class="title ellipsis" ng-click="test()">{{module.title}}<span class="description"> - {{module.description}}</span></span>
                 <span class="branch" branch-list module="module"></span>
             <span class="ctrl">
                 <span class="btn compile" ng-click="compile(module.title)">编译</span>

@@ -109,8 +109,11 @@
     /*display: block;*/
 /*}*/
 .modules .title {
-    width: 130px;
+    width: 200px;
     /*padding-left: 10px;*/
+}
+.modules .title .description {
+    color: #999;
 }
 .modules .branch input {
     /*padding-left: 5px;*/

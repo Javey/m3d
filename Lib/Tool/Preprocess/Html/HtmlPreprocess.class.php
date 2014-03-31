@@ -79,6 +79,7 @@ class HtmlPreprocess extends Preprocess {
         $cssStyles = $html->find('style');
         $lDelimiter = C('SRC.SMARTY_LEFT_DELIMITER');
         $rDelimiter = C('SRC.SMARTY_RIGHT_DELIMITER');
+
         foreach ($cssStyles as $style) {
             if (isset($style->_xcompress) && $style->_xcompress === 'true') {
                 $processor = Preprocess::getInstance('css');
@@ -103,10 +104,12 @@ class HtmlPreprocess extends Preprocess {
     private function handleJs(simple_html_dom $html) {
         $lDelimiter = C('SRC.SMARTY_LEFT_DELIMITER');
         $rDelimiter = C('SRC.SMARTY_RIGHT_DELIMITER');
+
         foreach ($html->find('script') as $value) {
             if (!empty($value->src)) {
                 $this->replacePath('js', $value, 'src');
             } else {
+                // 处理内联js
                 if (isset($value->_xcompress) && $value->_xcompress === 'true') {
                     $processor = Preprocess::getInstance('js');
                     $processor->setContents($value->innerText);

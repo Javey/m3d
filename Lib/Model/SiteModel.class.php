@@ -51,8 +51,6 @@ class SiteModel extends Model {
         ));
         $this->save();
 
-        shell_exec_ensure(C('RESTART'), false);
-
         return true;
     }
 
@@ -96,7 +94,7 @@ class SiteModel extends Model {
     public function deleteSite($name) {
         $this->where('name', '=', $name)->delete();
         $path = C('PROJECT.SITE_PATH').'/'.$name;
-        return shell_exec_ensure('rm -rf '.$path.' && '.C('RESTART'), false, false);
+        return shell_exec_ensure('rm -rf '.$path, false, false);
     }
 
     /**

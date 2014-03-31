@@ -85,6 +85,12 @@ define(['angular', 'lodash'], function(angular, _) {
                             notify.open({
                                 template: '合图完成！'
                             });
+                        } else {
+                            notify.open({
+                                template: '合图失败!<br/>' + res.data,
+                                type: 'error',
+                                sticky: true
+                            })
                         }
                     }
                 });

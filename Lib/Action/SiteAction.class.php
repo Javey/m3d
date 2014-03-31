@@ -56,6 +56,9 @@ class SiteAction extends Action {
         } else {
             show_error('新建环境失败!');
         }
+
+        /* restart服务器一定要放到最后 踩坑了%>_<% */
+        Tool::restartServer();
     }
 
     private function deleteSite() {
@@ -64,6 +67,7 @@ class SiteAction extends Action {
         $model->deleteSite($name);
 
         show_json('', 200);
+        Tool::restartServer();
     }
 
     private function refreshSite() {

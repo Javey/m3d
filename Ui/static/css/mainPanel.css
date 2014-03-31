@@ -58,6 +58,12 @@
 .modal .long {
     width: 434px;
 }
+.modal .tip {
+    font-size: 12px;
+    color: #999;
+    line-height: 32px;
+    margin-left: 10px;
+}
 .checkout .type .right {
     line-height: 32px;
 }

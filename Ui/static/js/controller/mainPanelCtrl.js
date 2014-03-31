@@ -230,7 +230,8 @@ define(['lodash', 'angular'], function(_) {
             $scope.info = {
                 name: '',
                 title: '',
-                description: ''
+                description: '',
+                fe: true
             };
 
             $scope.form = null;

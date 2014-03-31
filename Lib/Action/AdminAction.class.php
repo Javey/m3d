@@ -52,24 +52,19 @@ class AdminAction extends Action {
 //    }
 //
 //    public function createModule() {
-////        Model::create('module', array(
-////            'title' => 'string',
-////            'filename' => 'string',
-////            'type' => 'string',
-////            'storename' => 'string'
-////        ));
 //        Model::create('module', array(
 //            'title' => 'string',
 //            'filename' => 'string',
 //            'storename' => 'string',
-//            'description' => 'string'
+//            'description' => 'string',
+//            'fe' => 'integer'
 //        ));
 //    }
 //
 //    public function deleteModule() {
 //        Model::remove('module');
 //    }
-//
+
 //    public function addModule() {
 //        $model = new Model('module');
 //        $model->set(array(
@@ -80,4 +75,16 @@ class AdminAction extends Action {
 //        ));
 //        $model->save();
 //    }
+
+    public function flush() {
+        ob_end_flush();
+        ob_start();
+        ob_implicit_flush(1);
+        for ($i = 0; $i < 20; $i++) {
+            echo 'good'.$i;
+            ob_flush();
+            flush();
+            sleep(1);
+        }
+    }
 }

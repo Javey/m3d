@@ -90,6 +90,12 @@ abstract class Tool {
         shell_exec_ensure(C('SVN').' del '.$path.' --force', false, false);
     }
 
+    static public function restartServer() {
+        if (C('RESTART')) {
+            exec(C('RESTART').' > /dev/null 2>/dev/null &');
+        }
+    }
+
     /**
      * 加载配置
      */

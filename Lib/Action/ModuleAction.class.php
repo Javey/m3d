@@ -104,7 +104,8 @@ class ModuleAction extends Action {
         $data = array(
             'name' => $_POST['name'],
             'title' => $_POST['title'],
-            'description' => $_POST['description']
+            'description' => $_POST['description'],
+            'fe' => $_POST['fe'] === 'true' ? 1 : 0
         );
         $model = new ModuleModel();
         $model->addModule($data);

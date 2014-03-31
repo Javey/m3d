@@ -54,7 +54,8 @@ class ModuleModel extends Model {
             'storename' => $name,
             'title' => $title,
             'filename' => $title,
-            'description' => $data['description']
+            'description' => $data['description'],
+            'fe' => $data['fe']
         ));
         $this->save();
 
