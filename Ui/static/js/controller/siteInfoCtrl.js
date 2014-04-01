@@ -112,12 +112,14 @@ define(['angular'], function() {
         };
 
         $scope.compile = function(mod) {
+            var isIncre = confirm('是否进行增量编译');
             var ter = terminal.open({
                 title: '编译'
             });
             module.compile({
                 site: $scope.info.name,
-                module: mod
+                module: mod,
+                isIncre: isIncre
             }, function(res) {
                 if (res.errorCode === 200) {
                     if (res.log) {

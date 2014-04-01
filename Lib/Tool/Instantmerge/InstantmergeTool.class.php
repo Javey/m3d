@@ -34,6 +34,8 @@ class InstantmergeTool extends Tool {
 
         // 更新大图
         $this->updateSprite();
+
+        trigger('imerge_end', $this);
     }
 
     public function updateSprite() {

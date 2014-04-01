@@ -79,14 +79,6 @@ class ImergeAction extends Action {
         $sprite->output($type);
     }
 
-    public function getConfig() {
-        $type = $_GET['type'];
-        $config = $this->tool->getLoader()->getImageConfigByType($type);
-        print_r($config);
-        $plugin = new ImergeMigratePlugin();
-        $plugin->run($this->tool);
-    }
-
     /**
      * 获取所有图片列表
      * 用于智能提示

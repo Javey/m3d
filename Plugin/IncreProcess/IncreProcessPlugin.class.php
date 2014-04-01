@@ -41,7 +41,7 @@ class IncreProcessPlugin extends Plugin {
         $oldRevision = self::getPrevRevision();
 //        $oldRevision = null;
 
-        if (true || !C('INCRE.IS_INCRE') || is_null($oldRevision)) {
+        if ((isset($_GET['isIncre']) && $_GET['isIncre'] === 'false') || !C('INCRE.IS_INCRE') || is_null($oldRevision)) {
             // 事件解绑
             off('one_process_start', 'IncreProcessPlugin::importMap');
             off('processor_fetch_files', 'IncreProcessPlugin::getFileList');
