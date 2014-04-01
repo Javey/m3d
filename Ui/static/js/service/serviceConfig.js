@@ -3,7 +3,8 @@ define(['lodash'], function(_) {
         'siteService',
         'moduleService',
         'imergeService',
-        'projectService'
+        'projectService',
+        'userService'
     ], function(item) {
         return 'service/' + item;
     });

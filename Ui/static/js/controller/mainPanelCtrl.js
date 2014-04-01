@@ -6,28 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['lodash', 'angular'], function(_) {
-
-    /**
-     * 手动验证表单
-     * @param $scope
-     * @param ngForm
-     * @returns {boolean}
-     */
-    var validateForm = function($scope, ngForm) {
-        if (ngForm.$valid) {
-            return true;
-        } else {
-            ngForm.$dirty = true;
-            for (var i in ngForm) {
-                if (ngForm[i] && ngForm[i].hasOwnProperty && ngForm[i].hasOwnProperty('$dirty')) {
-                    ngForm[i].$setDirty();
-                }
-            }
-        }
-        return true;
-    };
-
+define(['lodash', 'angular', 'lib/common'], function(_, angular, common) {
     /**
      * 新增环境controller
      * @type {Array}
@@ -54,17 +33,16 @@ define(['lodash', 'angular'], function(_) {
             });
 
             $scope.ok = function() {
-                validateForm($scope, $scope.mainForm);
+                common.validateForm($scope, $scope.mainForm);
                 if ($scope.mainForm.$valid && !$scope.isAjax) {
                     $scope.isAjax = true;
                     site.addSite($scope.info, function(res) {
                         $scope.isAjax = false;
-                        console.log(res);
                         if (res.errorCode === 200) {
                             $rootScope.$broadcast('add:site');
                             $modal.close();
                             notify.open({
-                                template: res.data
+                                template: res.data + '<br/>服务器将在3s后重启'
                             });
                         } else {
                             notify.open({
@@ -144,7 +122,7 @@ define(['lodash', 'angular'], function(_) {
             });
 
             $scope.ok = function() {
-                validateForm($scope, $scope.form);
+                common.validateForm($scope, $scope.form);
                 if ($scope.form.$valid) {
                     var ter = terminal.open({
                         title: 'CheckOut'
@@ -251,7 +229,7 @@ define(['lodash', 'angular'], function(_) {
 
 
             $scope.ok = function() {
-                validateForm($scope, $scope.form);
+                common.validateForm($scope, $scope.form);
                 if ($scope.form.$valid) {
                     if (!$scope.info.title) {
                         $scope.info.title = $scope.placeholder;
@@ -324,6 +302,76 @@ define(['lodash', 'angular'], function(_) {
         }
     ];
 
+    // 用户名管理
+    var userController = ['$scope', '$modalInstance', 'user', 'notify', function($scope, $modal, user, notify) {
+        $scope.users = null;
+        $scope.newUser = {
+            name: '',
+            email: ''
+        };
+
+        user.read(function(res) {
+            $scope.users = res.data;
+        });
+
+        $scope.cancel = function() {
+            $modal.close();
+        };
+
+        $scope.addUser = function(form, type) {
+            if (form.$valid) {
+                user.create({
+                    name: $scope.newUser.name,
+                    email: $scope.newUser.email,
+                    type: type
+                }, function(res) {
+                    if (res.errorCode === 200) {
+                        $scope.users[type].push(angular.copy($scope.newUser));
+                        notify.open({
+                            template: '添加成功'
+                        });
+                    } else {
+                        notify.open({
+                            template: '添加失败<br />' + res.data,
+                            type: 'error',
+                            sticky: true
+                        });
+                    }
+                });
+            }
+        };
+
+        $scope.delete = function(name, type) {
+            user.delete({
+                name: name,
+                type: type
+            }, function(res) {
+                if (res.errorCode === 200) {
+                    var index = -1;
+                    _.find($scope.users[type], function(value, idx) {
+                        if (value.name === name) {
+                            index = idx;
+                            return true;
+                        }
+                        return false;
+                    });
+                    if (index > -1) {
+                        $scope.users[type].splice(index, 1);
+                    }
+                    notify.open({
+                        template: '删除成功'
+                    });
+                } else {
+                    notify.open({
+                        template: '删除失败<br />' + res.data,
+                        type: 'error',
+                        sticky: true
+                    });
+                }
+            });
+        }
+    }];
+
     return ['$scope', '$modal', function($scope, $modal) {
         $scope.addSite = function() {
             var modal = $modal.open({
@@ -358,5 +406,14 @@ define(['lodash', 'angular'], function(_) {
                 windowClass: 'module-manager'
             });
         };
+
+        $scope.user = function() {
+            $modal.open({
+                templateUrl: '/static/html/user.html',
+                controller: userController,
+                backdrop: 'static',
+                windowClass: 'user-manager'
+            });
+        }
     }];
 });

@@ -20,6 +20,14 @@ class AdminAction extends Action {
         View::render(file_get_contents($file), 'application/x-javascript');
     }
 
+    public function createUserDb() {
+        Model::create('user', array(
+            'name' => 'string',
+            'email' => 'string',
+            'type' => 'string'
+        ));
+    }
+
 //    public function delSite() {
 //        Model::remove('site');
 //    }
@@ -76,15 +84,15 @@ class AdminAction extends Action {
 //        $model->save();
 //    }
 
-    public function flush() {
-        ob_end_flush();
-        ob_start();
-        ob_implicit_flush(1);
-        for ($i = 0; $i < 20; $i++) {
-            echo 'good'.$i;
-            ob_flush();
-            flush();
-            sleep(1);
-        }
-    }
+//    public function flush() {
+//        ob_end_flush();
+//        ob_start();
+//        ob_implicit_flush(1);
+//        for ($i = 0; $i < 20; $i++) {
+//            echo 'good'.$i;
+//            ob_flush();
+//            flush();
+//            sleep(1);
+//        }
+//    }
 }

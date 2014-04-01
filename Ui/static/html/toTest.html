@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h3>提测通知</h3>
+    <div class="close ion-android-close" ng-click="cancel()"></div>
+</div>
+<div class="modal-body">
+    <form name="toTest" ng-value="$parent.form = toTest">
+        <div class="item to">
+            <label>
+                <span class="title" ng-click="test()">收件人</span>
+                <span class="right">
+                    <input class="long" ng-model="info.to" type="text" name="to" required ng-focus="showList = true" ng-blur="showList = false" />
+                    <span class="error-tip" ng-show="toTest.to.$dirty && toTest.to.$error.required">Required!</span>
+                    <span class="hint-list" ng-show="showList">
+                        <span class="hint-item" ng-repeat="user in $parent.users.to | filter:$parent.to" ng-mousedown="addUser(user, 'to')">{{user.name}} - {{user.email}}</span>
+                    </span>
+                </span>
+            </label>
+        </div>
+        <div class="item from">
+            <label>
+                <span class="title">提测人</span>
+                <span class="right">
+                    <input class="long" ng-model="info.from" type="text" name="from" required ng-focus="showListFrom = true" ng-blur="showListFrom = false" />
+                    <span class="error-tip" ng-show="toTest.from.$dirty && toTest.from.$error.required">Required!</span>
+                    <span class="hint-list" ng-show="showListFrom">
+                        <span class="hint-item" ng-repeat="user in $parent.users.from | filter:$parent.from" ng-mousedown="addUser(user, 'from')">{{user.name}} - {{user.email}}</span>
+                    </span>
+                </span>
+            </label>
+        </div>
+        <div class="item subject">
+            <label>
+                <span class="title">主题</span>
+                <span class="right">
+                    <input class="long" ng-model="info.subject" type="text" name="subject" required />
+                    <span class="error-tip" ng-show="toTest.subject.$dirty && toTest.subject.$error.required">Required!</span>
+                </span>
+            </label>
+        </div>
+        <div class="item description">
+            <label>
+                <span class="title">描述</span>
+                <span class="right">
+                    <textarea class="long" ng-model="info.description" required name="description"></textarea>
+                    <span class="error-tip" ng-show="toTest.description.$dirty && toTest.description.$error.required">Required!</span>
+                </span>
+            </label>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="btn btn-a btn-ok" ng-click="ok()" ng-class="{disable: form.$invalid}">确定</div>
+    <div class="btn btn-a btn-cancel" ng-click="cancel()">取消</div>
+</div>

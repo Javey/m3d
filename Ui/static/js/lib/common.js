@@ -46,6 +46,26 @@ define(['lodash', 'jquery'], function(_, $) {
                 xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
                 xhr.send(options.data);
             };
-        })()
+        })(),
+
+        /**
+         * 手动验证表单
+         * @param $scope
+         * @param ngForm
+         * @returns {boolean}
+         */
+        validateForm: function($scope, ngForm) {
+            if (ngForm.$valid) {
+                return true;
+            } else {
+                ngForm.$dirty = true;
+                for (var i in ngForm) {
+                    if (ngForm[i] && ngForm[i].hasOwnProperty && ngForm[i].hasOwnProperty('$dirty')) {
+                        ngForm[i].$setDirty();
+                    }
+                }
+            }
+            return true;
+        }
     };
 });

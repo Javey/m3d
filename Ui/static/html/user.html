@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h3>用户名管理</h3>
+    <div class="close ion-android-close" ng-click="cancel()"></div>
+</div>
+<div class="modal-body">
+    <tabset>
+        <tab heading="收件人管理">
+            <form ng-enter="addUser(userFormTo, 'to')" name="userFormTo">
+                <input type="text" placeholder="name" required class="name" ng-model="newUser.name"/>
+                <input type="email" placeholder="email" required ng-model="newUser.email"/>
+            </form>
+            <ul class="user-list">
+                <li ng-repeat="item in users.to">
+                    <span class="name ellipsis">{{item.name}}</span>
+                    <span class="email ellipsis">{{item.email}}</span>
+                    <span class="delete ion-ios7-close-outline" title="删除" ng-click="delete(item.name, 'to')"></span>
+                </li>
+            </ul>
+        </tab>
+        <tab heading="提测人管理">
+            <form ng-enter="addUser(userFormFrom, 'from')" name="userFormFrom">
+                <input type="text" placeholder="name" required class="name" ng-model="newUser.name"/>
+                <input type="email" placeholder="email" required ng-model="newUser.email"/>
+            </form>
+            <ul class="user-list">
+                <li ng-repeat="item in users.from">
+                    <span class="name ellipsis">{{item.name}}</span>
+                    <span class="email ellipsis">{{item.email}}</span>
+                    <span class="delete ion-ios7-close-outline" title="删除" ng-click="delete(item.name, 'from')"></span>
+                </li>
+            </ul>
+        </tab>
+    </tabset>
+</div>

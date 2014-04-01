@@ -1,5 +1,5 @@
-define(['angular'], function() {
-    return ['$scope', 'site', 'module', 'notify', 'terminal', function($scope, site, module, notify, terminal) {
+define(['lodash', 'angular'], function(_) {
+    return ['$scope', 'site', 'module', 'notify', 'terminal', '$modal', function($scope, site, module, notify, terminal, $modal) {
         // 数据缓存
         var cache = {};
         $scope.info = null;
@@ -136,6 +136,31 @@ define(['angular'], function() {
                         sticky: true
                     });
                 }
+            });
+        };
+
+        $scope.toTest = function(modId) {
+            var rdModule = _.find($scope.info.modules, function(module) {
+                    return !module.fe;
+                }),
+                feModule = _.find($scope.info.modules, function(module) {
+                    return module.id === modId;
+                });
+            require(['controller/toTestCtrl'], function(ctrl) {
+                $modal.open({
+                    templateUrl: '/static/html/toTest.html',
+                    controller: ctrl,
+                    backdrop: 'static',
+                    windowClass: 'to-test',
+                    resolve: {
+                        mod: function() {
+                            return {
+                                rd: rdModule,
+                                fe: feModule
+                            };
+                        }
+                    }
+                });
             });
         };
 

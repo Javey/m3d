@@ -34,7 +34,7 @@ define(['angular'], function() {
                     }
 
                     notify.open({
-                        template: '删除成功'
+                        template: '删除成功<br />服务器将在3s后重启'
                     });
                 }
             });

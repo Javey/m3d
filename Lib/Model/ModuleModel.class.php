@@ -76,7 +76,7 @@ class ModuleModel extends Model {
         rm_dir($modulePath);
         // 删除模板环境中src软链
         $siteSrcPath = C('PROJECT.SITE_PATH').'/'.C('PROJECT.TEMP_DIR').'/'.C('PROJECT.SRC_DIR');
-        unlink($siteSrcPath.'/'.$info->filename);
+        @unlink($siteSrcPath.'/'.$info->filename);
 
         // 从数据库删除
         $this->find($id)->delete();

@@ -92,7 +92,7 @@ abstract class Tool {
 
     static public function restartServer() {
         if (C('RESTART')) {
-            exec(C('RESTART').' > /dev/null 2>/dev/null &');
+            exec('sleep 3; '.C('RESTART').' > /dev/null 2>/dev/null &');
         }
     }
 

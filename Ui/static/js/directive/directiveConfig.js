@@ -3,7 +3,8 @@ define(['lodash'], function(_) {
         'branchListDirective',
         'requiredTipDirective',
         'buttonDirective',
-        'resizableDirective'
+        'resizableDirective',
+        'ngEnterDirective'
     ], function(item) {
         return 'directive/' + item;
     });

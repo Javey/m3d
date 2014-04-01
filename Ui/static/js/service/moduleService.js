@@ -16,7 +16,8 @@ define(['lodash', 'lib/common', 'angular'], function(_, common) {
                     read: {method: 'GET', params: {type: 'branches'}},
                     _readAll: {method: 'GET', params: {method: 'get'}},
                     add: {method: 'POST', params: {method: 'put'}},
-                    delete: {method: 'POST', params: {method: 'delete'}}
+                    delete: {method: 'POST', params: {method: 'delete'}},
+                    test: {method: 'POST', params: {type: 'test', method: 'post'}}
                 }
             );
 

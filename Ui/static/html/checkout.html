@@ -19,8 +19,8 @@
                 <span class="right" ng-init="showList = false">
                     <input class="long" ng-focus="showList = true" ng-blur="showList = false" ng-model="info.name" type="text" name="name" ng-required="!info.name && !$parent.namePlaceholder" placeholder="{{$parent.namePlaceholder ? '识别结果：' + $parent.namePlaceholder : ''}}"/>
                     <span class="error-tip" ng-show="checkout.name.$dirty && checkout.name.$error.required">Require a Module Name!</span>
-                    <span class="module-list" ng-show="showList">
-                        <span class="module-item" ng-repeat="module in $parent.modules | filter:info.name" ng-mousedown="info.name = module.storename">{{module.storename}}</span>
+                    <span class="hint-list" ng-show="showList">
+                        <span class="hint-item" ng-repeat="module in $parent.modules | filter:info.name" ng-mousedown="info.name = module.storename">{{module.storename}}</span>
                     </span>
                 </span>
             </label>
