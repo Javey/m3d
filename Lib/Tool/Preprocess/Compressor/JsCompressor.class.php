@@ -10,7 +10,6 @@
 class JsCompressor extends Compressor {
     public function compress($option=null) {
         $compressor = C('JS_COMPRESSOR');
-        var_dump($compressor);
         if ($compressor) {
 //            $shell = $compressor.' --max-line-len=5000 ';
             $this->contents = $this->exec($compressor);
