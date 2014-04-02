@@ -14,8 +14,6 @@ class MediaCompressor extends Compressor {
      */
     public function compress($option=null) {
         $type = get_type_by_content($this->contents);
-        mark($type);
-        exit();
         // 支处理png
         if ($type === 'image/png') {
             if ($option && $option['png8']) {
