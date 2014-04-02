@@ -20,7 +20,7 @@ abstract class Tool {
         } elseif (is_array($options)) {
             $this->options = $options;
         } else {
-            show_error('配置文件"'.$options.'"不存在', true);
+            show_error('配置文件"'.$options.'"不存在', true, 400);
         }
         // 加载配置信息
         if ($initConfig) {

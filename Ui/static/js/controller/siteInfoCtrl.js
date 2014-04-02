@@ -130,8 +130,12 @@ define(['lodash', 'angular'], function(_) {
                         });
                     }
                 } else {
+                    var template = '编译终止<br />' + res.data;
+                    if (res.errorCode === 400) {
+                        template += '<br />请将该<a href="/admin/m3d" title="m3d.php配置文件">配置文件</a>放入源码根目录';
+                    }
                     notify.open({
-                        template: '编译终止<br />' + res.data,
+                        template: template,
                         type: 'error',
                         sticky: true
                     });
