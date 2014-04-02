@@ -223,7 +223,7 @@ class PreprocessTool extends Tool {
      * 拷贝结果到测试环境
      */
     private function copyToTestEnv() {
-        $envBuildPath = PROJECT_SITE_PATH.'/'.C('PROJECT.BUILD_DIR').PROJECT_MODULE_NAME;
+        $envBuildPath = PROJECT_SITE_PATH.'/'.C('PROJECT.BUILD_DIR').'/'.PROJECT_MODULE_NAME;
         if (file_exists($envBuildPath)) {
             shell_exec_ensure('rm -rf '.$envBuildPath.'/*');
         } else {

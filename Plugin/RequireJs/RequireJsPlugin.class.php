@@ -23,7 +23,7 @@ class RequireJsPlugin extends Plugin {
 
             $this->options['requirejs.path'] = C('SRC.SRC_PATH').$this->options['requirejs.path'];
             if (!file_exists($this->options['requirejs.path'])) {
-                mark('在路径："' . $this->options['requirejs.path'] . '"中，找不到requireJs，请检查m3d.php中requireJs配置', 'error');
+                mark('"' . $this->options['requirejs.path'] . '"不存在，请检查m3d.php中requireJs配置', 'error');
                 return;
             }
             $tool = $params[1];
