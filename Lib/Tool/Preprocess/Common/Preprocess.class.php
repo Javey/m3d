@@ -73,8 +73,7 @@ abstract class Preprocess {
             $info = pathinfo($file);
             $this->type = $info['extension'];
             $this->filename = $info['basename'];
-            $this->oContents = file_get_contents($file);
-            $this->contents = $this->oContents;
+            $this->setContents(file_get_contents($file));
             $this->path = $file;
             $this->relativePath = str_replace(C('SRC.SRC_PATH'), '', $file);
         } else {
@@ -113,5 +112,15 @@ abstract class Preprocess {
             (in_array($this->relativePath, $list) ?
                 true : ((in_array($this->filename, $list)) ?
                     true : false)) : false;
+    }
+
+    /**
+     * 去掉bom头
+     */
+    protected function removeBom() {
+        if (ord($this->contents[0]) === 239 && ord($this->contents[1]) === 187 && ord($this->contents[2]) === 191) {
+            mark('found bom', 'error');
+            $this->contents = substr($this->contents, 3);
+        }
     }
 }

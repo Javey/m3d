@@ -9,6 +9,15 @@
 
 class JsPreprocess extends Preprocess {
     /**
+     * 需要去掉bom头
+     * @param $contents
+     */
+    public function setContents($contents) {
+        parent::setContents($contents);
+        $this->removeBom();
+    }
+
+    /**
      * 预处理开始，document.write合并
      * @return mixed|void
      */

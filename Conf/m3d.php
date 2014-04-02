@@ -121,7 +121,7 @@ return array(
         // requireJs插件，用于处理将加载模块路径替换为编译后的路径
         #'requirejs' => array(
             #'path' => '/static/js/require/require.js', // requireJs路径（相对src.src_path)，进行路径替换 default: null(没有默认值)
-            #'map' => 'shtml, js', // 需要将什么类型的map，写入requireJs源文件中 default: js
+            #'map' => 'js', // 需要将什么类型的map，写入requireJs源文件中(多个用','分割) default: js
             #'var' => '_MD5_HASHMAP' // 变量名，用于前端获取map default: _MD5_HASHMAP
         #),
         // 增量编译插件
