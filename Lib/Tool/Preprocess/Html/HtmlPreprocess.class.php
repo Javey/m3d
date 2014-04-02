@@ -83,14 +83,14 @@ class HtmlPreprocess extends Preprocess {
         foreach ($cssStyles as $style) {
             if (isset($style->_xcompress) && $style->_xcompress === 'true') {
                 $processor = Preprocess::getInstance('css');
-                $processor->setContents($style->innerText);
+                $processor->setContents($style->innertext);
                 $processor->compress();
 
                 $text = $lDelimiter.'literal'.$rDelimiter;
                 $text .= $processor->getContents();
                 $text .= $lDelimiter.'/literal'.$rDelimiter;
 
-                $style->innerText = $text;
+                $style->innertext = $text;
 
                 $style->_xcompress = null;
             }
@@ -112,14 +112,14 @@ class HtmlPreprocess extends Preprocess {
                 // 处理内联js
                 if (isset($value->_xcompress) && $value->_xcompress === 'true') {
                     $processor = Preprocess::getInstance('js');
-                    $processor->setContents($value->innerText);
+                    $processor->setContents($value->innertext);
                     $processor->compress();
 
                     $text = $lDelimiter.'literal'.$rDelimiter;
                     $text .= $processor->getContents();
                     $text .= $lDelimiter.'/literal'.$rDelimiter;
 
-                    $value->innerText = $text;
+                    $value->innertext = $text;
 
                     $value->_xcompress = null;
                 }

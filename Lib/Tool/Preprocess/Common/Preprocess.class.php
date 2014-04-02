@@ -74,6 +74,7 @@ abstract class Preprocess {
             $this->type = $info['extension'];
             $this->filename = $info['basename'];
             $this->oContents = file_get_contents($file);
+            $this->contents = $this->oContents;
             $this->path = $file;
             $this->relativePath = str_replace(C('SRC.SRC_PATH'), '', $file);
         } else {
@@ -83,6 +84,7 @@ abstract class Preprocess {
 
     public function setContents($contents) {
         $this->oContents = $contents;
+        $this->contents = $contents;
     }
 
     public function getContents() {
