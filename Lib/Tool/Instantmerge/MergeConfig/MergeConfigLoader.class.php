@@ -117,6 +117,9 @@ class MergeConfigLoader {
      */
     public function getTypes() {
         $path = $this->root.'/'.C('IMERGE_IMAGE_DIR');
+        if (!file_exists($path)) {
+            return array();
+        }
         $types = scandir($path);
         $types = array_filter($types, array($this, 'filterTypes'));
         // 重建索引

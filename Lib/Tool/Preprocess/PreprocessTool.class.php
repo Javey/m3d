@@ -58,7 +58,7 @@ class PreprocessTool extends Tool {
             $processor = is_null($processor->return) ? Preprocess::getInstance($item['processor'], $this->map) : $processor->return;
 
             // 如果处理图片，则需要先处理合图
-            if ($processor instanceof MediaPreprocess && strpos($item['type'], 'png') !== false) {
+            if ($processor instanceof MediaPreprocess && strpos($item['type'], 'png') !== false && C('IS_MERGE_IMAGE')) {
                 $this->processSprite($processor, $item);
             }
             // 根据扫描目录和类型，扫描到所有待编译文件
