@@ -12,7 +12,7 @@ on('process_end', 'SvnOperatorPlugin::ci', 10000);
 
 class SvnOperatorPlugin extends Plugin {
     protected $options = array(
-        'svnop.is_svn' => true
+        'svnop.is_svn' => false
     );
 
     public function run($params) {

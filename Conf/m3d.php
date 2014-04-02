@@ -108,7 +108,7 @@ return array(
         #'is_merge_image' => false, // 是否合图替换 default:true
         #'is_md5' => false, // 是否md5 default: true
         #'is_cdn' => false, // 是否为静态资源加入cdn default: true
-        #'is_compress_image' => false, // 是否将图片压缩，目前只支持png图片压缩成png8 default: true
+        #'is_compress_image' => true, // 是否将图片压缩，目前只支持png图片压缩成png8 default: false
 
         /** 源码中路径配置 **/
         'src' => array(
@@ -119,30 +119,34 @@ return array(
 
         /** 插件配置 **/
         // requireJs插件，用于处理将加载模块路径替换为编译后的路径
-        'requirejs' => array(
-            #'path' => '/static/js/require/require.js', // requireJs路径（相对src.src_path)，进行路径替换 default: null(没有默认值,必须设置)
+        #'requirejs' => array(
+            #'path' => '/static/js/require/require.js', // requireJs路径（相对src.src_path)，进行路径替换 default: null(没有默认值)
             #'map' => 'shtml, js', // 需要将什么类型的map，写入requireJs源文件中 default: js
             #'var' => '_MD5_HASHMAP' // 变量名，用于前端获取map default: _MD5_HASHMAP
-        ),
+        #),
         // 增量编译插件
-        'incre' => array(
-            #'is_incre' => true, // 是否进行增量编译 default: true
+        #'incre' => array(
+            #'is_incre' => true, // 是否进行增量编译 default: false
             #'path' => '{src.m3d_path}/incre', // 增量编译数据文件存放目录 default: {src.m3d_path}/incre
-        ),
+        #),
         // jsonMap插件，用于生成json格式的map
-        'json_map' => array(
-            #'is_gen' => false, // 是否生成json格式map default：false
+        #'json_map' => array(
+            #'is_gen' => true, // 是否生成json格式map default：false
             #'path' => '{src.m3d_map_path}', // map存放路径 default: {src.m3d_map_path}
             #'suffix' => '{src.m3d_map_suffix}' // map文件后缀 default: {src.m3d_map_suffix}
-        )
+        #),
+        // svn操作插件
+        #'svnop' => array(
+            #'is_svn' => true // 是否进行svn操作 default:false
+        #)
     ),
 
     /**
      * 静态文件访问case
      * 用于决定静态文件在源码中的实际路径和在文件中被引用的路径的对应关系
      */
-    'static_case' => array(
+    #'static_case' => array(
 	    #'static_in_src' => '/static/js/a.js', // 在源码目录中路径
 	    #'static_in_file' => '/static/js/a.js' // 在文本中引用路径
-    )
+    #)
 );

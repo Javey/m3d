@@ -14,7 +14,7 @@ return array(
     'IS_REPLACE_URI' => true, // 是否将地址替换成编译后的地址
     'IS_MERGE_IMAGE' => true, // 是否进行CSS合图替换
     'IS_CDN' => true, // 是否加入cdn
-    'IS_COMPRESS_IMAGE' => true, // 是否压缩图片，仅支持png压缩成png8
+    'IS_COMPRESS_IMAGE' => false, // 是否压缩图片，仅支持png压缩成png8
 
     // css预处理缓存，用于避免重复解析import的css
     'CSS_CACHE_PATH' => M3D_PATH.'/.Cache', // css编译缓存文件

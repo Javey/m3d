@@ -28,7 +28,7 @@ class IncreProcessPlugin extends Plugin {
 
     protected $options = array(
         // 由于存在m3d_path变量，用C方法取值
-        'incre.is_incre' => true,
+        'incre.is_incre' => false,
         'incre.path' => '{SRC.M3D_PATH}/incre',
         'incre.cache_dir' => '{incre.path}/cache',
         'incre.map_filename' => 'file_belong_map.php',
