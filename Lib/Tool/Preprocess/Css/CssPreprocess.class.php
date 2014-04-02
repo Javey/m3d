@@ -32,7 +32,7 @@ class CssPreprocess extends Preprocess {
         // 如果需要合图，则导入合图配置
         if ($this->isMergeImage) {
             if (!file_exists(C('IMERGE_PATH'))) {
-                mark('您已打开合图功能，但没有生成合图配置，请先进行合图，或者关闭合图功能', 'warn');
+                mark('您已打开合图功能，但没有生成合图配置，请先进行合图，或者关闭合图功能', 'error');
                 $this->isMergeImage = false;
             } else {
                 $loader = new MergeConfigLoader(C('IMERGE_PATH'));
