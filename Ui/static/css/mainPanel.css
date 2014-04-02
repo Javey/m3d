@@ -202,3 +202,17 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+.user-manager form {
+    padding: 5px 20px 15px;
+}
+.user-manager .title {
+    width: auto;
+    text-align: left;
+}
+.user-manager .name {
+    width: 150px;
+}
+.user-manager .email {
+    width: 270px;
+}

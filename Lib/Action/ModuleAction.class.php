@@ -37,20 +37,37 @@ class ModuleAction extends Action {
      * 提测
      */
     public function test() {
-//        $mailTo = $_POST['to'];
-//        $subject = $_POST['subject'];
-//        $subject = "=?UTF-8?B?".base64_encode($subject)."?=";
-//        $mailFrom = $_POST['from'];
-//        $message = $_POST['description'];
-//
-//        $headers = "MIME-Version: 1.0" . "\r\n";
-//        $headers .= "Content-type:text/html;charset=utf-8" . "\r\n";
-//        $headers .= "Cc: $mailFrom,zoujiawei@baidu.com,luoqin@baidu.com" . "\r\n";
-        $mailTo = 'zoujiawei@baidu.com';
-        $subject = 'test';
-        $message = 'test';
+        $mailTo = $_POST['to'];
+        $subject = '【M3D提测通知】 '.$_POST['subject'];
+        $subject = "=?UTF-8?B?".base64_encode($subject)."?=";
+        $mailFrom = $_POST['from'];
+        $description = str_replace("\n", '<br />',$_POST['description']);
+        $modules = '<ul style="font-weight: normal;">';
+        foreach ($_POST['modules'] as $module) {
+            $modules .= '<li><h4>' . $module['title'] . ' - <i>' . $module['description'] . '</i></h4>';
+            $modules .= '<p><span>模块:</span>' . $module['storename']. '</p><p><span>分支:</span>' . $module['branch'] . '</p></li>';
+        }
+        $modules .= '</ul>';
+        $message = "
+            <html>
+            <body style='font-family: 'Microsoft YaHei';'>
+                <ul>
+                    <li>
+                        <h3>描述</h3>
+                        <p>" . $description . "</p>
+                    </li>
+                    <li>
+                        <h3>分支<h3> "
+                        . $modules .
+                    "</li>
+                </ul>
+            </body>
+            </html>
+        ";
+
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=utf-8" . "\r\n";
+        $headers .= "Cc: $mailFrom\r\n";
 
         if (mail($mailTo, $subject, $message, $headers)) {
             show_json();

@@ -8,7 +8,6 @@
  */
 
 on('process_start', 'SvnOperator', 10);
-on('process_start', 'SvnOperatorPlugin::svnUp', 10);
 on('process_end', 'SvnOperatorPlugin::ci', 10000);
 
 class SvnOperatorPlugin extends Plugin {
@@ -18,8 +17,9 @@ class SvnOperatorPlugin extends Plugin {
 
     public function run($params) {
         if (!$this->options['svnop.is_svn']) {
-            off('process_start', 'SvnOperatorPlugin::svnUp');
             off('process_end', 'SvnOperatorPlugin::ci');
+        } else {
+            self::svnUp();
         }
     }
 

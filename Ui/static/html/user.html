@@ -5,10 +5,15 @@
 <div class="modal-body">
     <tabset>
         <tab heading="收件人管理">
-            <form ng-enter="addUser(userFormTo, 'to')" name="userFormTo">
-                <input type="text" placeholder="name" required class="name" ng-model="newUser.name"/>
-                <input type="email" placeholder="email" required ng-model="newUser.email"/>
-            </form>
+            <div class="item">
+                <form ng-enter="addUser(userFormTo, 'to')" name="userFormTo">
+                    <label>
+                        <span class="title">添加</span>
+                        <input type="text" placeholder="name" required class="name" ng-model="newUser.name"/>
+                        <input type="email" placeholder="email" required class="email" ng-model="newUser.email"/>
+                    </label>
+                </form>
+            </div>
             <ul class="user-list">
                 <li ng-repeat="item in users.to">
                     <span class="name ellipsis">{{item.name}}</span>
@@ -18,10 +23,15 @@
             </ul>
         </tab>
         <tab heading="提测人管理">
-            <form ng-enter="addUser(userFormFrom, 'from')" name="userFormFrom">
-                <input type="text" placeholder="name" required class="name" ng-model="newUser.name"/>
-                <input type="email" placeholder="email" required ng-model="newUser.email"/>
-            </form>
+            <div class="item">
+                <form ng-enter="addUser(userFormFrom, 'from')" name="userFormFrom">
+                    <label>
+                        <span class="title">添加</span>
+                        <input type="text" placeholder="name" required class="name" ng-model="newUser.name"/>
+                        <input type="email" placeholder="email" required class="email" ng-model="newUser.email"/>
+                    </label>
+                </form>
+            </div>
             <ul class="user-list">
                 <li ng-repeat="item in users.from">
                     <span class="name ellipsis">{{item.name}}</span>

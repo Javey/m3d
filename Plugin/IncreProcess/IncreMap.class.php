@@ -28,6 +28,22 @@ class IncreMap {
     private static $revision = null;
 
     public static function init() {
+        if (!C('INCRE.IS_INCRE')) {
+            off('process_start', 'IncreMap::init');
+            off(
+                array(
+                    'css_import',
+                    'css_background_change',
+                    'js_import',
+                    'js_replace',
+                    'html_href_change'
+                ),
+                'IncreMap::update'
+            );
+            off('process_end', 'IncreMap::export');
+
+            return;
+        }
         self::genMd5Map();
         self::genLatestRevision();
     }
