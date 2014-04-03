@@ -4,8 +4,10 @@
  */
 
 return array(
-    'INFO' => array(
-        'host' => 'music.baidu.com',
-        'name' => '百度音乐主站'
+    'PROJECT' => array(
+        'INFO' => array(
+            'host' => 'music.baidu.com',
+            'name' => '百度音乐主站'
+        )
     )
 );

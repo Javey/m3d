@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-on('process_start', 'SvnOperator', 10);
+on(array('process_start', 'imerge_start'), 'SvnOperator', 10);
 on('process_end', 'SvnOperatorPlugin::ci', 10000);
 
 class SvnOperatorPlugin extends Plugin {
@@ -33,7 +33,7 @@ class SvnOperatorPlugin extends Plugin {
     }
 
     public static function ci() {
-        mark('执行svn提交操作', 'emphasize');
+        mark('执行svn提交操作...', 'emphasize');
         self::localDelToSvn();
         shell_exec_ensure(C('SVN').' add '.C('SRC.BUILD_PATH').' --force', false);
         shell_exec_ensure(C('SVN').' add '.C('SRC.M3D_PATH').' --force', false);

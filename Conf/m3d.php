@@ -19,7 +19,7 @@ return array(
     'process' => array(
         // media预处理器，用于md5化，如果是png则压缩
         array(
-            'from' => '/static',
+            'from' => '/static/images',
             'to' => '/static/i',
             'type' => 'png, jpg, gif',
             'processor' => 'media'
@@ -38,21 +38,21 @@ return array(
 //        ),
         // css预处理器，解析css，处理@import合并，进行图片替换，md5化，压缩
         array(
-            'from' => '/static, /site',
+            'from' => '/static/css',
             'to' => '/static/c',
             'type' => 'css',
             'processor' => 'css'
         ),
         // js预处理器，document.write合并，压缩，md5
         array(
-            'from' => '/static, /site',
+            'from' => '/static/js',
             'to' => '/static/j',
             'type' => 'js',
             'processor' => 'js'
         ),
         // html预处理器，img,link[rel='stylesheet'],script地址替换，去掉注释
         array(
-            'from' => '/site, /common, /static',
+            'from' => '/site, /common, /static/html',
             'type' => 'tpl, html',
             'processor' => 'html',
         ),
@@ -122,18 +122,14 @@ return array(
         #'requirejs' => array(
             #'path' => '/static/js/require/require.js', // requireJs路径（相对src.src_path)，进行路径替换 default: null(没有默认值)
             #'map' => 'js', // 需要将什么类型的map，写入requireJs源文件中(多个用','分割) default: js
-            #'var' => '_MD5_HASHMAP' // 变量名，用于前端获取map default: _MD5_HASHMAP
         #),
         // 增量编译插件
         #'incre' => array(
             #'is_incre' => true, // 是否进行增量编译 default: false
-            #'path' => '{src.m3d_path}/incre', // 增量编译数据文件存放目录 default: {src.m3d_path}/incre
         #),
         // jsonMap插件，用于生成json格式的map
         #'json_map' => array(
             #'is_gen' => true, // 是否生成json格式map default：false
-            #'path' => '{src.m3d_map_path}', // map存放路径 default: {src.m3d_map_path}
-            #'suffix' => '{src.m3d_map_suffix}' // map文件后缀 default: {src.m3d_map_suffix}
         #),
         // svn操作插件
         #'svnop' => array(
@@ -146,7 +142,7 @@ return array(
      * 用于决定静态文件在源码中的实际路径和在文件中被引用的路径的对应关系
      */
     #'static_case' => array(
-	    #'static_in_src' => '/static/js/a.js', // 在源码目录中路径
-	    #'static_in_file' => '/static/js/a.js' // 在文本中引用路径
+        #'static_in_src' => '/static/js/a.js', // 在源码目录中路径
+        #'static_in_file' => '/static/js/a.js' // 在文本中引用路径
     #)
 );
