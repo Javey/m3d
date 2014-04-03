@@ -9,7 +9,7 @@
 
 class OtherPreprocess extends Preprocess {
     public function process() {
-        $this->contents = $this->oContents;
+
     }
 
     public function compress() {

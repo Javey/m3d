@@ -11,11 +11,10 @@ require_once('simple_html_dom.php');
 
 class HtmlPreprocess extends Preprocess {
     public function process() {
-        $html = str_get_html($this->oContents);
+        $html = str_get_html($this->contents);
 
         // 如果是空文件，直接返回
         if (!$html) {
-            $this->contents = $this->oContents;
             return;
         }
 

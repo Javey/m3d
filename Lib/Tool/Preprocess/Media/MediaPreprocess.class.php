@@ -14,7 +14,6 @@ class MediaPreprocess extends Preprocess {
         if (!isset(self::$types[$this->type])) {
             self::$types[$this->type] = true;
         }
-        $this->contents = $this->oContents;
     }
 
     /**

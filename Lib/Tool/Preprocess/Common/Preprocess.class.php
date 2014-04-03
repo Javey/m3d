@@ -10,8 +10,6 @@ class PreprocessException extends Exception {}
 
 abstract class Preprocess {
     protected $map = array(); // 编译前后文件映射表
-    // 原始文件内容
-    protected $oContents;
     // 处理后的文件内容
     protected $contents;
     protected $type;
@@ -82,7 +80,6 @@ abstract class Preprocess {
     }
 
     public function setContents($contents) {
-        $this->oContents = $contents;
         $this->contents = $contents;
     }
 
@@ -112,15 +109,5 @@ abstract class Preprocess {
             (in_array($this->relativePath, $list) ?
                 true : ((in_array($this->filename, $list)) ?
                     true : false)) : false;
-    }
-
-    /**
-     * 去掉bom头
-     */
-    protected function removeBom() {
-        if (ord($this->contents[0]) === 239 && ord($this->contents[1]) === 187 && ord($this->contents[2]) === 191) {
-            mark('found bom', 'error');
-            $this->contents = substr($this->contents, 3);
-        }
     }
 }

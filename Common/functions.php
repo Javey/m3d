@@ -451,7 +451,7 @@ function get_files_by_type($paths, $types, $root='') {
     $types = comma_str_to_array($types);
 
     foreach ($paths as $path) {
-        $glob = $root.$path.'*';
+        $glob = $root.$path.'/*';
         while ($entries = glob($glob)) {
             foreach ($entries as $entry) {
                 if (is_file($entry)) {

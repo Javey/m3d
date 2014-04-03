@@ -9,15 +9,6 @@
 
 class JsPreprocess extends Preprocess {
     /**
-     * 需要去掉bom头
-     * @param $contents
-     */
-    public function setContents($contents) {
-        parent::setContents($contents);
-        $this->removeBom();
-    }
-
-    /**
      * 预处理开始，document.write合并
      * @return mixed|void
      */
@@ -44,7 +35,7 @@ class JsPreprocess extends Preprocess {
         $this->contents = preg_replace_callback(
             '/(?<!\\/{2})document\.write\\((\\\'|\\")<script(?:(?:\s+?[^>]+?)*?\s+?type=(\\\\?(?:\\\'|\\"))text\\/javascript\\2)?(?:\s+?[^>]+?)*?\s+?src=(\\\\?(?:\\\'|\\"))([^>\\s\\3]+?)\\3(?:(?:\s+?[^>]+?)*?\s+?type=\\\\?(\\\'|\\")text\\/javascript\\5)?[^>]*?>\\s*<\\/script>\\1\\);?/i',
             array($this, 'handle'),
-            $this->oContents
+            $this->contents
         );
     }
 

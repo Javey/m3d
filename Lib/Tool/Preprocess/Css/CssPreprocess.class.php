@@ -50,7 +50,7 @@ class CssPreprocess extends Preprocess {
         if (isset(self::$cacheMap[$path])) {
             $this->contents = file_get_contents(self::$cacheMap[$path]);
         } else {
-            $this->contents = $this->isBlackFile() ? $this->oContents : $this->cssParse($this->oContents);
+            $this->contents = $this->isBlackFile() ? $this->contents : $this->cssParse($this->contents);
             self::updateCache($path, $this->contents);
         }
     }
@@ -101,8 +101,9 @@ class CssPreprocess extends Preprocess {
      * @return mixed
      */
     private function handleImport(Document $cssDoc) {
-        $allValues = $cssDoc->getAllValues();
+        $contents = '';
 
+        $allValues = $cssDoc->getAllValues();
         foreach ($allValues as $value) {
             if ($value instanceof Import) {
                 $path = $value->getLocation()->getURL()->__toString();
@@ -112,14 +113,14 @@ class CssPreprocess extends Preprocess {
                 $processor = new CssPreprocess($this->map);
                 $processor->setFile(C('SRC.SRC_PATH').$path);
                 $processor->process();
-                $this->contents .= $processor->getContents();
-                $value->setRemoveImport(true);
+                $contents .= $processor->getContents();
+                $value->setRemoveImport();
 
                 trigger('css_import', $this, $processor);
             }
         }
 
-        return $this->contents;
+        return $contents;
     }
 
     /**
@@ -262,7 +263,12 @@ class CssPreprocess extends Preprocess {
 
         if (($mask & 6) === 6) {
             $sprite = $this->spriteConfig[$merge]['attr']['filename'];
-            $newUrl = $this->map['media'][$sprite];
+            if (isset($this->map['media'][$sprite])) {
+                $newUrl = $this->map['media'][$sprite];
+            } else {
+                mark('找不到合图文件'.$sprite.'的去向，请确定该合图已编译', 'error');
+                return null;
+            }
             $ret = $this->spriteConfig[$merge]['config'][$urlString];
 
             trigger('css_background_change', $this, $sprite);
@@ -294,7 +300,7 @@ class CssPreprocess extends Preprocess {
                     mark('文件“'.$this->path.'”中引用了合图“'.$merge.'”，但该合图类型中不存在“'.$urlString.'”的配置信息，将用小图地址代替', 'warn');
                     break;
                 default:
-                    mark('文件“'.$this->path.'”中引用了“'.$urlString.'”，位置错误码：'.$mask, 'error');
+                    mark('文件“'.$this->path.'”中引用了“'.$urlString.'”，未知错误码：'.$mask, 'error');
                     return null;
             }
         }
