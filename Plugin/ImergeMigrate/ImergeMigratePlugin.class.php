@@ -20,6 +20,7 @@ class ImergeMigratePlugin extends Plugin {
             $tool = $params[1];
             $path = $this->findOldM3dPath();
             if ($path) {
+                mark('找到旧配置文件，开始迁移...');
                 $imergePath = $path.'/imerge/*';
                 $entries = glob($imergePath);
                 foreach ($entries as $entry) {

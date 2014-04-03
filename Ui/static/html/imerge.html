@@ -8,6 +8,10 @@
             Total: {{images.length}}
         </div>
         <a class="ion-ios7-refresh-empty refresh icon" title="一键自动合图" ng-click="autoMerge()"></a>
+        <div class="tip" ng-show="showAutoTip">
+            <span class="arrow-up"></span>
+            看起来还没进行过合图，请点击这里进行一键合图
+        </div>
     </div>
     <div class="body">
         <aside class="images">

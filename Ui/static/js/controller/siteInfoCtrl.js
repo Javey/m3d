@@ -112,34 +112,25 @@ define(['lodash', 'angular'], function(_) {
         };
 
         $scope.compile = function(mod) {
-            var isIncre = confirm('是否进行增量编译');
-            var ter = terminal.open({
-                title: '编译'
-            });
-            module.compile({
-                site: $scope.info.name,
-                module: mod,
-                isIncre: isIncre
-            }, function(res) {
-                if (res.errorCode === 200) {
-                    if (res.log) {
-                        ter.write(res.data);
-                    } else {
-                        notify.open({
-                            template: '编译完成<br />' + res.data
-                        });
+            require(['controller/infoModalCtrl'], function(ctrl) {
+                var modal =$modal.open({
+                    templateUrl: '/static/html/infoModal.html',
+                    controller: ctrl,
+                    backdrop: 'static',
+                    windowClass: 'confirm-modal',
+                    resolve: {
+                        modalData: function() {
+                            return {
+                                title: '编译',
+                                content: '是否进行增量编译'
+                            }
+                        }
                     }
-                } else {
-                    var template = '编译终止<br />' + res.data;
-                    if (res.errorCode === 400) {
-                        template += '<br />请将该<a href="/admin/m3d" title="m3d.php配置文件" target="_blank"> 配置文件 </a>进行相应配置后，放入源码根目录并命名为"m3d.php"';
-                    }
-                    notify.open({
-                        template: template,
-                        type: 'error',
-                        sticky: true
-                    });
-                }
+                });
+
+                modal.result.then(function(data) {
+                    compile(mod, data);
+                });
             });
         };
 
@@ -193,6 +184,37 @@ define(['lodash', 'angular'], function(_) {
                 }
             });
             $scope.info.modules = $scope.info.modules.concat(otherModules);
+        }
+
+        function compile(mod, isIncre) {
+            var ter = terminal.open({
+                title: '编译'
+            });
+            module.compile({
+                site: $scope.info.name,
+                module: mod,
+                isIncre: !!isIncre
+            }, function(res) {
+                if (res.errorCode === 200) {
+                    if (res.log) {
+                        ter.write(res.data);
+                    } else {
+                        notify.open({
+                            template: '编译完成<br />' + res.data
+                        });
+                    }
+                } else {
+                    var template = '编译终止<br />' + res.data;
+                    if (res.errorCode === 400) {
+                        template += '<br />请将该<a href="/admin/m3d" title="m3d.php配置文件" target="_blank"> 配置文件 </a>进行相应配置后，放入源码根目录并命名为"m3d.php"';
+                    }
+                    notify.open({
+                        template: template,
+                        type: 'error',
+                        sticky: true
+                    });
+                }
+            });
         }
     }];
 });

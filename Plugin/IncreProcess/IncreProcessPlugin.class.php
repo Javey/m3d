@@ -10,7 +10,7 @@
 require_once('IncreMap.class.php');
 
 on('process_start', 'IncreProcess');
-on('rm_old_build_file', 'IncreProcessPlugin:remain');
+on('rm_old_build_file', 'IncreProcessPlugin::remain');
 on('one_process_start', 'IncreProcessPlugin::importMap');
 on('processor_fetch_files', 'IncreProcessPlugin::getFileList');
 

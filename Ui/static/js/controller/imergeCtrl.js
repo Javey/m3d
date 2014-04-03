@@ -17,11 +17,35 @@ define(['angular', 'lodash'], function(angular, _) {
 
             function load() {
                 imerge.getTypes(function(res) {
-                    $scope.types = res.data;
-                    $scope.curType = $routeParams.typeId || ($scope.types && $scope.types[0]);
-                    imerge.getImages({type: $scope.curType}, function(res) {
-                        $scope.images = res.data;
-                    });
+                    if (res.errorCode === 200) {
+                        $scope.types = res.data;
+                        $scope.curType = $routeParams.typeId || ($scope.types && $scope.types[0]);
+                        if (_.isEmpty($scope.curType)) {
+                            $scope.showAutoTip = true;
+                            return;
+                        }
+                        imerge.getImages({type: $scope.curType}, function(res) {
+                            if (res.errorCode === 200) {
+                                $scope.images = res.data;
+                            } else {
+                                notify.open({
+                                    template: '获取小图错误:' + res.data,
+                                    type: 'error',
+                                    sticky: true
+                                })
+                            }
+                        });
+                    } else {
+                        var template = '获取合图列表错误：' + res.data;
+                        if (res.errorCode === 400) {
+                            template += '<br />请将该<a href="/admin/m3d" title="m3d.php配置文件" target="_blank"> 配置文件 </a>进行相应配置后，放入源码根目录并命名为"m3d.php"';
+                        }
+                        notify.open({
+                            template: template,
+                            type: 'error',
+                            sticky: true
+                        });
+                    }
                 });
             }
 
@@ -72,6 +96,7 @@ define(['angular', 'lodash'], function(angular, _) {
             };
 
             $scope.autoMerge = function() {
+                $scope.showAutoTip = false;
                 var ter = terminal.open({
                     title: '自动合图'
                 });

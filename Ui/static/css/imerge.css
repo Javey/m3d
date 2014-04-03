@@ -219,3 +219,31 @@
     top: 60px;
     left: 30px;
 }
+
+.imerge .tip {
+    position: absolute;
+    width: 200px;
+    padding: 10px;
+    right: 5px;
+    top: 45px;
+    background: #333;
+    z-index: 10;
+    line-height: 25px;
+    color: #e25940;
+    box-shadow: 0 0 3px 0 #999;
+}
+/*.imerge .tip .close {*/
+    /*position: absolute;*/
+    /*font-size: 25px;*/
+    /*right: 4px;*/
+    /*top: -4px;*/
+/*}*/
+.imerge .tip .arrow-up {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 7px solid;
+    border-color: transparent transparent #333 transparent;
+    top: -14px;
+    right: 7px;
+}

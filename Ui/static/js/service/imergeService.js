@@ -40,12 +40,11 @@ define(['angular', 'lib/common', 'lodash'], function(angular, common, _) {
 
         res.getTypes = function (callback) {
             if (types && curSite === $routeParams.siteId && curMod === $routeParams.moduleId) {
-                callback({data: types});
+                callback({errorCode: 200, data: types});
             } else {
                 curSite = $routeParams.siteId;
                 curMod = $routeParams.moduleId;
                 res._getTypes(function (res) {
-                    types = res.data;
                     callback(res);
                 });
             }

@@ -47,3 +47,12 @@
 .modal-footer .btn {
     font-size: 14px;
 }
+
+.confirm-modal {
+    width: 400px;
+    margin-left: -200px;
+}
+.confirm-modal .modal-body {
+    text-align: center;
+    padding: 20px;
+}
