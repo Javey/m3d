@@ -247,3 +247,8 @@
     top: -14px;
     right: 7px;
 }
+.imerge .loading {
+    width: 28px;
+    height: 4px;
+    background: url(/static/images/loading.gif);
+}

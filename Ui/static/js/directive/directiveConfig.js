@@ -4,7 +4,8 @@ define(['lodash'], function(_) {
         'requiredTipDirective',
         'buttonDirective',
         'resizableDirective',
-        'ngEnterDirective'
+        'ngEnterDirective',
+        'ngImgLoadDirective'
     ], function(item) {
         return 'directive/' + item;
     });
