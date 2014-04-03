@@ -16,7 +16,7 @@ class AdminAction extends Action {
     }
 
     public function m3d() {
-        $file = CONF_PATH.'/m3d.php';
+        $file = M3D_CORE_PATH.'/Install/m3d.php';
         View::render(file_get_contents($file), 'application/x-javascript');
     }
 

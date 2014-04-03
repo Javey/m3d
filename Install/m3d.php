@@ -113,6 +113,8 @@ return array(
         /** 源码中路径配置 **/
         'src' => array(
             'root' => $root, // 代码分支根目录
+            #'smarty_left_delimiter' => '{', // smarty分割符，default: { }
+            #'smarty_right_delimiter' => '}',
             #'src_path' => $root.'/src', // 需要处理的源码路径 default: {src.root}/src
             #'build_path' => $root.'/build' // 编译后文件路径 default: {src.root}/build
         ),

@@ -845,7 +845,8 @@ class simple_html_dom {
         // strip out server side scripts
         $this->remove_noise("'(<\?)(.*?)(\?>)'s", true);
         // strip smarty scripts
-        $this->remove_noise("'(\{\w)(.*?)(\})'s", true);
+//        $this->remove_noise("'(\{\w)(.*?)(\})'s", true);
+        $this->remove_noise("'(".C('SRC.SMARTY_LEFT_DELIMITER').")(.*?)(".C('SRC.SMARTY_RIGHT_DELIMITER').")'s", true);
 
 		//for test
         //$this->remove_noise("'(\{)(.*?)(\})'s", true);
@@ -856,10 +857,10 @@ class simple_html_dom {
 		//$this->remove_noise("'(\{\*\w)(.*?)(\*\})'s", true);
 		//above line for remove {*version xxx*} but useless now by lq 20120723
 		
-		$this->remove_noise("'(\{/\w)(.*?)(\})'s", true);
+//		$this->remove_noise("'(\{/\w)(.*?)(\})'s", true);
 		//above line for remove smarty closed tag, such as {/if}, {/block}... by lq 20120724
 		
-		$this->remove_noise("'(\{\\$\w)(.*?)(\})'s", true);
+//		$this->remove_noise("'(\{\\$\w)(.*?)(\})'s", true);
 		//above line for remove smarty var, such as {$item}, {$a.b}... by lq 20120724
 		
 		//echo '<p>1======dbg======</p>';
