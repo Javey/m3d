@@ -18,9 +18,9 @@ class SvnOperatorPlugin extends Plugin {
     public function run($params) {
         if (!$this->options['svnop.is_svn']) {
             off('process_end', 'SvnOperatorPlugin::ci');
-        } else {
-            self::svnUp();
+            return;
         }
+        self::svnUp();
     }
 
     /**

@@ -36,7 +36,8 @@ class PreprocessTool extends Tool {
     public function run() {
         // 派发预处理开始事件
         trigger('process_start', $this);
-//        exit();
+
+        $this->rmOldBuildFile();
 
         foreach ($this->options['process'] as $item) {
             trigger('one_process_start', $this, $item);
@@ -142,6 +143,21 @@ class PreprocessTool extends Tool {
         contents_to_file($buildPath, $this->onlineStrReplace($contents));
 
         return $path;
+    }
+
+    /**
+     * 清除上次编译结果
+     */
+    private function rmOldBuildFile() {
+        $ret = new stdClass();
+        $ret->return = true;
+        trigger('rm_old_build_file', $ret);
+        if ($ret->return) {
+            $buildPath = C('SRC.BUILD_PATH');
+            $cachePath = C('SRC.BUILD_CACHE_PATH');
+            rm_dir($buildPath);
+            rm_dir($cachePath);
+        }
     }
 
     /**

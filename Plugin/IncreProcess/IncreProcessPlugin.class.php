@@ -10,6 +10,7 @@
 require_once('IncreMap.class.php');
 
 on('process_start', 'IncreProcess');
+on('rm_old_build_file', 'IncreProcessPlugin:remain');
 on('one_process_start', 'IncreProcessPlugin::importMap');
 on('processor_fetch_files', 'IncreProcessPlugin::getFileList');
 
@@ -43,6 +44,7 @@ class IncreProcessPlugin extends Plugin {
 
         if ((isset($_GET['isIncre']) && $_GET['isIncre'] === 'false') || !C('INCRE.IS_INCRE') || is_null($oldRevision)) {
             // 事件解绑
+            off('rm_old_build_file', 'IncreProcessPlugin::remain');
             off('one_process_start', 'IncreProcessPlugin::importMap');
             off('processor_fetch_files', 'IncreProcessPlugin::getFileList');
         } else {
@@ -61,6 +63,14 @@ class IncreProcessPlugin extends Plugin {
                 )
             );
         }
+    }
+
+    /**
+     * 保留上次编译结果
+     * @param $params
+     */
+    public static function remain($params) {
+        $params[1]->return = false;
     }
 
     /**
