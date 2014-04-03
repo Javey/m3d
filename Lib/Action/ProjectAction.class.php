@@ -17,6 +17,6 @@ class ProjectAction extends Action {
     }
 
     private function getInfo() {
-        show_json(C('PROJECT.INFO'));
+        show_json(array_change_key_case(C('PROJECT.INFO')));
     }
 }
