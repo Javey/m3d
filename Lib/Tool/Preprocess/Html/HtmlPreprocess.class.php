@@ -11,7 +11,7 @@ require_once('simple_html_dom.php');
 
 class HtmlPreprocess extends Preprocess {
     public function process() {
-        $html = str_get_html($this->contents);
+        $html = str_get_html($this->contents, false);
 
         // 如果是空文件，直接返回
         if (!$html) {
