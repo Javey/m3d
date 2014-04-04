@@ -27,6 +27,7 @@ class SvnOperatorPlugin extends Plugin {
      * 确保代码最新
      */
     public static function svnUp() {
+        mark('执行svn up...', 'emphasize');
         self::cleanLocalChange();
         $cmd = C('SVN').' up '. C('SRC.SRC_PATH');
         shell_exec_ensure($cmd, false);

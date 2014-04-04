@@ -241,8 +241,6 @@ function mark($msg, $type = 'normal'){
 
 function shell_exec_ensure($shell, $showInfo = true, $showError = true) {
     // svn up时,如果包含中文名，需要导入LANG环境变量
-//    $shell = 'ls -l ~';
-//    $shell = 'ping www.baidu.com -c 5';
     $ret = array(
         'output' => '',
         'status' => 0

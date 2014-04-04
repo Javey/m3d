@@ -58,7 +58,7 @@ return array(
         ),
         // other预处理器，仅做文件移动，保持原始路径
         array(
-            'from' => '/static/audio, /config, /plugin, /data',
+            'from' => '/static, /config, /plugin, /data',
             'type' => ',p3, ogg, swf, ico, cur, conf, php, tpl',
             'processor' => 'other'
         )

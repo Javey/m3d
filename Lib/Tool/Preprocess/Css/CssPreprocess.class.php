@@ -320,11 +320,8 @@ class CssPreprocess extends Preprocess {
      */
     private function rewriteBackgroundPosition(DeclarationBlock $block, &$bgValues, $config) {
         $positionRule = isset($bgValues['background-position']) ?
-            $bgValues['background-position'] :
-            (isset($bgValues['background']) ?
-                $bgValues['background'] :
-                null
-            );
+            $bgValues['background-position'] : (isset($bgValues['background']) ?
+                $bgValues['background'] :  null);
 
         if ($positionRule) {
             $values = $positionRule->getValue();
@@ -337,14 +334,25 @@ class CssPreprocess extends Preprocess {
 
             if (!$this->setPosition($values, $config)) {
                 // 到setPosition返回false时，表示没有找到可以设置position的属性，需要添加
-                $newRule = new Rule('background-position');
-                $newRule->addValue(array(
-                    new Size(-$config['left'], 'px'),
-                    new Size(-$config['top'], 'px')
-                ));
-                $block->addRule($newRule);
+                $this->addPositionRule($block, $config);
             }
+        } else {
+            $this->addPositionRule($block, $config);
         }
+    }
+
+    /**
+     * 插入一条position属性
+     * @param DeclarationBlock $block
+     * @param $position
+     */
+    private function addPositionRule(DeclarationBlock $block, $position) {
+        $newRule = new Rule('background-position');
+        $newRule->addValue(array(
+            new Size(-$position['left'], 'px'),
+            new Size(-$position['top'], 'px')
+        ));
+        $block->addRule($newRule);
     }
 
     /**
