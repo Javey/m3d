@@ -644,6 +644,6 @@ if (class_exists('finfo')) {
             $info = $info[0];
         }
         unlink($tempFile);
-        return $info;
+        return trim($info);
     }
 }
