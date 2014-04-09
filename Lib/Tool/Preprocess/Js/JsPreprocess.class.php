@@ -58,7 +58,7 @@ class JsPreprocess extends Preprocess {
         $mediaTypes = array_keys($mediaTypes);
         $reg = '/(?<=[\'\"])(?:'.C('STATIC_VIRTUAL_PREFIX').'[^\'\"]*)\.(?:'.implode('|', $mediaTypes).')(?=[\'\"])/';
 
-        preg_replace_callback($reg, array($this, 'replaceMediaPath'), $this->contents);
+        $this->contents = preg_replace_callback($reg, array($this, 'replaceMediaPath'), $this->contents);
     }
 
     private function replaceMediaPath($matches) {
