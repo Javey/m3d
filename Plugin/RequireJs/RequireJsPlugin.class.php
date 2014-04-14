@@ -50,6 +50,12 @@ class RequireJsPlugin extends Plugin {
             $ret = array_merge($ret, $tool->getMap($key));
         }
 
+        // map中地址为实际地址，将其变为引用地址
+        $ret = array_combine(
+            array_map(create_function('$key', 'return Tool::getVirtualPath($key);'), array_keys($ret)),
+            array_values($ret)
+        );
+
         return $ret;
     }
 

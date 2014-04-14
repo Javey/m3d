@@ -249,7 +249,7 @@ class IncreProcessPlugin extends Plugin {
      */
     private static function cleanRedundant($map, $files) {
         foreach ($files as $file) {
-            $file = Tool::getVirtualPath($file);
+//            $file = Tool::getVirtualPath($file);
             if (isset($map[$file])) {
                 // 清除文件
                 $path = C('SRC.BUILD_PATH').$map[$file];
