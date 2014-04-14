@@ -56,7 +56,7 @@ class PreprocessTool extends Tool {
             $processor = new stdClass();
             $processor->return = null;
             trigger('processor_init', $this, $item, $processor);
-            $processor = is_null($processor->return) ? Preprocess::getInstance($item['processor'], $this->map) : $processor->return;
+            $processor = is_null($processor->return) ? Preprocess::getInstance($item['processor'], $this->map, $item) : $processor->return;
 
             // 如果处理图片，则需要先处理合图
             if ($processor instanceof MediaPreprocess && strpos($item['type'], 'png') !== false && C('IS_MERGE_IMAGE')) {

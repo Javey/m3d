@@ -16,23 +16,26 @@ abstract class Preprocess {
     protected $path;
     protected $filename;
     protected $relativePath;
+    // 保存用户自定义预处理配置信息（m3d.php）
+    protected $options = array();
 
     private static $_instance = array();
 
-    final public static function getInstance($class, $options=null) {
+    final public static function getInstance($class, $map=null, $options=array()) {
         if (empty($class)) {
             return null;
         }
         $class = ucfirst(strtolower($class)).'Preprocess';
         if (!isset(self::$_instance[$class])) {
-            self::$_instance[$class] = empty($options) ? new $class() : new $class($options);
+            self::$_instance[$class] = new $class($map, $options);
         }
 
         return self::$_instance[$class];
     }
 
-    public function __construct($map = array()) {
+    public function __construct($map = array(), $options = array()) {
         $this->map = $map;
+        $this->options = $options;
     }
 
     /**
@@ -97,6 +100,9 @@ abstract class Preprocess {
     }
     public function getFilename() {
         return $this->filename;
+    }
+    public function getOptions() {
+        return $this->options;
     }
 
     /**

@@ -54,11 +54,21 @@ class JsPreprocess extends Preprocess {
      * 处理media资源，地址替换
      */
     private function handleMediaResource() {
-        $mediaTypes = MediaPreprocess::getTypes();
-        $mediaTypes = array_keys($mediaTypes);
-        $reg = '/(?<=[\'\"])(?:'.C('STATIC_VIRTUAL_PREFIX').'[^\'\"]*)\.(?:'.implode('|', $mediaTypes).')(?=[\'\"])/';
-
-        $this->contents = preg_replace_callback($reg, array($this, 'replaceMediaPath'), $this->contents);
+        static $reg = null;
+        if (is_null($reg)) {
+            $processor = parent::getInstance('media');
+            $mediaTypes = $processor->getOptions();
+            $mediaTypes = comma_str_to_array($mediaTypes['type']);
+            if (!empty($mediaTypes)) {
+                $reg = '/(?<=[\'\"])(?:'.C('STATIC_VIRTUAL_PREFIX').'[^\'\"]*)\.(?:'.implode('|', $mediaTypes).')(?=[\'\"])/';
+            } else {
+                $reg = false;
+            }
+        }
+        
+        if ($reg) {
+            $this->contents = preg_replace_callback($reg, array($this, 'replaceMediaPath'), $this->contents);
+        }
     }
 
     private function replaceMediaPath($matches) {
