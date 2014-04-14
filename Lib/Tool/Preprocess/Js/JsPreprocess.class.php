@@ -65,7 +65,7 @@ class JsPreprocess extends Preprocess {
                 $reg = false;
             }
         }
-        
+
         if ($reg) {
             $this->contents = preg_replace_callback($reg, array($this, 'replaceMediaPath'), $this->contents);
         }

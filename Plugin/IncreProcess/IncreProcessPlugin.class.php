@@ -87,7 +87,7 @@ class IncreProcessPlugin extends Plugin {
         $map = include $path;
 
         $types = comma_str_to_array($item['type']);
-        $files = self::getFilesByActionsAndTypes(array(self::ADD, self::DELETE), $types);
+        $files = self::getFilesByActionsAndTypes(array(self::MODIFY, self::DELETE), $types);
         $map = self::cleanRedundant($map, $files);
 
         $tool->updateMap($item['name'], $map);

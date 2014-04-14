@@ -226,7 +226,7 @@ class PreprocessTool extends Tool {
             mark('处理文件：' . $file);
             $processor->setFile($file);
             $processor->process();
-            $processor->compress();
+            $processor->compress(true);
             $path = str_replace(C('SRC.ROOT'), '', $file);
             $buildPath = $this->writeBuildFile($processor, $item, $path);
             // 更新map, 合图文件仅使用文件名作为key

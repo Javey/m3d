@@ -487,6 +487,16 @@ function file_uid($contents, $type='') {
     return $uid;
 }
 
+//function file_uid($arr, $type='') {
+//    $len = strlen($arr);
+//    $h = 8388617;
+//    for ($i = 0; $i < $len; $i++) {
+//        $h = ( ($h << 1 | $h >> 30) & (0xffffffff >> 8) ) ^ $arr[$i];
+//    }
+//
+//    return base_convert($h, 10, 36);
+//}
+
 /**
  * 写入内容到文件，确保文件夹存在
  * @param $path
