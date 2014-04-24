@@ -168,9 +168,14 @@ class PreprocessTool extends Tool {
     private function onlineStrReplace($contents) {
         // 地址替换配置列表替换
         if (!empty($this->options['replace_list'])) {
-            foreach ($this->options['replace_list'] as $key => $value) {
-                $contents = str_replace($key, $value, $contents);
-            }
+            $contents = str_replace(
+                array_keys($this->options['replace_list']),
+                array_values($this->options['replace_list']),
+                $contents
+            );
+//            foreach ($this->options['replace_list'] as $key => $value) {
+//                $contents = str_replace($key, $value, $contents);
+//            }
         }
 
         // cdn替换
