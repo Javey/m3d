@@ -78,6 +78,7 @@ class SiteAction extends Action {
         $model = new SiteModel();
         if ($model->refreshSite($data)) {
             show_json();
+            Tool::restartServer();
         } else {
             show_error('重建环境失败！');
         }

@@ -20,7 +20,7 @@ class CssPreprocess extends Preprocess {
     private static $cacheMap = array();
 
 
-    public function __construct($map, $isMergeImage=null, $isReplaceUri=null) {
+    public function __construct($map, $options=null, $isMergeImage=null, $isReplaceUri=null) {
         parent::__construct($map);
         $this->isMergeImage = is_null($isMergeImage) ? C('IS_MERGE_IMAGE') : $isMergeImage;
         $this->isReplaceUri = is_null($isReplaceUri) ? C('IS_REPLACE_URI') : $isReplaceUri;

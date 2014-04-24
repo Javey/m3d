@@ -11,11 +11,13 @@ for dir in ${project_path}/*; do
 	conf="${dir}/lighttpd.conf";
 	if  [ -d "$dir" ] && [ -f "$conf" ] && [ -s "$conf" ]; then
         cat "$conf";
+        echo -e "\n";
         for env in ${dir}/site/*; do
             # 每个project下测试环境配置
             conf="${env}/lighttpd.conf";
             if [ -d "$env" ] && [ -f "$conf" ] && [ -s "$conf" ]; then
                 cat "$conf";
+                echo -e "\n";
             fi
         done;
 	fi;

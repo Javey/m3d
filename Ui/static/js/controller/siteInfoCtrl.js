@@ -70,7 +70,7 @@ define(['lodash', 'angular'], function(_) {
             site.refreshSite(info, function(res) {
                 if (res.errorCode === 200) {
                     notify.open({
-                        template: $scope.info.name + '环境重建成功！'
+                        template: $scope.info.name + '环境重建成功！<br/>服务器将在3s后重启'
                     });
                 } else {
                     notify.open({

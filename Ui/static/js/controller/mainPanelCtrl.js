@@ -59,37 +59,37 @@ define(['lodash', 'angular', 'lib/common'], function(_, angular, common) {
             };
 
             $scope.$on('branchList:dirty', function(e, moduleId) {
-                _.each($scope.info.modules, function(module, index) {
+                _.find($scope.info.modules, function(module, index) {
                     if (module.id === moduleId) {
                         $scope.info.modules[index].checked = true;
-                        return false;
+                        return true;
                     }
-                    return true;
+                    return false;
                 });
             });
 
             $scope.$on('branchList:change', function(e, moduleId, value) {
-                _.each($scope.info.modules, function(module, index) {
+                _.find($scope.info.modules, function(module, index) {
                     if (module.id === moduleId) {
                         $scope.info.modules[index].branch = value;
-                        return false;
+                        return true;
                     }
-                    return true;
+                    return false;
                 });
             });
 
             $scope.$watch('info.modules', function (newValue) {
                 if (newValue) {
                     var len = newValue.length;
-                    _.each(newValue, function(module, index) {
+                    _.find(newValue, function(module, index) {
                         if (module.checked) {
                             $scope.modulesValid = true;
-                            return false;
+                            return true;
                         } else if (index === len - 1) {
                             $scope.modulesValid = false;
-                            return false;
+                            return true;
                         }
-                        return true;
+                        return false;
                     });
                     // 由于modules全局共享，有些地方改变，可能此时moduleForm为null
                     $scope.moduleForm && $scope.moduleForm.$setValidity('required', $scope.modulesValid);
