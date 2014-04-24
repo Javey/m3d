@@ -140,7 +140,7 @@ class PreprocessTool extends Tool {
         $contents = $processor->getContents();
         // 写入文件到编译后路径中
         contents_to_file($cachePath, $contents);
-        contents_to_file($buildPath, $this->onlineStrReplace($contents));
+        contents_to_file($buildPath, $this->onlineStrReplace($contents, $processor));
 
         return $path;
     }
@@ -165,17 +165,23 @@ class PreprocessTool extends Tool {
      * @param $contents
      * @return mixed
      */
-    private function onlineStrReplace($contents) {
+    private function onlineStrReplace($contents, Preprocess $processor) {
         // 地址替换配置列表替换
         if (!empty($this->options['replace_list'])) {
             $contents = str_replace(
                 array_keys($this->options['replace_list']),
                 array_values($this->options['replace_list']),
-                $contents
+                $contents,
+                $count
             );
 //            foreach ($this->options['replace_list'] as $key => $value) {
 //                $contents = str_replace($key, $value, $contents);
 //            }
+            if ($processor->getFilename() === 'ting.passportV3.js') {
+                var_dump($count);
+                var_dump($contents);
+                exit();
+            }
         }
 
         // cdn替换
