@@ -25,7 +25,10 @@ class HtmlPreprocess extends Preprocess {
             $this->handleJs($html);
         }
 
-        $this->removeComment($html);
+        // 若果去掉注释
+        if (C('IS_REMOVE_HTML_COMMENT')) {
+            $this->removeComment($html);
+        }
 
         $this->contents = $html->save();
         $html->clear();

@@ -109,6 +109,7 @@ return array(
         #'is_md5' => false, // 是否md5 default: true
         #'is_cdn' => false, // 是否为静态资源加入cdn default: true
         #'is_compress_image' => true, // 是否将图片压缩，目前只支持png图片压缩成png8 default: false
+        #'is_remove_html_comment' => false, // 是否去掉html中的注释 default: true
 
         /** 源码中路径配置 **/
         'src' => array(

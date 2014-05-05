@@ -174,14 +174,6 @@ class PreprocessTool extends Tool {
                 $contents,
                 $count
             );
-//            foreach ($this->options['replace_list'] as $key => $value) {
-//                $contents = str_replace($key, $value, $contents);
-//            }
-//            if ($processor->getFilename() === 'ting.passportV3.js') {
-//                var_dump($count);
-//                var_dump($contents);
-//                exit();
-//            }
             if ($count) {
                 mark('在文件'.$processor->getFilename().'中，找到了替换文本', 'emphasize');
             }
