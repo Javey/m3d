@@ -51,10 +51,9 @@ class RequireJsPlugin extends Plugin {
         }
 
         // map中地址为实际地址，将其变为引用地址
-        // 为value加入cdn
         $ret = array_combine(
-            array_map(create_function('$key', 'return Tool::getVirtualPath($key);'), array_keys($ret)),
-            array_map(create_function('$value', 'return Tool::addCdn($value);'), array_values($ret))
+            array_map(create_function('$key', 'return Tool::addCdn(Tool::getVirtualPath($key));'), array_keys($ret)),
+            array_values($ret)
         );
 
         return $ret;
