@@ -9,19 +9,23 @@
 define(['angular', 'angularRoute'], function(angular) {
     return ['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         $routeProvider
-            .when('/', {
-                templateUrl: '/static/html/index.html'
-//                resolve: {
-//                    delay: function($q, $timeout) {
-//                        var delay = $q.defer();
-//                        $timeout(delay.resolve, 1000);
-//                        return delay.promise;
-//                    }
-//                }
-            })
+//            .when('/', {
+//                templateUrl: '/static/html/index.html'
+////                resolve: {
+////                    delay: function($q, $timeout) {
+////                        var delay = $q.defer();
+////                        $timeout(delay.resolve, 1000);
+////                        return delay.promise;
+////                    }
+////                }
+//            })
             .when('/imerge/:siteId/:moduleId/:typeId?', {
                 templateUrl: '/static/html/imerge.html',
                 controller: 'ImergeCtrl'
+            })
+            .when('/:siteName?', {
+                templateUrl: '/static/html/index.html'
+//                reloadOnSearch: false
             })
             .otherwise({
                 redirectTo: '/'

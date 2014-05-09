@@ -1,6 +1,6 @@
 <div class="imerge">
     <div class="head">
-        <a class="ion-ios7-arrow-thin-left back icon" title="Back to home" href="#/"></a>
+        <a class="ion-ios7-arrow-thin-left back icon" title="Back to home" href="#/{{params.siteId}}"></a>
         <nav class="types">
             <a href="#/imerge/{{params.siteId}}/{{params.moduleId}}/{{type}}" class="item" ng-repeat="type in types" ng-class="{actived: type === curType}">{{type}}</a>
         </nav>

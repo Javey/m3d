@@ -1,17 +1,20 @@
 define(['angular'], function() {
-    return ['$scope', 'site', '$rootScope', 'notify', function($scope, site, $rootScope, notify) {
+    return ['$scope', 'site', '$rootScope', 'notify', '$routeParams', '$location',
+        function($scope, site, $rootScope, notify, $routeParams, $location) {
         $scope.list = [];
         $scope.curSite = null;
 
         $scope.updateList = function() {
             site.query(function(resource) {
                 $scope.list = resource.data;
-                $scope.curSite = $scope.curSite || resource.data[0];
+//                $scope.curSite = $routeParams.siteName || resource.data[0];
+                $scope.curSite = $scope.curSite || $routeParams.siteName || resource.data[0];
             });
         };
 
         $scope.changeSite = function(name) {
             $scope.curSite = name;
+//            $location.path('/' + name);
         };
 
         $scope.$watch('curSite', function(newValue, oldValue) {
