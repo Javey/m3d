@@ -10,10 +10,10 @@
 
 class CssPreprocess extends Preprocess {
     // 合图配置表
-    private $spriteConfig = array();
+    protected $spriteConfig = array();
     // 是否进行合图处理
-    private $isMergeImage = true;
-    private $isReplaceUri = true;
+    protected $isMergeImage = true;
+    protected $isReplaceUri = true;
 
     // 记录已解析文件的map
     private static $cacheDir;
@@ -78,19 +78,16 @@ class CssPreprocess extends Preprocess {
      * @param $contents
      * @return string
      */
-    private function cssParse($contents) {
+    protected function cssParse($contents) {
         $cssParser = new Parser($contents);
         $cssDoc = $cssParser->parse();
 
-        // TODO import文件编译缓存
         $importContents = $this->handleImport($cssDoc);
 
         // 如果需要进行地址替换
         if ($this->isReplaceUri) {
             $this->handleBackground($cssDoc);
         }
-
-//        trigger('CSS_PARSE', $cssDoc, 'hello world');
 
         return $importContents.$cssDoc->__toString();
     }

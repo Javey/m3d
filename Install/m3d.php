@@ -6,7 +6,9 @@
  * @filename m3d.php
  */
 
-$root = dirname(__FILE__); // 分支根目录路径
+defined('SRC_ROOT') or define('SRC_ROOT', dirname(__FILE__));
+$root = SRC_ROOT; // 分支根目录路径
+
 return array(
     /**
      * 编译配置
