@@ -18,6 +18,14 @@ class Dispatcher {
 //        $part = pathinfo($_SERVER['PATH_INFO']);
         if (!empty($_SERVER['PATH_INFO'])) {
             $paths = explode('/', trim($_SERVER['PATH_INFO'], '/'));
+            // 针对
+            // proxy-core.rewrite-request = (
+            //      "_pathinfo" => ( "(.*)" => "$1" )
+            // )
+            // 去掉index.php
+            if ($paths[0] === 'index.php') {
+                array_shift($paths);
+            }
             $_GET[C('VAR_URL_PARAMS')] = $paths;
 
             $var = array();
@@ -38,13 +46,6 @@ class Dispatcher {
         define('MODULE_NAME', self::_getModule(C('VAR_MODULE')));
         define('ACTION_NAME', self::_getAction(C('VAR_ACTION')));
         define('__URL__', PHP_FILE.'/'.MODULE_NAME);
-//        print_r(MODULE_NAME);
-//        echo '<br />';
-//        print_r(ACTION_NAME);
-//        echo '<br />';
-//        print_r(__URL__);
-//        echo '<br />';
-//        $_REQUEST = array_merge($_POST, $_GET);
     }
 
     static private function _getModule($var) {
