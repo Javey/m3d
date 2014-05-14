@@ -20,7 +20,18 @@ class SvnOperatorPlugin extends Plugin {
             off('process_end', 'SvnOperatorPlugin::ci');
             return;
         }
+        self::ciImerge();
         self::svnUp();
+    }
+
+    /**
+     * 提交合图配置
+     */
+
+    public static function ciImerge() {
+        mark('提交合图配置...', 'emphasize');
+        $cmd = C('SVN').' add '.C('IMERGE_PATH').' --force && '.C('SVN').' ci '.C('IMERGE_PATH').' -m "Commit imerge by M3D"';
+        shell_exec_ensure($cmd, false);
     }
 
     /**
@@ -29,7 +40,7 @@ class SvnOperatorPlugin extends Plugin {
     public static function svnUp() {
         mark('执行svn up...', 'emphasize');
         self::cleanLocalChange();
-        $cmd = C('SVN').' up '. C('SRC.SRC_PATH');
+        $cmd = C('SVN').' up '. C('SRC.ROOT');
         shell_exec_ensure($cmd, false);
     }
 

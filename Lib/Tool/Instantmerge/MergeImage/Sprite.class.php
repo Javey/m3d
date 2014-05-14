@@ -56,8 +56,9 @@ class Sprite {
         $spriteConfigs[$type] = array();
         if ($layout->reflow($width, $height)) {
             $this->sprite = imagecreatetruecolor($width, $height);
-            imagefill($this->sprite , 0 , 0 , imagecolorallocatealpha($this->sprite , 0 , 0 , 0 , 127));
-            imagesavealpha($this->sprite , true);
+            imagealphablending($this->sprite, false);
+            imagesavealpha($this->sprite, true);
+            imagefill($this->sprite, 0, 0, imagecolorallocatealpha($this->sprite, 0, 0, 0, 127));
             $spriteConfigs[$type]['config'] = $this->repaint($this->sprite, $imgList, $width, $height);
             // 记录sprite的属性
             $spriteConfigs[$type]['attr'] = array(
