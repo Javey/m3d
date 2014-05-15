@@ -57,7 +57,7 @@ class Parser {
             } else if ($this->comes('}')) {
                 $this->consume('}');
                 if ($bIsRoot) {
-                    throw new Exception("Unopened {");
+                    throw new Exception("Unopened { " . $this->peek(20));
                 } else {
                     return;
                 }

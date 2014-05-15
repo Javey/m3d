@@ -21,7 +21,7 @@ class M3d {
         // 环境变量
         putenv('LC_ALL=C');
         putenv('LANG="zh_CN.UTF-8"');
-        
+
         spl_autoload_register(array('M3d', 'autoload'));
 
         require_array(array(
