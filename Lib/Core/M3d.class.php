@@ -18,6 +18,10 @@ class M3d {
         C(include CONF_PATH.'/convention.php');
 
         date_default_timezone_set(C('DEFAULT_TIMEZONE'));
+        // 环境变量
+        putenv('LC_ALL=C');
+        putenv('LANG="zh_CN.UTF-8"');
+        
         spl_autoload_register(array('M3d', 'autoload'));
 
         require_array(array(

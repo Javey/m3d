@@ -259,7 +259,7 @@ function shell_exec_ensure($shell, $showInfo = true, $showError = true) {
     $shell = implode($shell, ' && ');
 
     // 导入LANG环境变量，确保处理一些包含中文字符的情况不会报错
-    $shell = 'export LANG="zh_CN.UTF-8" && '.$shell;
+//    $shell = 'export LANG="zh_CN.UTF-8" && '.$shell;
 
     $process = proc_open($shell, $descriptorspec, $pipes);
     if (is_resource($process)) {
