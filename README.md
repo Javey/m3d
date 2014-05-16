@@ -9,6 +9,12 @@
 1.  php >= 5.2
 2.  lighttpd
 
+建议环境
+
+1.  svn >= 1.7
+2.  pngquant
+3.  uglifyjs
+
 ## 基础安装
 
 *已下假定当前目录为用户home下*
