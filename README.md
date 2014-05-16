@@ -35,15 +35,15 @@
 
 *   全局配置文件`conf/config.php`
 
-    1.  `RESTART` => lighttpd重启命令
-    2.  `SVN` => svn路径，用于checkout&commit代码
-    3.  `PNG8_COMPRESSOR` => FE代码，图片优化命令，如：`pngquant`
-    4.  `JS_COMPRESSOR` => FE代码，js压缩命令，如：`uglifyjs`
+1.  `RESTART` => lighttpd重启命令
+2.  `SVN` => svn路径，用于checkout&commit代码
+3.  `PNG8_COMPRESSOR` => FE代码，图片优化命令，如：`pngquant`
+4.  `JS_COMPRESSOR` => FE代码，js压缩命令，如：`uglifyjs`
 
 *   项目（project）配置文件`project/music(PROJECT_NAME)/conf/config.php`
 
-    1.  `host` => 当前项目域名
-    2.  `name` => 当前项目名称
+1.  `host` => 当前项目域名
+2.  `name` => 当前项目名称
 
 *   webserver配置
 
@@ -53,10 +53,8 @@
 
     目录结构：
 
-    1.  `wwwdata.test`:测试环境目录，该目录下的代码没有经过编译
-    2.  `wwwdata.build`:编译环境目录，该木下的代码是经过编译处理的
-    3.  `src`:用于搭建当前环境的所有源码，用于wwwdata.test环境部署
-    4.  `build`：编译后的的源码，用于wwwdata.build环境部署
-    5.  `lighttpd.conf`:当前环境的lighttpd配置，该配置会被安装时加入的`include-lighttpd-conf.sh`自动读取
-
-
+1.  `wwwdata.test`:测试环境目录，该目录下的代码没有经过编译
+2.  `wwwdata.build`:编译环境目录，该木下的代码是经过编译处理的
+3.  `src`:用于搭建当前环境的所有源码，用于wwwdata.test环境部署
+4.  `build`：编译后的的源码，用于wwwdata.build环境部署
+5.  `lighttpd.conf`:当前环境的lighttpd配置，该配置会被安装时加入的`include-lighttpd-conf.sh`自动读取
