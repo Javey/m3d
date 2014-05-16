@@ -455,7 +455,7 @@ function get_files_by_type($paths, $types, $root='') {
                 if (is_file($entry)) {
                     $extension = pathinfo($entry, PATHINFO_EXTENSION);
                     if (in_array($extension, $types)) {
-                        $ret[] = $entry;
+                        $ret[] = realpath($entry);
                     }
                 }
             }

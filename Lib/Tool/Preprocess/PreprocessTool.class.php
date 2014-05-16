@@ -125,13 +125,17 @@ class PreprocessTool extends Tool {
      */
     public function writeBuildFile(Preprocess $processor, $item, $path) {
         // 如果设置了to参数，则改变编译后文件路径
-        if (!$this->isWhitefile($path) && !empty($item['to'])) {
-            // 是否md5化
-            if (C('IS_MD5')) {
-                $path = $item['to'] .'/'. $processor->fileUid() . '.' . $processor->getType();
-            } else {
-                $path = $item['to'].'/'.$processor->getFilename();
+        if (!$this->isWhitefile($path)) {
+            if (!empty($item['to'])) {
+                // 是否md5化
+                if (C('IS_MD5') && in_array($item['processor'], array('media', 'css', 'js'))) {
+                    $path = $item['to'] .'/'. $processor->fileUid() . '.' . $processor->getType();
+                } else {
+                    $path = $item['to'].$path;
+                }
             }
+        } else {
+            $path = C('STATIC_VIRTUAL_PREFIX').$path;
         }
 
         $buildPath = C('SRC.BUILD_PATH') . $path;
