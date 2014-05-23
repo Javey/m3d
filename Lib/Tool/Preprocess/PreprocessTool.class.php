@@ -131,7 +131,8 @@ class PreprocessTool extends Tool {
                 if (C('IS_MD5') && in_array($item['processor'], array('media', 'css', 'js'))) {
                     $path = $item['to'] .'/'. $processor->fileUid() . '.' . $processor->getType();
                 } else {
-                    $path = $item['to'].$path;
+//                    $path = $item['to'].$path;
+                    $path = $item['to'].'/'.$processor->getFilename();
                 }
             }
         } else {
