@@ -103,7 +103,7 @@ class SvnOperatorPlugin extends Plugin {
                     $action = $action[0];
 
                     if ($action === '!') {
-                        $cmd = C('SVN').' del '.C('SRC.ROOT').'/'.$file;
+                        $cmd = C('SVN').' del "'.C('SRC.ROOT').'/'.$file.'"';
                         shell_exec_ensure($cmd, false);
                     }
                 }
