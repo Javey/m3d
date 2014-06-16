@@ -1,4 +1,6 @@
 <?php
+class ImageException extends Exception {}
+
 class Image {
 	const UNIT_WIDTH = 12;
 	const UNIT_HEIGHT = 12;
@@ -54,7 +56,7 @@ class Image {
 			$this->check_config();
 			$this->resize();
 		}else{
-			mark("file \"$filename\" not found! But in merge config!", 'error');
+            throw new ImageException("file \"$filename\" not found! But in merge config!");
 		}
 	}
 

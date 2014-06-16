@@ -47,7 +47,11 @@ class Sprite {
         $imgList = array();
         if (!empty($config)) {
             foreach ($config as $key => $value) {
-                $imgList[$key] = new Image($this->staticRelativePath.$key, $value);
+                try {
+                    $imgList[$key] = new Image($this->staticRelativePath.$key, $value);
+                } catch (ImageException $e) {
+                    mark("合图${type}中，存在小图${key}的配置文件，但该小图不存在，请到合图配置界面删除该小图", 'warn');
+                }
             }
         }
         $layout = new Layout($imgList);

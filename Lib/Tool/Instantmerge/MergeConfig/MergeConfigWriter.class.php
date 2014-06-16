@@ -31,15 +31,15 @@ class MergeConfigWriter {
      * @param bool $custom 是否写入自定义文件中
      */
     public function writeImageConfigByType($config, $type, $custom=false) {
+        $fileIds = array();
         $imergePath = $this->root.'/'.C('IMERGE_IMAGE_DIR');
         $typePath = $imergePath.'/'.$type;
         if (!file_exists($typePath)) {
             mkdir($typePath, 0777, true);
-        } else {
-            $this->cleanupFile($typePath);
         }
         foreach ($config as $url => $value) {
             $uid = file_uid($url);
+            $fileIds[$uid] = 1;
             if (!$custom) {
                 // 只有当自定义配置文件不存在时，才进行配置写入
                 // 自定义配置文件名以'_'开头
@@ -56,6 +56,8 @@ class MergeConfigWriter {
                 contents_to_file($configFile, $contents);
             }
         }
+
+        $this->cleanupFile($typePath, $fileIds);
     }
 
     /**
@@ -124,14 +126,17 @@ class MergeConfigWriter {
     }
 
     /**
-     * 删除掉之前的自动配置文件，自定义配置保留
+     * 删除掉冗余的配置文件
      * @param $path
      */
-    private function cleanupFile($path) {
-        $files = glob($path.'/[^_]*/php');
+    private function cleanupFile($path, $fileIds) {
+        $files = glob($path.'/*.php');
         if ($files) {
             foreach ($files as $file) {
-                unlink($file);
+                $uid = pathinfo($file, PATHINFO_FILENAME);
+                if (!$fileIds[$uid]) {
+                    unlink($file);
+                }
             }
         }
     }
