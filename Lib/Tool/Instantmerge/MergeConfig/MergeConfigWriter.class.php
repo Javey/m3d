@@ -134,6 +134,9 @@ class MergeConfigWriter {
         if ($files) {
             foreach ($files as $file) {
                 $uid = pathinfo($file, PATHINFO_FILENAME);
+                if ($uid[0] === '_') {
+                    $uid = substr($uid, 1);
+                }
                 if (!$fileIds[$uid]) {
                     unlink($file);
                 }
