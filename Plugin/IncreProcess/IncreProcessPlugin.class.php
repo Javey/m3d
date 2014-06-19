@@ -13,7 +13,7 @@ on('process_start', 'IncreProcess');
 on('rm_old_build_file', 'IncreProcessPlugin::remain');
 on('one_process_start', 'IncreProcessPlugin::importMap');
 on('processor_fetch_files', 'IncreProcessPlugin::getFileList');
-on('change_file', 'IncreProcessPlugin::updateChangeList');
+on('change_file', 'IncreProcessPlugin::addChangeList');
 
 class IncreProcessPlugin extends Plugin {
     // 改变的文件，分为三类
@@ -128,6 +128,26 @@ class IncreProcessPlugin extends Plugin {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * 更新改变文件列表，用于手动触发
+     * @param $file
+     */
+    public static function addChangeList($params) {
+        $file = $params[1];
+        if (!isset(self::$files[self::MODIFY][$file])) {
+            array_push(self::$files[self::MODIFY], $file);
+            // 查找受影响文件
+            $affect = IncreMap::getAffectList(array($file));
+            // 更新modify列表
+            self::$files[self::MODIFY] = array_unique(
+                array_merge(
+                    self::$files[self::MODIFY],
+                    $affect
+                )
+            );
         }
     }
 
@@ -267,18 +287,5 @@ class IncreProcessPlugin extends Plugin {
         }
 
         return $map;
-    }
-
-    /**
-     * 更新改变文件列表，用于手动触发
-     * @param $action
-     * @param $file
-     */
-    private static function updateChangeList($params) {
-        $action = $params[1];
-        $file = $params[2];
-        if (!isset(self::$files[$action][$file])) {
-            array_push(self::$files[$action], $file);
-        }
     }
 }
