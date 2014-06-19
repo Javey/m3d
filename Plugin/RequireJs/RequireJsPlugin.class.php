@@ -42,7 +42,7 @@ class RequireJsPlugin extends Plugin {
 
             if ($buildPath !== $oldBuildPath) {
                 $tool->updateMap('js', $path, $buildPath);
-                trigger('change_file', $path);
+                trigger('change_file', 'M', $path);
             }
         }
     }

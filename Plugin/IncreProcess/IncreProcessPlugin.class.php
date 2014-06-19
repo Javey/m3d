@@ -274,7 +274,9 @@ class IncreProcessPlugin extends Plugin {
      * @param $action
      * @param $file
      */
-    private static function updateChangeList($action, $file) {
+    private static function updateChangeList($params) {
+        $action = $params[1];
+        $file = $params[2];
         if (!isset(self::$files[$action][$file])) {
             array_push(self::$files[$action], $file);
         }
