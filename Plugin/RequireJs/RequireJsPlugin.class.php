@@ -64,14 +64,15 @@ class RequireJsPlugin extends Plugin {
             $ret = array_merge($ret, $tool->getMap($key));
         }
 
+        // 去掉自身
+        unset($ret[str_replace(C('SRC.SRC_PATH'), '', $this->options['requirejs.path'])]);
+
         // map中地址为实际地址，将其变为引用地址
         // 为value加入cdn
         $ret = array_combine(
             array_map(create_function('$key', 'return Tool::getVirtualPath($key);'), array_keys($ret)),
             array_map(create_function('$value', 'return Tool::addCdn($value);'), array_values($ret))
         );
-        // 去掉自身
-        unset($ret[$this->options['requirejs.path']]);
 
         return $ret;
     }
