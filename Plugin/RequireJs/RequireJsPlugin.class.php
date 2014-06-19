@@ -42,6 +42,15 @@ class RequireJsPlugin extends Plugin {
 
             if ($buildPath !== $oldBuildPath) {
                 $tool->updateMap('js', $path, $buildPath);
+                // 清除文件
+                $path = C('SRC.BUILD_PATH').$oldBuildPath;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+                $path = C('SRC.BUILD_CACHE_PATH').$oldBuildPath;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
                 trigger('change_file', $path);
             }
         }
