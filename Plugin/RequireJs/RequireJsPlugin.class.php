@@ -70,6 +70,8 @@ class RequireJsPlugin extends Plugin {
             array_map(create_function('$key', 'return Tool::getVirtualPath($key);'), array_keys($ret)),
             array_map(create_function('$value', 'return Tool::addCdn($value);'), array_values($ret))
         );
+        // 去掉自身
+        unset($ret[$this->options['requirejs.path']]);
 
         return $ret;
     }
