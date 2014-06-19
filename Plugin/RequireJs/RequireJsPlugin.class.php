@@ -38,7 +38,12 @@ class RequireJsPlugin extends Plugin {
             $path = $processor->getRelativePath();
             $buildPath = $tool->writeBuildFile($processor, $item, $path);
 
-            $tool->updateMap('js', $path, $buildPath);
+            $oldBuildPath = $tool->getMap('js', $path);
+
+            if ($buildPath !== $oldBuildPath) {
+                $tool->updateMap('js', $path, $buildPath);
+                trigger('change_file', $path);
+            }
         }
     }
 

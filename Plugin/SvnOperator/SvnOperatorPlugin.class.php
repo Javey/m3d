@@ -9,6 +9,7 @@
 
 on(array('process_start', 'imerge_start'), 'SvnOperator', 10);
 on('process_end', 'SvnOperatorPlugin::ci', 10000);
+on('imerge_end', 'SvnOperatorPlugin::ciImerge');
 
 class SvnOperatorPlugin extends Plugin {
     protected $options = array(
@@ -18,6 +19,7 @@ class SvnOperatorPlugin extends Plugin {
     public function run($params) {
         if (!$this->options['svnop.is_svn']) {
             off('process_end', 'SvnOperatorPlugin::ci');
+            off('imerge_end', 'SvnOperatorPlugin::ciImerge');
             return;
         }
         self::ciImerge();

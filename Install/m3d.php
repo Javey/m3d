@@ -1,6 +1,12 @@
 <?php
 /**
  * 请将该文件命名为m3d.php，放在源码根目录
+ * 或者放置其他目录，然后再根目录下新建m3d.php require该文件
+ * <code>
+ *  <?php
+ *  define('SRC_ROOT', dirname(__FILE__));
+ *  return require('path_to_m3d.php');
+ * </code>
  *
  * @description m3d配置
  * @filename m3d.php

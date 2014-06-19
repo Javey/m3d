@@ -88,7 +88,11 @@ class SiteAction extends Action {
         $name = $_GET['name'];
         $model = new SiteModel();
         $info = $model->getSiteInfo($name);
-        show_json($info);
+        if (!empty($info)) {
+            show_json($info);
+        } else {
+            show_error("${name}环境不存在");
+        }
     }
 
     private function saveInfo() {

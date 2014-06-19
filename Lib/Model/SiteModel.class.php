@@ -119,21 +119,23 @@ class SiteModel extends Model {
      */
     public function getSiteInfo($site) {
         $info = $this->where('name', '=', $site)->findAll()->asArray();
-        $info = $info[0];
+        if (!empty($info)) {
+            $info = $info[0];
 
-        $model = new ModuleModel();
-        $modules = unserialize($info->modules);
-        $modules = $model->getInfoById($modules);
-        $info->modules = array();
+            $model = new ModuleModel();
+            $modules = unserialize($info->modules);
+            $modules = $model->getInfoById($modules);
+            $info->modules = array();
 
-        foreach ($modules as $module) {
-            $path = C('PROJECT.SITE_PATH').'/'.$info->name.'/src/'.$module->filename;
+            foreach ($modules as $module) {
+                $path = C('PROJECT.SITE_PATH').'/'.$info->name.'/src/'.$module->filename;
 
-            // realpath()会被缓存？
-            $branch = basename(readlink($path));
+                // realpath()会被缓存？
+                $branch = basename(readlink($path));
 
-            $module->branch = $branch;
-            $info->modules[] = $module;
+                $module->branch = $branch;
+                $info->modules[] = $module;
+            }
         }
 
         return $info;

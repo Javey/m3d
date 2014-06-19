@@ -13,6 +13,7 @@ on('process_start', 'IncreProcess');
 on('rm_old_build_file', 'IncreProcessPlugin::remain');
 on('one_process_start', 'IncreProcessPlugin::importMap');
 on('processor_fetch_files', 'IncreProcessPlugin::getFileList');
+on('change_file', 'IncreProcessPlugin::updateChangeList');
 
 class IncreProcessPlugin extends Plugin {
     // 改变的文件，分为三类
@@ -266,5 +267,16 @@ class IncreProcessPlugin extends Plugin {
         }
 
         return $map;
+    }
+
+    /**
+     * 更新改变文件列表，用于手动触发
+     * @param $action
+     * @param $file
+     */
+    private static function updateChangeList($action, $file) {
+        if (!isset(self::$files[$action][$file])) {
+            array_push(self::$files[$action], $file);
+        }
     }
 }
