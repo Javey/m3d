@@ -18,8 +18,8 @@
         <div class="title">
             <h1 class="name">{{info.name}}</h1>
             <span class="line">-</span>
-            <a href="http://{{info.name}}.{{projectInfo.host}}" title="访问测试环境" target="_blank">测试环境</a>
-            <a href="http://build.{{info.name}}.{{projectInfo.host}}" title="访问编译环境" target="_blank">编译环境</a>
+            <a href="http://{{info.name}}.{{projectInfo.host}}:{{projectInfo.port}}" title="访问测试环境" target="_blank">测试环境</a>
+            <a href="http://build.{{info.name}}.{{projectInfo.host}}:{{projectInfo.port}}" title="访问编译环境" target="_blank">编译环境</a>
         </div>
         <div class="info">{{info.author}} - {{info.createTime}}</div>
         <div class="description">{{info.description}}</div>
