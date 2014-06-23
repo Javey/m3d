@@ -44,8 +44,10 @@ class ModuleAction extends Action {
         $description = str_replace("\n", '<br />',$_POST['description']);
         $modules = '<ul style="font-weight: normal;">';
         foreach ($_POST['modules'] as $module) {
-            $modules .= '<li><h4>' . $module['title'] . ' - <i>' . $module['description'] . '</i></h4>';
-            $modules .= '<p><span>模块:</span>' . $module['storename']. '</p><p><span>分支:</span>' . $module['branch'] . '</p></li>';
+            if (!empty($module)) {
+                $modules .= '<li><h4>' . $module['title'] . ' - <i>' . $module['description'] . '</i></h4>';
+                $modules .= '<p><span>模块:</span>' . $module['storename']. '</p><p><span>分支:</span>' . $module['branch'] . '</p></li>';
+            }
         }
         $modules .= '</ul>';
         $message = "
@@ -117,6 +119,7 @@ class ModuleAction extends Action {
 
         $url = $_POST['url'];
         $name = $_POST['name'];
+        $showInfo = isset($_POST['showInfo']) ? $_POST['showInfo'] : true;
         $path = C('SRC_PATH').'/'.$name;
 
         if (!file_exists($path)) {
@@ -127,7 +130,7 @@ class ModuleAction extends Action {
         if (basename($url) === basename($name)) {
             $cmd = $cmd.' trunk';
         }
-        $ret = shell_exec_ensure($cmd, true, false);
+        $ret = shell_exec_ensure($cmd, $showInfo, false);
         if ($ret['status']) {
             show_error('命令执行失败:'.$cmd);
         } else {

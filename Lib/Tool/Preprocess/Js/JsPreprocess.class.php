@@ -60,7 +60,7 @@ class JsPreprocess extends Preprocess {
             $mediaTypes = $processor->getOptions();
             $mediaTypes = comma_str_to_array($mediaTypes['type']);
             if (!empty($mediaTypes)) {
-                $reg = '/(?<=[\'\"])(?:'.addslashes(C('STATIC_VIRTUAL_PREFIX')).'[^\'\"\\\]*)\.(?:'.implode('|', $mediaTypes).')(?=[\'\"\\\])/';
+                $reg = '/(?<=[\'\"])(?:'.str_replace('/', '\\/', C('STATIC_VIRTUAL_PREFIX')).'[^\'\"\\\]*)\.(?:'.implode('|', $mediaTypes).')(?=[\'\"\\\])/';
             } else {
                 $reg = false;
             }

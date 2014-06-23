@@ -83,6 +83,11 @@ abstract class Preprocess {
     }
 
     public function setContents($contents) {
+        // 去掉BOM头
+        if (ord($contents{0}) === 239 && ord($contents{1}) === 187 && ord($contents{2}) === 191) {
+            $contents = substr($contents, 3);
+        }
+
         $this->contents = $contents;
     }
 

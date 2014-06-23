@@ -86,6 +86,7 @@ class PreprocessTool extends Tool {
             $this->exportMapByType($item['name']);
         }
 
+
         $this->copyToTestEnv();
 
         // 派发预处理结束事件
@@ -97,10 +98,16 @@ class PreprocessTool extends Tool {
      * @param null $key
      * @return array|null
      */
-    public function getMap($key=null) {
+    public function getMap($key=null, $file=null) {
         return is_null($key) ?
-            $this->map : (isset($this->map[$key]) ?
-                $this->map[$key] : null);
+            $this->map :
+            (isset($this->map[$key]) ?
+                (is_null($file) ?
+                    $this->map[$key] :
+                    (isset($this->map[$key][$file]) ?
+                        $this->map[$key][$file] :
+                        null)) :
+                null);
     }
 
     /**
@@ -125,13 +132,19 @@ class PreprocessTool extends Tool {
      */
     public function writeBuildFile(Preprocess $processor, $item, $path) {
         // 如果设置了to参数，则改变编译后文件路径
-        if (!$this->isWhitefile($path) && !empty($item['to'])) {
-            // 是否md5化
-            if (C('IS_MD5')) {
-                $path = $item['to'] .'/'. $processor->fileUid() . '.' . $processor->getType();
-            } else {
-                $path = $item['to'].'/'.$processor->getFilename();
+        if (!$this->isWhitefile($path)) {
+            if (!empty($item['to'])) {
+                // 是否md5化
+                if (C('IS_MD5') && in_array($item['processor'], array('media', 'css', 'js'))) {
+                    $path = $item['to'] .'/'. $processor->fileUid() . '.' . $processor->getType();
+                } else {
+                    $path = $item['to'].$path;
+                    // for webapp node
+//                    $path = $item['to'].'/'.$processor->getFilename();
+                }
             }
+        } else {
+            $path = C('STATIC_VIRTUAL_PREFIX').$path;
         }
 
         $buildPath = C('SRC.BUILD_PATH') . $path;

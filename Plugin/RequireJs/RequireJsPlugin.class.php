@@ -38,7 +38,21 @@ class RequireJsPlugin extends Plugin {
             $path = $processor->getRelativePath();
             $buildPath = $tool->writeBuildFile($processor, $item, $path);
 
-            $tool->updateMap('js', $path, $buildPath);
+            $oldBuildPath = $tool->getMap('js', $path);
+
+            if ($buildPath !== $oldBuildPath) {
+                $tool->updateMap('js', $path, $buildPath);
+                // 清除文件
+                $file = C('SRC.BUILD_PATH').$oldBuildPath;
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+                $file = C('SRC.BUILD_CACHE_PATH').$oldBuildPath;
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+                trigger('change_file', $path);
+            }
         }
     }
 
@@ -49,6 +63,9 @@ class RequireJsPlugin extends Plugin {
         foreach ($mapKey as $key) {
             $ret = array_merge($ret, $tool->getMap($key));
         }
+
+        // 去掉自身
+        unset($ret[str_replace(C('SRC.SRC_PATH'), '', $this->options['requirejs.path'])]);
 
         // map中地址为实际地址，将其变为引用地址
         // 为value加入cdn

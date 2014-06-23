@@ -113,5 +113,11 @@ abstract class Tool {
             C('STATIC_ACTUAL_PREFIX', str_slice($staticInSrc, 0, $pos));
             C('STATIC_VIRTUAL_PREFIX', str_slice($staticInFile, 0, $pos));
         }
+
+        // 加载自定义插件
+        $pluginPath = C('PLUGIN_PATH');
+        if ($pluginPath && file_exists($pluginPath)) {
+            Plugin::start($pluginPath);
+        }
     }
 }

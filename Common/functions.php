@@ -455,7 +455,7 @@ function get_files_by_type($paths, $types, $root='') {
                 if (is_file($entry)) {
                     $extension = pathinfo($entry, PATHINFO_EXTENSION);
                     if (in_array($extension, $types)) {
-                        $ret[] = $entry;
+                        $ret[] = realpath($entry);
                     }
                 }
             }
@@ -487,14 +487,19 @@ function file_uid($contents, $type='') {
     return $uid;
 }
 
-//function file_uid($arr, $type='') {
-//    $len = strlen($arr);
-//    $h = 8388617;
-//    for ($i = 0; $i < $len; $i++) {
-//        $h = ( ($h << 1 | $h >> 30) & (0xffffffff >> 8) ) ^ $arr[$i];
-//    }
+//function file_uid($str, $type='') {
+//    global $total;
+//    $time1 = microtime(true);
+//    $arr = str_split($str.$type);
 //
-//    return base_convert($h, 10, 36);
+//    $sum = 65536;
+//    foreach($arr as $n) {
+//       $sum = (($sum << 1 | $sum >> 31) & 0xffffffff ) ^ ord($n);
+//    }
+//    $time2 = microtime(true);
+//    $total += ($time2 - $time1);
+//
+//    return base_convert($sum, 10, 36);
 //}
 
 /**

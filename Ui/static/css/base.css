@@ -176,6 +176,40 @@ textarea {
     }
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+    height:14px;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece {
+    width: 11px;
+    height:11px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-width: 0;
+    border-style: solid;
+    border-radius: 6px;
+    background: #d9d9d9;
+}
+::-webkit-scrollbar-thumb:horizontal{
+    border-width: 3px 0;
+    border-style: solid;
+    border-color: #fefefe;
+    border-radius: 6px;
+    background: #d9d9d9;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #bdbdbd;
+}
+::-webkit-scrollbar-thumb:active {
+    background: #8e8e8e;
+}
+
 .error-tip {
     display: block;
     position: absolute;
