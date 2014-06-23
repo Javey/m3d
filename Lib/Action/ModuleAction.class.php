@@ -44,8 +44,10 @@ class ModuleAction extends Action {
         $description = str_replace("\n", '<br />',$_POST['description']);
         $modules = '<ul style="font-weight: normal;">';
         foreach ($_POST['modules'] as $module) {
-            $modules .= '<li><h4>' . $module['title'] . ' - <i>' . $module['description'] . '</i></h4>';
-            $modules .= '<p><span>模块:</span>' . $module['storename']. '</p><p><span>分支:</span>' . $module['branch'] . '</p></li>';
+            if (!empty($module)) {
+                $modules .= '<li><h4>' . $module['title'] . ' - <i>' . $module['description'] . '</i></h4>';
+                $modules .= '<p><span>模块:</span>' . $module['storename']. '</p><p><span>分支:</span>' . $module['branch'] . '</p></li>';
+            }
         }
         $modules .= '</ul>';
         $message = "
