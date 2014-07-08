@@ -373,8 +373,8 @@ class CssPreprocess extends Preprocess {
                     $size = $size[0];
                     if ($size instanceof Size && $size->isSize()) {
                         $oSize = $size->getSize();
-                        $ratio[$order] = $oSize / $config[$order];
-                        $nSize = round($ratio[$order] * $attr[$order]);
+                        $ratio[$order] = $oSize / $config['ori_'.$order];
+                        $nSize = floor($ratio[$order] * $attr[$order]);
                         $size->setSize($nSize);
 
                         $setTimes++;
