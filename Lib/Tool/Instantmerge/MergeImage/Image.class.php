@@ -45,7 +45,7 @@ class Image {
 	private $bottom = 0;
 	private $left = 0;
 
-	private $readonly = array('width', 'height', 'top', 'right', 'bottom', 'left', 'filename', 'config');
+	private $readonly = array('width', 'height', 'top', 'right', 'bottom', 'left', 'filename', 'config', 'ori_width', 'ori_height');
 
 	public function __construct($filename, $conf=null){
 		if(file_exists($filename) && ($image_size = getimagesize($filename))){

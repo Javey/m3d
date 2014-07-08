@@ -125,6 +125,8 @@ class Sprite {
                 'right' => $img->right,
                 'bottom' => $img->bottom,
                 'left' => $img->left,
+                'ori_width' => $img->ori_width,
+                'ori_height' => $img->ori_height,
                 'config' => $img->config
             );
         }

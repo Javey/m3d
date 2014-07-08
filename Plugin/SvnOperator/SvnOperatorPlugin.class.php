@@ -31,10 +31,12 @@ class SvnOperatorPlugin extends Plugin {
      */
 
     public static function ciImerge() {
-        mark('提交合图配置...', 'emphasize');
-        self::localDelToSvn();
-        $cmd = C('SVN').' add '.C('IMERGE_PATH').' --force && '.C('SVN').' ci '.C('IMERGE_PATH').' -m "Commit imerge by M3D"';
-        shell_exec_ensure($cmd, false);
+        if (file_exists(C('IMERGE_PATH'))) {
+            mark('提交合图配置...', 'emphasize');
+            self::localDelToSvn();
+            $cmd = C('SVN').' add '.C('IMERGE_PATH').' --force && '.C('SVN').' ci '.C('IMERGE_PATH').' -m "Commit imerge by M3D"';
+            shell_exec_ensure($cmd, false);
+        }
     }
 
     /**
