@@ -44,7 +44,7 @@ class SvnOperatorPlugin extends Plugin {
         mark('执行svn up...', 'emphasize');
         self::cleanLocalChange();
         $cmd = C('SVN').' up '. C('SRC.ROOT');
-        shell_exec_ensure($cmd, false);
+        shell_exec_ensure($cmd, true);
     }
 
     public static function ci() {

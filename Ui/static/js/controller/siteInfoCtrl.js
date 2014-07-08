@@ -122,7 +122,7 @@ define(['lodash', 'angular'], function(_) {
                         modalData: function() {
                             return {
                                 title: '编译',
-                                content: '是否进行增量编译'
+                                content: '是否进行增量编译？'
                             }
                         }
                     }
@@ -188,7 +188,7 @@ define(['lodash', 'angular'], function(_) {
 
         function compile(mod, isIncre) {
             var ter = terminal.open({
-                title: '编译'
+                title: '编译 (' + $scope.info.name + ' - ' + mod + ')'
             });
             module.compile({
                 site: $scope.info.name,

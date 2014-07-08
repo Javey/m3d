@@ -38,7 +38,7 @@ a:hover {
 }
 .btn {
     display: inline-block;
-    width: 70px;
+    padding: 0 20px;
     line-height: 30px;
     text-align: center;
     cursor: pointer;
@@ -46,6 +46,7 @@ a:hover {
 .btn:hover {
     background: #e25940;
     color: #fff;
+    text-decoration: none;
 }
 .btn-a {
     background: #e25940;

@@ -30,28 +30,34 @@ class RequireJsPlugin extends Plugin {
             $map = $this->getMap($tool);
             $script = $this->genScript($map);
             $processor = Preprocess::getInstance('js');
-            $processor->setFile($this->options['requirejs.path']);
-            $processor->setContents($script);
-            $processor->process();
-            $processor->compress();
+            $mapFiles = $this->options['requirejs.path'];
+            if (is_string($mapFiles)) {
+                $mapFiles = array($mapFiles);
+            }
+            foreach ($mapFiles as $file) {
+                $processor->setFile($file);
+                $processor->setContents($script);
+                $processor->process();
+                $processor->compress();
 
-            $path = $processor->getRelativePath();
-            $buildPath = $tool->writeBuildFile($processor, $item, $path);
+                $path = $processor->getRelativePath();
+                $buildPath = $tool->writeBuildFile($processor, $item, $path);
 
-            $oldBuildPath = $tool->getMap('js', $path);
+                $oldBuildPath = $tool->getMap('js', $path);
 
-            if ($buildPath !== $oldBuildPath) {
-                $tool->updateMap('js', $path, $buildPath);
-                // 清除文件
-                $file = C('SRC.BUILD_PATH').$oldBuildPath;
-                if (file_exists($file)) {
-                    unlink($file);
+                if ($buildPath !== $oldBuildPath) {
+                    $tool->updateMap('js', $path, $buildPath);
+                    // 清除文件
+                    $file = C('SRC.BUILD_PATH').$oldBuildPath;
+                    if (file_exists($file)) {
+                        unlink($file);
+                    }
+                    $file = C('SRC.BUILD_CACHE_PATH').$oldBuildPath;
+                    if (file_exists($file)) {
+                        unlink($file);
+                    }
+                    trigger('change_file', $path);
                 }
-                $file = C('SRC.BUILD_CACHE_PATH').$oldBuildPath;
-                if (file_exists($file)) {
-                    unlink($file);
-                }
-                trigger('change_file', $path);
             }
         }
     }
