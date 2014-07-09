@@ -7,7 +7,7 @@
  */
 
 require_once('JCssParser.class.php');
-require_once('JCssStringify.class.php');
+require_once('JCssStringifier.class.php');
 
 on('processor_init', 'JCssParser');
 
@@ -40,8 +40,8 @@ class JCssPreprocess extends CssPreprocess {
      */
     protected function cssParse($contents) {
         // 处理逻辑
-        $parser = new JCssParser($contents);
-        $doc = $parser->parse();
+        $parser = new JCssParser();
+        $doc = $parser->parse($contents);
 
         $importContents = $this->handleImport($doc['stylesheet']['rules']);
 
@@ -49,9 +49,9 @@ class JCssPreprocess extends CssPreprocess {
             $this->handleBackground($doc['stylesheet']['rules']);
         }
 
-        $stringify = new JCssStringify();
+        $stringifier = new JCssStringifier();
 
-        return $importContents.$stringify->stringify($doc);
+        return $importContents.$stringifier->stringify($doc);
     }
 
     private function handleImport(&$rules) {
@@ -117,12 +117,12 @@ class JCssPreprocess extends CssPreprocess {
     }
 
     private function rewriteFilter(&$rule) {
-        foreach ($rule['declarations'] as $declaration) {
+        foreach ($rule['declarations'] as &$declaration) {
             if (strpos($declaration['property'], 'filter') !== false) {
                 if (preg_match('/(.*?src=)([\'\"]?)([^\'\"\)]+)([\'\"]?)(.*)/', $declaration['value'], $matches)) {
                     $url = $matches[3];
                     $urlData = $this->getBackgroundUrlData($url);
-                    $bgDecl['value'] = $matches[1].'"'.$urlData['url'].'"'.$matches[5];
+                    $declaration['value'] = $matches[1].'"'.$urlData['url'].'"'.$matches[5];
                     break;
                 }
             }

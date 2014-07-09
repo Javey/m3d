@@ -5,11 +5,8 @@ class JCssParser {
 
     private $css = '';
 
-    public function __construct($css) {
+    public function parse($css) {
         $this->css = $css;
-    }
-
-    public function parse() {
         return $this->stylesheet();
     }
 
