@@ -13,7 +13,7 @@ on('processor_init', 'JCssParser');
 
 class JCssParserPlugin extends Plugin {
     protected $options = array(
-        'jcss.is_jcss' => false
+        'jcss.is_jcss' => true
     );
 
     public function run($params) {
@@ -111,7 +111,7 @@ class JCssPreprocess extends CssPreprocess {
 
         if ($merge && isset($urlData) && $urlData['config']) {
             $position = array('left' => $urlData['config']['left'], 'top' => $urlData['config']['top']);
-            $this->rewriteBackgroundSize($bgDecls, $urlData['config'], $this->spriteConfig['merge']['attr'], $position);
+            $this->rewriteBackgroundSize($bgDecls, $urlData['config'], $this->spriteConfig[$merge]['attr'], $position);
             $this->rewriteBackgroundPosition($rule, $bgDecls, $position);
         }
     }
@@ -213,13 +213,15 @@ class JCssPreprocess extends CssPreprocess {
                     if (($matches = $this->matchSize($size)) && !empty($matches)) {
                         $size = $matches[1];
                         $ratio[$order] = $size / $config['ori_'.$order];
-                        $size = round($ratio[$order] * $attr[$order]);
+                        $size = floor($ratio[$order] * $attr[$order]);
                         $bgSize[$index] = (string)$size.'px';
 
                         $setTimes++;
                     }
                     $order = 'height';
                 }
+
+                $bgDecl['value'] = implode(' ', $bgSize);
 
                 if ($setTimes < 2) {
                     if ($ratio['width'] !== 1) {
