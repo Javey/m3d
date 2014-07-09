@@ -17,10 +17,6 @@ class JCssParserPlugin extends Plugin {
     );
 
     public function run($params) {
-        static $css = false;
-        if ($css) {
-            exit();
-        }
         if (!C('JCSS.IS_JCSS')) {
             off('processor_init', 'JCssParser');
             return;
@@ -31,7 +27,6 @@ class JCssParserPlugin extends Plugin {
 
         // 判断当前是否在初始化CssPreprocess
         if ($options['processor'] === 'css') {
-            $css = true;
             $processor->return = new JCssPreprocess($tool->getMap(), $options);
         }
     }
@@ -93,11 +88,12 @@ class JCssPreprocess extends CssPreprocess {
                         $bgDecls[] = &$declaration;
                     } elseif ($declaration['property'] === 'merge') {
                         $merge = $declaration['value'];
-                        unset($rules[$index]);
+                        unset($rule['declarations'][$index]);
                     }
                 }
 
                 $this->rewriteBackground($rule, $bgDecls, $merge);
+                $this->rewriteFilter($rule);
             }
         }
     }
@@ -117,6 +113,19 @@ class JCssPreprocess extends CssPreprocess {
             $position = array('left' => $urlData['config']['left'], 'top' => $urlData['config']['top']);
             $this->rewriteBackgroundSize($bgDecls, $urlData['config'], $this->spriteConfig['merge']['attr'], $position);
             $this->rewriteBackgroundPosition($rule, $bgDecls, $position);
+        }
+    }
+
+    private function rewriteFilter(&$rule) {
+        foreach ($rule['declarations'] as $declaration) {
+            if (strpos($declaration['property'], 'filter') !== false) {
+                if (preg_match('/(.*?src=)([\'\"]?)([^\'\"\)]+)([\'\"]?)(.*)/', $declaration['value'], $matches)) {
+                    $url = $matches[3];
+                    $urlData = $this->getBackgroundUrlData($url);
+                    $bgDecl['value'] = $matches[1].'"'.$urlData['url'].'"'.$matches[5];
+                    break;
+                }
+            }
         }
     }
 
@@ -203,7 +212,7 @@ class JCssPreprocess extends CssPreprocess {
                 foreach ($bgSize as $index => $size) {
                     if (($matches = $this->matchSize($size)) && !empty($matches)) {
                         $size = $matches[1];
-                        $ratio[$order] = $size / $config[$order];
+                        $ratio[$order] = $size / $config['ori_'.$order];
                         $size = round($ratio[$order] * $attr[$order]);
                         $bgSize[$index] = (string)$size.'px';
 
@@ -231,10 +240,10 @@ class JCssPreprocess extends CssPreprocess {
     private function rewriteBackgroundPosition(&$rule, &$bgDecls, $config) {
         foreach ($bgDecls as &$bgDecl) {
             if ($bgDecl['property'] === 'background-position') {
-                $posDecl = $bgDecl;
+                $posDecl = &$bgDecl;
                 break;
             } else if ($bgDecl['property'] === 'background') {
-                $posDecl = $bgDecl;
+                $posDecl = &$bgDecl;
             }
         }
 
@@ -280,7 +289,7 @@ class JCssPreprocess extends CssPreprocess {
     }
 
     private function matchSize($value) {
-        preg_match('/^(\d+)(px)?/', $value, $matches);
+        preg_match('/^([\d\.]+)(px)?/', $value, $matches);
         return $matches;
     }
 }
