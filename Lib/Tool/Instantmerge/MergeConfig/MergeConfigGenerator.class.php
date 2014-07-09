@@ -7,6 +7,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
+require_once(PLUGIN_PATH.'/JCssParser/JCssParser.class.php');
+require_once(PLUGIN_PATH.'/JCssParser/JCssStringifier.class.php');
+
 class MergeConfigException extends Exception {}
 
 class MergeConfigGenerator {
@@ -39,29 +42,26 @@ class MergeConfigGenerator {
         foreach ($this->files as $file) {
             mark('解析CSS文件：'.$file);
             $content = file_get_contents($file);
-            $cssParser = new Parser($content);
-            $cssDoc = $cssParser->parse();
+            $cssParser = new JCssParser();
+            $cssDoc = $cssParser->parse($content);
 
-            foreach ($cssDoc->getAllDeclarationBlocks() as $block) {
-                if ($mergeRule = $block->getRules('merge')) {
-                    $mergeValue = $mergeRule[0]->getValue();
-                    if (!isset($this->mergeConfig[$mergeValue])) {
-                        $this->mergeConfig[$mergeValue] = array();
+            foreach ($cssDoc['stylesheet']['rules'] as $rule) {
+                if ($rule['type'] === 'rule') {
+                    $bgDecls = array();
+                    $merge = null;
+                    foreach ($rule['declarations'] as $declaration) {
+                        if (strpos($declaration['property'], 'background') !== false) {
+                            array_push($bgDecls, $declaration);
+                        } elseif ($declaration['property'] === 'merge') {
+                            $merge = $declaration['value'];
+                        }
                     }
-
-                    $bgValues = $block->getRulesAssoc('-background-');
-
-                    if (isset($bgValues['background'])) {
-                        // 所有属性写在单一规则里
-                        $this->setConfigBySingleRule($mergeValue, $bgValues);
-                    } else {
-                        // 分开书写各个属性
-                        $this->setConfigByMultiRule($mergeValue, $bgValues);
+                    if ($merge) {
+                        $this->setConfigByRule($merge, $bgDecls);
                     }
                 }
             }
         }
-//        return $this->mergeConfig;
         return $this;
     }
 
@@ -81,91 +81,83 @@ class MergeConfigGenerator {
         return self::$defaultConfig;
     }
 
-    /**
-     * 所有属性写在单一规则里的处理
-     * @param $mergeValue {String} 大图类型
-     * @param $values {Array}
-     * @param $defaultConfig {Array}
-     * @param $mergeConfig {Array}
-     */
-    private function setConfigBySingleRule($mergeValue, $bgValues) {
-        $processLeft = true; // 处理位置参数时，标识是否处理x/y轴
-        $mergeConfig = self::$defaultConfig;
-
-        $values = $bgValues['background']->getValue();
-
-        if ($values instanceof RuleValueList) {
-            $values = $values->getListComponents();
-        } else {
-            $values = array($values);
-        }
-
-        foreach ($values as $value) {
-            if ($value instanceof URL) {
-                // 处理图片url
-                $url = $this->getUrl($value);
-
-            } elseif ($value instanceof Size || in_array(strtolower($value), array('right', 'left', 'top', 'bottom'))) {
-                // 处理图片位置, 位置参数存在负数情况，该情况默认为0
-                $position = $this->getPosition($value, $processLeft);
-                $mergeConfig = array_merge($mergeConfig, $position);
-
-            } elseif (strpos(strtolower($value), 'repeat') !== false) {
-                // 处理平铺
-                $repeat = $this->getRepeat($value);
-                $mergeConfig = array_merge($mergeConfig, $repeat);
+    private function setConfigByRule($merge, $bgDecls) {
+        $mergeConfig = array();
+        foreach ($bgDecls as $decl) {
+            switch ($decl['property']) {
+                case 'background':
+                    $mergeConfig = array_merge($mergeConfig, $this->handleBackground($decl['value']));
+                    break;
+                case 'background-image':
+                    $mergeConfig = array_merge($mergeConfig, $this->handleBackgroundImage($decl['value']));
+                    break;
+                case 'background-position':
+                    $values = preg_split('/\s+/', $decl['value']);
+                    foreach ($values as $value) {
+                        $mergeConfig = array_merge($mergeConfig, $this->handleBackgroundPosition($value));
+                    }
+                    break;
+                case 'background-repeat':
+                    $mergeConfig = array_merge($mergeConfig, $this->handleBackgroundRepeat($decl['value']));
+                    break;
+                default:
+                    break;
             }
         }
 
-        if (isset($url)) {
-            // 可能存在外链，base64... 忽略之
-            $this->setConfig($mergeValue, $url, $mergeConfig);
+        if ($url = $mergeConfig['url']) {
+            unset($mergeConfig['url']);
+            $this->setConfig($merge, $url, array_merge(self::$defaultConfig, $mergeConfig));
         }
+
     }
 
-
-    /**
-     * 分开书写各个属性的处理
-     * @param $mergeValue {String} 大图类型
-     * @param $values {Array}
-     * @param $defaultConfig {Array}
-     * @param $mergeConfig {Array}
-     */
-    private function setConfigByMultiRule($mergeValue, $bgValues) {
-        $processLeft = true; // 处理位置参数时，标示是否处理x/y轴
-        $mergeConfig = self::$defaultConfig;
-
-        // 处理图片url
-        if (isset($bgValues['background-image'])) {
-            $value = $bgValues['background-image']->getValue();
-            if ($value instanceof URL) {
-                $url = $this->getUrl($value);
+    private function handleBackground($value) {
+        $ret = array();
+        $values = preg_split('/\s+/', $value);
+        foreach ($values as $val) {
+            if (($temp = $this->handleBackgroundImage($val)) && !empty($temp)) {
+                $ret = array_merge($ret, $temp);
+            } elseif (($temp = $this->handleBackgroundPosition($val)) && !empty($temp)) {
+                $ret = array_merge($ret, $temp);
+            } elseif (($temp = $this->handleBackgroundRepeat($val)) && !empty($temp)) {
+                $ret = array_merge($ret, $temp);
             }
         }
-        // 处理图片位置, 位置参数存在负数情况，该情况默认为0
-        if (isset($bgValues['background-position'])) {
-            $values = $bgValues['background-position']->getValue();
-            if ($values instanceof RuleValueList) {
-                $values = $values->getListComponents();
-            } else {
-                $values = array($values);
-            }
-            foreach ($values as $value) {
-                $position = $this->getPosition($value, $processLeft);
-                $mergeConfig = array_merge($mergeConfig, $position);
-            }
-        }
-        // 处理平铺
-        if (isset($bgValues['background-repeat'])) {
-            $value = $bgValues['background-repeat']->getValue();
-            $repeat = $this->getRepeat($value);
-            $mergeConfig = array_merge($mergeConfig, $repeat);
-        }
+        return $ret;
+    }
 
-        if (isset($url)) {
-            // 可能存在外链，base64... 忽略之
-            $this->setConfig($mergeValue, $url, $mergeConfig);
+    private function handleBackgroundImage($value) {
+        $ret = array();
+        if (preg_match('/(url\()([\'\"]?)([^\'\"\)]+)([\'\"]?)(\).*)/', $value, $matches)) {
+            $url = $matches[3];
+            $ret['url'] = $url;
+            // 排除非链接，及外链
+            if (strpos($url, 'data:') !== false || strpos($url, 'about:') !== false || strpos($url, '://') !== false) {
+                $ret['url'] =  null;
+            }
         }
+        return $ret;
+    }
+
+    private function handleBackgroundPosition($value) {
+        $ret = array();
+        if (preg_match('/^([\d\.]+)(px)?/', $value, $matches) || in_array(strtolower($value), array('right', 'left', 'top', 'bottom'))) {
+            if (!empty($matches)) {
+                $value = $matches[1];
+            }
+            $ret = $this->getPosition($value);
+        }
+        return $ret;
+    }
+
+    private function handleBackgroundRepeat($value) {
+        $ret = array();
+        if (strpos(strtolower($value), 'repeat') !== false) {
+            // 处理平铺
+            $ret = $this->getRepeat($value);
+        }
+        return $ret;
     }
 
     /**
@@ -211,23 +203,14 @@ class MergeConfigGenerator {
         }
     }
 
-    private function getUrl(URL $value) {
-        $url = $value->getURL();
-        $url = $url->getString();
-        // 排除非链接，及外链
-        if (strpos($url, 'data:') !== false || strpos($url, 'about:') !== false || strpos($url, '://') !== false) {
-            return null;
-        }
-        return $url;
-    }
-
     /**
      * 处理图片位置, 位置参数存在负数情况，该情况默认为0
      * @param $value {Object|String}
      * @param $mergeConfig {Array}
      * @param $i {Bool} 标识是否处理x/y轴
      */
-    private function getPosition($value, &$i) {
+    private function getPosition($value) {
+        static $i = true;
         $ret = array();
         if (is_string($value)) {
             // top, left... 处理左右浮动
@@ -240,7 +223,7 @@ class MergeConfigGenerator {
             $paddings = $i ? $paddings[0] : $paddings[1];
 
             foreach ($paddings as $padding) {
-                $ret[$padding] = max(self::$defaultConfig[$padding], $value->getSize());
+                $ret[$padding] = max(self::$defaultConfig[$padding], $value);
             }
         }
         $i = !$i;
