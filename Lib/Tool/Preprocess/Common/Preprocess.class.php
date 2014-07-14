@@ -16,6 +16,7 @@ abstract class Preprocess {
     protected $path;
     protected $filename;
     protected $relativePath;
+    protected $fileUid;
     // 保存用户自定义预处理配置信息（m3d.php）
     protected $options = array();
 
@@ -58,14 +59,6 @@ abstract class Preprocess {
     public function end() {}
 
     /**
-     * 生成文件md5 unique id
-     * @return string
-     */
-    public function fileUid() {
-        return file_uid($this->contents, $this->type);
-    }
-
-    /**
      * 设置一个将要处理的文件路径
      * @param $file 文件路径
      */
@@ -77,6 +70,7 @@ abstract class Preprocess {
             $this->setContents(file_get_contents($file));
             $this->path = $file;
             $this->relativePath = str_replace(C('SRC.SRC_PATH'), '', $file);
+            $this->fileUid = null;
         } else {
             mark($file.'不存在', 'error');
         }
@@ -108,6 +102,15 @@ abstract class Preprocess {
     }
     public function getOptions() {
         return $this->options;
+    }
+    public function getMap() {
+        return $this->map;
+    }
+    public function getFileUid() {
+        if (!$this->fileUid) {
+            $this->fileUid = file_uid($this->contents, $this->type);
+        }
+        return $this->fileUid;
     }
 
     /**

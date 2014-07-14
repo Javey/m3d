@@ -19,12 +19,7 @@ class ProcessAction extends Action {
         define('PROJECT_SITE_PATH', C('PROJECT.SITE_PATH').'/'.$_GET['site']);
         define('PROJECT_MODULE_NAME', $_GET['module']);
 
-//        if ($this->mod === 'hybrid-mac') {
-//            $path = C('FE_BRANCH_PATH').'/hybrid-mac/music_1-0-92_BRANCH/config.php';
-//        } else {
-//            $path = '/home/music/javey/music_1-0-165-34_BRANCH/m3d.php';
-            $path = PROJECT_SITE_PATH.'/'.C('PROJECT.SRC_DIR').'/'.PROJECT_MODULE_NAME.'/'.C('M3D_FILENAME');
-//        }
+        $path = PROJECT_SITE_PATH.'/'.C('PROJECT.SRC_DIR').'/'.PROJECT_MODULE_NAME.'/'.C('M3D_FILENAME');
 
         $tool = new PreprocessTool($path);
         $tool->run();

@@ -102,9 +102,9 @@ class JCssParser {
         }
         $prop = trim($prop[0]);
         if (!$this->match('/^:\s*/')) {
-            throw new Exception('property missing ":"');
+            throw new Exception('property missing ":" at '.substr($this->css, 0, 20));
         }
-        $val = $this->match('/^((?:\'(?:\\\'|.)*?\'|"(?:\\\"|.)*?"|\([^\)]*?\)|[^};](?!\/\*))+)/');
+        $val = $this->match('/^((?:\'(?:\\\'|.)*?\'|"(?:\\\"|.)*?"|\([^\)]*?\)|\/\*.*\*\/|[^};])+)/');
         $ret = array(
             'type' => 'declaration',
             'property' => preg_replace(self::COMMENT_REG, '', $prop),
@@ -118,7 +118,7 @@ class JCssParser {
     private function declarations() {
         $decls = array();
         if (!$this->open()) {
-            throw new Exception('missing "{"');
+            throw new Exception('missing "{" at '.substr($this->css, 0, 20));
         }
         $this->comments($decls);
         while ($decl = $this->declaration()) {
@@ -128,7 +128,7 @@ class JCssParser {
         }
         if (!$this->close()) {
             var_dump($this->css);
-            throw new Exception('missing "}"');
+            throw new Exception('missing "}" at '.substr($this->css, 0, 20));
         }
         return $decls;
     }
@@ -156,12 +156,12 @@ class JCssParser {
 
         $m = $this->match('/^([-\w]+)\s*/');
         if (!$m) {
-            throw new Exception('@keyframes missing name');
+            throw new Exception('@keyframes missing name at '.substr($this->css, 0, 20));
         }
         $name = $m[1];
 
         if (!$this->open()) {
-            throw new Exception('@keyframes missing "{"');
+            throw new Exception('@keyframes missing "{" at '.substr($this->css, 0, 20));
         }
 
         $frames = $this->comments();
@@ -171,7 +171,7 @@ class JCssParser {
         }
 
         if (!$this->close()) {
-            throw new Exception('@keyframes missing "}"');
+            throw new Exception('@keyframes missing "}" at '.substr($this->css, 0, 20));
         }
 
         return array(
@@ -189,11 +189,11 @@ class JCssParser {
         }
         $media = trim($m[1]);
         if (!$this->open()) {
-            throw new Exception('@media missing "{"');
+            throw new Exception('@media missing "{" at '.substr($this->css, 0, 20));
         }
         $style = array_merge($this->comments(), $this->rules());
         if (!$this->close()) {
-            throw new Exception('@media missing "}"');
+            throw new Exception('@media missing "}" at '.substr($this->css, 0, 20));
         }
 
         return array(
@@ -222,11 +222,11 @@ class JCssParser {
         }
         $supports = trim($m[1]);
         if (!$this->open()) {
-            throw new Exception('@supports missing "{"');
+            throw new Exception('@supports missing "{" at '.substr($this->css, 0, 20));
         }
         $style = array_merge($this->comments(), $this->rules());
         if (!$this->close()) {
-            throw new Exception('@supports missing "}"');
+            throw new Exception('@supports missing "}" at '.substr($this->css, 0, 20));
         }
         return array(
             'type' => 'supports',
@@ -241,11 +241,11 @@ class JCssParser {
             return null;
         }
         if (!$this->open()) {
-            throw new Exception('@host missing "{"');
+            throw new Exception('@host missing "{" at '.substr($this->css, 0, 20));
         }
         $style = array_merge($this->comments(), $this->rules());
         if (!$this->close()) {
-            throw new Exception('@host missing "}"');
+            throw new Exception('@host missing "}" at '.substr($this->css, 0, 20));
         }
         return array(
             'type' => 'host',
@@ -261,7 +261,7 @@ class JCssParser {
         $sel = $this->selector();
         $sel = $sel ? $sel : array();
         if (!$this->open()) {
-            throw new Exception('@page missing "{"');
+            throw new Exception('@page missing "{" at '.substr($this->css, 0, 20));
         }
         $decls = $this->comments();
         while ($decl = $this->declaration()) {
@@ -269,7 +269,7 @@ class JCssParser {
             $decls = array_merge($decls, $this->comments());
         }
         if (!$this->close()) {
-            throw new Exception('@page missing "}"');
+            throw new Exception('@page missing "}" at '.substr($this->css, 0, 20));
         }
         return array(
             'type' => 'page',
@@ -286,11 +286,11 @@ class JCssParser {
         $vendor = trim($m[1]);
         $doc = trim($m[2]);
         if (!$this->open()) {
-            throw new Exception('@document missing "{"');
+            throw new Exception('@document missing "{" at '.substr($this->css, 0, 20));
         }
         $style = array_merge($this->comments(), $this->rules());
         if (!$this->close()) {
-            throw new Exception('@document missing "}"');
+            throw new Exception('@document missing "}" at '.substr($this->css, 0, 20));
         }
         return array(
             'type' => 'document',
@@ -306,7 +306,7 @@ class JCssParser {
             return null;
         }
         if (!$this->open()) {
-            throw new Exception('@font-face missing "{"');
+            throw new Exception('@font-face missing "{" at '.substr($this->css, 0, 20));
         }
         $decls = $this->comments();
         while ($decl = $this->declaration()) {
@@ -314,7 +314,7 @@ class JCssParser {
             $decls = array_merge($decls, $this->comments());
         }
         if (!$this->close()) {
-            throw new Exception('@font-face missing "}"');
+            throw new Exception('@font-face missing "}" at '.substr($this->css, 0, 20));
         }
         return array(
             'type' => 'font-face',
@@ -353,7 +353,7 @@ class JCssParser {
     private function rule() {
         $sel = $this->selector();
         if (!$sel) {
-            throw new Exception('selector missing');
+            throw new Exception('selector missing at '.substr($this->css, 0, 20));
         }
         $this->comments();
         return array(

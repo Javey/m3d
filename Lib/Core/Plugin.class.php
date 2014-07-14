@@ -25,7 +25,7 @@ abstract class Plugin {
     /**
      * 初始化插件事件绑定
      */
-    public static function start($path = PLUGIN_PATH) {
+    final public static function start($path = PLUGIN_PATH) {
         foreach (scandir($path) as $entry) {
             if ($entry[0] !== '.') {
                 $file = $path.'/'.$entry.'/'.$entry.'Plugin.class.php';

@@ -1,7 +1,7 @@
 <?php
 /**
  * 请将该文件命名为m3d.php，放在源码根目录
- * 或者放置其他目录，然后再根目录下新建m3d.php require该文件
+ * 或者放置其他目录，然后在根目录下新建m3d.php并require该文件
  * <code>
  *  <?php
  *  define('SRC_ROOT', dirname(__FILE__));
@@ -18,9 +18,9 @@ $root = SRC_ROOT; // 分支根目录路径
 return array(
     /**
      * 编译配置
-     * from:相对于src.src_path 扫描目录
+     * from:相对于src.src_path 扫描目录，多个目录用","分割
      * to:相对于src.build_path 编译后存放目录
-     * type: 扫描文件类型
+     * type: 扫描文件类型，多文件类型用","分割
      * processor: 预处理器，处理扫描到的文件
      * [name]: 用于生成map文件时的文件名，否则等于processor名
      */

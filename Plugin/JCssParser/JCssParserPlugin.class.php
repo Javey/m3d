@@ -168,6 +168,10 @@ class JCssPreprocess extends CssPreprocess {
             }
 
             trigger('css_background_change', $this, $url);
+            // 依然将合图加入依赖关系表中，万一某天心血来潮又合图了，依然可以进行增量编译
+            if ($mask > 1) {
+                trigger('css_background_change', $this, $merge.C('SPRITE_SUFFIX').'.png');
+            }
 
             // 5中异常情况
             switch ($mask) {
@@ -291,7 +295,7 @@ class JCssPreprocess extends CssPreprocess {
     }
 
     private function matchSize($value) {
-        preg_match('/^([\d\.]+)(px)?/', $value, $matches);
+        preg_match('/^([\d\.\-]+)(px)?/', $value, $matches);
         return $matches;
     }
 }

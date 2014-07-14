@@ -144,7 +144,7 @@ class MergeConfigGenerator {
         $ret = array();
         if (preg_match('/^([\d\.]+)(px)?/', $value, $matches) || in_array(strtolower($value), array('right', 'left', 'top', 'bottom'))) {
             if (!empty($matches)) {
-                $value = $matches[1];
+                $value = (int)$matches[1];
             }
             $ret = $this->getPosition($value);
         }

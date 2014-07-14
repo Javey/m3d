@@ -28,13 +28,13 @@ abstract class Tool {
         }
     }
 
-    public function getOptions() {
+    abstract public function run();
+
+    final public function getOptions() {
         return $this->options;
     }
 
-    abstract public function run();
-
-    static public function start() {
+    final public static function start() {
         foreach (scandir(LIB_PATH.'/Tool/') as $entry) {
             if ($entry[0] !== '.') {
                 $file = LIB_PATH.'/Tool/'.$entry.'/'.$entry.'Tool.class.php';
@@ -50,10 +50,10 @@ abstract class Tool {
      * @param $path
      * @return string
      */
-    static public function getActualPath($path) {
+    final static public function getActualPath($path) {
         return str_remove_add($path, C('STATIC_VIRTUAL_PREFIX'), C('STATIC_ACTUAL_PREFIX'));
     }
-    static public function getVirtualPath($path) {
+    final static public function getVirtualPath($path) {
         return str_remove_add($path, C('STATIC_ACTUAL_PREFIX'), C('STATIC_VIRTUAL_PREFIX'));
     }
 
@@ -62,7 +62,7 @@ abstract class Tool {
      * @param $path
      * @return string
      */
-    static public function addCdn($path) {
+    final static public function addCdn($path) {
         if (!C('IS_CDN')) {
             return $path;
         }
@@ -81,7 +81,7 @@ abstract class Tool {
      * 删除一个文件（夹），同时删除svn
      * @param $path
      */
-    static public function rmLocalAndSvn($path) {
+    final static public function rmLocalAndSvn($path) {
         if (is_dir($path)) {
             rm_dir($path);
         } else {
@@ -90,7 +90,7 @@ abstract class Tool {
         shell_exec_ensure(C('SVN').' del '.$path.' --force', false, false);
     }
 
-    static public function restartServer() {
+    final static public function restartServer() {
         if (C('RESTART')) {
             exec('sleep 3; '.C('RESTART').' > /dev/null 2>/dev/null &');
         }
@@ -99,7 +99,7 @@ abstract class Tool {
     /**
      * 加载配置
      */
-    protected function initConfig() {
+    final protected function initConfig() {
         // 加载配置文件
         C($this->options['config']);
 

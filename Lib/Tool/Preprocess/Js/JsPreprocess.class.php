@@ -13,6 +13,7 @@ class JsPreprocess extends Preprocess {
      * @return mixed|void
      */
     public function process() {
+        trigger('process_js_start', $this);
         $this->handleDocumentWrite();
         $this->handleMediaResource();
     }
