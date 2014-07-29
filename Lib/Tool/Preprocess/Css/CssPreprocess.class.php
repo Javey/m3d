@@ -84,7 +84,7 @@ class CssPreprocess extends Preprocess {
 
         $importContents = $this->handleImport($cssDoc);
 
-        trigger('css_handle_background_start', $cssDoc);
+//        trigger('css_handle_background_start', $cssDoc);
 
         // 如果需要进行地址替换
         if ($this->isReplaceUri) {

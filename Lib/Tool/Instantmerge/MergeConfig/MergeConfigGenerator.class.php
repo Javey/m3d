@@ -30,6 +30,11 @@ class MergeConfigGenerator {
     private $mergeConfig = array();
     private $files = array();
 
+    private $file = null;
+
+    // 去background-position有顺序
+    private $position = true;
+
     // 异常类型
     const MERGE_FLOAT_ERROR = 0;
     const MERGE_REPEAT_ERROR = 1;
@@ -41,6 +46,7 @@ class MergeConfigGenerator {
     public function generate() {
         foreach ($this->files as $file) {
             mark('解析CSS文件：'.$file);
+            $this->file = $file;
             $content = file_get_contents($file);
             $cssParser = new JCssParser();
             $cssDoc = $cssParser->parse($content);
@@ -93,6 +99,7 @@ class MergeConfigGenerator {
                     break;
                 case 'background-position':
                     $values = preg_split('/\s+/', $decl['value']);
+                    $this->position = true;
                     foreach ($values as $value) {
                         $mergeConfig = array_merge($mergeConfig, $this->handleBackgroundPosition($value));
                     }
@@ -115,6 +122,7 @@ class MergeConfigGenerator {
     private function handleBackground($value) {
         $ret = array();
         $values = preg_split('/\s+/', $value);
+        $this->position = true;
         foreach ($values as $val) {
             if (($temp = $this->handleBackgroundImage($val)) && !empty($temp)) {
                 $ret = array_merge($ret, $temp);
@@ -210,8 +218,8 @@ class MergeConfigGenerator {
      * @param $i {Bool} 标识是否处理x/y轴
      */
     private function getPosition($value) {
-        static $i = true;
         $ret = array();
+        $i = $this->position;
         if (is_string($value)) {
             // top, left... 处理左右浮动
             $ret['float'] = strtolower($value);
@@ -226,7 +234,7 @@ class MergeConfigGenerator {
                 $ret[$padding] = max(self::$defaultConfig[$padding], $value);
             }
         }
-        $i = !$i;
+        $this->position = !$i;
         return $ret;
     }
 

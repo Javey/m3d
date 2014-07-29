@@ -127,7 +127,6 @@ class JCssParser {
             $this->comments($decls);
         }
         if (!$this->close()) {
-            var_dump($this->css);
             throw new Exception('missing "}" at '.substr($this->css, 0, 20));
         }
         return $decls;

@@ -43,6 +43,13 @@ class JCssPreprocess extends CssPreprocess {
         $parser = new JCssParser();
         $doc = $parser->parse($contents);
 
+        $ret = new stdClass();
+        $ret->return = null;
+        trigger('css_parse_start', $this, $doc, $ret);
+        if ($ret->return) {
+            $doc = $ret->return;
+        }
+
         $importContents = $this->handleImport($doc['stylesheet']['rules']);
 
         if ($this->isReplaceUri) {
@@ -101,7 +108,7 @@ class JCssPreprocess extends CssPreprocess {
     private function rewriteBackground(&$rule, &$bgDecls, $merge) {
         foreach ($bgDecls as &$bgDecl) {
             if ($bgDecl['property'] === 'background' || $bgDecl['property'] === 'background-image') {
-                if (preg_match('/(url\()([\'\"]?)([^\'\"\)]+)([\'\"]?)(\).*)/', $bgDecl['value'], $matches)) {
+                if (preg_match('/(.*url\()([\'\"]?)([^\'\"\)]+)([\'\"]?)(\).*)/', $bgDecl['value'], $matches)) {
                     $url = $matches[3];
                     $urlData = $this->getBackgroundUrlData($url, $merge);
                     $bgDecl['value'] = $matches[1].'"'.$urlData['url'].'"'.$matches[5];
