@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
+ * Model类
  * User: Administrator
  * Date: 13-4-9
  * Time: 下午11:30
@@ -8,9 +8,7 @@
  */
 
 // 包含Db文件
-//require_cache(LIB_PATH.'/Db/jsondb/bootstrap.php');
 require_cache(LIB_PATH.'/Db/Lazer/bootstrap.php');
-//use Lazer\Classes\Database as Lazer;
 
 class Model {
     protected $name = '';

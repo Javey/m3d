@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
+ * Js处理器
  * User: zoujiawei
  * Date: 13-11-11
  * Time: 下午6:03

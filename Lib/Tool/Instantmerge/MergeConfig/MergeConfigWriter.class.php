@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
+ * 合图配置写入
  * User: zoujiawei
  * Date: 13-11-15
  * Time: 下午4:13

@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 扫描所有css，得到所有小图配置
+ * 扫描所有css，得到所有小图配置
  * User: zoujiawei
  * Date: 13-11-13
  * Time: 下午9:21

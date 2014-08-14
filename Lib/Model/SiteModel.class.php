@@ -1,4 +1,10 @@
 <?php
+/**
+ * 测试环境操作模型
+ * User: zoujiawei
+ * Date: 13-12-9
+ * Time: 下午1:14
+ */
 
 class SiteModel extends Model {
     /**

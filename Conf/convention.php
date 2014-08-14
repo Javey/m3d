@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
+ * 默认配置表
  * User: zoujiawei
  * Date: 13-4-5
  * Time: 下午4:09

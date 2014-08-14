@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
+ * 路由分发
  * User: zoujiawei
  * Date: 13-4-5
  * Time: 下午4:18
@@ -15,13 +15,8 @@ class Dispatcher {
         }
         define('PHP_FILE', $url);
 
-//        $part = pathinfo($_SERVER['PATH_INFO']);
         if (!empty($_SERVER['PATH_INFO'])) {
             $paths = explode('/', trim($_SERVER['PATH_INFO'], '/'));
-            // 针对
-            // proxy-core.rewrite-request = (
-            //      "_pathinfo" => ( "(.*)" => "$1" )
-            // )
             // 去掉index.php
             if ($paths[0] === 'index.php') {
                 array_shift($paths);
@@ -40,9 +35,6 @@ class Dispatcher {
             $_GET = array_merge($var, $_GET);
         }
 
-//        define('__INFO__', $_SERVER['PATH_INFO']);
-//        define('__SELF__', strip_tags($_SERVER['REQUEST_URI']));
-//        define('__APP__', strip_tags(PHP_FILE));
         define('MODULE_NAME', self::_getModule(C('VAR_MODULE')));
         define('ACTION_NAME', self::_getAction(C('VAR_ACTION')));
         define('__URL__', PHP_FILE.'/'.MODULE_NAME);

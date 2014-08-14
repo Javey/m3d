@@ -38,6 +38,9 @@ class InstantmergeTool extends Tool {
         trigger('imerge_end', $this);
     }
 
+    /**
+     * 更新大图
+     */
     public function updateSprite() {
         $types = $this->getLoader()->getTypes();
         $sprite = $this->getDraw();

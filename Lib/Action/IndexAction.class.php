@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 前端入口
+ * 前端入口
  * User: zoujiawei
  * Date: 13-4-5
  * Time: 下午10:43

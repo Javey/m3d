@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
+ * 插件类
  * User: javey
  * Date: 13-4-27
  * Time: 下午4:14

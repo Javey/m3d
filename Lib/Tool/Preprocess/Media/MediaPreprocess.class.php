@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
+ * 图片处理器
  * User: zoujiawei
  * Date: 13-11-1
  * Time: 下午4:36

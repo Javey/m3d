@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
+ * Action抽象类
  * User: zoujiawei
  * Date: 13-4-5
  * Time: 下午4:18

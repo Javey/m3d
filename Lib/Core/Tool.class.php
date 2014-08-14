@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
+ * 工具模块类
  * User: zoujiawei
  * Date: 13-11-8
  * Time: 下午2:47
@@ -28,6 +28,10 @@ abstract class Tool {
         }
     }
 
+    /**
+     * 工具入口
+     * @return mixed
+     */
     abstract public function run();
 
     final public function getOptions() {

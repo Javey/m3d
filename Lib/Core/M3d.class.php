@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
+ * M3D初始化
  * User: zoujiawei
  * Date: 13-4-5
  * Time: 下午3:38
