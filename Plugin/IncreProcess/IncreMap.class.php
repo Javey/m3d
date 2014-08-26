@@ -51,13 +51,13 @@ class IncreMap {
     public static function update($params) {
         $event = $params[0];
         $processor = $params[1];
-        $value = $processor->getRelativePath();
+        $value = $processor->getOrgRelativePath();
         $key = $params[2];
 
         switch ($event) {
             case 'css_import':
             case 'js_import':
-                $key = $key->getRelativePath();
+                $key = $key->getOrgRelativePath();
                 break;
         }
 

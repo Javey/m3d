@@ -27,7 +27,7 @@ define(['lib/common'], function(common) {
 
         $scope.addUser = function(user, type) {
             toArray = $scope.info[type] || '';
-            toArray = toArray.split(';');
+            toArray = toArray.split(',');
             toArray.pop();
             if (_.lastIndexOf(toArray, user.email) < 0) {
                 toArray.push(user.email);

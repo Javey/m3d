@@ -20,13 +20,13 @@ class AdminAction extends Action {
         View::render(file_get_contents($file), 'application/x-javascript');
     }
 
-    public function createUserDb() {
-        Model::create('user', array(
-            'name' => 'string',
-            'email' => 'string',
-            'type' => 'string'
-        ));
-    }
+//    public function createUserDb() {
+//        Model::create('user', array(
+//            'name' => 'string',
+//            'email' => 'string',
+//            'type' => 'string'
+//        ));
+//    }
 
 //    public function delSite() {
 //        Model::remove('site');

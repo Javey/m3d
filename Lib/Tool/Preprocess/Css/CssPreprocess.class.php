@@ -46,6 +46,7 @@ class CssPreprocess extends Preprocess {
      * @return mixed|void
      */
     public function process() {
+        trigger('process_css_start', $this);
         $path = $this->getRelativePath();
         if (isset(self::$cacheMap[$path])) {
             $this->contents = file_get_contents(self::$cacheMap[$path]);

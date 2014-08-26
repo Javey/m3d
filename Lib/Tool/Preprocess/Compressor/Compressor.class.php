@@ -26,31 +26,7 @@ abstract class Compressor {
     }
 
     public function exec($exec) {
-        $descriptorspec = array(
-            0 => array("pipe", "r"), // stdin
-            1 => array("pipe", "w"), // stdout
-            2 => array("pipe", "w") // stderr
-        );
-        //windows only, bypass cmd.exe shell when set to TRUE
-        $options = array('bypass_shell' => true);
-        $process = proc_open($exec, $descriptorspec, $pipes, null, null, $options);
-        if (is_resource($process)) {
-            fwrite($pipes[0], $this->contents);
-            fclose($pipes[0]);
-            $output = stream_get_contents($pipes[1]);
-            fclose($pipes[1]);
-            $err = stream_get_contents($pipes[2]);
-            fclose($pipes[2]);
-            $ret = proc_close($process);
-            if ($ret !== 0) {
-                mark('文件压缩错误,返回值:' . $ret . ',errmsg:' . $err, 'error');
-                return $this->contents;
-            }
-            return $output;
-        } else {
-            mark('文件压缩错误,执行命令' . $exec . '失败', 'error');
-            return $this->contents;
-        }
+        return shell_exec_stdio($exec, $this->contents);
     }
 
     abstract public function compress($option=null);

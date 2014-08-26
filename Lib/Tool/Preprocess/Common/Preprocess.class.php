@@ -16,6 +16,8 @@ abstract class Preprocess {
     protected $path;
     protected $filename;
     protected $relativePath;
+    // 原始相对路径，存在coffee/sass等编译成js/css后改变relativePath的情况
+    protected $orgRelativePath;
     protected $fileUid;
     // 保存用户自定义预处理配置信息（m3d.php）
     protected $options = array();
@@ -70,6 +72,7 @@ abstract class Preprocess {
             $this->setContents(file_get_contents($file));
             $this->path = $file;
             $this->relativePath = str_replace(C('SRC.SRC_PATH'), '', $file);
+            $this->orgRelativePath = $this->relativePath;
             $this->fileUid = null;
         } else {
             mark($file.'不存在', 'error');
@@ -91,8 +94,17 @@ abstract class Preprocess {
     public function getPath() {
         return $this->path;
     }
+    public function setRelativePath($path) {
+        $this->relativePath = $path;
+    }
     public function getRelativePath() {
         return $this->relativePath;
+    }
+    public function getOrgRelativePath() {
+        return $this->orgRelativePath;
+    }
+    public function setType($type) {
+        return $this->type = $type;
     }
     public function getType() {
         return $this->type;

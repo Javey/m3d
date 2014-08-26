@@ -13,9 +13,9 @@ class IframeRefreshPlugin extends Plugin {
 
     public function run($params) {
         if (!C('IFRESH.IS_GEN')) {
-            off('export_map_end', 'IframeRefresh');
-            off('process_js_start', 'IframeRefreshImport');
+            off('export_map_end', 'IframeRefreshPlugin::handleMap');
             off('write_build_file_start', 'IframeRefreshPlugin::addContent');
+            off('process_js_start', 'IframeRefreshImport');
         }
     }
 

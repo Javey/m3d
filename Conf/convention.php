@@ -39,6 +39,7 @@ return array(
     ),
 
     'M3D_FILENAME' => 'm3d.php', // m3d配置文件名，放在源码根目录下，编译合图入口文件
+    'PLUGIN_PATH' => '{SRC.ROOT}/m3d/plugin', // 自定义插件存放目录
     /**
      * 源码中m3d相关配置
      * 相对源码根目录

@@ -282,6 +282,40 @@ function shell_exec_ensure($shell, $showInfo = true, $showError = true) {
 }
 
 /**
+ * 从stdio中读写数据，执行命令
+ * @param $exec
+ * @param $content
+ * @return string
+ */
+function shell_exec_stdio($exec, $content) {
+    $descriptorspec = array(
+        0 => array("pipe", "r"), // stdin
+        1 => array("pipe", "w"), // stdout
+        2 => array("pipe", "w") // stderr
+    );
+    //windows only, bypass cmd.exe shell when set to TRUE
+    $options = array('bypass_shell' => true);
+    $process = proc_open($exec, $descriptorspec, $pipes, null, null, $options);
+    if (is_resource($process)) {
+        fwrite($pipes[0], $content);
+        fclose($pipes[0]);
+        $output = stream_get_contents($pipes[1]);
+        fclose($pipes[1]);
+        $err = stream_get_contents($pipes[2]);
+        fclose($pipes[2]);
+        $ret = proc_close($process);
+        if ($ret !== 0) {
+            mark('执行命令'. $exec .'错误,返回值:' . $ret . ',errmsg:' . $err, 'error');
+            return $content;
+        }
+        return $output;
+    } else {
+        mark('执行命令' . $exec . '失败', 'error');
+        return $content;
+    }
+}
+
+/**
  * 输出json数据
  * @param $errorCode
  * @param string $msg

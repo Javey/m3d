@@ -7,18 +7,24 @@ define(['angular'], function() {
         $scope.updateList = function() {
             site.query(function(resource) {
                 $scope.list = resource.data;
-//                $scope.curSite = $routeParams.siteName || resource.data[0];
-                $scope.curSite = $scope.curSite || $routeParams.siteName || resource.data[0];
+                var localSite = localStorage.getItem('curSite');
+                // 是否存在list中
+                if (!~_.indexOf($scope.list, localSite)) {
+                    localSite = null;
+                }
+                $scope.curSite = $scope.curSite || $routeParams.siteName || localSite || resource.data[0];
             });
         };
 
         $scope.changeSite = function(name) {
             $scope.curSite = name;
-//            $location.path('/' + name);
         };
 
         $scope.$watch('curSite', function(newValue, oldValue) {
-            $rootScope.$broadcast('change:site', newValue, oldValue);
+            if (newValue) {
+                localStorage.setItem('curSite', newValue);
+                $rootScope.$broadcast('change:site', newValue, oldValue);
+            }
         });
 
         $scope.navClass = function(name) {
