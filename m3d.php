@@ -67,6 +67,7 @@ function add($argv) {
 
     // 建立静态文件软链
     shell_exec("ln -snf ${curPath}/Ui/static ${projectPath}/static");
+    shell_exec("ln -snf ${curPath}/Tool/ProLanguage/prolang.php ${projectPath}/site/site-template/wwwdata.test/webroot/prolang.php");
 
     // 修改lighttpd配置文件
     $lighttpdConfPath = $projectPath.'/lighttpd.conf';
