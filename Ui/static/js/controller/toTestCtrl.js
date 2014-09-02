@@ -38,6 +38,7 @@ define(['lib/common'], function(common) {
         $scope.ok = function() {
             common.validateForm($scope, $scope.form);
             if ($scope.form.$valid) {
+                console.log($scope.info);
                 module.test($scope.info, function(res) {
                     if (res.errorCode === 200) {
                         $modal.close();

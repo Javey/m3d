@@ -46,7 +46,14 @@ class ModuleAction extends Action {
         foreach ($_POST['modules'] as $module) {
             if (!empty($module)) {
                 $modules .= '<li><h4>' . $module['title'] . ' - <i>' . $module['description'] . '</i></h4>';
-                $modules .= '<p><span>模块:</span>' . $module['storename']. '</p><p><span>分支:</span>' . $module['branch'] . '</p></li>';
+                $modules .= '<p><span>模块:</span>' . $module['storename']. '</p><p><span>分支:</span>' . $module['branch'] . '</p>';
+                if (class_exists('SvnOperatorPlugin')) {
+                    // 如果存在svn插件
+                    $path = C('SRC_PATH').'/'.$module['storename'].'/'.$module['branch'];
+                    $url = SvnOperatorPlugin::getSvnUrl($path);
+                    $modules .= '<p><span>svn:</span>'.$url.'</p>';
+                }
+                $modules .= '</li>';
             }
         }
         $modules .= '</ul>';

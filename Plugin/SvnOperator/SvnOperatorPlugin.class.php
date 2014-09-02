@@ -59,6 +59,24 @@ class SvnOperatorPlugin extends Plugin {
     }
 
     /**
+     * 获取svn url
+     * @param $path
+     * @return null
+     */
+    public static function getSvnUrl($path) {
+        $ret = null;
+        $cmd = C('SVN').' info '.$path .' --xml';
+        $info = shell_exec_ensure($cmd, false, false);
+        if (!$info['status']) {
+            $info = $info['output'];
+            $info = simplexml_load_string($info);
+            $ret = (string)$info->entry->url;
+        }
+
+        return $ret;
+    }
+
+    /**
      * 清除所有本地文件修改
      * 将以svn文件为准
      */
