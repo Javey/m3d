@@ -12,15 +12,23 @@
     overflow: hidden;
     z-index: 10;
 }
-.terminal .terminal-nav {
+.terminal .terminal-head {
+    display: -webkit-box;
+    display: flex;
     background: #262626;
-    /*overflow: hidden;*/
+}
+.terminal .terminal-nav {
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: -webkit-box;
+    display: flex;
     height: 30px;
-    /*line-height: 30px;*/
     border-bottom: 1px solid #222;
+    margin-right: 10px;
 }
 .terminal .nav {
-    float: left;
+    -webkit-box-flex: 1;
+    max-width: 200px;
     padding: 0 25px;
     height: 25px;
     line-height: 25px;
@@ -94,9 +102,7 @@
     z-index: 10;
 }
 .terminal-ctrl {
-    position: absolute;
     line-height: 30px;
-    right: 0;
     color: #999;
 }
 .terminal-ctrl span {

@@ -14,10 +14,12 @@ angular.module('m3d.terminal', [])
             replace: true,
             template:
                 '<div class="terminal"> \
-                    <div class="terminal-ctrl">\
-                        <span class="close ion-close" ng-click="closeAll()"></span> \
+                    <div class="terminal-head"> \
+                        <ul class="terminal-nav clearfix"></ul> \
+                        <div class="terminal-ctrl">\
+                            <span class="close ion-close" ng-click="closeAll()"></span> \
+                        </div> \
                     </div> \
-                    <ul class="terminal-nav clearfix"></ul> \
                     <div class="terminal-content"></div> \
                 </div> '
         };
@@ -29,7 +31,7 @@ angular.module('m3d.terminal', [])
             template:
                 '<div> \
                     <li class="nav" ng-class="{active: active}" ng-click="select(this)">\
-                        <span>{{title}}</span>\
+                        <div class="ellipsis" title="{{title}}">{{title}}</div>\
                         <span class="close ion-ios7-close-outline" ng-click="close(this.instance)"></span>\
                     </li> \
                     <div class="content" ng-class="{active: active}"></div>\
