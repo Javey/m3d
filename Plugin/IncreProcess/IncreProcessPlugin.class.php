@@ -45,24 +45,33 @@ class IncreProcessPlugin extends Plugin {
 
         if ((isset($_GET['isIncre']) && $_GET['isIncre'] === 'false') || !C('INCRE.IS_INCRE') || is_null($oldRevision)) {
             // 事件解绑
-            off('rm_old_build_file', 'IncreProcessPlugin::remain');
-            off('one_process_start', 'IncreProcessPlugin::importMap');
-            off('processor_fetch_files', 'IncreProcessPlugin::getFileList');
+            self::off();
         } else {
             mark('增量编译准备中...', 'emphasize');
-            $newRevision = IncreMap::getRevision();
-            self::$files = self::getChangeList($newRevision, $oldRevision);
-            IncreMap::loadBelongMap();
-            if (!empty(self::$files[self::DELETE])) {
-                IncreMap::rebuildBelongMap(self::$files[self::DELETE]);
+            // 检查m3d配置文件是否已改变
+            $path = defined('M3D_FILE') ?
+                M3D_FILE : (defined('SRC_ROOT') ?
+                    SRC_ROOT.'/m3d.php' : null);
+            if ($path && self::checkFileChange($path, $oldRevision)) {
+                mark('m3d配置文件已改变，重新加载配置，并且进行全量编译', 'especial');
+                $params[1]->reload(PROJECT_SITE_PATH.'/'.C('PROJECT.SRC_DIR').'/'.PROJECT_MODULE_NAME.'/'.C('M3D_FILENAME'));
+                self::off();
+                trigger('m3d_config_change');
+            } else {
+                $newRevision = IncreMap::getRevision();
+                self::$files = self::getChangeList($newRevision, $oldRevision);
+                IncreMap::loadBelongMap();
+                if (!empty(self::$files[self::DELETE])) {
+                    IncreMap::rebuildBelongMap(self::$files[self::DELETE]);
+                }
+                // 更新modify列表
+                self::$files[self::MODIFY] = array_unique(
+                    array_merge(
+                        self::$files[self::MODIFY],
+                        IncreMap::getAffectList(self::$files[self::MODIFY])
+                    )
+                );
             }
-            // 更新modify列表
-            self::$files[self::MODIFY] = array_unique(
-                array_merge(
-                    self::$files[self::MODIFY],
-                    IncreMap::getAffectList(self::$files[self::MODIFY])
-                )
-            );
         }
     }
 
@@ -287,5 +296,35 @@ class IncreProcessPlugin extends Plugin {
         }
 
         return $map;
+    }
+
+    /**
+     * 检查某个文件是否已svn修改
+     * @param $file
+     * @return bool
+     */
+    private static function checkFileChange($file, $ver) {
+        $ret = false;
+        $cmd = C('SVN').' diff '.$file.' -r '.$ver.':HEAD --summarize --xml';
+        $info = shell_exec_ensure($cmd, false);
+        if (!$info['status']) {
+            $info = $info['output'];
+            $info = simplexml_load_string($info);
+            if (isset($info->paths->path)) {
+                $ret = true;
+            }
+        }
+
+        return $ret;
+    }
+
+    /**
+     * 解绑事件
+     */
+    private static function off() {
+        off('rm_old_build_file', 'IncreProcessPlugin::remain');
+        off('one_process_start', 'IncreProcessPlugin::importMap');
+        off('processor_fetch_files', 'IncreProcessPlugin::getFileList');
+        off('change_file', 'IncreProcessPlugin::addChangeList');
     }
 }

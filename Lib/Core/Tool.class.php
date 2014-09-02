@@ -29,6 +29,14 @@ abstract class Tool {
     }
 
     /**
+     * 重新初始化配置
+     * @param $options
+     */
+    public function reload($options) {
+        $this->__construct($options);
+    }
+
+    /**
      * 工具入口
      * @return mixed
      */

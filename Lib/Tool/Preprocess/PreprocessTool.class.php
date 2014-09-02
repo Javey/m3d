@@ -195,7 +195,7 @@ class PreprocessTool extends Tool {
 
         // cdn替换
         if (C('IS_CDN') && !empty($this->options['cdn_list'])) {
-            $contents = preg_replace('/(?<=[\'\"])([^\'\"]*)(?:[\?&])'.C('CDN_IDENTIFIER').'([^\'\"\\\]*)(?=[\'\"\\\])/', '${2}${1}', $contents);
+            $contents = preg_replace('/(?<=[\'\"])([^\'\"]{1,300})(?:[\?&])'.C('CDN_IDENTIFIER').'([^\'\"\\\]*)(?=[\'\"\\\])/', '${2}${1}', $contents);
         }
 
         return $contents;

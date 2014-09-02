@@ -73,6 +73,10 @@
     color: #008000;
     font-weight: bold;
 }
+.terminal .content .especial {
+    color: #007680;
+    font-weight: bold;
+}
 .terminal .content .normal {
     color: #999;
 }

@@ -463,6 +463,7 @@ function B($name, &$params = null) {
  */
 function comma_str_to_array($str) {
     if (is_string($str)) {
+        $str = trim($str, ' ,');
         $str = explode(',', $str);
         $str = array_map('trim', $str);
     }

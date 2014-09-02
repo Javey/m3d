@@ -22,8 +22,9 @@ class SvnOperatorPlugin extends Plugin {
             off('imerge_end', 'SvnOperatorPlugin::ciImerge');
             return;
         }
+        $tool = $params[1];
         self::ciImerge();
-        self::svnUp();
+        self::svnUp($tool);
     }
 
     /**
@@ -42,7 +43,7 @@ class SvnOperatorPlugin extends Plugin {
     /**
      * 确保代码最新
      */
-    public static function svnUp() {
+    public static function svnUp(PreprocessTool $tool) {
         mark('执行svn up...', 'emphasize');
         self::cleanLocalChange();
         $cmd = C('SVN').' up '. C('SRC.ROOT');

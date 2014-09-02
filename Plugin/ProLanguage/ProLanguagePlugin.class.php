@@ -18,7 +18,7 @@ class ProLanguagePlugin extends Plugin {
                 $this->compile($processor, C('COFFEE').' -bsp', 'js');
                 break;
             case 'sass':
-                $this->compile($processor, C('SASS').' -s -I '.C('SRC.SRC_PATH'), 'css');
+                $this->compile($processor, C('SASS').' -s --compass -I '.C('SRC.SRC_PATH'), 'css');
                 break;
         }
     }

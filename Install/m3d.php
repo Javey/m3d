@@ -12,6 +12,7 @@
  * @filename m3d.php
  */
 
+define('M3D_FILE', __FILE__);
 defined('SRC_ROOT') or define('SRC_ROOT', dirname(__FILE__));
 $root = SRC_ROOT; // 分支根目录路径
 
