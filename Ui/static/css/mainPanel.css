@@ -5,12 +5,17 @@
     z-index: 1;
 }
 .main-panel .item {
-    height: 50px;
     color: #fff;
-    font-size: 35px;
     text-align: center;
-    line-height: 50px;
     cursor: default;
+}
+.main-panel .icon {
+    height: 50px;
+    line-height: 50px;
+    font-size: 35px;
+}
+.main-panel .txt {
+    padding-bottom: 5px;
 }
 .main-panel .item:hover {
     background: #e25940;
