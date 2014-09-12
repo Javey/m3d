@@ -28,6 +28,7 @@ class JCssParserPlugin extends Plugin {
         // 判断当前是否在初始化CssPreprocess
         if ($options['processor'] === 'css') {
             $processor->return = new JCssPreprocess($tool->getMap(), $options);
+            Preprocess::setInstance('CssPreprocess', $processor->return);
         }
     }
 }

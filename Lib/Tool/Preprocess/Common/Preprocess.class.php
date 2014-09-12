@@ -36,6 +36,10 @@ abstract class Preprocess {
         return self::$_instance[$class];
     }
 
+    final public static function setInstance($class, $instance) {
+        self::$_instance[$class] = $instance;
+    }
+
     public function __construct($map = array(), $options = array()) {
         $this->map = $map;
         $this->options = $options;
