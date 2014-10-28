@@ -633,7 +633,7 @@ function str_diff($str1, $str2, &$pos = 0) {
  * @param $add
  * @return string
  */
-function str_remove_add($str, $remove, $add) {
+function str_remove_add($str, $remove, $add='') {
     if (!empty($remove)) {
         $len = strlen($remove);
         if (str_slice($str, 0, $len) === $remove) {

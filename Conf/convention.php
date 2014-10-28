@@ -70,4 +70,5 @@ return array(
      **/
     'STATIC_ACTUAL_PREFIX' => null,
     'STATIC_VIRTUAL_PREFIX' => null,
+    'STATIC_BUILD_PREFIX' => null,
 );

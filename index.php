@@ -15,5 +15,4 @@ defined('PROJECT_PATH') or die('M3D Access deny.');
 // symlink model for debug
 defined('M3D_CORE_PATH') or define('M3D_CORE_PATH', dirname(dirname(PROJECT_PATH)).'/m3d');
 defined('M3D_PATH') or define('M3D_PATH', dirname(M3D_CORE_PATH));
-
 require M3D_CORE_PATH . '/Common/common.php';

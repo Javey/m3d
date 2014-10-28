@@ -138,12 +138,21 @@ class PreprocessTool extends Tool {
                 // 是否md5化
                 if (C('IS_MD5') && in_array($item['processor'], array('media', 'css', 'js'))) {
                     $path = $item['to'] .'/'. $processor->getFileUid() . '.' . $processor->getType();
+                } else if ($item['subfile']) {
+                    $froms = comma_str_to_array($item['from']);
+                    $patterns = array();
+                    foreach ($froms as $from) {
+                        array_push($patterns, "/^".str_replace('/', '\\/', $from)."/");
+                    }
+                    $path = $item['to'].preg_replace($patterns, array(""), $path);
                 } else {
                     $path = $item['to'].$path;
                     // for webapp node
 //                    $path = $item['to'].'/'.$processor->getFilename();
                 }
             }
+        } else if (C('WHITE_LIST_TO')) {
+            $path = C('WHITE_LIST_TO').$path;
         } else {
             $path = C('STATIC_VIRTUAL_PREFIX').$path;
         }

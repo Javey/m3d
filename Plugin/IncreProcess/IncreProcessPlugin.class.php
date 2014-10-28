@@ -43,35 +43,35 @@ class IncreProcessPlugin extends Plugin {
         $oldRevision = self::getPrevRevision();
 //        $oldRevision = null;
 
+        // 检查m3d配置文件是否已改变
+        $path = defined('M3D_FILE') ?
+            M3D_FILE : (defined('SRC_ROOT') ?
+                SRC_ROOT.'/m3d.php' : null);
+        if ($path && self::checkFileChange($path, $oldRevision)) {
+            mark('m3d配置文件已改变，重新加载配置，并且进行全量编译', 'especial');
+            $params[1]->reload(PROJECT_SITE_PATH.'/'.C('PROJECT.SRC_DIR').'/'.PROJECT_MODULE_NAME.'/'.C('M3D_FILENAME'));
+            C('INCRE.IS_INCRE', false);
+            trigger('m3d_config_change');
+        }
+
         if ((isset($_GET['isIncre']) && $_GET['isIncre'] === 'false') || !C('INCRE.IS_INCRE') || is_null($oldRevision)) {
             // 事件解绑
             self::off();
         } else {
             mark('增量编译准备中...', 'emphasize');
-            // 检查m3d配置文件是否已改变
-            $path = defined('M3D_FILE') ?
-                M3D_FILE : (defined('SRC_ROOT') ?
-                    SRC_ROOT.'/m3d.php' : null);
-            if ($path && self::checkFileChange($path, $oldRevision)) {
-                mark('m3d配置文件已改变，重新加载配置，并且进行全量编译', 'especial');
-                $params[1]->reload(PROJECT_SITE_PATH.'/'.C('PROJECT.SRC_DIR').'/'.PROJECT_MODULE_NAME.'/'.C('M3D_FILENAME'));
-                self::off();
-                trigger('m3d_config_change');
-            } else {
-                $newRevision = IncreMap::getRevision();
-                self::$files = self::getChangeList($newRevision, $oldRevision);
-                IncreMap::loadBelongMap();
-                if (!empty(self::$files[self::DELETE])) {
-                    IncreMap::rebuildBelongMap(self::$files[self::DELETE]);
-                }
-                // 更新modify列表
-                self::$files[self::MODIFY] = array_unique(
-                    array_merge(
-                        self::$files[self::MODIFY],
-                        IncreMap::getAffectList(self::$files[self::MODIFY])
-                    )
-                );
+            $newRevision = IncreMap::getRevision();
+            self::$files = self::getChangeList($newRevision, $oldRevision);
+            IncreMap::loadBelongMap();
+            if (!empty(self::$files[self::DELETE])) {
+                IncreMap::rebuildBelongMap(self::$files[self::DELETE]);
             }
+            // 更新modify列表
+            self::$files[self::MODIFY] = array_unique(
+                array_merge(
+                    self::$files[self::MODIFY],
+                    IncreMap::getAffectList(self::$files[self::MODIFY])
+                )
+            );
         }
     }
 

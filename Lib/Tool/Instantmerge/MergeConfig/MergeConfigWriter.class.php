@@ -180,6 +180,9 @@ class MergeConfigWriter {
         $string .= var_export($temp, true);
         $string .= ';';
 
+        // 格式化，满足规范
+        $string = str_replace(array("  ", 'NULL'), array("    ", 'null'), $string);
+
         return $string;
     }
 }

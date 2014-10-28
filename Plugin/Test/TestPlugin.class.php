@@ -40,4 +40,4 @@ class TestOtherPlugin extends Plugin {
     }
 }
 
-on('processor_ready', 'TestPlugin::testStatic');
+//on('processor_ready', 'TestPlugin::testStatic');

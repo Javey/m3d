@@ -68,6 +68,9 @@ abstract class Tool {
     final static public function getVirtualPath($path) {
         return str_remove_add($path, C('STATIC_ACTUAL_PREFIX'), C('STATIC_VIRTUAL_PREFIX'));
     }
+    final static public function getBuildPath($path) {
+        return str_remove_add($path, C('STATIC_BUILD_PREFIX'));
+    }
 
     /**
      * 加入cdn
@@ -75,6 +78,7 @@ abstract class Tool {
      * @return string
      */
     final static public function addCdn($path) {
+        $path = self::getBuildPath($path);
         if (!C('IS_CDN')) {
             return $path;
         }
@@ -120,10 +124,18 @@ abstract class Tool {
         if (isset($this->options['static_case'])) {
             $staticInSrc = $this->options['static_case']['static_in_src'];
             $staticInFile = $this->options['static_case']['static_in_file'];
-            str_diff($staticInSrc, $staticInFile, $pos);
-            $pos = $pos ? -$pos : null;
-            C('STATIC_ACTUAL_PREFIX', str_slice($staticInSrc, 0, $pos));
-            C('STATIC_VIRTUAL_PREFIX', str_slice($staticInFile, 0, $pos));
+            $staticInBuild = $this->options['static_case']['static_in_build'];
+            if ($staticInSrc && $staticInFile) {
+                str_diff($staticInSrc, $staticInFile, $pos);
+                $pos = $pos ? -$pos : null;
+                C('STATIC_ACTUAL_PREFIX', str_slice($staticInSrc, 0, $pos));
+                C('STATIC_VIRTUAL_PREFIX', str_slice($staticInFile, 0, $pos));
+            }
+            if ($staticInSrc && $staticInBuild) {
+                str_diff($staticInSrc, $staticInBuild, $pos);
+                $pos = $pos ? -$pos : null;
+                C('STATIC_BUILD_PREFIX', str_slice($staticInFile, 0, $pos));
+            }
         }
 
         // 加载自定义插件
