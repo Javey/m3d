@@ -1,0 +1,25 @@
+@import "glyphicon.css";
+@import "ionicons.css";
+@import "base.css";
+
+body {
+    display: block;
+}
+h1 {
+    font-size: 28px;
+}
+header {
+    background: #262626;
+}
+nav {
+    line-height: 50px;
+    height: 50px;
+    color: #fff;
+    width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+article {
+    width: 1200px;
+    margin: 0 auto;
+}

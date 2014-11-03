@@ -60,17 +60,9 @@ class IframeRefreshPlugin extends Plugin {
     }
 
     private static function exportMaps($map, $type) {
-        $maps = '<?php '.PHP_EOL.'$'.$type.'_build_maps = ';
-        $maps .= var_export($map['build'], true);
-        $maps .= ';'.PHP_EOL;
-
-        $maps .= '$'.$type.'_static_maps = ';
-        $maps .= var_export($map['static'], true);
-        $maps .= ';'.PHP_EOL;
-
-        $maps .= '$'.$type.'_1on1_maps = ';
-        $maps .= var_export($map['one_on_one'], true);
-        $maps .= ';';
+        $maps = array_to_string($map['build']);
+        $maps .= array_to_string($map['static']);
+        $maps .= array_to_string($map['one_on_one']);
 
         contents_to_file(C('IFRESH.PATH').'/'.$type.'_build_maps.php', $maps);
     }

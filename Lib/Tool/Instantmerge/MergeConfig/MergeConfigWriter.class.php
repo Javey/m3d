@@ -176,13 +176,7 @@ class MergeConfigWriter {
         } else {
             $temp = $config;
         }
-        $string = '<?php '.PHP_EOL.'return ';
-        $string .= var_export($temp, true);
-        $string .= ';';
 
-        // 格式化，满足规范
-        $string = str_replace(array("  ", 'NULL'), array("    ", 'null'), $string);
-
-        return $string;
+        return array_to_string($temp);
     }
 }

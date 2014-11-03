@@ -697,3 +697,19 @@ if (class_exists('finfo')) {
         return trim($info);
     }
 }
+
+/**
+ * 将php数组格式化成可写入文本的字符串
+ * @param $array
+ * @return mixed|string
+ */
+function array_to_string($array) {
+    $string = '<?php '.PHP_EOL.'return ';
+    $string .= var_export($array, true);
+    $string .= ';';
+
+    // 格式化，满足规范
+    $string = str_replace(array("  ", 'NULL'), array("    ", 'null'), $string);
+
+    return $string;
+}

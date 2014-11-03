@@ -215,11 +215,7 @@ class PreprocessTool extends Tool {
      * @param $type 预处理器类型
      */
     private function exportMapByType($type) {
-        $string = '<?php '.PHP_EOL.'return ';
-        $string .= var_export($this->map[$type], true);
-        $string .= ';';
-
-        contents_to_file(C('SRC.M3D_MAP_PATH').'/'.$type.C('SRC.M3D_MAP_SUFFIX').'.php', $string);
+        contents_to_file(C('SRC.M3D_MAP_PATH').'/'.$type.C('SRC.M3D_MAP_SUFFIX').'.php', array_to_string($this->map[$type]));
         // 派发map写入完成事件
         trigger('export_map_end', $this, $type);
     }
