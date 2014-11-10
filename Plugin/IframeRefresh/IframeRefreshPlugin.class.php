@@ -1,9 +1,13 @@
 <?php
+/**
+ * 为了满足音乐人局刷的插件，主要生成一些用于局刷的文件
+ */
 
 on('process_start', 'IframeRefresh');
 on('export_map_end', 'IframeRefreshPlugin::handleMap');
 on('write_build_file_start', 'IframeRefreshPlugin::addContent');
 on('process_js_start', 'IframeRefreshImport');
+on('process_end', 'IframeRefreshPlugin::ci');
 
 class IframeRefreshPlugin extends Plugin {
     protected $options = array(
@@ -34,6 +38,11 @@ class IframeRefreshPlugin extends Plugin {
             $contents = $processor->getContents();
             $processor->setContents($contents.'#m3d_'.$uid.'{height:9527px}');
         }
+    }
+
+    public static function ci() {
+        shell_exec_ensure(C('SVN').' add '.C('IFRESH.PATH').' --force', false);
+        shell_exec_ensure(C('SVN').' ci "'.C('IFRESH.PATH').'" -m "commit by M3D::IframeRefreshPlugin"', false);
     }
 
     private static function genMap($map, $type) {

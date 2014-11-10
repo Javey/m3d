@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 提供json格式的map
+ * 提供json格式的map
  * User: zoujiawei
  * Date: 13-11-21
  * Time: 下午4:30

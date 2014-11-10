@@ -1,15 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
+ * 该插件已合并至Core，故废弃，不过可以当成一个预处理器替换的Demo
+ * Deprecated
  * User: zoujiawei
  * Date: 14-7-7
  * Time: 下午8:59
  */
 
-require_once('JCssParser.class.php');
-require_once('JCssStringifier.class.php');
+require_once(LIB_PATH.'/Third/JCssParser/JCssParser.php');
 
-on('processor_init', 'JCssParser');
+//on('processor_init', 'JCssParser');
 
 class JCssParserPlugin extends Plugin {
     protected $options = array(
@@ -41,8 +41,7 @@ class JCssPreprocess extends CssPreprocess {
      */
     protected function cssParse($contents) {
         // 处理逻辑
-        $parser = new JCssParser();
-        $doc = $parser->parse($contents);
+        $doc = JCssParser::parse($contents);
 
         $ret = new stdClass();
         $ret->return = null;
@@ -57,9 +56,7 @@ class JCssPreprocess extends CssPreprocess {
             $this->handleBackground($doc['stylesheet']['rules']);
         }
 
-        $stringifier = new JCssStringifier();
-
-        return $importContents.$stringifier->stringify($doc);
+        return $importContents.JCssParser::stringify($doc);
     }
 
     private function handleImport(&$rules) {

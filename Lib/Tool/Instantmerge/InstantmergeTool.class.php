@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 合图工具类
+ * 合图工具
  * Dependency: CSSParserTool
  * User: zoujiawei
  * Date: 13-11-11

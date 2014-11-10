@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 提供用于增量编译的各种数据
+ * 提供用于增量编译的各种数据
  * User: zoujiawei
  * Date: 14-3-19
  * Time: 下午3:37

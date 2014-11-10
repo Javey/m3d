@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 合图配置迁移
+ * 合图配置迁移，从老版本配置迁移至新版，可以考虑关掉该插件
  * User: zoujiawei
  * Date: 14-3-31
  * Time: 下午9:45

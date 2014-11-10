@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 工程相关
+ * 工程相关，即:music/play/piao这样的工程
  * User: zoujiawei
  * Date: 14-3-31
  * Time: 下午9:02

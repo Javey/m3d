@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 合图接口
+ * 合图接口
  * User: zoujiawei
  * Date: 14-3-11
  * Time: 下午2:06

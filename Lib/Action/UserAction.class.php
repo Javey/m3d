@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 用户名管理
+ * 用户名管理，用于邮件收发
  * User: zoujiawei
  * Date: 14-4-1
  * Time: 下午4:52

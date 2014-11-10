@@ -8,7 +8,7 @@
  */
 
 // 包含Db文件
-require_cache(LIB_PATH.'/Db/Lazer/bootstrap.php');
+require_cache(LIB_PATH.'/Third/Lazer/bootstrap.php');
 
 class Model {
     protected $name = '';

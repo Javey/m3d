@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 与svn的一些交互逻辑
+ * 与svn的一些交互逻辑
  * User: zoujiawei
  * Date: 14-3-25
  * Time: 下午11:01

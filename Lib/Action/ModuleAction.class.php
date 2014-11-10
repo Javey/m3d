@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 模块操作接口
+ * 模块操作接口
  * User: zoujiawei
  * Date: 13-12-18
  * Time: 下午3:08

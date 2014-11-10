@@ -7,8 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-require_once(PLUGIN_PATH.'/JCssParser/JCssParser.class.php');
-require_once(PLUGIN_PATH.'/JCssParser/JCssStringifier.class.php');
+require_once(LIB_PATH.'/Third/JCssParser/JCssParser.php');
 
 class MergeConfigException extends Exception {}
 
@@ -48,8 +47,7 @@ class MergeConfigGenerator {
             mark('解析CSS文件：'.$file);
             $this->file = $file;
             $content = file_get_contents($file);
-            $cssParser = new JCssParser();
-            $cssDoc = $cssParser->parse($content);
+            $cssDoc = JCssParser::parse($content);
 
             foreach ($cssDoc['stylesheet']['rules'] as $rule) {
                 if ($rule['type'] === 'rule') {

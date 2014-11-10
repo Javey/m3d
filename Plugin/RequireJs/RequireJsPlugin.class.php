@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 处理requireJs，改变依赖模块路径
+ * 处理requireJs，改变依赖模块路径
  * User: zoujiawei
  * Date: 14-03-19
  * Time: 下午4:30

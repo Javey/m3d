@@ -1,4 +1,7 @@
 <?php
+/**
+ * 用户名数据操作
+ */
 
 class UserModel extends Model {
     /**

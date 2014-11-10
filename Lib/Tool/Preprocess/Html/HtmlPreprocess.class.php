@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-require_once('simple_html_dom.php');
+require_once(LIB_PATH.'/Third/SimpleHtmlDom/simple_html_dom.php');
 
 class HtmlPreprocess extends Preprocess {
     public function process() {
@@ -36,7 +36,7 @@ class HtmlPreprocess extends Preprocess {
     }
 
     public function compress() {
-
+        // 无需压缩
     }
 
     /**
@@ -67,10 +67,8 @@ class HtmlPreprocess extends Preprocess {
      * @param simple_html_dom $html
      */
     private function handleCss(simple_html_dom $html) {
-        $cssTags = $html->find('link[type="text/css"]');
-        if (empty($cssTags)) {
-            $cssTags = $html->find('link[rel="stylesheet"]');
-        }
+//        $cssTags = $html->find('link[type="text/css"]');
+        $cssTags = $html->find('link[rel="stylesheet"]');
         foreach ($cssTags as $value) {
             if (!empty($value->href)) {
                 $this->replacePath('css', $value, 'href');

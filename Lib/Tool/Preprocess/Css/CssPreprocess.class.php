@@ -7,6 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+require_once(LIB_PATH.'/Third/JCssParser/JCssParser.php');
 
 class CssPreprocess extends Preprocess {
     // 合图配置表
@@ -79,46 +80,45 @@ class CssPreprocess extends Preprocess {
     }
 
     /**
-     * 解析，处理css
-     * @param $contents
-     * @return string
+     * css解析入口
+     * @param $contents {String} css文本内容
+     * @return string {String} 处理后的文件
      */
     protected function cssParse($contents) {
-        $cssParser = new Parser($contents);
-        $cssDoc = $cssParser->parse();
+        // 处理逻辑
+        $doc = JCssParser::parse($contents);
 
-        $importContents = $this->handleImport($cssDoc);
-
-//        trigger('css_handle_background_start', $cssDoc);
-
-        // 如果需要进行地址替换
-        if ($this->isReplaceUri) {
-            $this->handleBackground($cssDoc);
+        $ret = new stdClass();
+        $ret->return = null;
+        trigger('css_parse_start', $this, $doc, $ret);
+        if ($ret->return) {
+            $doc = $ret->return;
         }
 
-        return $importContents.$cssDoc->__toString();
+        $importContents = $this->handleImport($doc['stylesheet']['rules']);
+
+        if ($this->isReplaceUri) {
+            $this->handleBackground($doc['stylesheet']['rules']);
+        }
+
+        return $importContents.JCssParser::stringify($doc);
     }
 
-    /**
-     * 递归处理import，将import进行合并
-     * @param Document $cssDoc
-     * @return mixed
-     */
-    private function handleImport(Document $cssDoc) {
+    private function handleImport(&$rules) {
         $contents = '';
 
-        $allValues = $cssDoc->getAllValues();
-        foreach ($allValues as $value) {
-            if ($value instanceof Import) {
-                $path = $value->getLocation()->getURL()->__toString();
-                $path = trim($path, '"');
+        foreach ($rules as $index => &$rule) {
+            if ($rule['type'] === 'import') {
+                $path = trim($rule['import'], '"');
                 $path = Tool::getActualPath($path);
 
-                $processor = new CssPreprocess($this->map);
+                $processor = new JCssPreprocess($this->map);
                 $processor->setFile(C('SRC.SRC_PATH').$path);
                 $processor->process();
+
                 $contents .= $processor->getContents();
-                $value->setRemoveImport();
+
+                unset($rules[$index]);
 
                 trigger('css_import', $this, $processor);
             }
@@ -127,143 +127,79 @@ class CssPreprocess extends Preprocess {
         return $contents;
     }
 
-    /**
-     * 找到需要处理的background，filter属性，进行处理
-     * @param Document $cssDoc
-     */
-    private function handleBackground(Document $cssDoc) {
-        foreach ($cssDoc->getAllDeclarationBlocks() as $block) {
-            $merge = $this->isMergeImage ? (($mergeRule = $block->getRules('merge')) ? $mergeRule[0]->getValue() : null) : null;
-            $bgValues = $block->getRulesAssoc('-background-');
+    private function handleBackground(&$rules) {
+        foreach ($rules as &$rule) {
+            if ($rule['type'] === 'rule') {
+                $bgDecls = array();
+                $merge = null;
+                foreach ($rule['declarations'] as $index => &$declaration) {
+                    if (strpos($declaration['property'], 'background') !== false) {
+//                        array_push($bgDecls, &$declaration);
+                        $bgDecls[] = &$declaration;
+                    } elseif ($declaration['property'] === 'merge') {
+                        $merge = $declaration['value'];
+                        unset($rule['declarations'][$index]);
+                    }
+                }
 
-            $this->rewriteBackground($block, $bgValues, $merge);
-            $this->rewriteFilter($block);
+                $this->rewriteBackground($rule, $bgDecls, $merge);
+                $this->rewriteFilter($rule);
+            }
         }
     }
 
-    /**
-     * 找到需要处理的background，进行处理
-     * 支持自定义属性merge，进行合图替换
-     * @param DeclarationBlock $block
-     */
-    private function rewriteBackground(DeclarationBlock $block, &$bgValues, $merge) {
-        $values = array();
-
-        if (isset($bgValues['background'])) {
-            // 写的是background属性
-            $values = $bgValues['background']->getValue();
-            if ($values instanceof RuleValueList) {
-                $values = $values->getListComponents();
-            } else {
-                $values = array($values);
+    private function rewriteBackground(&$rule, &$bgDecls, $merge) {
+        foreach ($bgDecls as &$bgDecl) {
+            if ($bgDecl['property'] === 'background' || $bgDecl['property'] === 'background-image') {
+                if (preg_match('/(.*url\()([\'\"]?)([^\'\"\)]+)([\'\"]?)(\).*)/', $bgDecl['value'], $matches)) {
+                    $url = $matches[3];
+                    $urlData = $this->getBackgroundUrlData($url, $merge);
+                    $bgDecl['value'] = $matches[1].'"'.$urlData['url'].'"'.$matches[5];
+                }
             }
-        } else if (isset($bgValues['background-image'])) {
-            // 写的是background-image属性
-            $values = $bgValues['background-image']->getValue();
-            $values = array($values);
         }
 
-        if (!empty($values)) {
-            $config = null;
-            foreach ($values as $value) {
-                if ($value instanceof URL) {
-                    // 找到url，开始替换
-                    $config = $this->rewriteBackgroundUrl($value, $merge);
+        if ($merge && isset($urlData) && $urlData['config']) {
+            $position = array('left' => $urlData['config']['left'], 'top' => $urlData['config']['top']);
+            $this->rewriteBackgroundSize($bgDecls, $urlData['config'], $this->spriteConfig[$merge]['attr'], $position);
+            $this->rewriteBackgroundPosition($rule, $bgDecls, $position);
+        }
+    }
+
+    private function rewriteFilter(&$rule) {
+        foreach ($rule['declarations'] as &$declaration) {
+            if (strpos($declaration['property'], 'filter') !== false) {
+                if (preg_match('/(.*?src=)([\'\"]?)([^\'\"\)]+)([\'\"]?)(.*)/', $declaration['value'], $matches)) {
+                    $url = $matches[3];
+                    $urlData = $this->getBackgroundUrlData($url);
+                    $declaration['value'] = $matches[1].'"'.$urlData['url'].'"'.$matches[5];
                     break;
                 }
             }
-
-            if ($merge) {
-                $block->removeRule('merge');
-                if ($config) {
-                    $position = array(
-                        'left' => $config['left'],
-                        'top' => $config['top']
-                    );
-                    // 需要先设置backgroundSize，可能需要修正position
-                    $this->rewriteBackgroundSize($bgValues, $config, $this->spriteConfig[$merge]['attr'], $position);
-                    $this->rewriteBackgroundPosition($block, $bgValues, $position);
-                }
-            }
         }
     }
 
-    /**
-     * 处理滤镜图片
-     * @param DeclarationBlock $block
-     */
-    private function rewriteFilter(DeclarationBlock $block) {
-        $bgValues = ($temp = $block->getRules('_filter')) ?
-            $temp : (($temp = $block->getRules('-ms-filter')) ?
-                $temp : (($temp = $block->getRules('filter')) ?
-                    $temp : null));
+    private function getBackgroundUrlData($url, $merge = null) {
+        $ret = array(
+            'url' => $url,
+            'config' => null
+        );
 
-        if ($bgValues === null) {
-            return;
+        $newUrl = $url;
+
+        if (!$url || strpos($url, 'data:') !== false || strpos($url, 'about:') !== false || strpos($url, '://') !== false) {
+            return $ret;
         }
 
-        // 分辨是不是滤镜图片
-        $rule = $bgValues[0]->__toString();
-        if (strpos($rule, 'progid') === false || strpos($rule, 'AlphaImageLoader') === false) {
-            return;
-        }
-
-        $filterValue = $bgValues[0]->getValue()->getListComponents();
-        $filterValue = $filterValue[2]->getArguments();
-
-        foreach($filterValue as $fValues) {
-            $fValues = $fValues->getListComponents();
-            if (strpos($fValues[0], "src") !== false) {
-                $filterStringObj = $fValues[1];
-                $this->rewriteBackgroundUrl($filterStringObj);
-                break;
-            }
-        }
-    }
-
-    /**
-     * 替换url
-     * @param PrimitiveValue $url
-     * @param null $merge
-     * @return array|null
-     */
-    private function rewriteBackgroundUrl(PrimitiveValue $url, $merge=null) {
-        // 将合图配置信息返回
-        $ret = null;
-
-        // background传入的是URL对象
-        // filter传入的是String对象
-        if ($url instanceof URL) {
-            $urlString = $url->getURL()->__toString();
-            $setMethod = 'setURL';
-        } elseif ($url instanceof String) {
-            $urlString = $url->getString();
-            $setMethod = 'setString';
-        } else {
-            throw new PreprocessException('参数错误');
-        }
-
-        $urlString = trim($urlString, '"');
-        $newUrl = $urlString;
-
-        if (
-            strpos($urlString, 'data:') !== false ||
-            strpos($urlString, 'about:') !== false ||
-            strpos($urlString, '://') !== false
-        ) {
-            return null;
-        }
-
-        // 根据引用地址，获取真实文件地址
-        $urlString = Tool::getActualPath($urlString);
+        $url = Tool::getActualPath($url);
 
         $mask = 0;
-        $mask += isset($merge);
+        $mask += !is_null($merge);
         $mask += ($mask > 0 && isset($this->spriteConfig[$merge]));
-        $mask += ($mask > 1 && isset($this->spriteConfig[$merge]['config'][$urlString]));
+        $mask += ($mask > 1 && isset($this->spriteConfig[$merge]['config'][$url]));
 
         $mask <<= 1;
-        $mask += isset($this->map['media'][$urlString]);
+        $mask += isset($this->map['media'][$url]);
 
         if (($mask & 6) === 6) {
             $sprite = $this->spriteConfig[$merge]['attr']['filename'];
@@ -271,175 +207,146 @@ class CssPreprocess extends Preprocess {
                 $newUrl = $this->map['media'][$sprite];
             } else {
                 mark('找不到合图文件'.$sprite.'的去向，请确定该合图已编译', 'error');
-                return null;
+                return $ret;
             }
-            $ret = $this->spriteConfig[$merge]['config'][$urlString];
+            $ret['config'] = $this->spriteConfig[$merge]['config'][$url];
 
             trigger('css_background_change', $this, $sprite);
         } else {
             if (($mask & 1) === 1) {
-                $newUrl = $this->map['media'][$urlString];
+                $newUrl = $this->map['media'][$url];
             }
 
-            trigger('css_background_change', $this, $urlString);
+            trigger('css_background_change', $this, $url);
+            // 依然将合图加入依赖关系表中，万一某天心血来潮又合图了，依然可以进行增量编译
+            if ($mask > 1) {
+                trigger('css_background_change', $this, $merge.C('SPRITE_SUFFIX').'.png');
+            }
 
             // 5中异常情况
             switch ($mask) {
                 case 0:
-                    mark('文件“'.$this->path.'”中引用了“'.$urlString.'”，但该图片不存在！', 'warn');
-                    return null;
+                    mark('文件“'.$this->path.'”中引用了“'.$url.'”，但该图片不存在！', 'warn');
+                    return $ret;
                 case 1:
                     // 正常情况
                     break;
                 case 2:
-                    mark('文件“'.$this->path.'”中存在未知合图类型“'.$merge.'”，并且图片“'.$urlString.'”也不存在', 'warn');
-                    return null;
+                    mark('文件“'.$this->path.'”中存在未知合图类型“'.$merge.'”，并且图片“'.$url.'”也不存在', 'warn');
+                    return $ret;
                 case 3:
                     mark('文件“'.$this->path.'”中存在未知合图类型“'.$merge.'”，将用小图地址代替', 'warn');
                     break;
                 case 4:
-                    mark('文件“'.$this->path.'”中引用了合图“'.$merge.'”，但该合图类型中不存在“'.$urlString.'”的配置信息，并且该图片也不存在', 'warn');
-                    return null;
+                    mark('文件“'.$this->path.'”中引用了合图“'.$merge.'”，但该合图类型中不存在“'.$url.'”的配置信息，并且该图片也不存在', 'warn');
+                    return $ret;
                 case 5:
-                    mark('文件“'.$this->path.'”中引用了合图“'.$merge.'”，但该合图类型中不存在“'.$urlString.'”的配置信息，将用小图地址代替', 'warn');
+                    mark('文件“'.$this->path.'”中引用了合图“'.$merge.'”，但该合图类型中不存在“'.$url.'”的配置信息，将用小图地址代替', 'warn');
                     break;
                 default:
-                    mark('文件“'.$this->path.'”中引用了“'.$urlString.'”，未知错误码：'.$mask, 'error');
-                    return null;
+                    mark('文件“'.$this->path.'”中引用了“'.$url.'”，未知错误码：'.$mask, 'error');
+                    return $ret;
             }
         }
 
-        $newUrl = Tool::addCdn($newUrl);
-        $newUrl = new String($newUrl);
-        call_user_func(array($url, $setMethod), $newUrl);
+        $ret['url'] = Tool::addCdn($newUrl);
 
         return $ret;
     }
 
-    /**
-     * 替换background-position
-     * @param DeclarationBlock $block
-     * @param $bgValues
-     * @param $config Array 位置数组
-     */
-    private function rewriteBackgroundPosition(DeclarationBlock $block, &$bgValues, $config) {
-        $positionRule = isset($bgValues['background-position']) ?
-            $bgValues['background-position'] : (isset($bgValues['background']) ?
-                $bgValues['background'] :  null);
-
-        if ($positionRule) {
-            $values = $positionRule->getValue();
-
-            if ($values instanceof RuleValueList) {
-                $values = $values->getListComponents();
-            } else {
-                $values = array($values);
-            }
-
-            if (!$this->setPosition($values, $config)) {
-                // 到setPosition返回false时，表示没有找到可以设置position的属性，需要添加
-                $this->addPositionRule($block, $config);
-            }
-        } else {
-            $this->addPositionRule($block, $config);
-        }
-    }
-
-    /**
-     * 插入一条position属性
-     * @param DeclarationBlock $block
-     * @param $position
-     */
-    private function addPositionRule(DeclarationBlock $block, $position) {
-        $newRule = new Rule('background-position');
-        $newRule->addValue(array(
-            new Size(-$position['left'], 'px'),
-            new Size(-$position['top'], 'px')
-        ));
-        $block->addRule($newRule);
-    }
-
-    /**
-     * 替换background-size
-     * @param $bgValues
-     * @param $config {Array} 合图配置
-     * @param $attr {Array} sprite图片大小信息
-     * @param $position {Array} 位置信息，需要根据background-size改写position
-     */
-    private function rewriteBackgroundSize(&$bgValues, $config, $attr, &$position) {
-        // 宽高缩放比例
+    private function rewriteBackgroundSize(&$bgDecls, $config, $attr, &$position) {
         $ratio = array('width' => 1, 'height' => 1);
 
-        foreach($bgValues as $key => $bgValue) {
-            if (strpos($key, 'background-size') !== false) {
-                $bgSize = $bgValue->getValues();
+        foreach ($bgDecls as &$bgDecl) {
+            if (strpos($bgDecl['property'], 'background-size') !== false) {
+                $bgSize = preg_split('/\s+/', $bgDecl['value']);
                 $order = 'width';
                 $setTimes = 0;
 
-                foreach ($bgSize as $size) {
-                    $size = $size[0];
-                    if ($size instanceof Size && $size->isSize()) {
-                        $oSize = $size->getSize();
-                        $ratio[$order] = $oSize / $config['ori_'.$order];
-                        $nSize = floor($ratio[$order] * $attr[$order]);
-                        $size->setSize($nSize);
+                foreach ($bgSize as $index => $size) {
+                    if (($matches = $this->matchSize($size)) && !empty($matches)) {
+                        $size = $matches[1];
+                        $ratio[$order] = $size / $config['ori_'.$order];
+                        $size = floor($ratio[$order] * $attr[$order]);
+                        $bgSize[$index] = (string)$size.'px';
 
                         $setTimes++;
                     }
                     $order = 'height';
                 }
 
-                // 针对background-size: auto 1px / 1px auto的情况
+                $bgDecl['value'] = implode(' ', $bgSize);
+
                 if ($setTimes < 2) {
                     if ($ratio['width'] !== 1) {
                         $ratio['height'] = $ratio['width'];
-                    } else if ($ratio['height'] !== 1) {
+                    } elseif ($ratio['height'] !== 1) {
                         $ratio['width'] = $ratio['height'];
                     }
                 }
             }
         }
 
-        // 改变position
         $position = array(
             'left' => round($position['left'] * $ratio['width']),
             'top' => round($position['top'] * $ratio['height'])
         );
     }
 
-    /**
-     * 设置background-size
-     * @param $value
-     * @param $config
-     * @return bool 是否找到可以改写的background-size项
-     */
-    private function setPosition(&$value, $config) {
-        // 此时处理的position的位置
+    private function rewriteBackgroundPosition(&$rule, &$bgDecls, $config) {
+        foreach ($bgDecls as &$bgDecl) {
+            if ($bgDecl['property'] === 'background-position') {
+                $posDecl = &$bgDecl;
+                break;
+            } else if ($bgDecl['property'] === 'background') {
+                $posDecl = &$bgDecl;
+            }
+        }
+
+        if (isset($posDecl)) {
+            $posValues = preg_split('/\s+/', $posDecl['value']);
+            if ($this->setPosition($posValues, $config)) {
+                $posDecl['value'] = implode(' ', $posValues);
+            } else {
+                $this->addPositionDecl($rule['declarations'], $config);
+            }
+        } else {
+            $this->addPositionDecl($rule['declarations'], $config);
+        }
+    }
+
+    private function setPosition(&$values, $config) {
         $order = 'left';
         $setTimes = 0;
-        foreach ($value as $pValue) {
-            if ($pValue instanceof Size && $pValue->isSize()) {
-                // 不存在单位时，此时为“0”，加上px
-                if (!$pValue->getUnit()) {
-                    $pValue->setUnit('px');
-                }
-                $oSize = $pValue->getSize();
-                $pValue->setSize($oSize - $config[$order]);
+        foreach ($values as &$value) {
+            if (($matches = $this->matchSize($value)) && !empty($matches)) {
+                $value = (string)($matches[1] - $config[$order]).'px';
                 $order = 'top';
                 $setTimes++;
-            } elseif (is_string($pValue) && in_array($pValue, array('left', 'center', 'right', 'top', 'bottom'))) {
+            } elseif (is_string($value) && in_array($value, array('left', 'center', 'right', 'top', 'bottom'))) {
                 $order = 'top';
                 $setTimes++;
             }
-            // 处理两次了，则退出
             if ($setTimes === 2) {
                 break;
             }
         }
 
-        // 如果$setTimes > 0,则找到了可以设置的position项
-        // 存在background属性没有设置position的情况
         return $setTimes > 0;
+    }
+
+    private function addPositionDecl(&$decls, $config) {
+        $decl = array(
+            'type' => 'declaration',
+            'property' => 'background-position',
+            'value' => (string)(-$config['left']).'px '.(string)(-$config['top']).'px',
+        );
+        array_push($decls, $decl);
+    }
+
+    private function matchSize($value) {
+        preg_match('/^([\d\.\-]+)(px)?/', $value, $matches);
+        return $matches;
     }
 
     /**

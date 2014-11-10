@@ -1,4 +1,7 @@
 <?php
+/**
+ * 编译工具
+ */
 
 defined('PREPROCESS_PATH') or define('PREPROCESS_PATH', dirname(__FILE__).'/');
 // 加载编译配置

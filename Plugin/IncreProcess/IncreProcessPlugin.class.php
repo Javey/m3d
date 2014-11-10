@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by JetBrains PhpStorm. 增量编译，依赖svn
+ * 增量编译，依赖svn
  * User: zoujiawei
  * Date: 14-3-19
  * Time: 下午12:17

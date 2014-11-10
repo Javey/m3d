@@ -34,8 +34,10 @@ define(['lodash', 'jquery'], function(_, $) {
                         _.each(newResponse, function(value) {
                             if (value) {
                                 console.log(value);
-                                value = $.parseJSON(value);
-                                options.loading(value);
+                                try {
+                                    value = $.parseJSON(value);
+                                    options.loading(value);
+                                } catch (e) {}
                             }
                         });
                     } else if (xhr.readyState === 4) {
