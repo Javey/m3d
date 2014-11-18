@@ -1,0 +1,13 @@
+</article>
+<script type="text/javascript">
+    SyntaxHighlighter.all();
+
+    Array.prototype.slice.call(document.querySelectorAll('.flow')).forEach(function(dom) {
+        var code = dom.firstChild,
+            chart = flowchart.parse(code.nodeValue);
+        dom.removeChild(code);
+        chart.drawSVG(dom);
+    })
+</script>
+</body>
+</html>

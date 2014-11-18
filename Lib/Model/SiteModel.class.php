@@ -41,11 +41,9 @@ class SiteModel extends Model {
         $this->updateBranch($data);
 
         // 仅保存需要的模块id到数据库
-        $modules = array();
+        $moduleIds = array();
         foreach ($data['modules'] as $module) {
-            if ($module['checked']) {
-                $modules[] = $module['id'];
-            }
+            $moduleIds[] = $module['id'];
         }
 
         $this->set(array(
@@ -53,7 +51,7 @@ class SiteModel extends Model {
             'author' => $data['author'],
             'createTime' => date('Y/m/d', time()),
             'description' => $data['description'],
-            'modules' => serialize($modules)
+            'modules' => serialize($moduleIds)
         ));
         $this->save();
 

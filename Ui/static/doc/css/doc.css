@@ -1,0 +1,72 @@
+/*@import "../../css/base.css";*/
+
+body {
+    margin: 0;
+    font: 14px Arial, 'Microsoft YaHei';
+}
+h1, h2, h3, h4, h5 {
+    font-weight: normal;
+}
+h1, h2 {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+h1 {
+    font-size: 34px;
+}
+h2 {
+    font-size: 26px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+li {
+    margin: 3px 0;
+}
+code {
+    font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+    background: #f7f7f7;
+    padding: 5px;
+    border-radius: 3px;
+    color: #c7254e;
+    display: inline-block;
+}
+header {
+    background: #262626;
+    color: #fff;
+    line-height: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+header .content {
+    display: -webkit-flex;
+    display: flex;
+    line-height: 50px;
+    width: 1200px;
+    margin: 0 auto;
+}
+header .title {
+    margin-right: 50px;
+    font-size: 26px;
+}
+nav {
+    -webkit-box-flex: 1;
+    flex: 1;
+}
+header a {
+    color: #eee;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 20px;
+}
+header a:hover {
+    background: #e25940;
+}
+article {
+    width: 1200px;
+    margin: 0 auto;
+}

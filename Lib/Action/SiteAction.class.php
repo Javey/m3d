@@ -115,7 +115,7 @@ class SiteAction extends Action {
     private function saveInfo() {
         $data = array(
             'id' => (int)$_POST['id'],
-            'description' => $_POST['name'],
+            'description' => $_POST['description'],
             'modules' => $_POST['modules']
         );
         $model = new SiteModel();

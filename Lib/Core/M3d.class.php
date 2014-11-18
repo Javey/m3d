@@ -97,9 +97,9 @@ class M3d {
             }
         } catch (ReflectionException $e) {
             // 引导到_call
-//            $method = new ReflectionMethod($module,'__call');
-//            $method->invokeArgs($module,array($action,''));
-            print_r($e);
+            $method = new ReflectionMethod($module, '__call');
+            $method->invokeArgs($module, array($action, ''));
+//            print_r($e);
         }
     }
 

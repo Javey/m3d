@@ -36,7 +36,11 @@ define(['lodash', 'angular', 'lib/common'], function(_, angular, common) {
                 common.validateForm($scope, $scope.mainForm);
                 if ($scope.mainForm.$valid && !$scope.isAjax) {
                     $scope.isAjax = true;
-                    site.addSite($scope.info, function(res) {
+                    var info = _.clone($scope.info, true);
+                    info.modules = _.filter(info.modules, function(module) {
+                        return module.checked;
+                    });
+                    site.addSite(info, function(res) {
                         $scope.isAjax = false;
                         if (res.errorCode === 200) {
                             $rootScope.$broadcast('add:site');

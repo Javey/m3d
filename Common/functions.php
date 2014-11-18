@@ -210,35 +210,6 @@ function mark($msg, $type = 'normal'){
 //    flush();
 }
 
-/**
- * 执行shell
- * @param $shell
- * @param bool $showInfo
- * @param bool $showError
- * @return array
- */
-//function shell_exec_ensure($shell, $showInfo = true, $showError = true) {
-//    // svn up时,如果包含中文名，需要导入LANG环境变量
-//    exec('export LANG="zh_CN.UTF-8" && ' . 'ping www.baidu.com -c 5' . " 2>&1", $info, $ret);
-//    if ($showError && $ret != 0) {
-//        mark("xxxxxxxxxxxx命令执行失败xxxxxxxxxxxxxxx", 'span', 'red');
-//    }
-//    if ($showInfo && !empty($info)) {
-////        print_r($info);
-////        mark($info);
-////        echo(implode(';;', $info));
-////        foreach ($info as $item) {
-////            mark($item);
-////        }
-//
-//    }
-//
-//    return array(
-//        'output' => $info,
-//        'status' => $ret
-//    );
-//}
-
 function shell_exec_ensure($shell, $showInfo = true, $showError = true) {
     // svn up时,如果包含中文名，需要导入LANG环境变量
     $ret = array(
@@ -521,21 +492,6 @@ function file_uid($contents, $type='') {
 
     return $uid;
 }
-
-//function file_uid($str, $type='') {
-//    global $total;
-//    $time1 = microtime(true);
-//    $arr = str_split($str.$type);
-//
-//    $sum = 65536;
-//    foreach($arr as $n) {
-//       $sum = (($sum << 1 | $sum >> 31) & 0xffffffff ) ^ ord($n);
-//    }
-//    $time2 = microtime(true);
-//    $total += ($time2 - $time1);
-//
-//    return base_convert($sum, 10, 36);
-//}
 
 /**
  * 写入内容到文件，确保文件夹存在

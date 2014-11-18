@@ -17,6 +17,7 @@ defined('PLUGIN_PATH') or define('PLUGIN_PATH', M3D_CORE_PATH.'/Plugin');
 defined('CONF_PATH') or define('CONF_PATH', M3D_CORE_PATH.'/Conf');
 //defined('SHELL_PATH') or define('SHELL_PATH', M3D_CORE_PATH.'/Shell');
 defined('UI_PATH') or define('UI_PATH', M3D_CORE_PATH.'/Ui');
+defined('DOC_PATH') or define('DOC_PATH', M3D_CORE_PATH.'/Doc');
 //defined('CACHE_PATH') or define('CACHE_PATH', M3D_CORE_PATH.'/Cache');
 
 defined('_PHP_FILE_') or define('_PHP_FILE_', rtrim($_SERVER['SCRIPT_NAME'], '/'));
