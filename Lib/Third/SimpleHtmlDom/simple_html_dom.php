@@ -847,24 +847,6 @@ class simple_html_dom {
         // strip smarty scripts
 //        $this->remove_noise("'(\{\w)(.*?)(\})'s", true);
         $this->remove_noise("'(".C('SRC.SMARTY_LEFT_DELIMITER').")(.*?)(".C('SRC.SMARTY_RIGHT_DELIMITER').")'s", true);
-
-		//for test
-        //$this->remove_noise("'(\{)(.*?)(\})'s", true);
-
-		//the stylesheet(which seems like smarty tag) tag like body{color:#fff} is removed by style pattern belowb, but it's doesn't matter
-		//by luoqin 2012-04-06
-		
-		//$this->remove_noise("'(\{\*\w)(.*?)(\*\})'s", true);
-		//above line for remove {*version xxx*} but useless now by lq 20120723
-		
-//		$this->remove_noise("'(\{/\w)(.*?)(\})'s", true);
-		//above line for remove smarty closed tag, such as {/if}, {/block}... by lq 20120724
-		
-//		$this->remove_noise("'(\{\\$\w)(.*?)(\})'s", true);
-		//above line for remove smarty var, such as {$item}, {$a.b}... by lq 20120724
-		
-		//echo '<p>1======dbg======</p>';
-		//echo $this->dbg();
 		
         // parsing
         while ($this->parse());
@@ -1391,18 +1373,6 @@ class simple_html_dom {
 
     // restore noise to html content
     function restore_noise($text) {
-		
-		global $_GLOBAL_M3D;
-		
-		/*
-		if(!$_GLOBAL_M3D['simple'][$text]){
-			$_GLOBAL_M3D['simple'][$text] = true;
-			//echo "<p>=====".htmlspecialchars($text)."======<p>";
-			//var_dump($this->noise);
-			//exit;
-		}
-		*/
-			
         while (($pos=strpos($text, '___noise___'))!==false) {
             $key = '___noise___'.$text[$pos+11].$text[$pos+12].$text[$pos+13];
             if (isset($this->noise[$key]))

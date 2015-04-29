@@ -40,6 +40,7 @@ function install() {
     // 判断是否已安装
     if (!file_exists("${parentPath}/conf/config.php")) {
         shell_exec("cp -rf ${curPath}/Install/global/* ${parentPath}");
+        out('m3d安装完成, 接下来，请添加工程');
     } else {
         out('m3d已安装，重新安装请删除配置文件', 'error');
     }
@@ -64,6 +65,15 @@ function add($argv) {
     $contents = file_get_contents($indexPath);
     $contents = str_replace('{M3D_CORE}', $curDir, $contents);
     file_put_contents($indexPath, $contents);
+
+    // 修改site-template lighttpd.conf
+    $lighttpdTemplate = $projectPath.'/site/site-template/lighttpd.conf';
+    $contents = str_replace(
+        array('{project_name}', '{project_path}'),
+        array($projectName, $projectPath),
+        file_get_contents($lighttpdTemplate)
+    );
+    file_put_contents($lighttpdTemplate, $contents);
 
     // 建立静态文件软链
     shell_exec("ln -snf ${curPath}/Ui/static ${projectPath}/static");
