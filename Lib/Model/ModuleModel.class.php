@@ -32,8 +32,9 @@ class ModuleModel extends Model {
 
     /**
      * 添加一个新模块
-     * @param $name 模块路径
-     * @param $title 前端显示名
+     * @param $data {Array}
+     *  $name 模块路径
+     *  $title 前端显示名
      * @return bool
      */
     public function addModule($data) {
@@ -49,7 +50,7 @@ class ModuleModel extends Model {
         }
 
         $siteSrcPath = C('PROJECT.SITE_PATH').'/'.C('PROJECT.TEMP_DIR').'/'.C('PROJECT.SRC_DIR');
-        $cmd = 'cd '.$siteSrcPath.' && ln -snf '.C('SRC_PATH').'/'.$name.'/trunk '.$title;
+        $cmd = 'cd '.$siteSrcPath.' && ln -snf '.C('SRC_PATH').'/'.$name.'/'.C('MASTER_NAME').' '.$title;
         shell_exec_ensure($cmd, false, false);
 
         $this->set(array(

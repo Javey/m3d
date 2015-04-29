@@ -17,7 +17,7 @@
             <span class="title">模块配置</span>
             <div class="right">
                 <ul class="right module-list" ng-form="moduleForm" ng-class="{'ng-invalid': !modulesValid}" ng-value="$parent.moduleForm = moduleForm">
-                    <li ng-repeat="module in info.modules" class="module-item" ng-init="module.branch = 'trunk'">
+                    <li ng-repeat="module in info.modules" class="module-item" ng-init="module.branch = projectInfo.master_name">
                         <label>
                             <input type="checkbox" ng-checked="module.checked" ng-model="module.checked">
                             <span class="module-title">{{module.title}}</span>

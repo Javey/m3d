@@ -132,11 +132,26 @@ class ModuleAction extends Action {
         if (!file_exists($path)) {
             show_error($name.'模块不存在', true);
         }
-        $cmd = 'cd '.$path.' && '.C('SVN').' co '.$url;
-        // 如果url和name basename相同，则为trunk分支，co到trunk目录中
-        if (basename($url) === basename($name)) {
-            $cmd = $cmd.' trunk';
+
+        $hashPos = strpos($url, '#');
+        if ($hashPos !== false) {
+            $branchName = substr($url, $hashPos + 1);
+            $url = substr($url, 0, $hashPos);
         }
+        $extension = pathinfo($url, PATHINFO_EXTENSION);
+
+        if ($extension === 'git') {
+            $branchName = isset($branchName) ? $branchName : C('MASTER_NAME');
+            $cmd = 'cd '.$path.' && '.C('GIT').' clone '.$url.' '.$branchName.' && cd '.$branchName.' && '.C('GIT').' checkout '.$branchName;
+        } else {
+            // svn
+            $cmd = 'cd '.$path.' && '.C('SVN').' co '.$url;
+            // 如果url和name basename相同，则为trunk分支，co到trunk目录中
+            if (basename($url) === basename($name)) {
+                $cmd = $cmd.' trunk';
+            }
+        }
+
         $ret = shell_exec_ensure($cmd, $showInfo, false);
         if ($ret['status']) {
             show_error('命令执行失败:'.$cmd);

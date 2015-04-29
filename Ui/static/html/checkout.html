@@ -6,9 +6,9 @@
     <form name="checkout" ng-value="$parent.form = checkout">
         <div class="item url">
             <label>
-                <span class="title">SVN URL</span>
+                <span class="title">URL</span>
                 <span class="right">
-                    <input class="long" ng-model="info.url" type="url" name="url" required />
+                    <input class="long" ng-model="info.url" type="url" name="url" required placeholder="if (svn) { http://url } else if (git) { http://url#branch }" />
                     <span class="error-tip" ng-show="checkout.url.$dirty && (checkout.url.$error.required || checkout.url.$error.url)">Require a URL!</span>
                 </span>
             </label>

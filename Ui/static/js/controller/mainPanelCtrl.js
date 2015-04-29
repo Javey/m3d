@@ -165,6 +165,8 @@ define(['lodash', 'angular', 'lib/common'], function(_, angular, common) {
                 if ($scope.form && $scope.form.url.$valid) {
                     value = value.match(/https?:\/\/(.*?)\/(.*)/);
                     if (value && value[2]) {
+                        // 如果是git地址，去掉‘.’后面的内容
+                        value[2] = value[2].slice(0, value[2].lastIndexOf('.'));
                         value = value[2].split('/');
                         var ret = arrayMatch(value, modulesArr);
                         if (ret.ratio === 1) {

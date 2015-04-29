@@ -25,6 +25,8 @@ return array(
     'SRC_PATH' => M3D_PATH.'/src', // 存放svn源码的路径
     'RESTART' => null, // server重启脚本
     'SVN' => 'svn', // svn命令
+    'GIT' => 'git', // git命令
+    'MASTER_NAME' => 'trunk', // 主分支名称
 
     // project配置
     'PROJECT' => array(

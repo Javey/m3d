@@ -17,6 +17,8 @@ class ProjectAction extends Action {
     }
 
     private function getInfo() {
-        show_json(array_change_key_case(C('PROJECT.INFO')));
+        $ret = array_change_key_case(C('PROJECT.INFO'));
+        $ret['master_name'] = C('MASTER_NAME');
+        show_json($ret);
     }
 }

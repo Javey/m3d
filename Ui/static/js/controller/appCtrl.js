@@ -7,9 +7,9 @@
  */
 
 define(['angular'], function() {
-    return ['$scope', 'project', function($scope, project) {
+    return ['$scope', 'project', '$rootScope', function($scope, project, $rootScope) {
         project.read(function(res) {
-            $scope.projectInfo = res.data;
+            $rootScope.projectInfo = res.data;
         });
     }];
 });

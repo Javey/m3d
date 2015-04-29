@@ -1,5 +1,5 @@
 define(['lodash', 'angular'], function(_) {
-    return ['$scope', 'site', 'module', 'notify', 'terminal', '$modal', function($scope, site, module, notify, terminal, $modal) {
+    return ['$scope', 'site', 'module', 'notify', 'terminal', '$modal', '$rootScope', function($scope, site, module, notify, terminal, $modal, $rootScope) {
         // 数据缓存
         var cache = {};
         $scope.info = null;
@@ -178,7 +178,7 @@ define(['lodash', 'angular'], function(_) {
             });
             angular.forEach(modules, function(value) {
                 if (!modulesObj[value.id]) {
-                    value.branch = 'trunk';
+                    value.branch = $rootScope.projectInfo.master_name;
                     value.isOther = true;
                     otherModules.push(value);
                 }
