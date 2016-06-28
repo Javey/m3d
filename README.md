@@ -21,7 +21,7 @@
 
 1.  新建目录，clone m3d代码
 
-    `mkdir m3d && cd m3d && git clone http://bd.ysmood.org/Javey/m3d.git core`
+    `mkdir m3d && cd m3d && git clone https://github.com/Javey/m3d.git core`
 
 2.  进入m3d源码目录core，执行
 
