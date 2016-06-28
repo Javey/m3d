@@ -35,7 +35,7 @@
 
     `include_shell ~/m3d/shell/include-lighttpd-conf.sh`
 
-5.  重启lighttpd，配置host，将music.m3d.com指向开发机ip，即可访问
+5.  重启lighttpd，配置host，访问http://music.m3d.com
 
 ## 平台配置
 
